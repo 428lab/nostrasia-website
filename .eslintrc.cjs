@@ -8,8 +8,8 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
@@ -19,32 +19,69 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  ignorePatterns: ["!**/.server", "!**/.client"],
+  ignorePatterns: ['!**/.server', '!**/.client'],
 
   // Base config
-  extends: ["eslint:recommended"],
+  extends: ['eslint:recommended', 'prettier'],
+  plugins: ['import', 'unused-imports'],
+  rules: {
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin', // 組み込みモジュール
+          'external', // npmでインストールした外部ライブラリ
+          'internal', // 自作モジュール
+          ['parent', 'sibling'],
+          'object',
+          'type',
+          'index',
+        ],
+        'newlines-between': 'always', // グループ毎にで改行を入れる
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: {
+          order: 'asc', // 昇順にソート
+          caseInsensitive: true, // 小文字大文字を区別する
+        },
+        pathGroups: [
+          // 指定した順番にソートされる
+          {
+            pattern: '@/components/common',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: '@/components/hooks',
+            group: 'internal',
+            position: 'before',
+          },
+        ],
+      },
+    ],
+    'unused-imports/no-unused-imports': 'error',
+  },
 
   overrides: [
     // React
     {
-      files: ["**/*.{js,jsx,ts,tsx}"],
-      plugins: ["react", "jsx-a11y"],
+      files: ['**/*.{js,jsx,ts,tsx}'],
+      plugins: ['react', 'jsx-a11y'],
       extends: [
-        "plugin:react/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
+        'plugin:react/recommended',
+        'plugin:react/jsx-runtime',
+        'plugin:react-hooks/recommended',
+        'plugin:jsx-a11y/recommended',
       ],
       settings: {
         react: {
-          version: "detect",
+          version: 'detect',
         },
-        formComponents: ["Form"],
+        formComponents: ['Form'],
         linkComponents: [
-          { name: "Link", linkAttribute: "to" },
-          { name: "NavLink", linkAttribute: "to" },
+          { name: 'Link', linkAttribute: 'to' },
+          { name: 'NavLink', linkAttribute: 'to' },
         ],
-        "import/resolver": {
+        'import/resolver': {
           typescript: {},
         },
       },
@@ -52,14 +89,14 @@ module.exports = {
 
     // Typescript
     {
-      files: ["**/*.{ts,tsx}"],
-      plugins: ["@typescript-eslint", "import"],
-      parser: "@typescript-eslint/parser",
+      files: ['**/*.{ts,tsx}'],
+      plugins: ['@typescript-eslint', 'import'],
+      parser: '@typescript-eslint/parser',
       settings: {
-        "import/internal-regex": "^~/",
-        "import/resolver": {
+        'import/internal-regex': '^~/',
+        'import/resolver': {
           node: {
-            extensions: [".ts", ".tsx"],
+            extensions: ['.ts', '.tsx'],
           },
           typescript: {
             alwaysTryTypes: true,
@@ -67,18 +104,18 @@ module.exports = {
         },
       },
       extends: [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript",
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/recommended',
+        'plugin:import/typescript',
       ],
     },
 
     // Node
     {
-      files: [".eslintrc.cjs"],
+      files: ['.eslintrc.cjs'],
       env: {
         node: true,
       },
     },
   ],
-};
+}
