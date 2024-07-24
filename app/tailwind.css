@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --primary: 259, 100%, 62%;
+    --secondary: 61, 92%, 46%;
+    --secondary-active: 61, 86%, 52%;
+    --background: 257, 41%, 97%;
+    --foreground: 259, 68%, 17%;
+  }
+
+  .dark {
+    --background: 259, 82%, 7%;
+    --foreground: 257, 41%, 97%;
+  }
+}
 html, body {
-  @apply text-default;
+  @apply bg-background text-default;
 }

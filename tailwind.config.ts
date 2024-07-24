@@ -5,15 +5,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#7A3BFF',
-        secondary: '#DDE20A',
-        'secondary-active': '#E9EE19',
+        primary: 'hsl(var(--primary))',
+        secondary: 'hsl(var(--secondary))',
+        'secondary-active': 'hsl(var(--secondary-active))',
+        background: 'hsl(var(--background))',
       },
       textColor: {
-        default: '#210E4A',
-        primary: '#7A3BFF',
-        accent: '#7A3BFF',
+        default: 'hsl(var(--foreground))',
+        primary: 'hsl(var(--primary))',
       },
+      background: 'hsl(var(--background))',
     },
   },
   plugins: [],
