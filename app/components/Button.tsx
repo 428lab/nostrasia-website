@@ -18,13 +18,13 @@ const getColorClass = (color: ButtonColor) => {
     case 'primary':
       return {
         default:
-          'bg-transparent border-primary hover:bg-primary text-primary hover:border-color-primary hover:text-white',
+          'bg-transparent border-primary hover:bg-primary text-primary hover:text-white',
         textOnly: 'text-primary border-primary',
       }
     case 'secondary':
       return {
         default:
-          'bg-secondary border-secondary hover:bg-secondary-active hover:border-color-secondary-active',
+          'bg-secondary border-secondary hover:bg-secondary-active hover:border-secondary-active',
         textOnly: 'text-secondary border-secondary',
       }
   }
