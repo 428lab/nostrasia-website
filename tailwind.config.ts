@@ -9,6 +9,7 @@ export default {
         secondary: 'hsl(var(--secondary))',
         'secondary-active': 'hsl(var(--secondary-active))',
         background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
       },
       textColor: {
         default: 'hsl(var(--foreground))',
