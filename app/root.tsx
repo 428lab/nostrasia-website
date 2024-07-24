@@ -9,7 +9,6 @@ import {
   useLoaderData,
 } from '@remix-run/react'
 
-import './tailwind.css'
 import { useTranslation } from 'react-i18next'
 import { useChangeLanguage } from 'remix-i18next/react'
 
