@@ -17,7 +17,9 @@ import i18next from '~/i18next.server'
 import type { LoaderFunctionArgs } from '@remix-run/node'
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const language = await i18next.getLocale(request)
+  const language =
+    new URL(request.url).searchParams.get('lng') ||
+    (await i18next.getLocale(request))
   return json({ language })
 }
 

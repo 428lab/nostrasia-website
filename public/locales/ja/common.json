@@ -1,3 +1,26 @@
 {
-  "greetings": "こんにちは"
+  "nostrasia": "Nostrasia",
+  "hero": {
+    "inTokyo": "in 東京",
+    "freedomNostrConference": "フリーダムNostrカンファレンス"
+  },
+  "overview": {
+    "label": "Overview",
+    "date": "日時",
+    "place": {
+      "label": "場所",
+      "value": "東京都"
+    },
+    "programs": {
+      "label": "プログラム",
+      "value": "ワークショップ、 ディスカッション、and more..."
+    },
+    "fee": {
+      "label": "参加費",
+      "value": "無料"
+    }
+  },
+  "join": "参加する",
+  "contact": "お問い合わせ",
+  "privacyPolicy": "プライバシーポリシー"
 }

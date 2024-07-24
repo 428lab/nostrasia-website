@@ -1,3 +1,26 @@
 {
-  "greetings": "Hello"
+  "nostrasia": "Nostrasia",
+  "hero": {
+    "inTokyo": "in Tokyo",
+    "freedomNostrConference": "Freedom Nostr Conference"
+  },
+  "overview": {
+    "label": "Overview",
+    "date": "Date",
+    "place": {
+      "label": "Place",
+      "value": "Tokyo"
+    },
+    "programs": {
+      "label": "Programs",
+      "value": "Workshops, Discussions, and more..."
+    },
+    "fee": {
+      "label": "Fee",
+      "value": "Free"
+    }
+  },
+  "join": "Join",
+  "contact": "Contact",
+  "privacyPolicy": "Privacy Policy"
 }
