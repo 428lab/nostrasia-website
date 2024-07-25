@@ -4,7 +4,7 @@ type LogoProps = {
 
 export const Logo = ({ size = 'small' }: LogoProps) => {
   return (
-    <picture>
+    <picture className="inline-block">
       <source srcSet="/logo-dark.svg" media="(prefers-color-scheme: dark)" />
       <source srcSet="/logo.svg" media="(prefers-color-scheme: light)" />
       <img
