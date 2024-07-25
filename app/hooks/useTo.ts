@@ -5,7 +5,7 @@ export const useTo = () => {
   const lng = params.get('lng')
 
   const to = (path: string) => {
-    return `${path}${lng ? `lng=${params.get('lng')}` : ''}`
+    return `${path}${lng ? `?lng=${params.get('lng')}` : ''}`
   }
 
   return to
