@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '~/components/Button'
-import { LanguageSwitch } from '~/components/LanguageSwitch'
 import { Logo } from '~/components/Logo'
 
 import type { MetaFunction } from '@remix-run/node'
@@ -16,7 +15,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const { t } = useTranslation()
   return (
-    <div className="w-full min-h-screen max-w-[816px] px-4 mx-auto relative">
+    <>
       <div className="px-10 py-[120px] w-full space-y-6 text-center">
         <h1 className="text-4xl leading-none w-full flex justify-center">
           <Logo size="large" />
@@ -51,17 +50,6 @@ export default function Index() {
           <p>{t('overview.fees.value')}</p>
         </div>
       </div>
-      <div className="fixed bottom-10">
-        <LanguageSwitch />
-      </div>
-      <footer className="absolute bottom-10 right-4 inline-flex flex-col justify-end items-end space-y-4 h-full">
-        <Button textOnly href="/contacts">
-          {t('contacts')}
-        </Button>
-        <Button textOnly href="/privacy-policy">
-          {t('privacyPolicy')}
-        </Button>
-      </footer>
-    </div>
+    </>
   )
 }

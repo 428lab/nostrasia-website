@@ -14,6 +14,8 @@ import { useChangeLanguage } from 'remix-i18next/react'
 
 import i18next from '~/i18next.server'
 
+import { Footer } from './components/Footer'
+
 import type { LoaderFunctionArgs } from '@remix-run/node'
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -46,7 +48,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div className="max-w-[832px] px-4 min-h-screen mx-auto relative">
+          {children}
+          <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>

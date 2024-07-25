@@ -5,7 +5,7 @@ import { CheckIcon } from '~/icons/Check'
 
 const Check = ({ active }: { active: boolean }) => (
   <CheckIcon
-    className={`transition-all stroke-secondary dark:stroke-primary ${active ? 'pr-1.5 w-auto opacity-100' : 'pr-0 w-0 opacity-0'}`}
+    className={`transition-all stroke-secondary dark:stroke-primary ${active ? 'w-auto opacity-100' : 'pr-0 w-0 opacity-0'}`}
   />
 )
 
@@ -20,7 +20,7 @@ export const LanguageSwitch = () => {
   }
 
   return (
-    <div className="flex gap-3 leading-none bg-foreground dark:bg-background p-3 rounded-full text-white dark:text-primary">
+    <div className="flex gap-2 leading-none bg-foreground dark:bg-background p-3 rounded-full text-white dark:text-primary">
       <button
         className="flex items-center"
         onClick={() => handleChangeLanguage('en')}
