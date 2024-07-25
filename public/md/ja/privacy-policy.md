@@ -23,7 +23,7 @@
 
 4. 個人情報の訂正及び利用停止等について
 
-ユーザーは、自身の個人情報の訂正、追加、削除、または利用停止を希望する場合、[こちらのお問い合わせフォーム](href="https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform")までご連絡ください。当サイトは、合理的な範囲で速やかに対応いたします。
+ユーザーは、自身の個人情報の訂正、追加、削除、または利用停止を希望する場合、[こちらのお問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform)までご連絡ください。当サイトは、合理的な範囲で速やかに対応いたします。
 
 ## 5. Google Analyticsの利用について
 
@@ -31,7 +31,7 @@
 
 ## 6. お問い合わせ
 
-本プライバシーポリシーに関するお問い合わせは、[こちらのお問い合わせフォーム](href="https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform")までお願いいたします。
+本プライバシーポリシーに関するお問い合わせは、[こちらのお問い合わせフォーム](https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform)までお願いいたします。
 
 ## 7. プライバシーポリシーの変更について
 
