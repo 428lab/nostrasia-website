@@ -20,7 +20,7 @@ export const LanguageSwitch = () => {
   }
 
   return (
-    <div className="flex gap-3 leading-none bg-foreground p-3 rounded-full text-white dark:text-primary">
+    <div className="flex gap-3 leading-none bg-foreground dark:bg-background p-3 rounded-full text-white dark:text-primary">
       <button
         className="flex items-center"
         onClick={() => handleChangeLanguage('en')}
@@ -28,7 +28,7 @@ export const LanguageSwitch = () => {
         <Check active={i18n.language === 'en'} />
         <span>English</span>
       </button>
-      <div className="border-l border-background" />
+      <div className="border-l border-background dark:border-dark-background" />
       <button
         className="flex items-center"
         onClick={() => handleChangeLanguage('ja')}

@@ -15,11 +15,12 @@
       "label": "プログラム",
       "value": "ワークショップ、 ディスカッション、and more..."
     },
-    "fee": {
+    "fees": {
       "label": "参加費",
       "value": "無料"
     }
   },
+  "eventDate": "2024.9.23",
   "join": "参加する",
   "contact": "お問い合わせ",
   "privacyPolicy": "プライバシーポリシー"
