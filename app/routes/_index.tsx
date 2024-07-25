@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   return (
     <>
       <div className="px-10 py-[120px] w-full space-y-6 text-center">
@@ -24,7 +24,14 @@ export default function Index() {
         <p className="font-bold text-primary">
           {t('hero.freedomNostrConference')}
         </p>
-        <Button color="secondary" href="#">
+        <Button
+          color="secondary"
+          href={
+            i18n.language === 'ja'
+              ? 'https://forms.gle/fdvKUKKpG7QGNpf8A'
+              : 'https://forms.gle/Xw9QscTd5RuG5ueV7'
+          }
+        >
           {t('join')}
         </Button>
       </div>
@@ -48,6 +55,16 @@ export default function Index() {
           <h2 className="font-bold">{t('overview.fees.label')}</h2>
           <p>{t('overview.fees.value')}</p>
         </div>
+        <Button
+          color="primary"
+          href={
+            i18n.language === 'ja'
+              ? 'https://forms.gle/fdvKUKKpG7QGNpf8A'
+              : 'https://forms.gle/Xw9QscTd5RuG5ueV7'
+          }
+        >
+          {t('join')}
+        </Button>
       </div>
     </>
   )
