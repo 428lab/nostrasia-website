@@ -28,10 +28,11 @@ async function hydrate() {
         // we can communicate to the client the language detected server-side
         // Because we only use htmlTag, there's no reason to cache the language
         // on the browser, so we disable it
-        order: ['querystring', 'navigator', 'htmlTag'],
+        order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
         // Because we only use htmlTag, there's no reason to cache the language
         // on the browser, so we disable it
         lookupQuerystring: 'lng',
+        lookupLocalStorage: 'nostrasia.com-lng',
       },
       fallbackLng: 'en',
     })

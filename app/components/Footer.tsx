@@ -1,3 +1,4 @@
+import { useSearchParams } from '@remix-run/react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from './Button'
@@ -5,6 +6,9 @@ import { LanguageSwitch } from './LanguageSwitch'
 
 export const Footer = () => {
   const { t } = useTranslation()
+  const [params] = useSearchParams()
+  const lng = `?lng=${params.get('lng')}` || ''
+
   return (
     <>
       <div className="fixed bottom-10 pl-4">
@@ -14,7 +18,7 @@ export const Footer = () => {
         <Button textOnly href="/contacts">
           {t('contacts')}
         </Button>
-        <Button textOnly href="/privacy-policy">
+        <Button textOnly href={`/privacy-policy${lng}`}>
           {t('privacyPolicy')}
         </Button>
       </footer>

@@ -6,10 +6,7 @@ import { Logo } from '~/components/Logo'
 import type { MetaFunction } from '@remix-run/node'
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
-  ]
+  return [{ title: 'Nostrasia 2024' }]
 }
 
 export default function Index() {

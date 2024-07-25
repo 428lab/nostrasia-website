@@ -39,8 +39,10 @@ export const Button = (props: ButtonProps<string>) => {
   }`
 
   if (props.href) {
+    const newProps = { ...props }
+    delete newProps.textOnly
     return (
-      <a {...props} className={className}>
+      <a {...newProps} className={className}>
         {props.children}
       </a>
     )
