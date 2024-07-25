@@ -22,7 +22,7 @@ export default function Index() {
         />
         <img
           src="/bg-p.svg"
-          className="absolute right-0 top-[277px] w-[120px] md:w-auto -z-10"
+          className="absolute right-0 top-[310px] md:top-[277px] w-[120px] md:w-auto -z-10"
           alt="background purple"
         />
       </div>
