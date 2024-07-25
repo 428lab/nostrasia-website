@@ -1,6 +1,5 @@
 import { LoaderFunctionArgs } from '@remix-run/node'
 import { json, MetaFunction, useLoaderData } from '@remix-run/react'
-import { getI18n } from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 
 import { Logo } from '~/components/Logo'
@@ -12,7 +11,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     new URL(request.url).searchParams.get('lng') ||
     (await i18next.getLocale(request))
 
-  const t = getI18n().getFixedT(language)
+  const t = await i18next.getFixedT(language)
 
   const title = `${t('privacyPolicy')} | Nostrasia 2024`
 
