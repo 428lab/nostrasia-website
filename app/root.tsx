@@ -61,6 +61,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           `,
           }}
         />
+        <meta property="og:title" content="Nostrasia2024" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://nostrasia.com" />
+        <meta property="og:image" content="https://nostrasia.com/ogp.webp" />
+        <meta property="twitter:card" content="summary_large_image" />
       </head>
       <body>
         <div className="max-w-[832px] px-4 min-h-screen mx-auto relative">
