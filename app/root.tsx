@@ -14,8 +14,6 @@ import { useChangeLanguage } from 'remix-i18next/react'
 
 import i18next from '~/i18next.server'
 
-import { Footer } from './components/Footer'
-
 import type { LoaderFunctionArgs } from '@remix-run/node'
 
 import './tailwind.css'
@@ -70,10 +68,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta property="twitter:card" content="summary_large_image" />
       </head>
       <body>
-        <div className="max-w-[832px] px-4 min-h-screen mx-auto relative">
-          <div className="pb-40">{children}</div>
-          <Footer />
-        </div>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

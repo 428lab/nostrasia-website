@@ -2,6 +2,7 @@ import { LoaderFunctionArgs } from '@remix-run/node'
 import { json, MetaFunction, useLoaderData } from '@remix-run/react'
 import ReactMarkdown from 'react-markdown'
 
+import { Layout } from '~/components/Layout'
 import { Logo } from '~/components/Logo'
 import { useTo } from '~/hooks/useTo'
 import i18next from '~/i18next.server'
@@ -31,7 +32,7 @@ export default function PrivacyPolicy() {
   const to = useTo()
 
   return (
-    <>
+    <Layout>
       <header className="py-10">
         <a href={to('/')}>
           <Logo size="small" />
@@ -42,6 +43,6 @@ export default function PrivacyPolicy() {
           {md}
         </ReactMarkdown>
       </div>
-    </>
+    </Layout>
   )
 }

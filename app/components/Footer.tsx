@@ -11,7 +11,7 @@ export const Footer = () => {
   const to = useTo()
 
   return (
-    <>
+    <div>
       <div className="fixed bottom-10">
         <LanguageSwitch />
       </div>
@@ -26,6 +26,6 @@ export const Footer = () => {
           {t('privacyPolicy')}
         </Button>
       </footer>
-    </>
+    </div>
   )
 }
