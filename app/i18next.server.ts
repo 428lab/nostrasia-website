@@ -1,4 +1,3 @@
-import Backend from 'i18next-fs-backend'
 import { RemixI18Next } from 'remix-i18next/server'
 
 import i18n from '~/i18n'
@@ -11,7 +10,6 @@ const i18next = new RemixI18Next({
   i18next: {
     ...i18n,
   },
-  plugins: [Backend],
 })
 
 export default i18next
