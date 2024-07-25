@@ -17,12 +17,12 @@ export default function Index() {
       <div className="relative z-0">
         <img
           src="/bg-y.svg"
-          className="absolute left-0 top-0 w-[148px] md:w-auto"
+          className="absolute left-0 top-0 w-[148px] md:w-auto -z-10"
           alt="background yellow"
         />
         <img
           src="/bg-p.svg"
-          className="absolute right-0 top-[277px] w-[120px] md:w-auto"
+          className="absolute right-0 top-[277px] w-[120px] md:w-auto -z-10"
           alt="background purple"
         />
       </div>
