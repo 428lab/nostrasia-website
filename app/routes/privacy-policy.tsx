@@ -11,9 +11,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     new URL(request.url).searchParams.get('lng') ||
     (await i18next.getLocale(request))
 
-  const t = await i18next.getFixedT(language)
-
-  const title = `${t('privacyPolicy')} | Nostrasia 2024`
+  const title = `Privacy Policy | Nostrasia 2024`
 
   const md =
     language === 'ja'
