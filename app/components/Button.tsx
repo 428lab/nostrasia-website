@@ -24,7 +24,7 @@ const getColorClass = (color: ButtonColor) => {
     case 'secondary':
       return {
         default:
-          'bg-secondary border-secondary hover:bg-secondary-active hover:border-secondary-active',
+          'dark:text-default bg-secondary border-secondary hover:bg-secondary-active hover:border-secondary-active',
         textOnly: 'hover:text-secondary',
       }
   }
