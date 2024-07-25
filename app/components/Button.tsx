@@ -19,23 +19,23 @@ const getColorClass = (color: ButtonColor) => {
       return {
         default:
           'bg-transparent border-primary hover:bg-primary text-primary hover:text-white',
-        textOnly: 'text-primary border-primary',
+        textOnly: 'hover:text-primary',
       }
     case 'secondary':
       return {
         default:
           'bg-secondary border-secondary hover:bg-secondary-active hover:border-secondary-active',
-        textOnly: 'text-secondary border-secondary',
+        textOnly: 'hover:text-secondary',
       }
   }
 }
 
 export const Button = (props: ButtonProps<string>) => {
   const colorClassNames = getColorClass(props.color || 'primary')
-  const className = `font-bold leading-none transition ${
+  const className = `leading-none transition ${
     props.textOnly
-      ? `border-b border-opacity-0 hover:border-opacity-100 ${colorClassNames.textOnly}`
-      : `border px-6 py-3 rounded-full ${colorClassNames.default}`
+      ? colorClassNames.textOnly
+      : `font-bold border px-6 py-3 rounded-full ${colorClassNames.default}`
   }`
 
   if (props.href) {

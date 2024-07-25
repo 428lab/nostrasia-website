@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const { t } = useTranslation()
   return (
-    <div className="w-full max-w-[816px] pl-4 mx-auto">
+    <div className="w-full min-h-screen max-w-[816px] px-4 mx-auto relative">
       <div className="px-10 py-[120px] w-full space-y-6 text-center">
         <h1 className="text-4xl leading-none w-full flex justify-center">
           <img className="w-auto" src="/logo.svg" alt="Nostrasia 2024" />
@@ -29,7 +29,7 @@ export default function Index() {
         </p>
         <Button color="secondary">{t('join')}</Button>
       </div>
-      <div className="space-y-6 mb-40">
+      <div className="space-y-6 pb-40">
         <h2 className="font-bold text-lg text-primary">
           {t('overview.label')}
         </h2>
@@ -53,6 +53,14 @@ export default function Index() {
       <div className="fixed bottom-10">
         <LanguageSwitch />
       </div>
+      <footer className="absolute bottom-10 right-4 inline-flex flex-col justify-end items-end space-y-4 h-full">
+        <Button textOnly href="/contacts">
+          {t('contacts')}
+        </Button>
+        <Button textOnly href="/privacy-policy">
+          {t('privacyPolicy')}
+        </Button>
+      </footer>
     </div>
   )
 }

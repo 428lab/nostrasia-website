@@ -16,7 +16,7 @@
 
 @layer base {
   html,body {
-    @apply bg-background text-default;
+    @apply bg-background text-default h-full;
   }
   @media (prefers-color-scheme: dark) {
     html,body {
