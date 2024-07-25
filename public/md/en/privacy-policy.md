@@ -33,7 +33,7 @@ Our website uses Google Analytics to collect user statistics and help improve th
 
 ## 6. Contact Information
 
-For inquiries regarding this Privacy Policy, please contact us through this [inquiry form](href="https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform").
+For inquiries regarding this Privacy Policy, please contact us through this [inquiry form](https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform).
 
 ## 7. Changes to the Privacy Policy
 
