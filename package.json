@@ -7,13 +7,13 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint . && prettier --write .",
-    "start": "remix-serve ./build/server/index.js",
-    "deploy": "wrangler pages deploy ./build --project-name=nostrasia2024",
+    "start": "wrangler pages dev --compatibility-date=2023-06-21 ./build/client",
+    "deploy": "wrangler pages deploy ./build/client --project-name=nostrasia2024",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@remix-run/cloudflare": "^2.10.3",
     "@remix-run/cloudflare-pages": "^2.10.3",
-    "@remix-run/node": "^2.10.3",
     "@remix-run/react": "^2.10.3",
     "@remix-run/serve": "^2.10.3",
     "@tailwindcss/typography": "^0.5.13",

@@ -1,7 +1,8 @@
 import { RemixServer } from '@remix-run/react'
 import { createInstance } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend' // バックエンド
-import { renderToString } from 'react-dom/server'
+import { isbot } from 'isbot'
+import { renderToReadableStream } from 'react-dom/server'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
 
 import i18n from './i18n'
@@ -39,16 +40,27 @@ export default async function handleRequest(
       ns,
     })
 
-  const markup = renderToString(
+  const body = await renderToReadableStream(
     <I18nextProvider i18n={instance}>
       <RemixServer context={remixContext} url={request.url} />
     </I18nextProvider>,
+    {
+      signal: request.signal,
+      onError(error: unknown) {
+        // Log streaming rendering errors from inside the shell
+        console.error(error)
+        responseStatusCode = 500
+      },
+    },
   )
 
-  responseHeaders.set('Content-Type', 'text/html')
+  if (isbot(request.headers.get('user-agent') || '')) {
+    await body.allReady
+  }
 
-  return new Response('<!DOCTYPE html>' + markup, {
-    status: responseStatusCode,
+  responseHeaders.set('Content-Type', 'text/html')
+  return new Response(body, {
     headers: responseHeaders,
+    status: responseStatusCode,
   })
 }
