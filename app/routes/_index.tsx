@@ -24,9 +24,11 @@ export default function Index() {
         <p className="font-bold text-primary">
           {t('hero.freedomNostrConference')}
         </p>
-        <Button color="secondary">{t('join')}</Button>
+        <Button color="secondary" href="#">
+          {t('join')}
+        </Button>
       </div>
-      <div className="space-y-6 pb-40">
+      <div className="space-y-6">
         <h2 className="font-bold text-lg text-primary">
           {t('overview.label')}
         </h2>

@@ -1,14 +1,50 @@
-import { useTranslation } from 'react-i18next'
+import { LoaderFunctionArgs } from '@remix-run/node'
+import { json, MetaFunction, useLoaderData } from '@remix-run/react'
+import { getI18n } from 'react-i18next'
+import ReactMarkdown from 'react-markdown'
 
 import { Logo } from '~/components/Logo'
+import { useTo } from '~/hooks/useTo'
+import i18next from '~/i18next.server'
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const language =
+    new URL(request.url).searchParams.get('lng') ||
+    (await i18next.getLocale(request))
+
+  const t = getI18n().getFixedT(language)
+
+  const title = `${t('privacyPolicy')} | Nostrasia 2024`
+
+  const md =
+    language === 'ja'
+      ? (await import('../../public/md/ja/privacy-policy.md?raw')).default
+      : (await import('../../public/md/en/privacy-policy.md?raw')).default
+
+  return json({ title, md })
+}
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [{ title: data?.title }]
+}
 
 export default function PrivacyPolicy() {
-  const { t } = useTranslation()
+  const { md } = useLoaderData<typeof loader>()
+
+  const to = useTo()
+
   return (
-    <div className="max-w-[832px] px-4">
-      <header>
-        <Logo size="small" />
+    <>
+      <header className="py-10">
+        <a href={to('/')}>
+          <Logo size="small" />
+        </a>
       </header>
-    </div>
+      <div className="space-y-6">
+        <ReactMarkdown className="prose prose-h1:text-lg prose-h1:text-primary prose-h2:text-base prose-headings:text-default text-default prose-strong:text-default prose-primary prose-a:no-underline prose-a:text-primary">
+          {md}
+        </ReactMarkdown>
+      </div>
+    </>
   )
 }

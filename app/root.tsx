@@ -49,7 +49,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <div className="max-w-[832px] px-4 min-h-screen mx-auto relative">
-          {children}
+          <div className="pb-40">{children}</div>
           <Footer />
         </div>
         <ScrollRestoration />
