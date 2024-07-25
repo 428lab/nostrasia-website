@@ -25,7 +25,7 @@ Except as required by law, our website does not provide personal information of 
 
 ## 4. Correction and Suspension of Use of Personal Information
 
-If users wish to correct, add, delete, or suspend the use of their personal information, please contact us through this inquiry form. Our website will respond promptly within a reasonable scope.
+If users wish to correct, add, delete, or suspend the use of their personal information, please contact us through this [inquiry form](https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform). Our website will respond promptly within a reasonable scope.
 
 ## 5. Use of Google Analytics
 
