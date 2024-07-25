@@ -18,6 +18,8 @@ import { Footer } from './components/Footer'
 
 import type { LoaderFunctionArgs } from '@remix-run/node'
 
+import './tailwind.css'
+
 export async function loader({ request }: LoaderFunctionArgs) {
   const language =
     new URL(request.url).searchParams.get('lng') ||
