@@ -32,7 +32,7 @@ const getColorClass = (color: ButtonColor) => {
 
 export const Button = (props: ButtonProps<string>) => {
   const colorClassNames = getColorClass(props.color || 'primary')
-  const className = `leading-none transition ${
+  const className = `inline-block leading-none transition ${
     props.textOnly
       ? colorClassNames.textOnly
       : `font-bold border px-6 py-3 rounded-full ${colorClassNames.default}`
