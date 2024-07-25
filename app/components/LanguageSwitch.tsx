@@ -28,7 +28,7 @@ export const LanguageSwitch = () => {
         <Check active={i18n.language === 'en'} />
         <span>English</span>
       </button>
-      <div className="border-l border-background dark:border-dark-background" />
+      <div className="border-l border-background dark:border-dark-background my-3" />
       <button
         className="flex items-center pr-3 pl-2 py-3"
         onClick={() => handleChangeLanguage('ja')}
