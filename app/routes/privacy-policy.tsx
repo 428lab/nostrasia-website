@@ -22,6 +22,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ title, md })
 }
 
+const linkBlock = (props: { href?: string; children?: React.ReactNode }) => {
+  const { href, children } = props
+
+  if (href?.match('http')) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    )
+  }
+  return <a href={href}>{children}</a>
+}
+
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [{ title: data?.title }]
 }
@@ -39,7 +52,13 @@ export default function PrivacyPolicy() {
         </a>
       </header>
       <div className="space-y-6">
-        <ReactMarkdown className="prose max-w-none prose-h1:text-lg prose-h1:text-primary prose-h2:text-base prose-headings:text-default dark:prose-headings:text-dark text-default dark:text-dark prose-strong:text-default dark:prose-strong:text-dark prose-primary prose-a:no-underline prose-a:text-primary">
+        <ReactMarkdown
+          className="prose max-w-none prose-h1:text-lg prose-h1:text-primary prose-h2:text-base prose-headings:text-default dark:prose-headings:text-dark text-default dark:text-dark prose-strong:text-default dark:prose-strong:text-dark prose-primary prose-a:no-underline prose-a:text-primary"
+          components={{
+            link: linkBlock,
+            a: linkBlock,
+          }}
+        >
           {md}
         </ReactMarkdown>
       </div>
