@@ -20,7 +20,7 @@ export const Footer = () => {
           textOnly
           href="https://docs.google.com/forms/d/e/1FAIpQLSdYu9hDT-4CTGZWq8aQOo9dhqn-7WtHFpu7si4x1R2GemV62w/viewform"
         >
-          {t('contacts')}
+          {t('contact')}
         </Button>
         <Button textOnly href={to('/privacy-policy')}>
           {t('privacyPolicy')}
