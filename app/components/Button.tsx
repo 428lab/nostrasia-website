@@ -42,7 +42,12 @@ export const Button = (props: ButtonProps<string>) => {
     const newProps = { ...props }
     delete newProps.textOnly
     return (
-      <a {...newProps} className={className}>
+      <a
+        {...newProps}
+        className={className}
+        target={props.href.match('http') ? '_blank' : undefined}
+        rel={props.href.match('http') ? 'noopener noreferrer' : undefined}
+      >
         {props.children}
       </a>
     )

@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           `,
           }}
         />
-        <meta property="og:title" content="Nostrasia2024" />
+        <meta property="og:title" content="Nostrasia 2024" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://nostrasia.com" />
         <meta property="og:image" content="https://nostrasia.com/ogp.webp" />
