@@ -1,9 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 
-type ButtonColor = 'primary' | 'secondary'
-
 type ButtonProps<T extends string> = {
-  color?: ButtonColor
+  color?: Color
   textOnly?: boolean
   href?: T
 } & Omit<
@@ -13,7 +11,7 @@ type ButtonProps<T extends string> = {
   'color'
 >
 
-const getColorClass = (color: ButtonColor) => {
+const getColorClass = (color: Color) => {
   switch (color) {
     case 'primary':
       return {
