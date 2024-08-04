@@ -21,7 +21,8 @@
     "conferencesWorkshops": {
       "label": "Conferences/Workshops",
       "description": "Participate in conferences and workshops to gain a deeper understanding of Nostr!"
-    }
+    },
+    "previous": "View Scenes from the Previous Nostrasia"
   },
   "overview": {
     "label": "Overview",

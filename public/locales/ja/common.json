@@ -7,8 +7,8 @@
   "features": {
     "label": "Nostrユニバースを体感しに行こう！",
     "learnAbout": {
-      "label": "Nostrasiaとは？",
-      "value": "Nostrasiaは、あなたの好奇心を刺激し、新しい価値観を提供する、未来のユニバースです。"
+      "label": "Nostrを知ろう",
+      "description": "Nostrって何ができるの？Nostrの疑問がすべて解決！"
     },
     "tryUsing": {
       "label": "Nostrを使ってみよう",
@@ -21,7 +21,8 @@
     "conferencesWorkshops": {
       "label": "カンファレンス/ワークショップ",
       "description": "Nostrを深く知るためのカンファレンスやワークショップに参加しよう！"
-    }
+    },
+    "previous": "前回のNostrasiaの様子"
   },
   "overview": {
     "label": "Overview",

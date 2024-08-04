@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --primary: 259, 100%, 62%;
-    --secondary: 61, 92%, 46%;
+    --primary: 259deg, 100%, 62%;
+    --secondary: 61deg, 92%, 46%;
     --secondary-active: 61, 86%, 52%;
     --background: 257, 41%, 97%;
     --foreground: 259, 68%, 17%;
