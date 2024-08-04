@@ -96,7 +96,12 @@ export default function Index() {
               ))}
             </div>
             <div className="flex w-full justify-end">
-              <a href="/" className="text-primary inline-block hover:underline">
+              <a
+                href="https://japan.cnet.com/article/35212604/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary inline-block hover:underline"
+              >
                 {t('features.previous')} →
               </a>
             </div>
@@ -114,6 +119,8 @@ export default function Index() {
               <a
                 className="text-primary hover:underline"
                 href="https://cryptoloungegox.com/"
+                target="_blank"
+                rel="noreferrer"
               >
                 {t('overview.place.name')}
               </a>
@@ -148,6 +155,24 @@ export default function Index() {
             >
               {t('join')}
             </Button>
+          </div>
+          <div>
+            <h2 className="font-bold text-lg text-primary">
+              {t('sponsor.label')}
+            </h2>
+            <a
+              href="https://zenryokukikai.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block mt-6"
+            >
+              <img
+                src="/zenryokukikai.png"
+                alt="全力機械株式会社"
+                width={203}
+                height={80}
+              />
+            </a>
           </div>
         </div>
       </Layout>

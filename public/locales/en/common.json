@@ -45,6 +45,9 @@
       "value": "Free and Fun!"
     }
   },
+  "sponsor": {
+    "label": "Sponsor"
+  },
   "eventDate": "September 23, 2024",
   "join": "Join",
   "contact": "Contact",

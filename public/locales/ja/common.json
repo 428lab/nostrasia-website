@@ -45,6 +45,9 @@
       "value": "無料"
     }
   },
+  "sponsor": {
+    "label": "Sponsor"
+  },
   "eventDate": "2024.9.23",
   "join": "参加する",
   "contact": "お問い合わせ",
