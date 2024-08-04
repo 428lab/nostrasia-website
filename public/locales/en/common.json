@@ -4,6 +4,25 @@
     "inTokyo": "in Tokyo",
     "freedomNostrConference": "Freedom Nostr Conference"
   },
+  "features": {
+    "label": "Let's experience the Nostr universe!",
+    "learnAbout": {
+      "label": "Learn About Nostr",
+      "description": "What can you do with Nostr? All your questions about Nostr answered!"
+    },
+    "tryUsing": {
+      "label": "Try Using Nostr",
+      "description": "Social media, article posting, scheduling services, markets!? Try out the services created with Nostr!"
+    },
+    "interactWithNostrUsers": {
+      "label": "Interact with Nostr Users",
+      "description": "Take this rare opportunity to interact with Nostr users from around the world!"
+    },
+    "conferencesWorkshops": {
+      "label": "Conferences/Workshops",
+      "description": "Participate in conferences and workshops to gain a deeper understanding of Nostr!"
+    }
+  },
   "overview": {
     "label": "Overview",
     "date": "Date",

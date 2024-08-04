@@ -4,6 +4,25 @@
     "inTokyo": "in 東京",
     "freedomNostrConference": "フリーダムNostrカンファレンス"
   },
+  "features": {
+    "label": "Nostrユニバースを体感しに行こう！",
+    "learnAbout": {
+      "label": "Nostrasiaとは？",
+      "value": "Nostrasiaは、あなたの好奇心を刺激し、新しい価値観を提供する、未来のユニバースです。"
+    },
+    "tryUsing": {
+      "label": "Nostrを使ってみよう",
+      "description": "SNS, 記事投稿, 日程調整サービス, マーケットも！？ Nostrで作ったサービスを使ってみよう！"
+    },
+    "interactWithNostrUsers": {
+      "label": "Nostrの皆と交流",
+      "description": "このレアなチャンスに世界中から集まったNostrユーザーと交流しよう！"
+    },
+    "conferencesWorkshops": {
+      "label": "カンファレンス/ワークショップ",
+      "description": "Nostrを深く知るためのカンファレンスやワークショップに参加しよう！"
+    }
+  },
   "overview": {
     "label": "Overview",
     "date": "日時",
