@@ -12,7 +12,7 @@ export const Footer = () => {
 
   return (
     <div>
-      <div className="fixed bottom-10">
+      <div className="fixed bottom-10 z-50">
         <LanguageSwitch />
       </div>
       <footer className="absolute bottom-10 right-4 inline-flex flex-col justify-end items-end space-y-4">
