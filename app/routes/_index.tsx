@@ -111,7 +111,10 @@ export default function Index() {
             </div>
             <div className="space-y-3">
               <h2 className="font-bold">{t('overview.place.label')}</h2>
-              <a className="text-primary hover:underline" href="/fff">
+              <a
+                className="text-primary hover:underline"
+                href="https://cryptoloungegox.com/"
+              >
                 {t('overview.place.name')}
               </a>
               <div>
