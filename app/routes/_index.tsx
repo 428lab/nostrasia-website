@@ -109,9 +109,23 @@ export default function Index() {
               <h3 className="font-bold">{t('overview.date')}</h3>
               <p>{t('eventDate')}</p>
             </div>
-            <div>
+            <div className="space-y-3">
               <h2 className="font-bold">{t('overview.place.label')}</h2>
-              <p>{t('overview.place.value')}</p>
+              <a className="text-primary hover:underline" href="/fff">
+                {t('overview.place.name')}
+              </a>
+              <div>
+                <p>〒{t('overview.place.address.postalCode')}</p>
+                <p>{t('overview.place.address.address1')}</p>
+                <p>{t('overview.place.address.address2')}</p>
+              </div>
+              <div className="overflow-hidden rounded-xl w-full h-[288px]">
+                <iframe
+                  title="Crypto Lounge GOX - Google Map"
+                  className="w-full h-[288px] scale-[1.015]"
+                  src="https://maps.google.co.jp/maps?output=embed&q=東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル6FCrypto Lounge GOX"
+                />
+              </div>
             </div>
             <div>
               <h2 className="font-bold">{t('overview.programs.label')}</h2>

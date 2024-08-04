@@ -29,7 +29,12 @@
     "date": "日時",
     "place": {
       "label": "場所",
-      "value": "東京都"
+      "name": "Crypto Lounge GOX",
+      "address": {
+        "postalCode": "160-0021",
+        "address1": "東京都新宿区歌舞伎町２丁目１９−１５",
+        "address2": "てなむタウンビル 6F"
+      }
     },
     "programs": {
       "label": "プログラム",

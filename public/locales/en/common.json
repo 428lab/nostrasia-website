@@ -29,7 +29,12 @@
     "date": "Date",
     "place": {
       "label": "Place",
-      "value": "Tokyo"
+      "name": "Crypto Lounge GOX",
+      "address": {
+        "postalCode": "160-0021",
+        "address1": "Tokyo, Shinjuku-ku, Kabukicho 2-19-15",
+        "address2": "Tenam Town Building 6F"
+      }
     },
     "programs": {
       "label": "Programs",
