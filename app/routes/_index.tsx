@@ -97,7 +97,7 @@ export default function Index() {
             </div>
             <div className="flex w-full justify-end">
               <a
-                href="https://japan.cnet.com/article/35212604/"
+                href="https://www.youtube.com/@nostrasia/videos"
                 target="_blank"
                 rel="noreferrer"
                 className="text-primary inline-block hover:underline"
