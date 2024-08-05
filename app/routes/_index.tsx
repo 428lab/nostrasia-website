@@ -52,7 +52,7 @@ export default function Index() {
         </div>
         <div className="space-y-20">
           <div className="space-y-6">
-            <h2 className="font-bold text-2xl leading-none text-primary">
+            <h2 className="font-bold text-2xl leading-none text-primary text-center">
               {t('features.label')}
             </h2>
             <div className="grid gap-3 grid-cols-2 sm:grid-cols-4">
