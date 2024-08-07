@@ -7,22 +7,22 @@
   "features": {
     "label": "Let's experience the Nostr universe!",
     "learnAbout": {
-      "label": "Learn About Nostr",
-      "description": "What can you do with Nostr? All your questions about Nostr answered!"
+      "label": "Learn!",
+      "description": "What can you do with Nostr? All your questions about the Nostr will be answered here!"
     },
     "tryUsing": {
-      "label": "Try Using Nostr",
-      "description": "Social media, article posting, scheduling services, markets!? Try out the services created with Nostr!"
+      "label": "Try!",
+      "description": "Social media, article posting, scheduling services, and even markets—try out the services created with Nostr!"
     },
     "interactWithNostrUsers": {
-      "label": "Interact with Nostr Users",
+      "label": "Interact!",
       "description": "Take this rare opportunity to interact with Nostr users from around the world!"
     },
     "conferencesWorkshops": {
-      "label": "Conferences/Workshops",
+      "label": "Conferences and Workshops!",
       "description": "Participate in conferences and workshops to gain a deeper understanding of Nostr!"
     },
-    "previous": "View Scenes from the Previous Nostrasia"
+    "previous": "Views in Nostrasia 2023"
   },
   "overview": {
     "label": "Overview",
