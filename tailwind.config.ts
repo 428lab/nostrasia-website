@@ -12,6 +12,8 @@ export default {
         'secondary-active': 'hsla(var(--secondary-active), <alpha-value>)',
         background: 'hsla(var(--background), <alpha-value>)',
         foreground: 'hsla(var(--foreground), <alpha-value>)',
+        turquoise: 'hsla(var(--turquoise), <alpha-value>)',
+        pink: 'hsla(var(--pink), <alpha-value>)',
         'dark-foreground': 'hsla(var(--dark--foreground), <alpha-value>)',
         'dark-background': 'hsla(var(--dark-background), <alpha-value>)',
       },

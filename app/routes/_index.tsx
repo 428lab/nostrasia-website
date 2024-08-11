@@ -4,6 +4,7 @@ import { Button } from '~/components/Button'
 import { FeatureTile } from '~/components/FeatureTile'
 import { Layout } from '~/components/Layout'
 import { Logo } from '~/components/Logo'
+import { TimeScheduleProgram } from '~/components/TimeScheduleProgram'
 
 import type { MetaFunction } from '@remix-run/node'
 
@@ -156,6 +157,144 @@ export default function Index() {
               {t('join')}
             </Button>
           </div>
+          <div className="space-y-6">
+            <h2 className="font-bold text-lg text-primary">
+              {t('timeTable.label')}
+            </h2>
+            <div className="space-y-4">
+              <p className="font-bold">12:00</p>
+              <TimeScheduleProgram
+                place="main"
+                start="12:30"
+                end="13:00"
+                title={t('timeTable.venueOpening')}
+              />
+
+              <p className="font-bold">13:00</p>
+              <TimeScheduleProgram
+                place="main"
+                start="13:00"
+                end="14:00"
+                title={
+                  <>
+                    <p>{t('timeTable.openingRemark')}</p>
+                    <p>{t('timeTable.presentationSummaryOfNostrUseInJapan')}</p>
+                    <p>
+                      {t(
+                        'timeTable.presentationNostrBasedAppsAndServicesFromJapan',
+                      )}
+                    </p>
+                  </>
+                }
+              />
+
+              <p className="font-bold">14:00</p>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="space-y-4">
+                  <TimeScheduleProgram
+                    place="main"
+                    start="14:00"
+                    end="14:30"
+                    title={t('timeTable.lightningTalksPart1')}
+                  />
+                  <TimeScheduleProgram
+                    place="main"
+                    start="14:30"
+                    end="16:00"
+                    title={t('timeTable.openForConversations')}
+                  />
+                  <TimeScheduleProgram
+                    place="main"
+                    start="16:00"
+                    end="16:30"
+                    title={t('timeTable.lightningTalksPart1')}
+                  />
+                  <TimeScheduleProgram
+                    place="main"
+                    start="16:30"
+                    end="18:00"
+                    title={t('timeTable.openForConversationsAndBoardGames')}
+                  />
+                </div>
+                <TimeScheduleProgram
+                  place="lounge1"
+                  start="14:00"
+                  end="18:00"
+                  title={t('timeTable.merchandiseBooth')}
+                />
+                <TimeScheduleProgram
+                  place="lounge2"
+                  start="14:00"
+                  end="18:00"
+                  title={t('timeTable.openForConversations')}
+                />
+                <TimeScheduleProgram
+                  place="vipRoom"
+                  start="14:00"
+                  end="18:00"
+                  title={
+                    <>
+                      <p>{t('timeTable.hookahShisaLounge')}</p>
+                      <p>{t('timeTable.nostrichSpawnRoom')}</p>
+                    </>
+                  }
+                />
+              </div>
+
+              <p className="font-bold">18:00</p>
+              <TimeScheduleProgram
+                place="main"
+                start="18:00"
+                end="18:30"
+                title={t('timeTable.welcomeParty')}
+              />
+
+              <p className="font-bold">20:00</p>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <TimeScheduleProgram
+                  place="main"
+                  start="20:00"
+                  end="21:00"
+                  title={t('timeTable.openForConversations')}
+                />
+                <TimeScheduleProgram
+                  place="lounge1"
+                  start="20:00"
+                  end="21:00"
+                  title={t('timeTable.karaoke')}
+                />
+                <TimeScheduleProgram
+                  place="lounge2"
+                  start="20:00"
+                  end="21:00"
+                  title={t('timeTable.karaoke')}
+                />
+                <TimeScheduleProgram
+                  place="vipRoom"
+                  start="20:00"
+                  end="21:00"
+                  title={t('timeTable.karaoke')}
+                />
+              </div>
+              <TimeScheduleProgram
+                place="main"
+                start="20:00"
+                end="21:00"
+                title={t('timeTable.closingRemarks')}
+              />
+            </div>
+          </div>
+          <div>
+            <h2 className="font-bold text-lg text-primary">
+              {t('floorMap.label')}
+            </h2>
+            <img
+              className="w-full"
+              src="/map.webp"
+              alt="Floor Map"
+              loading="lazy"
+            />
+          </div>
           <div>
             <h2 className="font-bold text-lg text-primary">
               {t('sponsor.label')}
@@ -167,10 +306,11 @@ export default function Index() {
               className="inline-block mt-6"
             >
               <img
-                src="/zenryokukikai.png"
+                src="/zenryokukikai.webp"
                 alt="全力機械株式会社"
                 width={203}
                 height={80}
+                loading="lazy"
               />
             </a>
           </div>
