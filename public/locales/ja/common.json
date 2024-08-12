@@ -48,6 +48,31 @@
   "sponsor": {
     "label": "Sponsor"
   },
+  "timeTable": {
+    "label": "Timetable",
+    "main": "Main",
+    "lounge1": "Lounge 1",
+    "lounge2": "Lounge 2",
+    "vipRoom": "VIP Room",
+    "venueOpening": "開場",
+    "openingRemark": "開始挨拶",
+    "presentationSummaryOfNostrUseInJapan": "日本のNostrの状況についてのまとめ",
+    "presentationNostrBasedAppsAndServicesFromJapan": "クライアント、サービスなどの紹介",
+    "lightningTalksPart1": "LT",
+    "lightningTalksPart2": "LT",
+    "merchandiseBooth": "販売コーナー",
+    "openForConversations": "交流スペース",
+    "nostrGuruIsHere": "Nostrくわしいおじさん",
+    "openForConversationsAndBoardGames": "交流スペース　ボードゲーム",
+    "hookahShisaLounge": "シーシャ",
+    "nostrichSpawnRoom": "Nostrich Spawn Room (初心者向けチュートリアル)",
+    "secretParty": "Secret Party Time",
+    "karaoke": "Karaoke Time",
+    "closingRemark": "終わりの挨拶"
+  },
+  "floorMap": {
+    "label": "Floor Map"
+  },
   "eventDate": "2024.9.23",
   "join": "参加する",
   "contact": "お問い合わせ",

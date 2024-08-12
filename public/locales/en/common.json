@@ -48,6 +48,32 @@
   "sponsor": {
     "label": "Sponsor"
   },
+  "timeTable": {
+    "label": "Timetable",
+    "main": "Main",
+    "lounge1": "Lounge 1",
+    "lounge2": "Lounge 2",
+    "vipRoom": "VIP Room",
+    "venueOpening": "Venue Opening",
+    "openingRemark": "Opening Remark",
+    "presentationSummaryOfNostrUseInJapan": "Presentation: Summary of Nostr use in Japan",
+    "presentationNostrBasedAppsAndServicesFromJapan": "Presentation: Nostr-based apps and services from Japan",
+    "lightningTalksPart1": "Lightning Talks Part 1",
+    "openForConversations": "Open for conversations",
+    "nostrGuruIsHere": "The Nostr guru is here",
+    "lightningTalksPart2": "Lightning Talks Part 2",
+    "openForConversationsAndBoardGames": "Open for conversations and board games",
+    "merchandiseBooth": "Merchandise booth",
+    "theNostrGuruIsHere": "The Nostr guru is here",
+    "hookahShisaLounge": "Hookah/Shisa lounge",
+    "nostrichSpawnRoom": "Nostrich Spawn Room",
+    "secretParty": "Secret Party Time",
+    "karaoke": "Karaoke",
+    "closingRemark": "Closing Remark"
+  },
+  "floorMap": {
+    "label": "Floor Map"
+  },
   "eventDate": "September 23, 2024",
   "join": "Join",
   "contact": "Contact",
