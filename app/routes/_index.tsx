@@ -226,7 +226,7 @@ export default function Index() {
                   place="lounge2"
                   start="14:00"
                   end="18:00"
-                  title={t('timeTable.openForConversations')}
+                  title={t('timeTable.openForConversationsNostrGuruIsHere')}
                 />
                 <TimeScheduleProgram
                   place="vipRoom"
@@ -246,7 +246,7 @@ export default function Index() {
                 place="main"
                 start="18:00"
                 end="20:00"
-                title={t('timeTable.welcomeParty')}
+                title={t('timeTable.secretParty')}
               />
 
               <p className="font-bold">20:00</p>
@@ -299,28 +299,32 @@ export default function Index() {
             <h2 className="font-bold text-lg text-primary">
               {t('sponsor.label')}
             </h2>
-            <a
-              href="https://zenryokukikai.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="block"
-            >
-              <img
-                src="/zenryokukikai.webp"
-                alt="全力機械株式会社"
-                width={203}
-                height={80}
-                loading="lazy"
-              />
-            </a>
-            <a
-              href="https://geyser.fund/project/nostrasia2024food"
-              target="_blank"
-              rel="noreferrer"
-              className="block"
-            >
-              <img src="/nostrasia_2024_food.svg" alt="Nostrasia 2024 Food" />
-            </a>
+            <div>
+              <a
+                href="https://zenryokukikai.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block"
+              >
+                <img
+                  src="/zenryokukikai.webp"
+                  alt="全力機械株式会社"
+                  width={203}
+                  height={80}
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://geyser.fund/project/nostrasia2024food"
+                target="_blank"
+                rel="noreferrer"
+                className="text-lg font-bold"
+              >
+                Nostrasia 2024 Food
+              </a>
+            </div>
           </div>
         </div>
       </Layout>
