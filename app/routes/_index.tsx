@@ -245,7 +245,7 @@ export default function Index() {
               <TimeScheduleProgram
                 place="main"
                 start="18:00"
-                end="18:30"
+                end="20:00"
                 title={t('timeTable.welcomeParty')}
               />
 
