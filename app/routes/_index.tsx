@@ -207,7 +207,7 @@ export default function Index() {
                     place="main"
                     start="16:00"
                     end="16:30"
-                    title={t('timeTable.lightningTalksPart1')}
+                    title={t('timeTable.lightningTalksPart2')}
                   />
                   <TimeScheduleProgram
                     place="main"
@@ -280,7 +280,7 @@ export default function Index() {
                 place="main"
                 start="20:00"
                 end="21:00"
-                title={t('timeTable.closingRemarks')}
+                title={t('timeTable.closingRemark')}
               />
             </div>
           </div>
@@ -295,7 +295,7 @@ export default function Index() {
               loading="lazy"
             />
           </div>
-          <div>
+          <div className="space-y-6">
             <h2 className="font-bold text-lg text-primary">
               {t('sponsor.label')}
             </h2>
@@ -303,7 +303,7 @@ export default function Index() {
               href="https://zenryokukikai.com/"
               target="_blank"
               rel="noreferrer"
-              className="inline-block mt-6"
+              className="block"
             >
               <img
                 src="/zenryokukikai.webp"
@@ -312,6 +312,14 @@ export default function Index() {
                 height={80}
                 loading="lazy"
               />
+            </a>
+            <a
+              href="https://geyser.fund/project/nostrasia2024food"
+              target="_blank"
+              rel="noreferrer"
+              className="block"
+            >
+              <img src="/nostrasia_2024_food.svg" alt="Nostrasia 2024 Food" />
             </a>
           </div>
         </div>

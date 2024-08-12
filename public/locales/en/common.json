@@ -68,7 +68,7 @@
     "nostrichSpawnRoom": "Nostrich Spawn Room",
     "welcomeParty": "Welcome Party",
     "karaoke": "Karaoke",
-    "closingRemarks": "Closing Remarks"
+    "closingRemark": "Closing Remark"
   },
   "floorMap": {
     "label": "Floor Map"

@@ -38,7 +38,7 @@ export const TimeScheduleProgram = (props: TimeScheduleProgramProps) => {
     >
       <div>
         <p className="font-bold text-sm">
-          {props.start} ~ {props.end}
+          {props.start} - {props.end}
         </p>
         <p className="mt-4 text-wrap">{props.title}</p>
       </div>

@@ -59,6 +59,7 @@
     "presentationSummaryOfNostrUseInJapan": "日本のNostrの状況についてのまとめ",
     "presentationNostrBasedAppsAndServicesFromJapan": "クライアント、サービスなどの紹介",
     "lightningTalksPart1": "LT",
+    "lightningTalksPart2": "LT",
     "merchandiseBooth": "販売コーナー",
     "openForConversations": "交流スペース",
     "openForConversationsAndBoardGames": "交流スペース　ボードゲーム",
@@ -67,7 +68,7 @@
     "nostrichSpawnRoom": "Nostrich Spawn Room (初心者向けチュートリアル)",
     "secretParty": "Secret Party Time",
     "karaoke": "Karaoke Time",
-    "closingRemarks": "終わりの挨拶"
+    "closingRemark": "終わりの挨拶"
   },
   "floorMap": {
     "label": "Floor Map"
