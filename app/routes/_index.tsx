@@ -254,19 +254,19 @@ export default function Index() {
                 <TimeScheduleProgram
                   place="main"
                   start="20:00"
-                  end="21:00"
+                  end="20:50"
                   title={t('timeTable.openForConversations')}
                 />
                 <TimeScheduleProgram
                   place="lounge1"
                   start="20:00"
-                  end="21:00"
+                  end="20:50"
                   title={t('timeTable.karaoke')}
                 />
                 <TimeScheduleProgram
                   place="lounge2"
                   start="20:00"
-                  end="21:00"
+                  end="20:50"
                   title={t('timeTable.karaoke')}
                 />
                 <TimeScheduleProgram
