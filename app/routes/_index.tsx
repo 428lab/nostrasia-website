@@ -272,13 +272,13 @@ export default function Index() {
                 <TimeScheduleProgram
                   place="vipRoom"
                   start="20:00"
-                  end="21:00"
+                  end="20:50"
                   title={t('timeTable.karaoke')}
                 />
               </div>
               <TimeScheduleProgram
                 place="main"
-                start="20:00"
+                start="20:50"
                 end="21:00"
                 title={t('timeTable.closingRemark')}
               />
