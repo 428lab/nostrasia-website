@@ -226,7 +226,12 @@ export default function Index() {
                   place="lounge2"
                   start="14:00"
                   end="18:00"
-                  title={t('timeTable.openForConversationsNostrGuruIsHere')}
+                  title={
+                    <>
+                      <p>{t('openForConversations')}</p>
+                      <p>{t('timeTable.nostrGuruIsHere')}</p>
+                    </>
+                  }
                 />
                 <TimeScheduleProgram
                   place="vipRoom"
