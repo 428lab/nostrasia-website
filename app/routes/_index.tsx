@@ -201,7 +201,7 @@ export default function Index() {
                     place="main"
                     start="14:30"
                     end="16:00"
-                    title={t('timeTable.openForConversations')}
+                    title={t('timeTable.openForConversationsAndPaperCraft')}
                   />
                   <TimeScheduleProgram
                     place="main"
@@ -220,7 +220,12 @@ export default function Index() {
                   place="lounge1"
                   start="14:00"
                   end="18:00"
-                  title={t('timeTable.merchandiseBooth')}
+                  title={
+                    <>
+                      <p>{t('timeTable.hookahShisaLounge')}</p>
+                      <p>{t('timeTable.nostrGuruIsHere')}</p>
+                    </>
+                  }
                 />
                 <TimeScheduleProgram
                   place="lounge2"
@@ -228,7 +233,7 @@ export default function Index() {
                   end="18:00"
                   title={
                     <>
-                      <p>{t('openForConversations')}</p>
+                      <p>{t('timeTable.hookahShisaLounge')}</p>
                       <p>{t('timeTable.nostrGuruIsHere')}</p>
                     </>
                   }
@@ -239,8 +244,8 @@ export default function Index() {
                   end="18:00"
                   title={
                     <>
-                      <p>{t('timeTable.hookahShisaLounge')}</p>
-                      <p>{t('timeTable.nostrichSpawnRoom')}</p>
+                      <p>{t('timeTable.merchandiseBooth')}</p>
+                      <p>{t('timeTable.nostrGuruIsHere')}</p>
                     </>
                   }
                 />
