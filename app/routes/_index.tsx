@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 
-import { Button } from '~/components/Button'
 import { FeatureTile } from '~/components/FeatureTile'
 import { Layout } from '~/components/Layout'
 import { Logo } from '~/components/Logo'
@@ -13,7 +12,7 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   return (
     <>
       <div className="relative z-0">
@@ -40,16 +39,10 @@ export default function Index() {
           <p className="font-bold text-primary">
             {t('hero.freedomNostrConference')}
           </p>
-          <Button
-            color="secondary"
-            href={
-              i18n.language === 'ja'
-                ? 'https://forms.gle/fdvKUKKpG7QGNpf8A'
-                : 'https://forms.gle/Xw9QscTd5RuG5ueV7'
-            }
-          >
-            {t('join')}
-          </Button>
+          <div className="font-bold">
+            <p>{t('hero.applicationAreNowClosed')}</p>
+            <p>{t('hero.thankYou')}</p>
+          </div>
         </div>
         <div className="space-y-20">
           <div className="space-y-6">
@@ -146,16 +139,6 @@ export default function Index() {
               <h2 className="font-bold">{t('overview.fees.label')}</h2>
               <p>{t('overview.fees.value')}</p>
             </div>
-            <Button
-              color="primary"
-              href={
-                i18n.language === 'ja'
-                  ? 'https://forms.gle/fdvKUKKpG7QGNpf8A'
-                  : 'https://forms.gle/Xw9QscTd5RuG5ueV7'
-              }
-            >
-              {t('join')}
-            </Button>
           </div>
           <div className="space-y-6">
             <h2 className="font-bold text-lg text-primary">

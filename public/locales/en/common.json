@@ -2,7 +2,9 @@
   "nostrasia": "Nostrasia",
   "hero": {
     "inTokyo": "in Tokyo",
-    "freedomNostrConference": "Freedom Nostr Conference"
+    "freedomNostrConference": "Freedom Nostr Conference",
+    "applicationAreNowClosed": "Applications are now closed.",
+    "thankYou": "Thank you!"
   },
   "features": {
     "label": "Let's experience the Nostr universe!",

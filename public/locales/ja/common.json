@@ -2,7 +2,9 @@
   "nostrasia": "Nostrasia",
   "hero": {
     "inTokyo": "in 東京",
-    "freedomNostrConference": "フリーダムNostrカンファレンス"
+    "freedomNostrConference": "フリーダムNostrカンファレンス",
+    "applicationAreNowClosed": "参加応募は締め切りました。",
+    "thankYou": "ありがとうございました！"
   },
   "features": {
     "label": "Nostrユニバースを体感しに行こう！",
