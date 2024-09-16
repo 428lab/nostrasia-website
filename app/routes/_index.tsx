@@ -318,6 +318,16 @@ export default function Index() {
                 Nostrasia 2024 Food
               </a>
             </div>
+            <div>
+              <a
+                href="https://apco.dev/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-lg font-bold"
+              >
+                Momoko Kuratani
+              </a>
+            </div>
           </div>
         </div>
       </Layout>
