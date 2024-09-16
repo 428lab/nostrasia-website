@@ -145,7 +145,6 @@ export default function Index() {
               {t('timeTable.label')}
             </h2>
             <div className="space-y-4">
-              <p className="font-bold">12:00</p>
               <TimeScheduleProgram
                 place="main"
                 start="12:30"
@@ -153,7 +152,6 @@ export default function Index() {
                 title={t('timeTable.venueOpening')}
               />
 
-              <p className="font-bold">13:00</p>
               <TimeScheduleProgram
                 place="main"
                 start="13:00"
@@ -171,7 +169,6 @@ export default function Index() {
                 }
               />
 
-              <p className="font-bold">14:00</p>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="space-y-4">
                   <TimeScheduleProgram
@@ -202,7 +199,7 @@ export default function Index() {
                 <TimeScheduleProgram
                   place="lounge1"
                   start="14:00"
-                  end="20:00"
+                  end="18:00"
                   title={
                     <>
                       <p>{t('timeTable.hookahShisaLounge')}</p>
@@ -213,7 +210,7 @@ export default function Index() {
                 <TimeScheduleProgram
                   place="lounge2"
                   start="14:00"
-                  end="20:00"
+                  end="18:00"
                   title={
                     <>
                       <p>{t('timeTable.hookahShisaLounge')}</p>
@@ -234,41 +231,49 @@ export default function Index() {
                 />
               </div>
 
-              <p className="font-bold">18:00</p>
-              <TimeScheduleProgram
-                place="main"
-                start="18:00"
-                end="20:00"
-                title={t('timeTable.secretParty')}
-              />
-
-              <p className="font-bold">20:00</p>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <TimeScheduleProgram
-                  place="main"
-                  start="20:00"
-                  end="20:50"
-                  title={t('timeTable.openForConversations')}
-                />
+                <div className="space-y-4">
+                  <TimeScheduleProgram
+                    place="main"
+                    start="18:00"
+                    end="20:00"
+                    title={t('timeTable.secretParty')}
+                  />
+                  <TimeScheduleProgram
+                    place="main"
+                    start="20:00"
+                    end="20:50"
+                    title={t('timeTable.openForConversations')}
+                  />
+                </div>
                 <TimeScheduleProgram
                   place="lounge1"
-                  start="20:00"
+                  start="18:00"
                   end="20:50"
-                  title={t('timeTable.karaoke')}
+                  title={t('timeTable.hookahShisaLounge')}
                 />
                 <TimeScheduleProgram
                   place="lounge2"
-                  start="20:00"
+                  start="18:00"
                   end="20:50"
-                  title={t('timeTable.karaoke')}
+                  title={t('timeTable.hookahShisaLounge')}
                 />
-                <TimeScheduleProgram
-                  place="vipRoom"
-                  start="20:00"
-                  end="20:50"
-                  title={t('timeTable.karaoke')}
-                />
+                <div className="space-y-4">
+                  <TimeScheduleProgram
+                    place="vipRoom"
+                    start="18:00"
+                    end="20:00"
+                    title={t('timeTable.openForConversations')}
+                  />
+                  <TimeScheduleProgram
+                    place="vipRoom"
+                    start="20:00"
+                    end="20:50"
+                    title={t('timeTable.karaoke')}
+                  />
+                </div>
               </div>
+
               <TimeScheduleProgram
                 place="main"
                 start="20:50"
