@@ -202,7 +202,7 @@ export default function Index() {
                 <TimeScheduleProgram
                   place="lounge1"
                   start="14:00"
-                  end="18:00"
+                  end="20:00"
                   title={
                     <>
                       <p>{t('timeTable.hookahShisaLounge')}</p>
@@ -213,7 +213,7 @@ export default function Index() {
                 <TimeScheduleProgram
                   place="lounge2"
                   start="14:00"
-                  end="18:00"
+                  end="20:00"
                   title={
                     <>
                       <p>{t('timeTable.hookahShisaLounge')}</p>
