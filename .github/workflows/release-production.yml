@@ -3,8 +3,7 @@ name: Release production
 on:
   push:
     branches:
-      - feature*
-      - dev
+      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
