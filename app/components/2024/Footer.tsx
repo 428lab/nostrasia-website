@@ -22,7 +22,7 @@ export const Footer = () => {
         >
           {t('contact')}
         </Button>
-        <Button textOnly href={to('/privacy-policy')}>
+        <Button textOnly href={to('/2024/privacy-policy')}>
           {t('privacyPolicy')}
         </Button>
       </footer>
