@@ -1,0 +1,32 @@
+name: Release preview
+
+on:
+  push:
+    branches:
+      - feature*
+      - dev
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ENV_TYPE: preview
+  PROJECT_NAME: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: bun install --frozen-lockfile
+      - run: bun build
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=${{ env.PROJECT_NAME }}
