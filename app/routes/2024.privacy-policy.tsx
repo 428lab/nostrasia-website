@@ -2,8 +2,8 @@ import { LoaderFunctionArgs } from '@remix-run/node'
 import { json, MetaFunction, useLoaderData } from '@remix-run/react'
 import ReactMarkdown from 'react-markdown'
 
-import { Layout } from '~/components/Layout'
-import { Logo } from '~/components/Logo'
+import { Layout } from '~/components/2024/Layout'
+import { Logo } from '~/components/2024/Logo'
 import { useTo } from '~/hooks/useTo'
 import i18next from '~/i18next.server'
 
@@ -16,8 +16,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const md =
     language === 'ja'
-      ? (await import('../../public/md/ja/privacy-policy.md?raw')).default
-      : (await import('../../public/md/en/privacy-policy.md?raw')).default
+      ? (await import('../../public/2024/md/ja/privacy-policy.md?raw')).default
+      : (await import('../../public/2024/md/en/privacy-policy.md?raw')).default
 
   return json({ title, md })
 }
@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
   return (
     <Layout>
       <header className="py-10">
-        <a href={to('/')}>
+        <a href={to('/2024')}>
           <Logo size="small" />
         </a>
       </header>
