@@ -1,4 +1,4 @@
-import { SVGAttributes } from 'react'
+import type { SVGAttributes } from 'react'
 
 export const CheckIcon = (props: SVGAttributes<SVGElement>) => {
   return (
@@ -17,6 +17,7 @@ export const CheckIcon = (props: SVGAttributes<SVGElement>) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+      <title>Check Icon</title>
     </svg>
   )
 }
