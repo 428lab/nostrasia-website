@@ -1,7 +1,6 @@
 import { useSearchParams } from '@remix-run/react'
 import { useTranslation } from 'react-i18next'
 
-import { LanguageDivider } from '~/icons/2025/LanguageDivider'
 import { LanguageEN } from '~/icons/2025/LanguageEN'
 import { LanguageJA } from '~/icons/2025/LanguageJA'
 
@@ -11,7 +10,7 @@ export const LanguageSwitch = () => {
       <LanguageSwitchButton lng="ja">
         <LanguageJA />
       </LanguageSwitchButton>
-      <LanguageDivider />
+      <span>/</span>
       <LanguageSwitchButton lng="en">
         <LanguageEN />
       </LanguageSwitchButton>
