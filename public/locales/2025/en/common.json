@@ -1,0 +1,61 @@
+{
+  "nostrasia": "Nostrasia",
+  "hero": {
+    "inTokyo": "in Tokyo",
+    "freedomNostrConference": "Freedom Nostr Conference",
+    "applicationAreNowClosed": "Applications coming soon!",
+    "thankYou": "Stay tuned for 2025!"
+  },
+  "about": {
+    "description": "Nostrasia 2025 is the world's biggest Nostr festival, held in Japan.\nIt's a day for learning and having fun.\nMeet friends from all over the world, join talks and hands-on activities, visit the Nostr Shrine to try a fortune, and make new friends.\nEnjoy a free drink, and at night, hear laughter fill the air like a festival.\n\nTech, culture, and play—all part of Nostr.\nThe people and moments here will help shape the future of the internet.",
+    "catchphrase": "Welcome to Nostr, the new festival!"
+  },
+  "overview": {
+    "eventName": {
+      "label": "Event",
+      "value": "Nostrasia 2025"
+    },
+    "date": {
+      "label": "Date",
+      "value": "Saturday, November 22, 2025, 1:00 PM - 9:00 PM (Doors open at 12:30 PM)",
+      "calendar": "Add to Google Calendar"
+    },
+    "place": {
+      "label": "Venue",
+      "name": "Crypto Lounge GOX",
+      "address": {
+        "address1": "6F Tenam Town Building,",
+        "address2": "2-19-15 Kabukicho, Shinjuku-ku, Tokyo",
+        "postalCode": "160-0021"
+      },
+      "maps": "Google Maps"
+    },
+    "fees": {
+      "label": "Fee",
+      "value": "Free",
+      "drinks": "Drinks included (soft-drinks & Alcohol)"
+    }
+  },
+  "contents": {
+    "headers": {
+      "waza": "Tech",
+      "ichi": "Merch",
+      "inori": "Fortune",
+      "hanashi": "Talks"
+    },
+    "waza": "New to Nostr? Learn the basics hands-on — account, relays, wallet, and more.\nLike a festival stand, just drop by and take your first step into the world of Nostr!",
+    "ichi": "Pick up exclusive goods and books you can’t get anywhere else.\nWith Lightning payments, it’s easy to grab something and take the Nostr vibe home with you.\nFrom \"Annual Nostrasia\" to original items and novelties, will also be available.",
+    "inori": "A Nostr-style shrine will appear at the venue.\nZap to draw an Omikuji - a fortune slip - and see what awaits—great luck, or something unexpected.\nIt’s a fun way to connect with the spirit of the Nostr community.",
+    "hanashi": "Speakers from around the world will share what’s possible with Nostr.\nAlong with serious talks, you’ll hear unexpected questions and fresh ideas.\nFrom expert topics to casual chats, different perspectives come together to help you explore Nostr’s potential."
+  },
+  "sponsor": {
+    "label": "Sponsor"
+  },
+  "access": {
+    "name": "Crypto Lounge GOX",
+    "address": "6F Tenam Town Building,\n 2-19-15 Kabukicho, Shinjuku-ku, Tokyo"
+  },
+  "join": "Join",
+  "contact": "Contact",
+  "privacyPolicy": "Privacy Policy"
+}
