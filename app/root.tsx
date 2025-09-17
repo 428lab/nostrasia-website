@@ -70,7 +70,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           property="og:url"
           content={root?.siteUrl || 'https://nostrasia.com'}
         />
-        <meta property="og:image" content="https://nostrasia.com/ogp.webp" />
+        <meta property="og:image" content={`${root?.siteUrl}/ogp.webp`} />
         <meta property="twitter:card" content="summary_large_image" />
       </head>
       <body>
