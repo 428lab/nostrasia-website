@@ -37,7 +37,7 @@ const LanguageSwitchButton = ({
   return (
     <button
       className={
-        'flex items-center pl-3 pr-2 py-3 ' +
+        'flex items-center pl-3 pr-2 py-3 hover:opacity-100 transition ' +
         (i18n.language === lng ? 'opacity-100' : 'opacity-60')
       }
       onClick={() => handleChangeLanguage(lng)}

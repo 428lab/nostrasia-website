@@ -45,7 +45,7 @@ export const Menu = () => {
   return (
     <div className="relative w-10 h-10" ref={menuRef}>
       <button className="cursor-pointer" onClick={() => setOpen(!open)}>
-        <Hamburger />
+        <Hamburger className="w-10 h-10 hover:scale-x-[1.2] transition-all duration-300" />
       </button>
       <div
         className={`absolute right-0 top-[calc(40px+8px)] border border-white p-10 bg-white/30 backdrop-blur-[30px] min-w-fit w-full sm:w-[300px] flex flex-col gap-10 ${open ? 'opacity-100 visible' : 'opacity-0 invisible'} transition-all`}
