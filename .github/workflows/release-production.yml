@@ -28,6 +28,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./build/client --project-name=${{ env.PROJECT_NAME }} --env=production
+          command: pages deploy ./build/client --project-name=${{ env.PROJECT_NAME }} --branch=production
         env:
           APP_URL: https://nostrasia.com
