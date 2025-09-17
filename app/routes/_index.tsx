@@ -38,7 +38,9 @@ export default function Index() {
 
 const Top = () => (
   <div className="flex flex-col gap-12 w-full items-end">
-    <TextileLogo className="w-full max-w-[800px]" />
+    <h1>
+      <TextileLogo className="w-full max-w-[800px]" />
+    </h1>
     <EventDate className="w-full max-w-[326px]" />
     <JoinButton />
   </div>
