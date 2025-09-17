@@ -29,4 +29,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./build/client --project-name=${{ env.PROJECT_NAME }}
+          command: pages deploy ./build/client --project-name=${{ env.PROJECT_NAME }} --env=preview
+        env:
+          APP_URL: https://dev.nostrasia2024-66o.pages.dev

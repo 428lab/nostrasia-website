@@ -22,7 +22,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const language =
     new URL(request.url).searchParams.get('lng') ||
     (await i18next.getLocale(request))
-  return json({ language })
+
+  // Determine site URL based on environment
+  const siteUrl = process.env.APP_URL || 'https://nostrasia.com'
+
+  return json({ language, siteUrl })
 }
 
 export const handle = {
@@ -61,9 +65,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           `,
           }}
         />
-        <meta property="og:title" content="Nostrasia 2024" />
+        <meta property="og:title" content="Nostrasia 2025" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://nostrasia.com" />
+        <meta property="og:url" content={root?.siteUrl || "https://nostrasia.com"} />
         <meta property="og:image" content="https://nostrasia.com/ogp.webp" />
         <meta property="twitter:card" content="summary_large_image" />
       </head>
