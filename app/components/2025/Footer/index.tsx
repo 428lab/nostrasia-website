@@ -22,7 +22,9 @@ export const Footer = () => {
         </a>
       </div>
       <div className="flex items-center gap-x-4">
-        <a href="#">{t('contact')}</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfOPMX1EwMlH5J9BsPft2yylspYeNoBScf0kAzN8ETUX-CBcg/viewform">
+          {t('contact')}
+        </a>
         <Link to={fullPath('/privacy-policy')}>{t('privacyPolicy')}</Link>
       </div>
       <p>© Nostrasia 2025</p>

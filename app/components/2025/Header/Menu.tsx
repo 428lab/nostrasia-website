@@ -93,9 +93,8 @@ const AccessLink = () => (
 )
 
 const ContactLink = () => (
-  // FIXME: replace with actual contact link
   <a
-    href="https://example.com/contact"
+    href="https://docs.google.com/forms/d/e/1FAIpQLSfOPMX1EwMlH5J9BsPft2yylspYeNoBScf0kAzN8ETUX-CBcg/viewform"
     target="_blank"
     rel="noopener noreferrer"
   >
