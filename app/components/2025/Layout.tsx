@@ -8,14 +8,17 @@ import '~/2025.css'
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="px-4 sm:px-8 py-4 mx-auto">
-      <div className="mb-8">
-        <Header />
+    <>
+      <div className="background" />
+      <div className="px-4 sm:px-8 py-4 mx-auto">
+        <div className="mb-8">
+          <Header />
+        </div>
+        {children}
+        <div className="mt-20 sm:mt-40">
+          <Footer />
+        </div>
       </div>
-      {children}
-      <div className="mt-20 sm:mt-40">
-        <Footer />
-      </div>
-    </div>
+    </>
   )
 }

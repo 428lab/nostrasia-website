@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
     <Layout>
       <div className="space-y-10 sm:space-y-20 mx-auto max-w-[800px]">
         <div className="flex items-center gap-2">
-          <Link to="/" className="underline">
+          <Link to="/" className="hover:underline transition">
             Home
           </Link>
           <span>/</span>
@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
           <PrivacyPolicyTitle width={513} />
         </h1>
         <ReactMarkdown
-          className="prose max-w-none prose-h2:text-base prose-headings:text-default text-default prose-strong:text-default prose:text-default prose-a:text-default prose-a:underline"
+          className="prose max-w-none prose-h2:text-base prose-headings:text-default text-default prose-strong:text-default prose:text-default prose-a:text-default hover:prose-a:underline"
           components={{
             link: linkBlock,
             a: linkBlock,

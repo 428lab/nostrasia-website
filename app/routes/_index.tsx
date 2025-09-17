@@ -89,7 +89,7 @@ const AboutSection = () => {
             </defs>
           </svg>
         </div>
-        <div className="space-y-5 z-10 px-4 sm:px-8 py-12 mx-0">
+        <div className="space-y-5 z-10 px-4 sm:px-8 py-16 mx-0">
           <Matsuri className="max-w-[120px] max-h-[120px] sm:max-w-[160px] sm:max-h-[160px]" />
           <div className="max-w-screen-sm whitespace-pre-line space-y-5">
             <p className="leading-[1.7]">{t('about.description')}</p>
