@@ -13,7 +13,8 @@
   "overview": {
     "eventName": {
       "label": "イベント名",
-      "value": "Nostrasia 2025"
+      "value": "Nostrasia 2025",
+      "share": "インベントを共有"
     },
     "date": {
       "label": "日時",

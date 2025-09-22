@@ -32,8 +32,7 @@
     },
     "fees": {
       "label": "Fee",
-      "value": "Free",
-      "drinks": "Drinks included (soft-drinks & Alcohol)"
+      "value": "Free\nDrinks included (soft-drinks & Alcohol)"
     }
   },
   "contents": {
