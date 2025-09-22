@@ -13,7 +13,8 @@
   "overview": {
     "eventName": {
       "label": "Event",
-      "value": "Nostrasia 2025"
+      "value": "Nostrasia 2025",
+      "share": "Share Event"
     },
     "date": {
       "label": "Date",

@@ -10,6 +10,7 @@ import { Overview } from '~/icons/2025/Overview'
 import { Sponsors } from '~/icons/2025/Sponsors'
 
 import { JoinButton } from '../JoinButton'
+import { ShareSNS } from '../ShareSNS'
 
 const HoverableLink = (props: LinkProps) => {
   return (
@@ -57,6 +58,7 @@ export const Menu = () => {
         <AccessLink />
         <ContactLink />
         <JoinButton />
+        <ShareSNS />
       </div>
     </div>
   )
