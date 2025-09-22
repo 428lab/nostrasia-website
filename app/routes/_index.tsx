@@ -16,6 +16,8 @@ import { TextileLogo } from '~/icons/2025/TextileLogo'
 import { Waza } from '~/icons/2025/Waza'
 
 import type { MetaFunction } from '@remix-run/node'
+import { useNavigate } from '@remix-run/react'
+import { LinkArrow } from '~/icons/2025/LinkArrow'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Nostrasia 2025' }]
@@ -107,24 +109,39 @@ const AboutSection = () => {
 const OverViewSection = () => {
   const { t } = useTranslation()
 
+  const navigate = useNavigate()
+
   const list = [
     {
       label: t('overview.eventName.label'),
       value: t('overview.eventName.value'),
+      action: t('overview.eventName.share'),
+      onAction: () =>
+        window.navigator.share({
+          title: 'Nostrasia 2025',
+          url: 'https://nostrasia.com',
+        }),
     },
     {
       label: t('overview.date.label'),
       value: t('overview.date.value'),
       action: t('overview.date.calendar'),
+      onAction: () =>
+        navigate(
+          'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122/20251122&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com',
+        ),
     },
     {
       label: t('overview.place.label'),
       value: `${t('overview.place.name')}\n\n${t('overview.place.address.address1')}\n${t('overview.place.address.address2')}\n${t('overview.place.address.postalCode')}`,
       action: t('overview.place.maps'),
+      onAction: () =>
+        (location.href =
+          'https://maps.google.co.jp/maps?output=embed&q=東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル6FCrypto Lounge GOX'),
     },
     {
       label: t('overview.fees.label'),
-      value: `${t('overview.fees.value')}\n${t('overview.fees.drinks')}`,
+      value: t('overview.fees.value'),
     },
   ]
 
@@ -142,7 +159,15 @@ const OverViewSection = () => {
             <span className="font-bold w-36">{item.label}</span>
             <div className="space-y-4">
               <p className="whitespace-pre-line">{item.value}</p>
-              {item.action && <p className="">{item.action}</p>}
+              {item.action && (
+                <button
+                  onClick={item.onAction}
+                  className="flex items-center hover:underline"
+                >
+                  {item.action}
+                  <LinkArrow width={24} />
+                </button>
+              )}
             </div>
           </div>
         ))}
@@ -203,17 +228,58 @@ const ContentsSection = () => {
 }
 
 const SponsorsSection = () => {
+  const { i18n } = useTranslation()
+  const sponsors = [
+    {
+      name: '全力機械 zenryokukikai',
+      url: 'https://zenryokukikai.com/',
+      logo: `/2025/${i18n.language}/zenryokukikai.webp`,
+      width: 400,
+      height: 80,
+    },
+    {
+      name: '日本ビットコイン産業 Japan Bitcoin Industry',
+      url: 'https://jbi.co.jp/',
+      logo: '/2025/japan-bitcoin-industry.webp',
+      width: 140,
+      height: 140,
+    },
+    {
+      name: 'Momoko Kuratani',
+      url: 'https://apco.dev/',
+    },
+    {
+      name: 'Shino3 (しのさん)',
+      url: 'https://shino3.net/',
+    },
+  ]
   return (
     <section id="sponsors" className="flex flex-col items-center">
       <h2>
         <Sponsors className="h-[68px] sm:h-[107px] mx-auto" />
       </h2>
-      <img
-        className="mt-20 h-20"
-        loading="lazy"
-        src="/2025/zenryokukikai.webp"
-        alt="全力機械 zenryokukikai logo"
-      />
+      <div className="mt-20 flex flex-col items-center gap-10">
+        {sponsors.map((sponsor, index) => (
+          <a
+            key={index}
+            href={sponsor.url}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {sponsor.logo ? (
+              <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                width={sponsor.width}
+                height={sponsor.height}
+                loading="lazy"
+              />
+            ) : (
+              <span className="font-bold text-2xl">{sponsor.name}</span>
+            )}
+          </a>
+        ))}
+      </div>
     </section>
   )
 }
