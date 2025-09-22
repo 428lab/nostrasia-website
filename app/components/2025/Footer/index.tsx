@@ -10,12 +10,19 @@ export const Footer = () => {
   return (
     <footer className="flex flex-col items-center gap-6">
       <div className="flex items-center gap-x-10">
-        <Link to="/2024" className="flex items-center hover:underline">
+        <a
+          href="/2024"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="flex items-center hover:underline"
+        >
           2024
           <LinkArrow width={24} />
-        </Link>
+        </a>
         <a
           href="https://nostr.world/nostrasia/index.html"
+          target="_blank"
+          rel="noreferrer noopener"
           className="flex items-center hover:underline"
         >
           2023
@@ -26,6 +33,8 @@ export const Footer = () => {
         <a
           className="hover:underline"
           href="https://docs.google.com/forms/d/e/1FAIpQLSfOPMX1EwMlH5J9BsPft2yylspYeNoBScf0kAzN8ETUX-CBcg/viewform"
+          target="_blank"
+          rel="noreferrer noopener"
         >
           {t('contact')}
         </a>
