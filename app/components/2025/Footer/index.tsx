@@ -55,7 +55,7 @@ export const Footer = () => {
             url: 'https://note.com/nostrasia',
           },
         ].map(({ icon: Icon, url }, i) => (
-          <a key={i} href={url}>
+          <a key={i} href={url} target="_blank" rel="noreferrer noopener">
             <Icon width={24} />
           </a>
         ))}
