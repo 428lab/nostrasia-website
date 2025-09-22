@@ -8,8 +8,8 @@ import '~/2025.css'
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="px-4 sm:px-8 py-4 mx-auto">
-      <div className="mb-8">
+    <div className="px-4 sm:px-8 pb-4 mx-auto">
+      <div className="pt-4 mb-8 sticky top-0">
         <Header />
       </div>
       {children}
