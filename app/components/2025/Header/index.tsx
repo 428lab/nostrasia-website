@@ -5,7 +5,7 @@ import { Menu } from './Menu'
 
 export const Header = () => {
   return (
-    <div className="w-full flex items-center justify-end gap-6">
+    <div className="w-full flex items-center justify-end gap-6 z-50">
       <a href="https://nostr.band/?q=%23nostrasia2025">
         <ShareNostrasia2025 />
       </a>

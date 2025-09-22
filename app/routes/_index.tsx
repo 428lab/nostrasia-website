@@ -136,8 +136,7 @@ const OverViewSection = () => {
       value: `${t('overview.place.name')}\n\n${t('overview.place.address.address1')}\n${t('overview.place.address.address2')}\n${t('overview.place.address.postalCode')}`,
       action: t('overview.place.maps'),
       onAction: () =>
-        (location.href =
-          'https://maps.google.co.jp/maps?output=embed&q=東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル6FCrypto Lounge GOX'),
+        (location.href = 'https://share.google/OJ2MSf6HOAozx5Rxq'),
     },
     {
       label: t('overview.fees.label'),
