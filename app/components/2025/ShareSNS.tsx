@@ -17,7 +17,7 @@ export const ShareSNS = () => {
         },
         {
           icon: BlueSky,
-          url: 'https://bsky.app/profile/nostrasia.bsky.social',
+          url: 'https://bsky.app/profile/nostrasia.com',
         },
         {
           icon: Note,
