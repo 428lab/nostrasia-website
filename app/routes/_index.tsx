@@ -300,7 +300,7 @@ const AccessSection = () => {
       <div className="overflow-hidden w-full h-[320px] mt-10">
         <iframe
           title="Crypto Lounge GOX - Google Map"
-          className="w-[800px] h-[320px] scale-[1.015] mx-auto"
+          className="w-full max-w-[800px] h-[320px] scale-[1.015] mx-auto"
           src="https://maps.google.co.jp/maps?output=embed&q=東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル6FCrypto Lounge GOX"
         />
       </div>
