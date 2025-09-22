@@ -1,28 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  :root {
-    --primary: 259deg, 100%, 62%;
-    --secondary: 61deg, 92%, 46%;
-    --secondary-active: 61, 86%, 52%;
-    --background: 257, 41%, 97%;
-    --foreground: 259, 68%, 17%;
-    --turquoise: 171, 82%, 53%;
-    --pink: 344, 100%, 66%;
-    --dark-background: 259, 82%, 7%;
-    --dark-foreground: 257, 41%, 97%;
-  }
-}
-
-@layer base {
-  html,body {
-    @apply bg-background text-default h-full;
-  }
-  @media (prefers-color-scheme: dark) {
-    html,body {
-      @apply dark:bg-dark-background dark:text-dark;
-    }
-  }
-}

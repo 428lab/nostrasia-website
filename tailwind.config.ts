@@ -26,6 +26,9 @@ export default {
         default: 'hsla(var(--background), <alpha-value>)',
         dark: 'hsla(var(--dark-background), <alpha-value>)',
       },
+      fontFamily: {
+        serif: ['Shippori Mincho', 'serif'],
+      },
     },
   },
   plugins: [typography],

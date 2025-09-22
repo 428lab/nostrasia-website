@@ -1,7 +1,7 @@
 import { useSearchParams } from '@remix-run/react'
 import { useTranslation } from 'react-i18next'
 
-import { CheckIcon } from '~/icons/Check'
+import { CheckIcon } from '~/icons/2024/Check'
 
 const Check = ({ active }: { active: boolean }) => (
   <CheckIcon
