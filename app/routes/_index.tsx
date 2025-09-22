@@ -16,7 +16,6 @@ import { TextileLogo } from '~/icons/2025/TextileLogo'
 import { Waza } from '~/icons/2025/Waza'
 
 import type { MetaFunction } from '@remix-run/node'
-import { useNavigate } from '@remix-run/react'
 import { LinkArrow } from '~/icons/2025/LinkArrow'
 
 export const meta: MetaFunction = () => {
@@ -109,8 +108,6 @@ const AboutSection = () => {
 const OverViewSection = () => {
   const { t } = useTranslation()
 
-  const navigate = useNavigate()
-
   const list = [
     {
       label: t('overview.eventName.label'),
@@ -127,9 +124,8 @@ const OverViewSection = () => {
       value: t('overview.date.value'),
       action: t('overview.date.calendar'),
       onAction: () =>
-        navigate(
-          'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122/20251122&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com',
-        ),
+        (location.href =
+          'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122T040000Z/20251122T120000Z&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com'),
     },
     {
       label: t('overview.place.label'),
