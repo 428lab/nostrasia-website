@@ -1,4 +1,4 @@
-import { Link, LinkProps } from '@remix-run/react'
+import { Link, LinkProps, useSearchParams } from '@remix-run/react'
 import { useState, useEffect, useRef } from 'react'
 
 import { About } from '~/icons/2025/About'
@@ -13,8 +13,16 @@ import { JoinButton } from '../JoinButton'
 import { ShareSNS } from '../ShareSNS'
 
 const HoverableLink = (props: LinkProps) => {
+  const [searchParams] = useSearchParams()
+  const lang = searchParams.get('lng')
+
+  const linkProps = {
+    ...props,
+    to: lang ? `?lng=${lang}${props.to}` : props.to,
+  }
+
   return (
-    <Link {...props} className="hover:opacity-60 transition">
+    <Link {...linkProps} className="hover:opacity-60 transition">
       {props.children}
       <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-white scale-x-0 transition-transform group-hover:scale-x-100" />
     </Link>
