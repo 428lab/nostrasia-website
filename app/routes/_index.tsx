@@ -17,6 +17,7 @@ import { Waza } from '~/icons/2025/Waza'
 
 import type { MetaFunction } from '@remix-run/node'
 import { LinkArrow } from '~/icons/2025/LinkArrow'
+import { Hero } from '~/icons/2025/Hero'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Nostrasia 2025' }]
@@ -186,26 +187,28 @@ const ContentsSection = () => {
   const { t, i18n } = useTranslation()
 
   const list = [
-    {
-      key: 'waza',
-      titleComponent: Waza,
-      value: t('contents.waza'),
-    },
-    {
-      key: 'ichi',
-      titleComponent: Ichi,
-      value: t('contents.ichi'),
-    },
-    {
-      key: 'inori',
-      titleComponent: Inori,
-      value: t('contents.inori'),
-    },
-    {
-      key: 'hanashi',
-      titleComponent: Hanashi,
-      value: t('contents.hanashi'),
-    },
+    [
+      {
+        key: 'waza',
+        titleComponent: Waza,
+        value: t('contents.waza'),
+      },
+      {
+        key: 'ichi',
+        titleComponent: Ichi,
+        value: t('contents.ichi'),
+      },
+      {
+        key: 'inori',
+        titleComponent: Inori,
+        value: t('contents.inori'),
+      },
+      {
+        key: 'hanashi',
+        titleComponent: Hanashi,
+        value: t('contents.hanashi'),
+      },
+    ],
   ]
 
   return (
@@ -213,21 +216,54 @@ const ContentsSection = () => {
       <h2>
         <Contents className="h-12 sm:h-20 mx-auto" />
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-20">
-        {list.map((item, index) => {
-          const TitleComponent = item.titleComponent
-          return (
-            <div key={index} className="grid-1 px-5 py-5 lg:py-0 space-y-4">
-              <TitleComponent className="h-20 leading-none" />
-              {i18n.language !== 'ja' && (
-                <p className="font-serif text-xl">
-                  {t(`contents.headers.${item.key}`)}
+      <div className="mt-20 space-y-4 sm:space-y-20">
+        {list.map((row, i) => (
+          <div
+            className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            key={`contents-row-${i}`}
+          >
+            {row.map((item, j) => {
+              const TitleComponent = item.titleComponent
+              return (
+                <div
+                  key={j}
+                  className={`lg:py-0 space-y-4 ${row.length === 1 ? 'sm:col-span-2 lg:col-span-4' : row.length === 2 ? 'sm:col-span-2' : ''}`}
+                >
+                  <TitleComponent className="h-20 leading-none" />
+                  {i18n.language !== 'ja' && (
+                    <p className="font-serif text-xl">
+                      {t(`contents.headers.${item.key}`)}
+                    </p>
+                  )}
+                  <p className="whitespace-pre-line leading-[1.7] lg:col-span-4">
+                    {item.value}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+        ))}
+        <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 w-full">
+          <div className="space-y-4">
+            <Hero className="h-20 leading-none" />
+            {i18n.language !== 'ja' && (
+              <p className="font-serif text-xl">{t(`contents.headers.hero`)}</p>
+            )}
+            <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 w-full">
+              <div className="space-y-4">
+                <p className="text-2xl leading-[1.7]">
+                  {t('contents.hero.subTitle')}
                 </p>
-              )}
-              <p className="whitespace-pre-line leading-[1.7]">{item.value}</p>
+                <p>{t('contents.hero.body')}</p>
+              </div>
             </div>
-          )
-        })}
+          </div>
+          <img
+            className="w-full lg:w-auto lg:h-full lg:max-h-[315px] aspect-video bg-gray-100"
+            src="/2025/neiger.webp"
+            alt="Neiger"
+          />
+        </div>
       </div>
     </section>
   )

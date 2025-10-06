@@ -41,12 +41,17 @@
       "waza": "Tech",
       "ichi": "Merch",
       "inori": "Fortune",
-      "hanashi": "Talks"
+      "hanashi": "Talks",
+      "hero": "Hero"
     },
     "waza": "New to Nostr? Learn the basics hands-on — account, relays, wallet, and more.\nLike a festival stand, just drop by and take your first step into the world of Nostr!",
     "ichi": "Pick up exclusive goods and books you can’t get anywhere else.\nWith Lightning payments, it’s easy to grab something and take the Nostr vibe home with you.\nFrom \"Annual Nostrasia\" to original items and novelties, will also be available.",
     "inori": "A Nostr-style shrine will appear at the venue.\nZap to draw an Omikuji - a fortune slip - and see what awaits—great luck, or something unexpected.\nIt’s a fun way to connect with the spirit of the Nostr community.",
-    "hanashi": "Speakers from around the world will share what’s possible with Nostr.\nAlong with serious talks, you’ll hear unexpected questions and fresh ideas.\nFrom expert topics to casual chats, different perspectives come together to help you explore Nostr’s potential."
+    "hanashi": "Speakers from around the world will share what’s possible with Nostr.\nAlong with serious talks, you’ll hear unexpected questions and fresh ideas.\nFrom expert topics to casual chats, different perspectives come together to help you explore Nostr’s potential.",
+    "hero": {
+      "subTitle": "Laughter and excitement\n—It’s showtime!",
+      "body": "Chōjin NÉIGER takes the stage!\nGet ready for a fun, action-packed hero show everyone can enjoy together!"
+    }
   },
   "sponsor": {
     "label": "Sponsor"
