@@ -20,6 +20,7 @@ import type { MetaFunction } from '@remix-run/node'
 import { LinkArrow } from '~/icons/2025/LinkArrow'
 import { Hero } from '~/icons/2025/Hero'
 import { TimeTable } from '~/icons/2025/TimeTable'
+import { FloorMap } from '~/icons/2025/FloorMap'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Nostrasia 2025' }]
@@ -34,6 +35,7 @@ export default function Index() {
         <OverViewSection />
         <ContentsSection />
         <TimeTableSection />
+        <FloorMapSection />
         <SponsorsSection />
         <AccessSection />
       </div>
@@ -482,6 +484,24 @@ export const TimeTableSection = () => {
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  )
+}
+
+export const FloorMapSection = () => {
+  const { t } = useTranslation()
+  return (
+    <section id="floor-map" className="flex flex-col items-center">
+      <h2>
+        <FloorMap className="h-12 sm:h-20 mx-auto" />
+      </h2>
+      <div className="mt-10">
+        <img
+          src="/2025/map.webp"
+          alt={t('floorMap.alt')}
+          className="w-full max-w-[800px]"
+        />
       </div>
     </section>
   )
