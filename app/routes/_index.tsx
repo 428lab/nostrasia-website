@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { JoinButton } from '~/components/2025/JoinButton'
 import { Layout } from '~/components/2025/Layout'
+import { TimeTableProgram } from '~/components/2025/TimeTableProgram'
 
 import { Access } from '~/icons/2025/Access'
 import { Contents } from '~/icons/2025/Contents'
@@ -18,6 +19,7 @@ import { Waza } from '~/icons/2025/Waza'
 import type { MetaFunction } from '@remix-run/node'
 import { LinkArrow } from '~/icons/2025/LinkArrow'
 import { Hero } from '~/icons/2025/Hero'
+import { TimeTable } from '~/icons/2025/TimeTable'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Nostrasia 2025' }]
@@ -31,6 +33,7 @@ export default function Index() {
         <AboutSection />
         <OverViewSection />
         <ContentsSection />
+        <TimeTableSection />
         <SponsorsSection />
         <AccessSection />
       </div>
@@ -343,6 +346,142 @@ const AccessSection = () => {
       <div className="space-y-4 mt-6 text-center whitespace-pre-line">
         <p>{t('access.name')}</p>
         <p>{t('access.address')}</p>
+      </div>
+    </section>
+  )
+}
+
+export const TimeTableSection = () => {
+  const { t } = useTranslation()
+
+  const scheduleData = {
+    '12:30': [
+      {
+        place: 'main',
+        title: t('timeTable.events.doorsOpen'),
+        endTime: '13:00',
+      },
+    ],
+    '13:00': [
+      {
+        place: 'main',
+        title: t('timeTable.events.openingRemarks'),
+        endTime: '13:20',
+      },
+    ],
+    '13:20': [
+      {
+        place: 'main',
+        title: t('timeTable.events.lt1'),
+        endTime: '14:00',
+      },
+      {
+        place: 'lounge',
+        title: t('timeTable.events.merchandise'),
+        endTime: '18:00',
+      },
+      {
+        place: 'vipRoom',
+        title: t('timeTable.events.shisha'),
+        endTime: '18:00',
+      },
+      {
+        place: 'shrine',
+        title: t('timeTable.events.nostrShrine'),
+        endTime: '18:00',
+      },
+    ],
+    '14:00': [
+      {
+        place: 'main',
+        title: t('timeTable.events.socialSpaceBitchat'),
+        endTime: '15:30',
+      },
+    ],
+    '15:30': [
+      {
+        place: 'main',
+        title: t('timeTable.events.lt2'),
+        endTime: '17:00',
+      },
+    ],
+    '17:00': [
+      {
+        place: 'main',
+        title: t('timeTable.events.socialSpace'),
+        endTime: '18:00',
+      },
+    ],
+    '18:00': [
+      {
+        place: 'main',
+        title: t('timeTable.events.nostrBeerShow'),
+        endTime: '18:30',
+      },
+    ],
+    '18:30': [
+      {
+        place: 'main',
+        title: t('timeTable.events.socialSpace'),
+        endTime: '19:30',
+      },
+      {
+        place: 'lounge',
+        title: t('timeTable.events.socialSpace'),
+        endTime: '19:30',
+      },
+      {
+        place: 'vipRoom',
+        title: t('timeTable.events.shisha'),
+        endTime: '19:30',
+      },
+      {
+        place: 'shrine',
+        title: t('timeTable.events.nostrShrine'),
+        endTime: '19:30',
+      },
+    ],
+    '19:30': [
+      {
+        place: 'main',
+        title: t('timeTable.events.djPerformance'),
+        endTime: '19:50',
+      },
+    ],
+    '19:50': [
+      {
+        place: 'main',
+        title: t('timeTable.events.closingRemarks'),
+        endTime: '20:00',
+      },
+    ],
+  } as const
+
+  return (
+    <section id="time-table" className="flex flex-col items-center">
+      <h2>
+        <TimeTable className="h-20" />
+      </h2>
+      <div className="space-y-4 w-full max-w-[800px] mt-10">
+        {Object.entries(scheduleData).map(([time, events]) => (
+          <div key={time} className="">
+            <h3 className="font-semibold text-sm">{time}</h3>
+            <div
+              className={`grid ${events.length > 1 ? 'grid-cols-1 md:grid-cols-4' : ''} gap-4 mt-2`}
+            >
+              {events.map((event, index) => (
+                <TimeTableProgram
+                  key={index}
+                  place={event.place}
+                  placeName={t(`timeTable.places.${event.place}`)}
+                  start={time}
+                  end={event.endTime}
+                  title={event.title}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )

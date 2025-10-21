@@ -49,6 +49,28 @@
   "sponsor": {
     "label": "Sponsor"
   },
+  "timeTable": {
+    "places": {
+      "main": "Main",
+      "lounge": "Lounge",
+      "shrine": "Shrine",
+      "vipRoom": "VIP Room"
+    },
+    "events": {
+      "doorsOpen": "開場",
+      "openingRemarks": "開始挨拶",
+      "lt1": "LT",
+      "merchandise": "物販\nグッズ交換",
+      "shisha": "シーシャ",
+      "nostrShrine": "Nostr神社",
+      "socialSpaceBitchat": "交流スペース\nbitchat チャレンジ",
+      "lt2": "LT",
+      "socialSpace": "交流スペース",
+      "nostrBeerShow": "Nostr ビールショー",
+      "djPerformance": "Man Like Kweks's DJ performance",
+      "closingRemarks": "終わりの挨拶"
+    }
+  },
   "access": {
     "name": "Crypto Lounge GOX",
     "address": "東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F"

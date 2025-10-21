@@ -56,6 +56,28 @@
   "sponsor": {
     "label": "Sponsor"
   },
+  "timeTable": {
+    "places": {
+      "main": "Main",
+      "lounge": "Lounge",
+      "shrine": "Shrine",
+      "vipRoom": "VIP Room"
+    },
+    "events": {
+      "doorsOpen": "Venue Opening",
+      "openingRemarks": "Opening Remark",
+      "lt1": "Lightning Talks Part 1",
+      "merchandise": "Merch booth\nSpecial prize pickup",
+      "shisha": "Hookah/Shisa lounge",
+      "nostrShrine": "Nostr-style Shrine",
+      "socialSpaceBitchat": "Open for conversations\nbitchat Challenge",
+      "lt2": "Lightning Talks Part 2",
+      "socialSpace": "Open for conversations",
+      "nostrBeerShow": "Superhero show",
+      "djPerformance": "Man Like Kweks's DJ performance",
+      "closingRemarks": "Closing Remark"
+    }
+  },
   "access": {
     "name": "Crypto Lounge GOX",
     "address": "6F Tenam Town Building,\n 2-19-15 Kabukicho, Shinjuku-ku, Tokyo"
