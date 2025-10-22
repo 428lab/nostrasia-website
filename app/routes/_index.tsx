@@ -356,134 +356,155 @@ const AccessSection = () => {
 export const TimeTableSection = () => {
   const { t } = useTranslation()
 
-  const scheduleData = {
-    '12:30': [
-      {
-        place: 'main',
-        title: t('timeTable.events.doorsOpen'),
-        endTime: '13:00',
-      },
-    ],
-    '13:00': [
-      {
-        place: 'main',
-        title: t('timeTable.events.openingRemarks'),
-        endTime: '13:20',
-      },
-    ],
-    '13:20': [
-      {
-        place: 'main',
-        title: t('timeTable.events.lt1'),
-        endTime: '14:00',
-      },
-      {
-        place: 'lounge',
-        title: t('timeTable.events.merchandise'),
-        endTime: '18:00',
-      },
-      {
-        place: 'vipRoom',
-        title: t('timeTable.events.shisha'),
-        endTime: '18:00',
-      },
-      {
-        place: 'shrine',
-        title: t('timeTable.events.nostrShrine'),
-        endTime: '18:00',
-      },
-    ],
-    '14:00': [
-      {
-        place: 'main',
-        title: t('timeTable.events.socialSpaceBitchat'),
-        endTime: '15:30',
-      },
-    ],
-    '15:30': [
-      {
-        place: 'main',
-        title: t('timeTable.events.lt2'),
-        endTime: '17:00',
-      },
-    ],
-    '17:00': [
-      {
-        place: 'main',
-        title: t('timeTable.events.socialSpace'),
-        endTime: '18:00',
-      },
-    ],
-    '18:00': [
-      {
-        place: 'main',
-        title: t('timeTable.events.nostrBeerShow'),
-        endTime: '18:30',
-      },
-    ],
-    '18:30': [
-      {
-        place: 'main',
-        title: t('timeTable.events.socialSpace'),
-        endTime: '19:30',
-      },
-      {
-        place: 'lounge',
-        title: t('timeTable.events.socialSpace'),
-        endTime: '19:30',
-      },
-      {
-        place: 'vipRoom',
-        title: t('timeTable.events.shisha'),
-        endTime: '19:30',
-      },
-      {
-        place: 'shrine',
-        title: t('timeTable.events.nostrShrine'),
-        endTime: '19:30',
-      },
-    ],
-    '19:30': [
-      {
-        place: 'main',
-        title: t('timeTable.events.djPerformance'),
-        endTime: '19:50',
-      },
-    ],
-    '19:50': [
-      {
-        place: 'main',
-        title: t('timeTable.events.closingRemarks'),
-        endTime: '20:00',
-      },
-    ],
-  } as const
-
   return (
     <section id="time-table" className="flex flex-col items-center">
       <h2>
         <TimeTable className="h-20" />
       </h2>
       <div className="space-y-4 w-full max-w-[800px] mt-10">
-        {Object.entries(scheduleData).map(([time, events]) => (
-          <div key={time} className="">
-            <h3 className="font-semibold text-sm">{time}</h3>
-            <div
-              className={`grid ${events.length > 1 ? 'grid-cols-1 md:grid-cols-4' : ''} gap-4 mt-2`}
-            >
-              {events.map((event, index) => (
-                <TimeTableProgram
-                  key={index}
-                  place={event.place}
-                  placeName={t(`timeTable.places.${event.place}`)}
-                  start={time}
-                  end={event.endTime}
-                  title={event.title}
-                />
-              ))}
-            </div>
+        {/* Opening */}
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="12:30"
+          end="13:00"
+          title={t('timeTable.events.doorsOpen')}
+        />
+
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="13:00"
+          end="13:20"
+          title={t('timeTable.events.openingRemarks')}
+        />
+
+        {/* 13:20 - 18:00 section with parallel tracks */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Main track */}
+          <div className="space-y-4">
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="13:20"
+              end="14:00"
+              title={t('timeTable.events.lt1')}
+            />
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="14:00"
+              end="15:30"
+              title={t('timeTable.events.socialSpaceBitchat')}
+            />
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="15:30"
+              end="17:00"
+              title={t('timeTable.events.lt2')}
+            />
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="17:00"
+              end="18:00"
+              title={t('timeTable.events.socialSpace')}
+            />
           </div>
-        ))}
+
+          {/* Lounge (13:20-18:00) */}
+          <TimeTableProgram
+            place="lounge"
+            placeName={t('timeTable.places.lounge')}
+            start="13:20"
+            end="18:00"
+            title={t('timeTable.events.merchandise')}
+          />
+
+          {/* VIP Room (13:20-18:00) */}
+          <TimeTableProgram
+            place="vipRoom"
+            placeName={t('timeTable.places.vipRoom')}
+            start="13:20"
+            end="18:00"
+            title={t('timeTable.events.shisha')}
+          />
+
+          {/* Shrine (13:20-18:00) */}
+          <TimeTableProgram
+            place="shrine"
+            placeName={t('timeTable.places.shrine')}
+            start="13:20"
+            end="18:00"
+            title={t('timeTable.events.nostrShrine')}
+          />
+        </div>
+
+        {/* 18:00-18:30 Nostr Beer Show (full width) */}
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="18:00"
+          end="18:30"
+          title={t('timeTable.events.nostrHeroShow')}
+        />
+
+        {/* 18:30-19:30 section with parallel tracks */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Main */}
+          <TimeTableProgram
+            place="main"
+            placeName={t('timeTable.places.main')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.socialSpace')}
+          />
+
+          {/* Lounge */}
+          <TimeTableProgram
+            place="lounge"
+            placeName={t('timeTable.places.lounge')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.socialSpace')}
+          />
+
+          {/* VIP Room */}
+          <TimeTableProgram
+            place="vipRoom"
+            placeName={t('timeTable.places.vipRoom')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.shisha')}
+          />
+
+          {/* Shrine */}
+          <TimeTableProgram
+            place="shrine"
+            placeName={t('timeTable.places.shrine')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.nostrShrine')}
+          />
+        </div>
+
+        {/* Closing */}
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="19:30"
+          end="19:50"
+          title={t('timeTable.events.djPerformance')}
+        />
+
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="19:50"
+          end="20:00"
+          title={t('timeTable.events.closingRemarks')}
+        />
       </div>
     </section>
   )
