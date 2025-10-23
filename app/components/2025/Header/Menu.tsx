@@ -11,6 +11,8 @@ import { Sponsors } from '~/icons/2025/Sponsors'
 
 import { JoinButton } from '../JoinButton'
 import { ShareSNS } from '../ShareSNS'
+import { TimeTable } from '~/icons/2025/TimeTable'
+import { FloorMap } from '~/icons/2025/FloorMap'
 
 const HoverableLink = (props: LinkProps) => {
   const [searchParams] = useSearchParams()
@@ -62,6 +64,8 @@ export const Menu = () => {
         <AboutLink />
         <OverviewLink />
         <ContentsLink />
+        <TimetableLink />
+        <FloorMapLink />
         <SponsorsLink />
         <AccessLink />
         <ContactLink />
@@ -87,6 +91,18 @@ const OverviewLink = () => (
 const ContentsLink = () => (
   <HoverableLink to="#contents">
     <Contents className="h-[19px]" />
+  </HoverableLink>
+)
+
+const TimetableLink = () => (
+  <HoverableLink to="#timetable">
+    <TimeTable className="h-[19px]" />
+  </HoverableLink>
+)
+
+const FloorMapLink = () => (
+  <HoverableLink to="#floorMap">
+    <FloorMap className="h-[19px]" />
   </HoverableLink>
 )
 
