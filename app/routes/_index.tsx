@@ -129,7 +129,7 @@ const OverViewSection = () => {
       label: t('overview.date.label'),
       value: t('overview.date.value'),
       action: t('overview.date.calendar'),
-      href: 'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122T033000Z/20251122T120000Z&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com',
+      href: 'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122T033000Z/20251122T110000Z&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com',
     },
     {
       label: t('overview.place.label'),

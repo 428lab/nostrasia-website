@@ -60,7 +60,6 @@ export const Menu = () => {
       <div
         className={`absolute right-0 top-[calc(40px+8px)] border border-white p-10 bg-white/30 backdrop-blur-[30px] min-w-fit w-full sm:w-[300px] flex flex-col gap-10 ${open ? 'opacity-100 visible' : 'opacity-0 invisible'} transition-all`}
       >
-        <AboutLink />
         <OverviewLink />
         <ContentsLink />
         <TimetableLink />
@@ -73,12 +72,6 @@ export const Menu = () => {
     </div>
   )
 }
-
-const AboutLink = () => (
-  <HoverableLink to="#about">
-    <About className="h-5" />
-  </HoverableLink>
-)
 
 const OverviewLink = () => (
   <HoverableLink to="#overview">
