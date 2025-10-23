@@ -100,7 +100,7 @@ const TimetableLink = () => (
 
 const FloorMapLink = () => (
   <HoverableLink to="#floorMap">
-    <FloorMap className="h-[19px]" />
+    <FloorMap className="h-6" />
   </HoverableLink>
 )
 
