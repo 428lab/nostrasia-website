@@ -353,7 +353,7 @@ const AccessSection = () => {
   )
 }
 
-export const TimeTableSection = () => {
+const TimeTableSection = () => {
   const { t } = useTranslation()
 
   return (
