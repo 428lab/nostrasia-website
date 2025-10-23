@@ -7,7 +7,6 @@ import { Contact } from '~/icons/2025/Contact'
 import { Contents } from '~/icons/2025/Contents'
 import { Hamburger } from '~/icons/2025/Hamburger'
 import { Overview } from '~/icons/2025/Overview'
-import { Sponsors } from '~/icons/2025/Sponsors'
 
 import { JoinButton } from '../JoinButton'
 import { ShareSNS } from '../ShareSNS'
@@ -66,7 +65,6 @@ export const Menu = () => {
         <ContentsLink />
         <TimetableLink />
         <FloorMapLink />
-        <SponsorsLink />
         <AccessLink />
         <ContactLink />
         <JoinButton />
@@ -103,12 +101,6 @@ const TimetableLink = () => (
 const FloorMapLink = () => (
   <HoverableLink to="#floorMap">
     <FloorMap className="h-[19px]" />
-  </HoverableLink>
-)
-
-const SponsorsLink = () => (
-  <HoverableLink to="#sponsors">
-    <Sponsors className="h-[26px]" />
   </HoverableLink>
 )
 
