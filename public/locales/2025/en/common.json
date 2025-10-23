@@ -18,7 +18,7 @@
     },
     "date": {
       "label": "Date",
-      "value": "Saturday, November 22, 2025, 1:00 PM - 9:00 PM (Doors open at 12:30 PM)",
+      "value": "Saturday, November 22, 2025, 1:00 PM - 8:00 PM (Doors open at 12:30 PM)",
       "calendar": "Add to Google Calendar"
     },
     "place": {
@@ -70,7 +70,7 @@
       "merchandise": "Merch booth\nSpecial prize pickup",
       "shisha": "Hookah/Shisa lounge",
       "nostrShrine": "Nostr-style Shrine",
-      "socialSpaceBitchat": "Open for conversations\nbitchat Challenge",
+      "socialSpaceBitchat": "Open for conversations\nbitchat challenge",
       "lt2": "Lightning Talks Part 2",
       "socialSpace": "Open for conversations",
       "nostrHeroShow": "Superhero show",
