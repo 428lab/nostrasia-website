@@ -18,7 +18,7 @@
     },
     "date": {
       "label": "日時",
-      "value": "2025年11月22日（土）13:00 - 21:00（12:30開場）",
+      "value": "2025年11月22日（土）13:00 - 20:00（12:30開場）",
       "calendar": "Googleカレンダーに登録する"
     },
     "place": {
@@ -48,6 +48,28 @@
   },
   "sponsor": {
     "label": "Sponsor"
+  },
+  "timeTable": {
+    "places": {
+      "main": "Main",
+      "lounge": "Lounge",
+      "shrine": "Shrine",
+      "vipRoom": "VIP Room"
+    },
+    "events": {
+      "doorsOpen": "開場",
+      "openingRemarks": "開始挨拶",
+      "lt1": "ライトニングトーク",
+      "merchandise": "物販\nグッズ交換",
+      "shisha": "シーシャ",
+      "nostrShrine": "Nostr神社",
+      "socialSpaceBitchat": "交流スペース\nbitchat チャレンジ",
+      "lt2": "ライトニングトーク",
+      "socialSpace": "交流スペース",
+      "nostrHeroShow": "Nostr ヒーローショー",
+      "djPerformance": "Man Like Kweks's DJ performance",
+      "closingRemarks": "終わりの挨拶"
+    }
   },
   "access": {
     "name": "Crypto Lounge GOX",

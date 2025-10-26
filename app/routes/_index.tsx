@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { JoinButton } from '~/components/2025/JoinButton'
 import { Layout } from '~/components/2025/Layout'
+import { TimeTableProgram } from '~/components/2025/TimeTableProgram'
 
 import { Access } from '~/icons/2025/Access'
 import { Contents } from '~/icons/2025/Contents'
@@ -18,6 +19,8 @@ import { Waza } from '~/icons/2025/Waza'
 import type { MetaFunction } from '@remix-run/node'
 import { LinkArrow } from '~/icons/2025/LinkArrow'
 import { Hero } from '~/icons/2025/Hero'
+import { TimeTable } from '~/icons/2025/TimeTable'
+import { FloorMap } from '~/icons/2025/FloorMap'
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Nostrasia 2025' }]
@@ -31,6 +34,8 @@ export default function Index() {
         <AboutSection />
         <OverViewSection />
         <ContentsSection />
+        <TimeTableSection />
+        <FloorMapSection />
         <SponsorsSection />
         <AccessSection />
       </div>
@@ -124,7 +129,7 @@ const OverViewSection = () => {
       label: t('overview.date.label'),
       value: t('overview.date.value'),
       action: t('overview.date.calendar'),
-      href: 'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122T033000Z/20251122T120000Z&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com',
+      href: 'https://www.google.com/calendar/render?action=TEMPLATE&text=Nostrasisa 2025&dates=20251122T033000Z/20251122T110000Z&location= 東京都新宿区歌舞伎町２丁目１９−１５てなむタウンビル 6F Crypto Lounge GOX&trp=true&trp=undefined&trp=true&sprop=https://nostrasia.com',
     },
     {
       label: t('overview.place.label'),
@@ -343,6 +348,181 @@ const AccessSection = () => {
       <div className="space-y-4 mt-6 text-center whitespace-pre-line">
         <p>{t('access.name')}</p>
         <p>{t('access.address')}</p>
+      </div>
+    </section>
+  )
+}
+
+const TimeTableSection = () => {
+  const { t } = useTranslation()
+
+  return (
+    <section id="time-table" className="flex flex-col items-center">
+      <h2>
+        <TimeTable className="h-20" />
+      </h2>
+      <div className="space-y-4 w-full max-w-[800px] mt-10">
+        {/* Opening */}
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="12:30"
+          end="13:00"
+          title={t('timeTable.events.doorsOpen')}
+        />
+
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="13:00"
+          end="13:20"
+          title={t('timeTable.events.openingRemarks')}
+        />
+
+        {/* 13:20 - 18:00 section with parallel tracks */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Main track */}
+          <div className="space-y-4">
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="13:20"
+              end="14:00"
+              title={t('timeTable.events.lt1')}
+            />
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="14:00"
+              end="15:30"
+              title={t('timeTable.events.socialSpaceBitchat')}
+            />
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="15:30"
+              end="17:00"
+              title={t('timeTable.events.lt2')}
+            />
+            <TimeTableProgram
+              place="main"
+              placeName={t('timeTable.places.main')}
+              start="17:00"
+              end="18:00"
+              title={t('timeTable.events.socialSpace')}
+            />
+          </div>
+
+          {/* Lounge (13:20-18:00) */}
+          <TimeTableProgram
+            place="lounge"
+            placeName={t('timeTable.places.lounge')}
+            start="13:20"
+            end="18:00"
+            title={t('timeTable.events.merchandise')}
+          />
+
+          {/* VIP Room (13:20-18:00) */}
+          <TimeTableProgram
+            place="vipRoom"
+            placeName={t('timeTable.places.vipRoom')}
+            start="13:20"
+            end="18:00"
+            title={t('timeTable.events.shisha')}
+          />
+
+          {/* Shrine (13:20-18:00) */}
+          <TimeTableProgram
+            place="shrine"
+            placeName={t('timeTable.places.shrine')}
+            start="13:20"
+            end="18:00"
+            title={t('timeTable.events.nostrShrine')}
+          />
+        </div>
+
+        {/* 18:00-18:30 Nostr Beer Show (full width) */}
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="18:00"
+          end="18:30"
+          title={t('timeTable.events.nostrHeroShow')}
+        />
+
+        {/* 18:30-19:30 section with parallel tracks */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Main */}
+          <TimeTableProgram
+            place="main"
+            placeName={t('timeTable.places.main')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.socialSpace')}
+          />
+
+          {/* Lounge */}
+          <TimeTableProgram
+            place="lounge"
+            placeName={t('timeTable.places.lounge')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.socialSpace')}
+          />
+
+          {/* VIP Room */}
+          <TimeTableProgram
+            place="vipRoom"
+            placeName={t('timeTable.places.vipRoom')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.shisha')}
+          />
+
+          {/* Shrine */}
+          <TimeTableProgram
+            place="shrine"
+            placeName={t('timeTable.places.shrine')}
+            start="18:30"
+            end="19:30"
+            title={t('timeTable.events.nostrShrine')}
+          />
+        </div>
+
+        {/* Closing */}
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="19:30"
+          end="19:50"
+          title={t('timeTable.events.djPerformance')}
+        />
+
+        <TimeTableProgram
+          place="main"
+          placeName={t('timeTable.places.main')}
+          start="19:50"
+          end="20:00"
+          title={t('timeTable.events.closingRemarks')}
+        />
+      </div>
+    </section>
+  )
+}
+
+export const FloorMapSection = () => {
+  const { t } = useTranslation()
+  return (
+    <section id="floor-map" className="flex flex-col items-center">
+      <h2>
+        <FloorMap className="h-12 sm:h-20 mx-auto" />
+      </h2>
+      <div className="mt-10">
+        <img
+          src="/2025/map.webp"
+          alt={t('floorMap.alt')}
+          className="w-full max-w-[800px]"
+        />
       </div>
     </section>
   )

@@ -7,10 +7,11 @@ import { Contact } from '~/icons/2025/Contact'
 import { Contents } from '~/icons/2025/Contents'
 import { Hamburger } from '~/icons/2025/Hamburger'
 import { Overview } from '~/icons/2025/Overview'
-import { Sponsors } from '~/icons/2025/Sponsors'
 
 import { JoinButton } from '../JoinButton'
 import { ShareSNS } from '../ShareSNS'
+import { TimeTable } from '~/icons/2025/TimeTable'
+import { FloorMap } from '~/icons/2025/FloorMap'
 
 const HoverableLink = (props: LinkProps) => {
   const [searchParams] = useSearchParams()
@@ -59,10 +60,10 @@ export const Menu = () => {
       <div
         className={`absolute right-0 top-[calc(40px+8px)] border border-white p-10 bg-white/30 backdrop-blur-[30px] min-w-fit w-full sm:w-[300px] flex flex-col gap-10 ${open ? 'opacity-100 visible' : 'opacity-0 invisible'} transition-all`}
       >
-        <AboutLink />
         <OverviewLink />
         <ContentsLink />
-        <SponsorsLink />
+        <TimetableLink />
+        <FloorMapLink />
         <AccessLink />
         <ContactLink />
         <JoinButton />
@@ -71,12 +72,6 @@ export const Menu = () => {
     </div>
   )
 }
-
-const AboutLink = () => (
-  <HoverableLink to="#about">
-    <About className="h-5" />
-  </HoverableLink>
-)
 
 const OverviewLink = () => (
   <HoverableLink to="#overview">
@@ -90,9 +85,15 @@ const ContentsLink = () => (
   </HoverableLink>
 )
 
-const SponsorsLink = () => (
-  <HoverableLink to="#sponsors">
-    <Sponsors className="h-[26px]" />
+const TimetableLink = () => (
+  <HoverableLink to="#timetable">
+    <TimeTable className="h-[19px]" />
+  </HoverableLink>
+)
+
+const FloorMapLink = () => (
+  <HoverableLink to="#floorMap">
+    <FloorMap className="h-6" />
   </HoverableLink>
 )
 

@@ -8,6 +8,10 @@
   :root {
     --primary: 6, 64%, 56%;
     --foreground: 0, 100%, 99%;
+
+    --mosgreen: 152, 23%, 29%;
+    --turquoise: 168, 27%, 53%;
+    --brown: 19, 29%, 53%;
   }
 
   html,body {

@@ -16,6 +16,8 @@ export default {
         pink: 'hsla(var(--pink), <alpha-value>)',
         'dark-foreground': 'hsla(var(--dark--foreground), <alpha-value>)',
         'dark-background': 'hsla(var(--dark-background), <alpha-value>)',
+        mosgreen: 'hsla(var(--mosgreen), <alpha-value>)',
+        brown: 'hsla(var(--brown), <alpha-value>)',
       },
       textColor: {
         default: 'hsla(var(--foreground), <alpha-value>)',
