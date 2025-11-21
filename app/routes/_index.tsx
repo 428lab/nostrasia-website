@@ -519,7 +519,7 @@ export const FloorMapSection = () => {
       </h2>
       <div className="mt-10">
         <img
-          src="/2025/map.webp"
+          src="/2025/map.png"
           alt={t('floorMap.alt')}
           className="w-full max-w-[800px]"
         />
