@@ -359,7 +359,7 @@ const TimeTableSection = () => {
   return (
     <section id="time-table" className="flex flex-col items-center">
       <h2>
-        <TimeTable className="h-20" />
+        <TimeTable className="h-12 sm:h-20 mx-auto" />
       </h2>
       <div className="space-y-4 w-full max-w-[800px] mt-10">
         {/* Opening */}

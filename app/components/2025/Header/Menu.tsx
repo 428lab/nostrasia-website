@@ -86,13 +86,13 @@ const ContentsLink = () => (
 )
 
 const TimetableLink = () => (
-  <HoverableLink to="#timetable">
+  <HoverableLink to="#time-table">
     <TimeTable className="h-[19px]" />
   </HoverableLink>
 )
 
 const FloorMapLink = () => (
-  <HoverableLink to="#floorMap">
+  <HoverableLink to="#floor-map">
     <FloorMap className="h-6" />
   </HoverableLink>
 )
