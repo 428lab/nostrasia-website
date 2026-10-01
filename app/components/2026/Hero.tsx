@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { EVENT_2026, formatDate2026 } from '~/data/2026'
 import { useLocalized } from '~/hooks/useLocalized'
+import { hydratedLate } from '~/hooks/useRevealOnce'
 
 import { JoinButton } from './JoinButton'
 
@@ -40,10 +41,11 @@ export const Hero = () => {
   const localized = useLocalized()
   const [done, setDone] = useState(false)
 
+  // reduced-motion・no-hydrate では飛来させず、組み上がった状態にする
   useEffect(() => {
     const timer = window.setTimeout(
       () => setDone(true),
-      prefersReducedMotion() ? 0 : ASSEMBLED_MS,
+      prefersReducedMotion() || hydratedLate() ? 0 : ASSEMBLED_MS,
     )
     return () => window.clearTimeout(timer)
   }, [])

@@ -8,6 +8,8 @@ import { SectionHead } from './SectionHead'
 export const About = () => {
   const { t } = useTranslation()
   const localized = useLocalized()
+  // 「すべて調整中」の注記は、日程・会場・参加費のどれかが未定のあいだだけ出す
+  const undecided = !EVENT_2026.date || !EVENT_2026.venue || !EVENT_2026.fee
 
   return (
     <section className="sec" id="about">
@@ -22,12 +24,14 @@ export const About = () => {
         <div className="about-g" id="overview">
           <div className="panel">
             <p className="ptl">{t('about.overviewTitle')}</p>
-            <p className="note">
-              {t('about.overviewNote', {
-                hashtag: EVENT_2026.hashtag,
-                interpolation: { escapeValue: false },
-              })}
-            </p>
+            {undecided && (
+              <p className="note">
+                {t('about.overviewNote', {
+                  hashtag: EVENT_2026.hashtag,
+                  interpolation: { escapeValue: false },
+                })}
+              </p>
+            )}
           </div>
           <dl className="ov">
             <div>

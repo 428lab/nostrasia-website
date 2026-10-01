@@ -75,7 +75,11 @@ export const Speakers = () => {
         <div className="sg">
           {SPEAKERS_2026.length > 0
             ? SPEAKERS_2026.map((speaker, i) => (
-                <SpeakerCard key={speaker.name} speaker={speaker} index={i} />
+                <SpeakerCard
+                  key={`${speaker.name}-${i}`}
+                  speaker={speaker}
+                  index={i}
+                />
               ))
             : Array.from({ length: SPEAKER_PLACEHOLDER_COUNT }, (_, i) => (
                 <div className="sp" key={i}>

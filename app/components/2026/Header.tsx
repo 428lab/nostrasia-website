@@ -9,10 +9,10 @@ import { JoinButton } from './JoinButton'
 import { LanguageSwitch } from './LanguageSwitch'
 import { NAV_ITEMS, SECTION_TO_NAV } from './nav'
 
-const PC_QUERY = '(min-width: 900px)'
+const PC_QUERY = '(min-width: 1100px)'
 
 /**
- * ヘッダー。900px 未満はハンバーガー → 全画面メニュー、900px 以上は横並びのナビ。
+ * ヘッダー。1100px 未満はハンバーガー → 全画面メニュー、1100px 以上は横並びのナビ。
  * メニューの開閉状態は Layout が持つ（下部の参加登録帯を隠すため）。
  */
 export const Header = ({

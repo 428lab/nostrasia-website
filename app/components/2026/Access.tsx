@@ -75,7 +75,7 @@ export const Access = () => {
         <p className="h3s" id="floor">
           {t('access.floorTitle')}
         </p>
-        <div className="floor" aria-label={t('access.floorLabel')}>
+        <div className="floor" role="img" aria-label={t('access.floorLabel')}>
           {FLOOR.map(({ className, key }) => (
             <div className={className} key={key}>
               {t(`access.floor.${key}`)}

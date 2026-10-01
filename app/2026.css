@@ -116,8 +116,7 @@ body:has(.n26.menu-open) {
   font: 600 8px/1 var(--en);
   letter-spacing: 0.08em;
 }
-html:not(.js) .n26 .burger,
-html.no-hydrate .n26 .burger {
+html:not(.js) .n26 .burger {
   display: none;
 }
 .n26 .burger .bs {
@@ -1109,6 +1108,28 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   }
 }
 @media (min-width: 900px) {
+  .n26 .hero {
+    grid-template-columns: 1fr 1fr;
+    max-width: 1180px;
+    margin: 0 auto;
+    gap: 20px;
+    padding: 30px 0;
+  }
+  .n26 .hero-txt {
+    padding: 0 0 0 28px;
+  }
+  .n26 .logo .n {
+    font-size: clamp(34px, 4.3vw, 58px);
+  }
+  .n26 .logo .y {
+    font-size: clamp(90px, 11vw, 170px);
+  }
+  .n26 .stage {
+    height: min(78svh, 620px);
+    margin: 0 28px 0 0;
+  }
+}
+@media (min-width: 1100px) {
   html:has(.n26) {
     scroll-padding-top: 76px;
   }
@@ -1125,9 +1146,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .burger,
   .n26 .regbar {
     display: none !important;
-  }
-  .n26 .lang {
-    display: none;
   }
   .n26 .gnav {
     position: static;
@@ -1166,31 +1184,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .gnav {
     display: flex;
     align-items: center;
-  }
-  .n26 .hero {
-    grid-template-columns: 1fr 1fr;
-    max-width: 1180px;
-    margin: 0 auto;
-    gap: 20px;
-    padding: 30px 0;
-  }
-  .n26 .hero-txt {
-    padding: 0 0 0 28px;
-  }
-  .n26 .logo .n {
-    font-size: clamp(34px, 4.3vw, 58px);
-  }
-  .n26 .logo .y {
-    font-size: clamp(90px, 11vw, 170px);
-  }
-  .n26 .stage {
-    height: min(78svh, 620px);
-    margin: 0 28px 0 0;
-  }
-}
-@media (min-width: 1100px) {
-  .n26 .lang {
-    display: flex;
   }
 }
 @media (prefers-reduced-motion: reduce) {

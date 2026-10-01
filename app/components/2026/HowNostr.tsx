@@ -1,6 +1,8 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
+import { hydratedLate } from '~/hooks/useRevealOnce'
+
 import { SectionHead } from './SectionHead'
 
 type Step = 1 | 2 | 3 | 4
@@ -37,7 +39,7 @@ const STEPS: Step[] = [1, 2, 3, 4]
 /**
  * Nostr はじめて。図は sticky で固定し、本文のステップは普通にスクロールする。
  * どのステップが画面中央付近にあるかを IntersectionObserver で見て、図を離散的に切り替える。
- * JS が動かないあいだは全体図（ステップ 4）を出す。
+ * JS が動かないあいだと no-hydrate では全体図（ステップ 4）のまま切り替えない。
  */
 export const HowNostr = () => {
   const { t } = useTranslation()
@@ -46,7 +48,7 @@ export const HowNostr = () => {
 
   useEffect(() => {
     const list = stepsRef.current
-    if (!list || !('IntersectionObserver' in window)) return
+    if (!list || !('IntersectionObserver' in window) || hydratedLate()) return
     setStep(1)
     const io = new IntersectionObserver(
       (entries) => {

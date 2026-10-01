@@ -1,6 +1,8 @@
 import { useSearchParams } from '@remix-run/react'
 import { useTranslation } from 'react-i18next'
 
+import { currentLang } from '~/hooks/useLocalized'
+
 const LANGS = [
   { lng: 'ja', label: 'JA' },
   { lng: 'en', label: 'EN' },
@@ -12,8 +14,10 @@ export const LanguageSwitch = () => {
 
   const handleChangeLanguage = (lng: 'ja' | 'en') => {
     i18n.changeLanguage(lng)
-    setSearchParams({ lng })
+    setSearchParams({ lng }, { preventScrollReset: true })
   }
+
+  const current = currentLang(i18n)
 
   return (
     <div className="lang" role="group" aria-label={t('lang.label')}>
@@ -21,7 +25,7 @@ export const LanguageSwitch = () => {
         <button
           key={lng}
           type="button"
-          aria-pressed={i18n.language === lng}
+          aria-pressed={current === lng}
           onClick={() => handleChangeLanguage(lng)}
         >
           {label}

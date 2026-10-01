@@ -33,10 +33,10 @@ export const Sponsors = () => {
               <h3>{t(`sponsors.tiers.${tier.id}`)}</h3>
               <div className={style.className}>
                 {tier.sponsors.length > 0
-                  ? tier.sponsors.map((sponsor) => (
+                  ? tier.sponsors.map((sponsor, i) => (
                       <a
                         className="slot"
-                        key={sponsor.name}
+                        key={`${sponsor.name}-${i}`}
                         href={sponsor.url}
                         target="_blank"
                         rel="noopener noreferrer"
