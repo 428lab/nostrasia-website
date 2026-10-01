@@ -1,14 +1,50 @@
-// 2026 年版の公開までの一時リダイレクト
-import { LoaderFunctionArgs } from '@remix-run/node'
-import { redirect } from '@remix-run/react'
+import { About } from '~/components/2026/About'
+import { Access } from '~/components/2026/Access'
+import { Archive } from '~/components/2026/Archive'
+import { Faq } from '~/components/2026/Faq'
+import { Hero } from '~/components/2026/Hero'
+import { HowNostr } from '~/components/2026/HowNostr'
+import { Layout } from '~/components/2026/Layout'
+import { Program } from '~/components/2026/Program'
+import { Speakers } from '~/components/2026/Speakers'
+import { Sponsors } from '~/components/2026/Sponsors'
+import { TimeTable } from '~/components/2026/TimeTable'
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const { search } = new URL(request.url)
-  return redirect(`/2025${search}`, 302)
+import type { LinksFunction, MetaFunction } from '@remix-run/node'
+
+export const meta: MetaFunction = () => {
+  return [{ title: 'Nostrasia 2026' }]
 }
 
-// loader で必ずリダイレクトするので描画はされない。
-// default export が無いと functions/[[path]].ts の型（ServerRouteModule）に合わないため置いている。
-export default function Redirect() {
-  return null
+export const links: LinksFunction = () => [
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  // functions/[[path]].ts はビルド後の JS（build/server）から型を推論するので、
+  // そのままだと crossOrigin が string に広がって typecheck が通らない。
+  // Object.freeze で包むとリテラル型（'anonymous'）のまま推論される。
+  Object.freeze({
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
+  }),
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;700&family=Unbounded:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;900&display=swap',
+  },
+]
+
+export default function Index() {
+  return (
+    <Layout>
+      <Hero />
+      <About />
+      <HowNostr />
+      <Program />
+      <TimeTable />
+      <Speakers />
+      <Sponsors />
+      <Access />
+      <Faq />
+      <Archive />
+    </Layout>
+  )
 }

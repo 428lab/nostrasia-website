@@ -1,0 +1,11 @@
+import { SVGAttributes } from 'react'
+
+/** ヘッダーのロゴマーク（円・三角・四角・半円） */
+export const Mark = (props: SVGAttributes<SVGElement>) => (
+  <svg viewBox="0 0 30 30" aria-hidden="true" {...props}>
+    <circle cx="9" cy="9" r="8" fill="#8E30EB" />
+    <path d="M22 2l7 13H15z" fill="#F2542D" />
+    <rect x="2" y="18" width="10" height="10" fill="#F6C324" />
+    <path d="M16 28a7 7 0 0 1 14 0z" fill="#0E7C7B" />
+  </svg>
+)
