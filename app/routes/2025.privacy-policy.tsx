@@ -4,6 +4,7 @@ import { PrivacyPolicy as PrivacyPolicyTitle } from '~/icons/2025/PrivacyPolicy'
 import ReactMarkdown from 'react-markdown'
 
 import { Layout } from '~/components/2025/Layout'
+import { useTo } from '~/hooks/useTo'
 import i18next from '~/i18next.server'
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -41,11 +42,13 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function PrivacyPolicy() {
   const { md } = useLoaderData<typeof loader>()
 
+  const to = useTo()
+
   return (
     <Layout>
       <div className="space-y-10 sm:space-y-20 mx-auto max-w-[800px]">
         <div className="flex items-center gap-2">
-          <Link to="/" className="hover:underline">
+          <Link to={to('/2025')} className="hover:underline">
             Home
           </Link>
           <span>/</span>

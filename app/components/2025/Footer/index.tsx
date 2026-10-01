@@ -38,7 +38,7 @@ export const Footer = () => {
         >
           {t('contact')}
         </a>
-        <Link className="hover:underline" to={fullPath('/privacy-policy')}>
+        <Link className="hover:underline" to={fullPath('/2025/privacy-policy')}>
           {t('privacyPolicy')}
         </Link>
       </div>
