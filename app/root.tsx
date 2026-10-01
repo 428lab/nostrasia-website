@@ -9,6 +9,7 @@ import {
   useRouteLoaderData,
 } from '@remix-run/react'
 
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useChangeLanguage } from 'remix-i18next/react'
 
@@ -43,10 +44,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
   useChangeLanguage(root?.language || 'en')
 
   return (
-    <html lang={root?.language} dir={i18n.dir()}>
+    // js クラスは下のスクリプトがハイドレーション前に付けるので、属性の不一致警告を抑える
+    <html lang={root?.language} dir={i18n.dir()} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/*
+          初回表示の登場演出用。JS が動く環境でだけ要素を隠してから表示する。
+          3 秒たってもハイドレーションが終わらなければ no-hydrate を付けて、隠した要素を全部出す。
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js');setTimeout(function(){if(!window.__nostrasiaHydrated)document.documentElement.classList.add('no-hydrate')},3000)`,
+          }}
+        />
         <Meta />
         <Links />
         <script
@@ -64,7 +75,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           `,
           }}
         />
-        <meta property="og:title" content="Nostrasia 2025" />
+        <meta property="og:title" content="Nostrasia 2026" />
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
@@ -83,5 +94,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useEffect(() => {
+    ;(
+      window as Window & { __nostrasiaHydrated?: boolean }
+    ).__nostrasiaHydrated = true
+  }, [])
   return <Outlet />
 }
