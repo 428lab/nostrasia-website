@@ -8,7 +8,10 @@ import { TimeScheduleProgram } from '~/components/2024/TimeScheduleProgram'
 import type { MetaFunction } from '@remix-run/node'
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Nostrasia 2024' }]
+  return [
+    { title: 'Nostrasia 2024' },
+    { property: 'og:title', content: 'Nostrasia 2024' },
+  ]
 }
 
 export default function Index() {
