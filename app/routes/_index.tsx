@@ -12,7 +12,10 @@ import { TimeTable } from '~/components/2026/TimeTable'
 import type { LinksFunction, MetaFunction } from '@remix-run/node'
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Nostrasia 2026' }]
+  return [
+    { title: 'Nostrasia 2026' },
+    { property: 'og:title', content: 'Nostrasia 2026' },
+  ]
 }
 
 export const links: LinksFunction = () => [

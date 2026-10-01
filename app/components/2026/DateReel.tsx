@@ -9,6 +9,7 @@ const N = 18
  * 日付を 1 文字ずつスロットのリールにして、画面に入ったとき 1 回だけ回して止める。
  * 「2026.??.??」でも「2026.11.22」でも同じ部品で動く（? は黄色地）。
  * SSR と JS なしでは最後の文字だけを出す。回転用の数字は JS が動いてから足す。
+ * ハイドレーションが遅れて no-hydrate が付いた後は、表示済みの日付を回し直さない。
  */
 export const DateReel = ({
   value,
@@ -22,7 +23,11 @@ export const DateReel = ({
   const spun = useRef(false)
 
   useEffect(() => {
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setArmed(true)
+    if (
+      !document.documentElement.classList.contains('no-hydrate') &&
+      !matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+      setArmed(true)
   }, [])
 
   useEffect(() => {

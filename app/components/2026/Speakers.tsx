@@ -23,8 +23,8 @@ export const Speakers = () => {
                 <span>{t('speakers.tba')}</span>
               </li>
             ))
-          : SPEAKERS_2026.map((s) => (
-              <li key={s.name}>
+          : SPEAKERS_2026.map((s, i) => (
+              <li key={`${s.name}-${i}`}>
                 <div className="face" aria-hidden="true">
                   {s.image ? (
                     <img src={s.image} alt="" />
@@ -45,7 +45,7 @@ export const Speakers = () => {
                     s.name
                   )}
                 </b>
-                {s.title && <span>{localize(s.title, i18n.language)}</span>}
+                {s.title && <span>{localize(s.title, i18n)}</span>}
               </li>
             ))}
       </ul>

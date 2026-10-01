@@ -12,7 +12,10 @@ const width = (text: string) =>
     0,
   )
 
-/** 問いの巨大文字。1 文字ずつ span に分け、画面に入ったとき 1 回だけ跳ねる / 押される */
+/**
+ * 問いの巨大文字。1 文字ずつ span に分け、画面に入ったとき 1 回だけ跳ねる / 押される。
+ * 読み上げ用には全文を視覚的に隠して置き、1 文字ずつの span 群は読み上げから外す。
+ */
 const Question = ({
   id,
   text,
@@ -35,8 +38,8 @@ const Question = ({
           '--n': Math.max(minN, Math.round(width(text) * 10) / 10),
         } as CSSProperties
       }
-      aria-label={text}
     >
+      <span className="sr">{text}</span>
       <span aria-hidden="true">
         {Array.from(text).map((ch, i) => (
           <span key={i} className="ch" style={{ '--i': i } as CSSProperties}>

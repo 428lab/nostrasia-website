@@ -9,6 +9,8 @@ import { localize } from './sections'
 /**
  * NOS / TR / ASIA の各行を画面幅いっぱいにフィットさせる。
  * スクロールとは無関係に、マウント時・フォント読み込み後・リサイズ時だけ計算する。
+ * document.fonts.ready は Google Fonts の CSS が適用される前に解決することがあるので、
+ * フォントの読み込みが終わるたび（loadingdone）にも計算し直す。
  * モバイルではスクロールでアドレスバーが出入りして resize が来るので、幅が変わったときだけ計算し直す。
  */
 const useFitLines = () => {
@@ -35,12 +37,15 @@ const useFitLines = () => {
       })
     }
     const onResize = () => fit(false)
+    const onFontsLoaded = () => fit(true)
     let alive = true
     fit(true)
     document.fonts?.ready.then(() => alive && fit(true))
+    document.fonts?.addEventListener('loadingdone', onFontsLoaded)
     window.addEventListener('resize', onResize)
     return () => {
       alive = false
+      document.fonts?.removeEventListener('loadingdone', onFontsLoaded)
       window.removeEventListener('resize', onResize)
     }
   }, [])
@@ -125,9 +130,7 @@ export const Hero = () => {
             <span className="d">{t('hero.year')}</span>
             {t('hero.when', {
               date: formatDate2026(EVENT_2026.date),
-              venue: venue
-                ? localize(venue.name, i18n.language)
-                : t('tbd.venue'),
+              venue: venue ? localize(venue.name, i18n) : t('tbd.venue'),
               interpolation: { escapeValue: false },
             })}
           </p>

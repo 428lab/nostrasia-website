@@ -19,7 +19,7 @@ export const Price = () => {
       )}
       <Lead
         i18nKey="price.lead"
-        values={{ fee: fee ? localize(fee, i18n.language) : t('tbd.fee') }}
+        values={{ fee: fee ? localize(fee, i18n) : t('tbd.fee') }}
       />
       {!registrationUrl && <p className="txt">{t('price.text')}</p>}
       <p className="act">

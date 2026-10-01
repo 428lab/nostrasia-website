@@ -517,6 +517,8 @@ html.js:not(.no-hydrate) .n26 .hero .l3 {
 }
 .n26 .q .ch {
   display: inline-block;
+  /* inline-block だと空白だけの span が幅 0 になり、EN の語間が詰まるので空白を残す */
+  white-space: pre;
 }
 .n26 .qen {
   font-family: var(--en);
@@ -527,6 +529,11 @@ html.js:not(.no-hydrate) .n26 .hero .l3 {
 /* 問いの一回きり登場: 跳ね上がる / スタンプ */
 html.js:not(.no-hydrate) .n26 .q:not(.in) .ch {
   opacity: 0;
+}
+/* ハイドレーションが遅れたときは、表示済みの文字を演出でもう一度消さない */
+html.no-hydrate .n26 .q .ch {
+  animation: none !important;
+  opacity: 1;
 }
 .n26 .q.in.jump .ch {
   animation: n26-jump 0.62s cubic-bezier(0.3, 0.9, 0.3, 1) both;
@@ -737,6 +744,7 @@ html.js:not(.no-hydrate) .n26 .q:not(.in) .ch {
   display: block;
   height: 1em;
   line-height: 1;
+  white-space: pre;
 }
 .n26 .ov div {
   display: grid;
@@ -1114,7 +1122,8 @@ html.js:not(.no-hydrate) .n26 .q:not(.in) .ch {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 900px) {
+/* ヘッダー・メニュー・下部の帯の切り替え境界。Header.tsx の matchMedia と揃える */
+@media (min-width: 1121px) {
   html:has(.n26) {
     scroll-padding-top: 112px;
   }
@@ -1152,14 +1161,6 @@ html.js:not(.no-hydrate) .n26 .q:not(.in) .ch {
   }
   .n26 .ft {
     padding-bottom: 72px;
-  }
-}
-@media (min-width: 900px) and (max-width: 1120px) {
-  .n26 .lang {
-    display: none;
-  }
-  .n26 .gnav {
-    margin-left: auto;
   }
 }
 @media (prefers-reduced-motion: reduce) {

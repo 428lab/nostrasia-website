@@ -8,8 +8,8 @@ import { LanguageSwitch } from './LanguageSwitch'
 import { NAV_IDS } from './sections'
 
 /**
- * ヘッダーと、900px 未満で開く全面メニュー。
- * 900px 以上はヘッダーに英語ラベルを並べ、ハンバーガーは CSS で隠す。
+ * ヘッダーと、1121px 未満で開く全面メニュー。
+ * 1121px 以上はヘッダーに英語ラベルを並べ、ハンバーガーは CSS で隠す（境界は 2026.css と揃える）。
  */
 export const Header = () => {
   const { t } = useTranslation()
@@ -40,7 +40,7 @@ export const Header = () => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close(true)
     }
-    const wide = matchMedia('(min-width: 900px)')
+    const wide = matchMedia('(min-width: 1121px)')
     const onWide = (e: MediaQueryListEvent) => {
       if (e.matches) close(false)
     }

@@ -72,13 +72,11 @@ export const TimeTable = () => {
         </div>
         <div>
           <dt>{t('timetable.venue')}</dt>
-          <dd>
-            {venue ? localize(venue.name, i18n.language) : t('tbd.venue')}
-          </dd>
+          <dd>{venue ? localize(venue.name, i18n) : t('tbd.venue')}</dd>
         </div>
         <div>
           <dt>{t('timetable.fee')}</dt>
-          <dd>{fee ? localize(fee, i18n.language) : t('tbd.fee')}</dd>
+          <dd>{fee ? localize(fee, i18n) : t('tbd.fee')}</dd>
         </div>
       </dl>
       <span className="kick">{t('timetable.kick')}</span>

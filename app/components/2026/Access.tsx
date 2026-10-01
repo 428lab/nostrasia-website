@@ -18,7 +18,7 @@ const FLOOR = [
 export const Access = () => {
   const { t, i18n } = useTranslation()
   const { venue } = EVENT_2026
-  const venueName = venue ? localize(venue.name, i18n.language) : t('tbd.venue')
+  const venueName = venue ? localize(venue.name, i18n) : t('tbd.venue')
 
   return (
     <QSection id="access">
@@ -50,7 +50,7 @@ export const Access = () => {
               <p className="txt">
                 {venueName}
                 <br />
-                {localize(venue.address, i18n.language)}
+                {localize(venue.address, i18n)}
               </p>
               <p className="act">
                 <a

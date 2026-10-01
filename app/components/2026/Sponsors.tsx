@@ -20,9 +20,9 @@ export const Sponsors = () => {
       <ul className="sp">
         {SPONSOR_TIERS_2026.flatMap((tier) =>
           tier.sponsors.length > 0
-            ? tier.sponsors.map((s) => (
+            ? tier.sponsors.map((s, i) => (
                 <li
-                  key={`${tier.id}-${s.name}`}
+                  key={`${tier.id}-${s.name}-${i}`}
                   className={`${TIER_CLASS[tier.id]} has`}
                 >
                   <a href={s.url} target="_blank" rel="noopener noreferrer">
