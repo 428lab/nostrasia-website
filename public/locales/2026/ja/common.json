@@ -1,0 +1,228 @@
+{
+  "venueTBA": "会場 調整中",
+  "feeTBA": "未定",
+  "join": {
+    "label": "参加登録",
+    "soon": "調整中"
+  },
+  "lang": {
+    "label": "言語切替"
+  },
+  "menu": {
+    "label": "メインメニュー",
+    "open": "メニューを開く",
+    "close": "メニューを閉じる",
+    "openShort": "MENU",
+    "closeShort": "CLOSE"
+  },
+  "nav": {
+    "about": "About",
+    "program": "Program",
+    "timetable": "Timetable",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "access": "Access",
+    "faq": "FAQ",
+    "archive": "Archive"
+  },
+  "hero": {
+    "catch": "いろんな人と遊びが、\n1 か所に集まる。",
+    "tagline": "Nostr Conference in Asia",
+    "place": "{{venue}} ・ {{fee}}",
+    "fee": "参加費 {{fee}}",
+    "feeTBA": "参加費 未定",
+    "caption": "12 PIECES\n→ 1 OSTRICH"
+  },
+  "about": {
+    "label": "ABOUT",
+    "title": "Nostrasia とは",
+    "lead1": "Nostrasia は、日本から始まった Nostr のカンファレンスであり、お祭りです。2023 年の初回から開催を重ね、2024 年、2025 年は東京で開催しました。これまで、トークや LT、ハンズオン、マーケット、Nostr 神社、ヒーローショー、DJ など、いろんな人と遊びが一か所に集まってきました。",
+    "lead2": "Nostr は、特定の会社やサーバーに頼らない分散型のプロトコルです。自分の鍵で投稿に署名し、複数のリレー（投稿を預かって配るサーバー）に置く。そのしくみを、下の「はじめての Nostr」で図にしています。",
+    "overviewTitle": "2026 年の開催概要",
+    "overviewNote": "日程・会場・参加費はすべて調整中です。参加登録の開始も、決まり次第公式アカウントでお知らせします。ハッシュタグは #{{hashtag}}（案）。",
+    "date": "DATE",
+    "venue": "VENUE",
+    "fee": "FEE"
+  },
+  "how": {
+    "label": "NOSTR 101",
+    "title": "はじめての Nostr",
+    "lead": "鍵は円、リレーは四角。Nostr の投稿が届くまでを、4 つのステップの図で見ていきます。",
+    "figStep": "STEP {{n}} / 4",
+    "fig": {
+      "nsec": "nsec 秘密鍵",
+      "npub": "npub 公開鍵",
+      "note": "note（投稿）",
+      "sig": "sig",
+      "r1": "relay A",
+      "r2": "relay B",
+      "r3": "relay C",
+      "cl": "client"
+    },
+    "steps": {
+      "1": {
+        "name": "鍵",
+        "title": "鍵をつくる",
+        "body": "最初に、秘密鍵 <c>nsec</c> と公開鍵 <c>npub</c> のペアをつくります。npub はあなたを示す ID で、人に教えてかまいません。nsec はあなただけが持つ秘密の鍵です。メールアドレスなどでのアカウント登録は要りません。"
+      },
+      "2": {
+        "name": "署名",
+        "title": "署名する",
+        "body": "投稿（note）を書いたら、秘密鍵で署名します。署名があるので、どこに置かれても「本人が書いた」ことを誰でも確かめられます。"
+      },
+      "3": {
+        "name": "リレー ×3",
+        "title": "リレーに置く",
+        "body": "署名済みの投稿を、複数のリレー（四角）に送ります。リレーは、投稿を預かって配るだけのサーバーです。ひとつが止まっても、ほかのリレーに同じ投稿が残ります。"
+      },
+      "4": {
+        "name": "クライアント",
+        "title": "クライアントで読む",
+        "body": "アプリ（クライアント）は、好きなリレーから投稿を集めて表示します。鍵さえあれば、アプリを乗り換えても同じアカウントのまま使えます。気に入った投稿には zap ⚡（少額のビットコインを送る機能）も送れます。"
+      }
+    }
+  },
+  "program": {
+    "label": "PROGRAM",
+    "title": "これまでのプログラム",
+    "items": {
+      "talk": {
+        "label": "TALK",
+        "title": "トーク",
+        "desc": "Nostr の今とこれからを語るメインの場。"
+      },
+      "lt": {
+        "label": "LIGHTNING TALK",
+        "title": "LT",
+        "desc": "短い持ち時間の発表が、次々に。"
+      },
+      "handson": {
+        "label": "HANDS-ON",
+        "title": "ハンズオン",
+        "desc": "鍵をつくって、はじめての投稿まで。"
+      },
+      "market": {
+        "label": "MARKET",
+        "title": "マーケット",
+        "desc": "Nostr にまつわるグッズや本が並ぶ物販。"
+      },
+      "shrine": {
+        "label": "NOSTR SHRINE",
+        "title": "Nostr 神社",
+        "desc": "zap でお参りして、おみくじを引く。Nostr ならではの神社。"
+      },
+      "heroShow": {
+        "label": "HERO SHOW",
+        "title": "ヒーローショー",
+        "desc": "ステージに、ヒーローが現れる。"
+      },
+      "dj": {
+        "label": "DJ",
+        "title": "DJ",
+        "desc": "DJ の音楽を聴きながら、ゆるく交流。"
+      },
+      "social": {
+        "label": "SOCIAL SPACE",
+        "title": "ソーシャルスペース",
+        "desc": "顔を合わせて、npub を交換できる場所。"
+      }
+    },
+    "note": "※ 過去回で実施したプログラムの例です。2026 年の内容は調整中です。"
+  },
+  "timetable": {
+    "label": "TIME TABLE",
+    "title": "タイムテーブル",
+    "track": "TRACK {{id}}",
+    "tracks": {
+      "main": "メイン",
+      "sub": "サブ",
+      "handson": "ハンズオン",
+      "plaza": "広場"
+    },
+    "bars": {
+      "talk": "Talk",
+      "lt": "LT",
+      "workshop": "Workshop",
+      "social": "Social",
+      "socialMarket": "Social / Market",
+      "socialDj": "Social / DJ",
+      "tba": "TBA"
+    },
+    "note": "※ 枠の構成はイメージです。時刻・内容・トラック数は未定。表は横にスクロールできます。"
+  },
+  "speakers": {
+    "label": "SPEAKERS",
+    "title": "登壇者",
+    "tba": "Speaker TBA",
+    "soon": "決まり次第発表",
+    "note": "登壇者は決まり次第お知らせします。"
+  },
+  "sponsors": {
+    "label": "SPONSORS",
+    "title": "スポンサー",
+    "lead": "Nostrasia 2026 を、一緒につくりませんか。",
+    "tiers": {
+      "tier1": "TIER 1",
+      "tier2": "TIER 2",
+      "tier3": "TIER 3"
+    },
+    "open": "スポンサー募集中",
+    "openShort": "募集中",
+    "contact": "協賛のご相談 →",
+    "note": "協賛プランと金額は決まり次第お知らせします。"
+  },
+  "access": {
+    "label": "ACCESS",
+    "title": "アクセス",
+    "panelTitle": "会場は調整中です",
+    "panelText": "2024 年・2025 年は東京で開催しました。2026 年の会場・最寄り駅・アクセス方法は決まり次第お知らせします。",
+    "map": "地図を開く →",
+    "floorTitle": "FLOOR MAP（イメージ）",
+    "floorLabel": "フロアマップのイメージ（配置は未定）",
+    "floor": {
+      "main": "Main Stage",
+      "market": "Market",
+      "shrine": "神社",
+      "workshop": "Workshop",
+      "social": "Social",
+      "reception": "受付"
+    },
+    "floorNote": "※ 会場が決まっていないため、配置は図形によるイメージです。"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "よくある質問",
+    "items": {
+      "1": {
+        "q": "Nostr を使ったことがなくても参加できますか？",
+        "a": "参加方法は決まり次第お知らせします。過去回では、ハンズオンなどはじめての人向けの企画がありました。2026 年の内容は調整中です。このページの「はじめての Nostr」もあわせてどうぞ。"
+      },
+      "2": {
+        "q": "参加費はかかりますか？",
+        "a": "参加費はまだ決まっていません。決まり次第お知らせします。"
+      },
+      "3": {
+        "q": "日程と会場はいつ決まりますか？",
+        "a": "現在調整中です。公式アカウント（X @nostrasia / Bluesky nostrasia.com / note / Nostr）でお知らせします。"
+      },
+      "4": {
+        "q": "スポンサーや出展について相談したい",
+        "a": "スポンサーを募集しています。プランの詳細は決まり次第お知らせします。公式アカウントまでご連絡ください。出展についても同じ窓口でご相談ください。"
+      }
+    }
+  },
+  "archive": {
+    "label": "ARCHIVE",
+    "title": "過去の Nostrasia",
+    "years": {
+      "2023": "初回 / nostr.world",
+      "2024": "nostrasia.com/2024",
+      "2025": "nostrasia.com/2025"
+    }
+  },
+  "footer": {
+    "contact": "お問い合わせ",
+    "privacy": "プライバシーポリシー",
+    "copyright": "© Nostrasia 2026"
+  }
+}
