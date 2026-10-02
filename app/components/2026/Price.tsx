@@ -17,10 +17,11 @@ export const Price = () => {
           ¥<span>???</span>
         </p>
       )}
-      <Lead
-        i18nKey="price.lead"
-        values={{ fee: fee ? localize(fee, i18n) : t('tbd.fee') }}
-      />
+      {fee ? (
+        <Lead i18nKey="price.lead" values={{ fee: localize(fee, i18n) }} />
+      ) : (
+        <Lead i18nKey="price.leadTbd" />
+      )}
       {!registrationUrl && <p className="txt">{t('price.text')}</p>}
       <p className="act">
         <JoinButton variant="section" />

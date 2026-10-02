@@ -4,7 +4,7 @@ import { EVENT_2026 } from '~/data/2026'
 
 /**
  * 参加登録ボタン。ヘッダー・ヒーロー・メニュー・下部の帯・いくら？ で共通。
- * registrationUrl が未定のあいだはページ内の「いくら？」へ飛ばし、「近日公開」を添える。
+ * registrationUrl が未定のあいだはページ内の「いくら？」へ飛ばし、「準備中」を添える。
  */
 const VARIANTS = {
   header: { className: 'cta-s', label: 'join.go', soon: null, bolt: 'text' },

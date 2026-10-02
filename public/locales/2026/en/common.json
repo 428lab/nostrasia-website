@@ -11,7 +11,7 @@
   "nav": {
     "about": "About",
     "program": "Program",
-    "timetable": "Time Table",
+    "timetable": "Timetable",
     "speakers": "Speakers",
     "sponsors": "Sponsors",
     "access": "Access",
@@ -19,45 +19,49 @@
     "archive": "Archive"
   },
   "q": {
-    "about": { "q": "What?", "en": "WHAT IS THIS?", "band": "ABOUT" },
-    "program": { "q": "What's on?", "en": "WHAT HAPPENS?", "band": "PROGRAM" },
+    "about": { "q": "What?", "en": "WHAT IS IT?", "band": "ABOUT" },
+    "program": { "q": "What's on?", "en": "WHAT'S ON?", "band": "PROGRAM" },
     "timetable": { "q": "When?", "en": "WHEN?", "band": "TIME TABLE" },
-    "speakers": { "q": "Who?", "en": "WHO IS SPEAKING?", "band": "SPEAKERS" },
-    "price": { "q": "How much?", "en": "HOW MUCH?", "band": "TICKET" },
+    "speakers": {
+      "q": "Who's speaking?",
+      "en": "WHO'S SPEAKING?",
+      "band": "SPEAKERS"
+    },
+    "price": { "q": "How much?", "en": "HOW MUCH?", "band": "ENTRY" },
     "sponsors": {
-      "q": "Backed by?",
-      "en": "WHO BACKS IT?",
+      "q": "Who's backing it?",
+      "en": "SUPPORTED BY",
       "band": "SPONSORS"
     },
     "access": { "q": "Where?", "en": "WHERE?", "band": "ACCESS" },
-    "faq": { "q": "No idea", "en": "I DON'T GET IT.", "band": "FAQ" },
-    "archive": { "q": "Before?", "en": "BEFORE?", "band": "ARCHIVE" }
+    "faq": { "q": "Questions?", "en": "QUESTIONS?", "band": "FAQ" },
+    "archive": { "q": "Before this?", "en": "PAST EDITIONS", "band": "ARCHIVE" }
   },
   "join": {
     "go": "Join",
     "register": "Register",
-    "soon": "Coming soon",
-    "soonLong": "Registration opens soon",
-    "menu": "Join (How much?)"
+    "soon": "Not open yet",
+    "soonLong": "Registration not open yet",
+    "menu": "Join (fee & registration)"
   },
   "tbd": {
     "venue": "Venue TBA",
-    "fee": "Details to come"
+    "fee": "TBA"
   },
   "hero": {
-    "catch": "Read N·O·S·T·R·A·S·I·A\nwith your whole body.",
-    "year": "2026 — Details soon",
+    "catch": "Nostr,\noff the screen.",
+    "year": "2026 — Details TBA",
     "when": "{{date}} / {{venue}}"
   },
   "about": {
     "lead": "A <m>Nostr</m> conference\nfrom Japan, and a festival.",
     "nostrasiaSub": "Nostr × Asia",
-    "nostrasiaText": "Started in 2023, a place where people who build Nostr, use Nostr, or are just curious about it all gather in one spot. There are talks, hands-on sessions, a market, and even a shrine. It continued in 2024 and 2025, and 2026 is planned too.",
+    "nostrasiaText": "A place, started in 2023, where people who build Nostr, use it, or are just curious come together. There have been talks, hands-on sessions, a market, and even a shrine. It continued in 2024 and 2025, and a 2026 edition is planned.",
     "nostrSub": "Notes and Other Stuff Transmitted by Relays",
-    "nostrText": "A decentralized protocol that doesn't depend on any single company. Your key (npub / nsec) is your account, and your posts (notes) live on multiple relays. Read and write with any client you like, and send a small amount of bitcoin to posts you love with a zap ⚡."
+    "nostrText": "A decentralized protocol that doesn't depend on any single company. Your key (npub / nsec) is your account, and your posts (notes) live on multiple relays (servers that store and pass posts along). Read and write with any app (client) you like, and send a small amount of bitcoin to posts you love with a zap ⚡."
   },
   "program": {
-    "lead": "Listen, touch, shop,\npray, <m>dance.</m>",
+    "lead": "Listen, try, shop,\npray, <m>dance.</m>",
     "items": {
       "talk": {
         "title": "Talks & LT",
@@ -65,26 +69,26 @@
       },
       "handson": {
         "title": "Hands-on",
-        "text": "From creating your keys to using a client, try it yourself on the spot."
+        "text": "From creating your keys to using an app, try it yourself on the spot."
       },
       "market": {
         "title": "Market",
-        "text": "A market for the Nostr scene, with zaps ⚡ flying around."
+        "text": "Goods from the Nostr scene, for sale."
       },
       "shrine": {
         "title": "Nostr Shrine",
-        "text": "Somehow, it exists. You can pay a visit."
+        "text": "Somehow, there was one. You could visit with a zap."
       },
       "show": {
         "title": "Hero Show",
-        "text": "An ostrich might appear. Maybe."
+        "text": "A hero appears on stage."
       },
       "dj": {
         "title": "DJ & Social",
-        "text": "DJs and a social space: an offline timeline."
+        "text": "Talk in person with people you usually see on your timeline, with DJs playing."
       }
     },
-    "note": "* These are things from past editions. The 2026 program is being arranged."
+    "note": "* These are things from past editions. The 2026 program is still being arranged."
   },
   "timetable": {
     "dateTbd": "{{date}} (date TBA)",
@@ -93,25 +97,26 @@
     "venue": "Venue",
     "fee": "Fee",
     "timeRange": "{{start}} – {{end}}",
-    "kick": "TIME TABLE / SLOTS FIRST",
-    "tableLabel": "Time table (slots only)",
-    "scrollHint": "← Scroll sideways → (details once decided)"
+    "kick": "TIME TABLE / CONCEPT",
+    "tableLabel": "Concept timetable (times, tracks and contents not decided)",
+    "scrollHint": "← Scroll sideways → Details will be added once decided"
   },
   "speakers": {
-    "lead": "Can't <m>say yet.</m>",
+    "lead": "Not <m>announced yet.</m>",
     "tba": "To be announced",
     "note": "Speakers will be announced on our official accounts (X @nostrasia and others) once confirmed."
   },
   "price": {
     "tbdLabel": "Fee TBA",
     "lead": "Admission: <m>{{fee}}.</m>",
-    "text": "We'll announce tickets and how to register once they're decided. Follow our official accounts so you don't miss it."
+    "leadTbd": "The fee is <m>TBA.</m>",
+    "text": "We'll announce how to register once it's decided. Follow our official accounts so you don't miss it."
   },
   "sponsors": {
     "lead": "It might be you.\n<m>Sponsors wanted.</m>",
     "openLarge": "Sponsors wanted",
     "open": "Open",
-    "text": "Sponsorship plans will be published later. For inquiries, use the contact form or reach our official accounts (X @nostrasia / Nostr).",
+    "text": "Sponsorship plans will be announced once decided. For inquiries, use the contact form or reach our official accounts (X @nostrasia / Nostr).",
     "contact": "Talk about sponsoring",
     "contactSub": "Contact form"
   },
@@ -129,19 +134,19 @@
       "entrance": "ENTRANCE"
     },
     "mapLabelTbd": "Abstract drawing in place of a map. Venue TBA",
-    "text": "2024 and 2025 were held in Tokyo. The 2026 venue, address and nearest station will be posted here once decided.",
+    "text": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, address and nearest station will be posted here once decided.",
     "openMap": "Open map"
   },
   "faq": {
-    "lead": "Don't worry. Most people here are <m>new</m> to it.",
+    "lead": "Don't worry. <m>Everyone</m> was new once.",
     "items": {
       "first": {
         "q": "Can I come if I've never used Nostr?",
-        "a": "Yes. Past editions have included hands-on sessions and other content for first-timers. The 2026 content is being arranged."
+        "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is still being arranged."
       },
       "keys": {
         "q": "What are npub and nsec?",
-        "a": "npub is your public key (like a business card), and nsec is your private key (like a password). Never show your nsec to anyone."
+        "a": "npub is your public key (like a business card), and nsec is your private key (like a password). Never show your nsec to anyone. Unlike a password, it can't be reissued if you lose it."
       },
       "relay": {
         "q": "What is a relay?",
@@ -149,18 +154,18 @@
       },
       "zap": {
         "q": "What is a zap ⚡?",
-        "a": "A way to send a small amount of bitcoin (Lightning) to a post. A bit more weight than a \"like\"."
+        "a": "A way to send a small amount of bitcoin (Lightning) to a post. A more serious kind of cheer than a \"like\"."
       },
       "nip": {
         "q": "What is a NIP?",
-        "a": "Nostr Implementation Possibilities: a set of documents describing the Nostr spec, feature by feature. For example, kind:1 is a short text note."
+        "a": "The Nostr spec, split into numbered documents. For example, NIP-01 covers the basics and NIP-57 covers zaps."
       }
     },
     "stepsKick": "NEW TO NOSTR / 3 STEPS",
     "steps": {
       "client": {
-        "title": "Pick a client",
-        "text": "Install one app you can use on your phone or in your browser."
+        "title": "Pick an app (client)",
+        "text": "Choose one: a phone app or one that runs in your browser."
       },
       "keys": {
         "title": "Make your keys",
@@ -168,15 +173,15 @@
       },
       "post": {
         "title": "Post with #{{tag}}",
-        "text": "Use the hashtag and build the mood together until the day."
+        "text": "Use the hashtag (tentative) to build excitement together until the day."
       }
     }
   },
   "archive": {
     "lead": "Since 2023, <m>{{n}} editions</m> so far.",
     "y2023": "First edition",
-    "y2024": "Tokyo",
-    "y2025": "Tokyo",
+    "y2024": "2nd edition · Tokyo",
+    "y2025": "3rd edition · Tokyo",
     "external": "Archive ↗",
     "internal": "Archive →"
   },

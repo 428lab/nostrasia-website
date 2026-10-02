@@ -11,7 +11,7 @@
   "nav": {
     "about": "About",
     "program": "Program",
-    "timetable": "Time Table",
+    "timetable": "Timetable",
     "speakers": "Speakers",
     "sponsors": "Sponsors",
     "access": "Access",
@@ -19,45 +19,49 @@
     "archive": "Archive"
   },
   "q": {
-    "about": { "q": "何？", "en": "WHAT IS THIS?", "band": "ABOUT" },
-    "program": { "q": "何する？", "en": "WHAT HAPPENS?", "band": "PROGRAM" },
+    "about": { "q": "何？", "en": "WHAT IS IT?", "band": "ABOUT" },
+    "program": { "q": "何する？", "en": "WHAT'S ON?", "band": "PROGRAM" },
     "timetable": { "q": "いつ？", "en": "WHEN?", "band": "TIME TABLE" },
-    "speakers": { "q": "誰？", "en": "WHO IS SPEAKING?", "band": "SPEAKERS" },
-    "price": { "q": "いくら？", "en": "HOW MUCH?", "band": "TICKET" },
+    "speakers": {
+      "q": "誰が出る？",
+      "en": "WHO'S SPEAKING?",
+      "band": "SPEAKERS"
+    },
+    "price": { "q": "いくら？", "en": "HOW MUCH?", "band": "ENTRY" },
     "sponsors": {
-      "q": "誰が支える？",
-      "en": "WHO BACKS IT?",
+      "q": "支えているのは？",
+      "en": "SUPPORTED BY",
       "band": "SPONSORS"
     },
     "access": { "q": "どこ？", "en": "WHERE?", "band": "ACCESS" },
-    "faq": { "q": "わからない", "en": "I DON'T GET IT.", "band": "FAQ" },
-    "archive": { "q": "前は？", "en": "BEFORE?", "band": "ARCHIVE" }
+    "faq": { "q": "気になることは？", "en": "QUESTIONS?", "band": "FAQ" },
+    "archive": { "q": "これまでは？", "en": "PAST EDITIONS", "band": "ARCHIVE" }
   },
   "join": {
     "go": "参加する",
     "register": "参加登録",
-    "soon": "近日公開",
-    "soonLong": "登録は近日公開",
-    "menu": "参加する（いくら？）"
+    "soon": "調整中",
+    "soonLong": "参加登録は調整中",
+    "menu": "参加する（参加費・登録）"
   },
   "tbd": {
     "venue": "会場 調整中",
-    "fee": "詳細は後日"
+    "fee": "未定"
   },
   "hero": {
-    "catch": "N・O・S・T・R・A・S・I・A を、\n全身で読む。",
-    "year": "2026 — 詳細近日",
+    "catch": "Nostr を、\n画面の外で。",
+    "year": "2026 — 詳細は決まり次第",
     "when": "{{date}} ／ {{venue}}"
   },
   "about": {
-    "lead": "日本発の、<m>Nostr</m> の\nカンファレンスで、お祭り。",
+    "lead": "日本発、<m>Nostr</m> の\nカンファレンス。そして、お祭り。",
     "nostrasiaSub": "Nostr × Asia",
-    "nostrasiaText": "2023 年に始まった、Nostr に関わる人・使う人・気になっている人が一か所に集まる場。トークも、ハンズオンも、マーケットも、神社もある。2024・2025 と続き、2026 も開催予定。",
+    "nostrasiaText": "2023 年に始まった、Nostr を作る人・使う人・気になっている人が一か所に集まる場。これまでトークも、ハンズオンも、マーケットも、神社もあった。2024 年・2025 年と続き、2026 年も開催予定。",
     "nostrSub": "Notes and Other Stuff Transmitted by Relays",
-    "nostrText": "特定の会社に依存しない、分散型のプロトコル。鍵（npub / nsec）が自分のアカウントになり、投稿（note）は複数の relay に置かれる。好きな client で読み書きでき、気に入った投稿には zap ⚡ で少額のビットコインを送れる。"
+    "nostrText": "特定の会社に依存しない、分散型のプロトコル。鍵（npub / nsec）が自分のアカウントになり、投稿（note）は複数のリレー（投稿を預かって配るサーバー）に置かれる。好きなアプリ（クライアント）で読み書きでき、気に入った投稿には zap ⚡ で少額のビットコインを送れる。"
   },
   "program": {
-    "lead": "聞く、触る、買う、\n拝む、<m>踊る。</m>",
+    "lead": "聞く、試す、買う、\n拝む、<m>踊る。</m>",
     "items": {
       "talk": {
         "title": "トーク・LT",
@@ -65,26 +69,26 @@
       },
       "handson": {
         "title": "ハンズオン",
-        "text": "鍵の作り方から client の使い方まで、その場で手を動かす。"
+        "text": "鍵の作り方からアプリの使い方まで、その場で手を動かす。"
       },
       "market": {
         "title": "マーケット",
-        "text": "zap ⚡ も飛び交う、Nostr 界隈の物販。"
+        "text": "Nostr 界隈のグッズが並ぶ物販。"
       },
       "shrine": {
         "title": "Nostr 神社",
-        "text": "なぜか、ある。お参りできる。"
+        "text": "なぜか、あった。zap でお参りできた。"
       },
       "show": {
         "title": "ヒーローショー",
-        "text": "ダチョウ（ostrich）も出る、かもしれない。"
+        "text": "ステージに、ヒーローが現れる。"
       },
       "dj": {
         "title": "DJ・ソーシャル",
-        "text": "DJ とソーシャルスペースで、オフラインのタイムライン。"
+        "text": "いつもタイムラインで見ている人と、DJ の音の中で直接話せる。"
       }
     },
-    "note": "※ 過去の開催で行われた内容です。2026 のプログラムは調整中。"
+    "note": "※ 過去の開催で行われた内容です。2026 年のプログラムは調整中です。"
   },
   "timetable": {
     "dateTbd": "{{date}}（日程未定）",
@@ -93,25 +97,26 @@
     "venue": "会場",
     "fee": "参加費",
     "timeRange": "{{start}} 〜 {{end}}",
-    "kick": "TIME TABLE ／ 枠だけ先に",
-    "tableLabel": "タイムテーブル（枠のみ）",
-    "scrollHint": "← 横にスクロール →（内容は決まり次第）"
+    "kick": "TIME TABLE ／ イメージ",
+    "tableLabel": "タイムテーブルのイメージ（時刻・トラック・内容は未定）",
+    "scrollHint": "← 横にスクロール →　内容は決まり次第載せます"
   },
   "speakers": {
-    "lead": "まだ、<m>言えない。</m>",
-    "tba": "発表は後日",
+    "lead": "誰が出るかは、<m>これから。</m>",
+    "tba": "決まり次第発表",
     "note": "登壇者は決まり次第、公式アカウント（X @nostrasia ほか）でお知らせします。"
   },
   "price": {
     "tbdLabel": "参加費 未定",
     "lead": "参加費は、<m>{{fee}}。</m>",
-    "text": "チケット・参加登録の方法は決まり次第お知らせします。先に公式アカウントをフォローしておくと見逃しません。"
+    "leadTbd": "参加費は、<m>調整中。</m>",
+    "text": "参加登録の方法は決まり次第お知らせします。先に公式アカウントをフォローしておくと見逃しません。"
   },
   "sponsors": {
-    "lead": "あなたかもしれない。\n<m>Sponsor 募集中。</m>",
-    "openLarge": "Sponsor 募集中",
+    "lead": "あなたかもしれない。\n<m>スポンサー募集中。</m>",
+    "openLarge": "スポンサー募集中",
     "open": "募集中",
-    "text": "協賛プランの詳細は後日公開します。ご相談はお問い合わせフォーム、または公式アカウント（X @nostrasia / Nostr）まで。",
+    "text": "協賛プランの詳細は決まり次第お知らせします。ご相談はお問い合わせフォーム、または公式アカウント（X @nostrasia / Nostr）まで。",
     "contact": "協賛の相談",
     "contactSub": "お問い合わせフォーム"
   },
@@ -129,38 +134,38 @@
       "entrance": "ENTRANCE"
     },
     "mapLabelTbd": "地図の代わりの抽象図。会場は調整中",
-    "text": "2024・2025 は東京で開催してきました。2026 の会場・住所・最寄り駅は決まり次第ここに載せます。",
+    "text": "2024 年・2025 年は東京で開催しました。2026 年の会場・住所・最寄り駅は決まり次第ここに載せます。",
     "openMap": "地図を開く"
   },
   "faq": {
-    "lead": "大丈夫。<m>はじめて</m>の人のほうが多い。",
+    "lead": "大丈夫。<m>誰でも最初は</m>はじめて。",
     "items": {
       "first": {
         "q": "Nostr を使ったことがなくても行っていい？",
-        "a": "はい。ハンズオンなど、はじめての人向けの内容も過去に行ってきました。2026 の内容は調整中です。"
+        "a": "参加方法は決まり次第お知らせします。過去回では、はじめての人向けのハンズオンを開きました。2026 年の内容は調整中です。"
       },
       "keys": {
         "q": "npub と nsec って何？",
-        "a": "npub は公開鍵（名刺のようなもの）、nsec は秘密鍵（パスワードのようなもの）。nsec は誰にも見せないでください。"
+        "a": "npub は公開鍵（名刺のようなもの）、nsec は秘密鍵（パスワードのようなもの）。nsec は誰にも見せないでください。パスワードと違って、なくすと再発行できません。"
       },
       "relay": {
-        "q": "relay って何？",
-        "a": "投稿（note）を預かって配るサーバー。複数の relay に同時につなぐので、一つが止まっても困りにくい仕組みです。"
+        "q": "リレーって何？",
+        "a": "投稿（note）を預かって配るサーバー。複数のリレーに同時につなぐので、一つが止まっても困りにくい仕組みです。"
       },
       "zap": {
         "q": "zap ⚡ って何？",
-        "a": "投稿に少額のビットコイン（Lightning）を送る機能。「いいね」より少し重い応援です。"
+        "a": "投稿に少額のビットコイン（Lightning）を送る機能。「いいね」より、ちょっと本気の応援です。"
       },
       "nip": {
         "q": "NIP って何？",
-        "a": "Nostr Implementation Possibilities。Nostr の仕様を機能ごとにまとめた文書群です。たとえば kind:1 は短文投稿。"
+        "a": "Nostr の仕様を、番号つきの文書に分けてまとめたもの。たとえば NIP-01 は基本のしくみ、NIP-57 は zap。"
       }
     },
-    "stepsKick": "NOSTR はじめて ／ 3 STEPS",
+    "stepsKick": "はじめての NOSTR ／ 3 STEPS",
     "steps": {
       "client": {
-        "title": "client を選ぶ",
-        "text": "スマホやブラウザで使えるアプリを一つ入れる。"
+        "title": "アプリ（クライアント）を選ぶ",
+        "text": "スマホのアプリか、ブラウザで開くものを一つ選ぶ。"
       },
       "keys": {
         "title": "鍵をつくる",
@@ -168,15 +173,15 @@
       },
       "post": {
         "title": "#{{tag}} で投稿",
-        "text": "ハッシュタグで、当日までの空気を一緒につくる。"
+        "text": "ハッシュタグ（案）で、当日までの盛り上がりを一緒につくる。"
       }
     }
   },
   "archive": {
     "lead": "2023 年から、<m>{{n}} 回</m>やってきた。",
     "y2023": "初回",
-    "y2024": "東京",
-    "y2025": "東京",
+    "y2024": "第 2 回 ・ 東京",
+    "y2025": "第 3 回 ・ 東京",
     "external": "アーカイブ ↗",
     "internal": "アーカイブ →"
   },
