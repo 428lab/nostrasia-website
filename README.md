@@ -1,40 +1,41 @@
-# Welcome to Remix!
+# Nostrasia 公式サイト
 
-- 📖 [Remix docs](https://remix.run/docs)
+[nostrasia.com](https://nostrasia.com) のソースコードです。Remix（Vite）で作り、Cloudflare Pages で配信しています。
 
-## Development
+## 開発
 
-Run the dev server:
-
-```shellscript
-npm run dev
-```
-
-## Deployment
-
-First, build your app for production:
+bun 1.1.45（`.bun-version`）を使います。
 
 ```sh
-npm run build
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Then run the app in production mode:
+## 構成
+
+- `/` は最新年のトップページです（`app/routes/_index.tsx`）。
+- 過去年は `/<年>` にアーカイブしています（例: `/2024` は `app/routes/2024.*`）。
+- 文言は `public/locales/<年>/<言語>/common.json` にあります。
+- Cloudflare Pages Functions の入口は `functions/[[path]].ts` です。
+
+## デプロイ
+
+Cloudflare Pages の Git 連携でデプロイします。GitHub Actions は使いません。
+master への push で本番に、ほかのブランチはプレビューとしてビルドされます。
+
+| 項目               | 値                                      |
+| ------------------ | --------------------------------------- |
+| 本番ブランチ       | `master`                                |
+| フレームワーク     | None                                    |
+| ビルドコマンド     | `bun run build`                         |
+| 出力ディレクトリ   | `build/client`                          |
+| ルートディレクトリ | （空欄）                                |
+| 環境変数           | `BUN_VERSION=1.1.45`、`NODE_VERSION=20` |
+| 互換性の日付       | `2023-06-21`                            |
+
+Cloudflare Pages と同じ環境で手元で確かめるときは、次を実行します。
 
 ```sh
-npm start
+bun run build
+bun run start
 ```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.

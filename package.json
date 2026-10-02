@@ -8,7 +8,6 @@
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint . && prettier --write .",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./build/client",
-    "deploy": "wrangler pages deploy ./build/client --project-name=nostrasia2024",
     "typecheck": "tsc"
   },
   "dependencies": {
