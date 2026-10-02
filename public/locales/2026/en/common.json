@@ -1,9 +1,9 @@
 {
   "venueTBA": "Venue TBA",
-  "feeTBA": "Details TBA",
+  "feeTBA": "TBA",
   "join": {
     "label": "Register",
-    "soon": "Coming soon"
+    "soon": "Not open yet"
   },
   "lang": {
     "label": "Language"
@@ -18,7 +18,7 @@
   "nav": {
     "about": "About",
     "program": "Program",
-    "timetable": "Time Table",
+    "timetable": "Timetable",
     "speakers": "Speakers",
     "sponsors": "Sponsors",
     "access": "Access",
@@ -26,20 +26,20 @@
     "archive": "Archive"
   },
   "hero": {
-    "catch": "Scattered shapes\ncome together as one ostrich.",
+    "catch": "All kinds of people and fun\ncome together in one place.",
     "tagline": "Nostr Conference in Asia",
     "place": "{{venue}} · {{fee}}",
     "fee": "Fee: {{fee}}",
-    "feeTBA": "Fee: details TBA",
+    "feeTBA": "Fee: TBA",
     "caption": "12 PIECES\n→ 1 OSTRICH"
   },
   "about": {
     "label": "ABOUT",
     "title": "What is Nostrasia?",
-    "lead1": "Nostrasia is a Nostr conference, and a festival, that started in Japan. It has been held several times since the first edition in 2023, and the 2024 and 2025 editions took place in Tokyo. Talks, LTs, hands-on sessions, a market, the Nostr Shrine, a hero show and DJs: all kinds of people and all kinds of fun come together in one place.",
-    "lead2": "Nostr is a decentralized protocol that doesn't rely on any particular company or server. You sign your posts with your own key and put them on relays around the world. Each piece is just a small shape, but put them together and they become a big bird: an ostrich. This site draws that idea with shapes.",
+    "lead1": "Nostrasia is a Nostr conference, and a festival, that started in Japan. First held in 2023, it has run every year since, with the 2024 and 2025 editions in Tokyo. Past editions brought talks, LTs, hands-on sessions, a market, the Nostr Shrine, a hero show and DJs together in one place, along with all kinds of people.",
+    "lead2": "Nostr is a decentralized protocol that doesn't rely on any particular company or server. You sign your posts with your own key and put them on several relays (servers that store and pass posts along). The “New to Nostr?” section below shows how it works.",
     "overviewTitle": "Nostrasia 2026 at a glance",
-    "overviewNote": "The date, venue and fee are all still being arranged. We will announce when registration opens on our official accounts. The hashtag is #{{hashtag}}.",
+    "overviewNote": "The date, venue and fee are all still being arranged. We will announce when registration opens on our official accounts. The hashtag is #{{hashtag}} (tentative).",
     "date": "DATE",
     "venue": "VENUE",
     "fee": "FEE"
@@ -47,12 +47,12 @@
   "how": {
     "label": "NOSTR 101",
     "title": "New to Nostr?",
-    "lead": "Keys are circles, relays are squares. In four steps, we build up how a Nostr post reaches people, using shapes.",
+    "lead": "Keys are circles, relays are squares. Four steps show how a Nostr post reaches its readers.",
     "figStep": "STEP {{n}} / 4",
     "fig": {
       "nsec": "nsec secret key",
       "npub": "npub public key",
-      "note": "note kind:1",
+      "note": "note (post)",
       "sig": "sig",
       "r1": "relay A",
       "r2": "relay B",
@@ -63,28 +63,28 @@
       "1": {
         "name": "Keys",
         "title": "Make your keys",
-        "body": "First, you create a pair of keys: a secret key <c>nsec</c> and a public key <c>npub</c>. Your npub works as your name, and your nsec is the real key you never show anyone. There is no account sign-up."
+        "body": "First, you create a pair of keys: a secret key <c>nsec</c> and a public key <c>npub</c>. Your npub is the ID that identifies you, and it's fine to share. Your nsec is the secret key only you hold. You don't need to sign up with an email address or anything else."
       },
       "2": {
         "name": "Signature",
         "title": "Sign",
-        "body": "When you write a post (a note, <c>kind:1</c>), you sign it (sig) with your secret key. Thanks to the signature, anyone can check that you really wrote it, wherever it ends up."
+        "body": "When you write a post (a note), you sign it with your secret key. Thanks to the signature, anyone can check that you really wrote it, wherever it ends up."
       },
       "3": {
         "name": "Relays ×3",
         "title": "Send it to relays",
-        "body": "You send the signed post to several relays (the squares). A relay is just a relay point. Even if one goes down, the same post stays on the others."
+        "body": "You send the signed post to several relays (the squares). A relay is just a server that stores and passes posts along. Even if one goes down, the same post stays on the others."
       },
       "4": {
         "name": "Client",
         "title": "Read it in a client",
-        "body": "A client (app) gathers posts from whichever relays you like and shows them. Even if you switch apps, you are still you as long as you have your key. You can also send a zap ⚡ to posts you like."
+        "body": "An app (client) gathers posts from whichever relays you like and shows them. As long as you have your key, you keep the same account even if you switch apps. You can also send a zap ⚡ (a small amount of bitcoin) to posts you like."
       }
     }
   },
   "program": {
     "label": "PROGRAM",
-    "title": "What's on",
+    "title": "From past editions",
     "items": {
       "talk": {
         "label": "TALK",
@@ -94,7 +94,7 @@
       "lt": {
         "label": "LIGHTNING TALK",
         "title": "LT",
-        "desc": "Short slots, one thing people built after another."
+        "desc": "Short talks, one after another."
       },
       "handson": {
         "label": "HANDS-ON",
@@ -104,30 +104,30 @@
       "market": {
         "label": "MARKET",
         "title": "Market",
-        "desc": "A handmade market where zaps ⚡ fly around."
+        "desc": "Nostr goods and books for sale."
       },
       "shrine": {
         "label": "NOSTR SHRINE",
         "title": "Nostr Shrine",
-        "desc": "Our signature spot for paying respects to the ostrich."
+        "desc": "Pay your respects with a zap and draw a fortune."
       },
       "heroShow": {
         "label": "HERO SHOW",
         "title": "Hero Show",
-        "desc": "That moment when the venue gets the loudest."
+        "desc": "A hero appears on stage."
       },
       "dj": {
         "label": "DJ",
         "title": "DJ",
-        "desc": "A night layer where sound connects us."
+        "desc": "DJs play while people hang out."
       },
       "social": {
         "label": "SOCIAL SPACE",
         "title": "Social Space",
-        "desc": "A place to swap npubs offline."
+        "desc": "A place to meet face to face and swap npubs."
       }
     },
-    "note": "* These are examples of what past editions offered. The 2026 program is still being arranged."
+    "note": "* These are examples from past editions. The 2026 program is still being arranged."
   },
   "timetable": {
     "label": "TIME TABLE",
@@ -154,13 +154,13 @@
     "label": "SPEAKERS",
     "title": "Speakers",
     "tba": "Speaker TBA",
-    "soon": "Coming soon",
+    "soon": "Announced once confirmed",
     "note": "Speakers will be announced as they are confirmed."
   },
   "sponsors": {
     "label": "SPONSORS",
     "title": "Sponsors",
-    "lead": "Why not help us build Nostrasia 2026 as one of its pieces?",
+    "lead": "Help us build Nostrasia 2026.",
     "tiers": {
       "tier1": "TIER 1",
       "tier2": "TIER 2",
@@ -169,7 +169,7 @@
     "open": "Open for sponsors",
     "openShort": "Open",
     "contact": "Talk to us about sponsoring →",
-    "note": "Sponsorship plans and pricing: details TBA."
+    "note": "Sponsorship plans and pricing will be announced once decided."
   },
   "access": {
     "label": "ACCESS",
@@ -195,11 +195,11 @@
     "items": {
       "1": {
         "q": "Can I join if I've never used Nostr?",
-        "a": "Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well."
+        "a": "How to join will be announced once decided. Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well."
       },
       "2": {
         "q": "Is there a fee?",
-        "a": "Fee details will come later. We will announce them once decided."
+        "a": "The fee hasn't been decided yet. We will announce it once it is."
       },
       "3": {
         "q": "When will the date and venue be decided?",
@@ -207,7 +207,7 @@
       },
       "4": {
         "q": "I'd like to talk about sponsoring or exhibiting",
-        "a": "We are looking for sponsors. Plan details will be published later. Please get in touch via our official accounts."
+        "a": "We are looking for sponsors. Plan details will be announced once decided. Please get in touch via our official accounts. The same goes for exhibiting."
       }
     }
   },

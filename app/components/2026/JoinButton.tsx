@@ -4,7 +4,7 @@ import { EVENT_2026 } from '~/data/2026'
 
 /**
  * 参加登録ボタン。ヘッダー・メニュー・ヒーロー・下部帯で共通。
- * 登録 URL が未定のあいだは開催概要（#overview）へのページ内リンクにして「近日公開」を添える。
+ * 登録 URL が未定のあいだは開催概要（#overview）へのページ内リンクにして「準備中」を添える。
  */
 export const JoinButton = ({ className }: { className: string }) => {
   const { t } = useTranslation()
