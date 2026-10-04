@@ -42,7 +42,11 @@
     "register": "Register",
     "soon": "Not open yet",
     "soonLong": "Registration not open yet",
-    "menu": "Join (fee & registration)"
+    "menu": "Join (fee & registration)",
+    "entry": "Pre-register",
+    "entrySoon": "Not open yet",
+    "entryMenu": "Pre-register (fee & entry)",
+    "entryNote": "Advance registration is required to attend."
   },
   "tbd": {
     "venue": "Venue TBA",
@@ -99,7 +103,11 @@
     "timeRange": "{{start}} – {{end}}",
     "kick": "TIME TABLE / CONCEPT",
     "tableLabel": "Concept timetable (times, tracks and contents not decided)",
-    "scrollHint": "← Scroll sideways → Details will be added once decided"
+    "scrollHint": "← Scroll sideways → Details will be added once decided",
+    "timeTbd": "Time TBA",
+    "entry": "Entry",
+    "entryRequired": "Advance registration required",
+    "entryTbd": "Registration opening TBA"
   },
   "speakers": {
     "lead": "Not <m>announced yet.</m>",
@@ -110,7 +118,11 @@
     "tbdLabel": "Fee TBA",
     "lead": "Admission: <m>{{fee}}.</m>",
     "leadTbd": "The fee is <m>TBA.</m>",
-    "text": "We'll announce how to register once it's decided. Follow our official accounts so you don't miss it."
+    "text": "We'll announce how to register once it's decided. Follow our official accounts so you don't miss it.",
+    "leadNote": "Admission: <m>{{fee}}.</m>\n{{note}}.",
+    "feeLabel": "Fee: {{fee}}",
+    "textEntry": "Advance registration is required. We'll announce when registration opens. Follow our official accounts so you don't miss it.",
+    "textEntryOpen": "Advance registration is required. Please register with the button below."
   },
   "sponsors": {
     "lead": "It might be you.\n<m>Sponsors wanted.</m>",
@@ -135,14 +147,22 @@
     },
     "mapLabelTbd": "Abstract drawing in place of a map. Venue TBA",
     "text": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, address and nearest station will be posted here once decided.",
-    "openMap": "Open map"
+    "openMap": "Open map",
+    "mapLabel": "Abstract drawing in place of a map. Venue: {{venue}}"
   },
   "faq": {
     "lead": "Don't worry. <m>Everyone</m> was new once.",
     "items": {
       "first": {
         "q": "Can I come if I've never used Nostr?",
-        "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is still being arranged."
+        "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is still being arranged.",
+        "aEntry": "Yes, as long as you register in advance (how to register will be announced once decided). Past editions included hands-on sessions for first-timers. The 2026 program is still being arranged.",
+        "aEntryOpen": "Yes, as long as you register in advance. Past editions included hands-on sessions for first-timers. The 2026 program is still being arranged."
+      },
+      "entry": {
+        "q": "Do I need to register in advance?",
+        "a": "Yes. We'll announce when registration opens.",
+        "aOpen": "Yes. Use the “Pre-register” button to sign up."
       },
       "keys": {
         "q": "What are npub and nsec?",

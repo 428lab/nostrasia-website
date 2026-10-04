@@ -40,7 +40,14 @@ export const Access = () => {
         <div
           className="pin o"
           role="img"
-          aria-label={venue ? venueName : t('access.mapLabelTbd')}
+          aria-label={
+            venue
+              ? t('access.mapLabel', {
+                  venue: venueName,
+                  interpolation: { escapeValue: false },
+                })
+              : t('access.mapLabelTbd')
+          }
         >
           <b>{venueName}</b>
         </div>

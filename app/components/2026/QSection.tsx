@@ -5,10 +5,10 @@ import { useRevealOnce } from '~/hooks/useRevealOnce'
 
 import { SECTIONS, SectionId } from './sections'
 
-/** 全角を 1、半角を 0.7 文字ぶんとして数える（問いの文字を 1 行に収める font-size の計算用） */
+/** 全角を 1、半角を 0.85 文字ぶんとして数える（問いの文字を 1 行に収める font-size の計算用） */
 const width = (text: string) =>
   Array.from(text).reduce(
-    (sum, ch) => sum + (/[\u2e80-\u9fff\uff00-\uffef]/.test(ch) ? 1 : 0.7),
+    (sum, ch) => sum + (/[\u2e80-\u9fff\uff00-\uffef]/.test(ch) ? 1 : 0.85),
     0,
   )
 

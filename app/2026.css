@@ -364,6 +364,9 @@ body.menu-open .n26 .bar {
   letter-spacing: 0.02em;
   display: block;
 }
+.n26 .hero-join .note {
+  margin-top: 8px;
+}
 .n26 .catch {
   font-family: var(--jp);
   font-size: clamp(18px, 4.6vw, 30px);
@@ -769,6 +772,15 @@ html.no-hydrate .n26 .q .ch {
 .n26 .ov dd small {
   font-family: var(--en);
   font-size: 0.6em;
+}
+/* 住所・注記など、値に添える 1 行 */
+.n26 .ov dd .sub {
+  display: block;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 4px;
 }
 .n26 .tt {
   margin-top: 8px;

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { EVENT_2026, formatDate2026 } from '~/data/2026'
 
 import { JoinButton } from './JoinButton'
-import { localize } from './sections'
+import { formatDateLong, localize } from './sections'
 
 /**
  * NOS / TR / ASIA の各行を画面幅いっぱいにフィットさせる。
@@ -103,7 +103,8 @@ const HeroVideo = ({
 export const Hero = () => {
   const { t, i18n } = useTranslation()
   const ref = useFitLines()
-  const { heroVideo, venue } = EVENT_2026
+  const { heroVideo, venue, date, entryRequired } = EVENT_2026
+  const venueName = venue ? localize(venue.name, i18n) : t('tbd.venue')
 
   return (
     <section className="hero o" aria-labelledby="hero-title" ref={ref}>
@@ -127,14 +128,22 @@ export const Hero = () => {
         <div className="hero-foot">
           <p className="meta">
             <small>NOSTRASIA</small>
-            <span className="d">{t('hero.year')}</span>
-            {t('hero.when', {
-              date: formatDate2026(EVENT_2026.date),
-              venue: venue ? localize(venue.name, i18n) : t('tbd.venue'),
-              interpolation: { escapeValue: false },
-            })}
+            {/* 日付が決まったら曜日つきの日付を大きく出し、その下に会場名 */}
+            <span className="d">
+              {date ? formatDateLong(date, i18n) : t('hero.year')}
+            </span>
+            {date
+              ? venueName
+              : t('hero.when', {
+                  date: formatDate2026(date),
+                  venue: venueName,
+                  interpolation: { escapeValue: false },
+                })}
           </p>
-          <JoinButton variant="hero" />
+          <div className="hero-join">
+            <JoinButton variant="hero" />
+            {entryRequired && <p className="note">{t('join.entryNote')}</p>}
+          </div>
         </div>
       </div>
     </section>
