@@ -36,7 +36,16 @@
     "fee": "Fee: {{fee}}",
     "feeTBA": "Fee: TBA",
     "caption": "12 PIECES\n→ 1 OSTRICH",
-    "feeNote": "Fee: {{fee}} ({{note}})"
+    "feeNote": "Fee: {{fee}} ({{note}})",
+    "game": {
+      "label": "Jump game",
+      "hint": "Tap to jump",
+      "over": "GAME OVER",
+      "score": "Score",
+      "best": "Best",
+      "retry": "Play again",
+      "close": "Close"
+    }
   },
   "about": {
     "label": "ABOUT",

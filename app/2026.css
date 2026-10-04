@@ -378,7 +378,8 @@ html.js .n26.menu-open .gnav li {
   z-index: 1;
   container-type: size;
   height: clamp(220px, 36svh, 340px);
-  margin: 0 20px;
+  /* 上の余白は、ひとっ跳びしたときに頭が文字に重ならないぶん */
+  margin: 40px 20px 0;
 }
 .n26 .hero-video {
   position: absolute;
@@ -394,8 +395,20 @@ html.js .n26.menu-open .gnav li {
 .n26 .hero-video.ok {
   opacity: 0.3;
 }
-.n26 .s {
+.n26 .stage {
+  /* 図形の 1 単位。cqmin はステージ（container）を基準に、使う側の要素で解決される */
   --u: 1.05cqmin;
+  /* 足の裏の高さ（中心から 49 - 8 単位下）。地面の線と景色の基準 */
+  --ground: calc(50% + 41 * var(--u));
+  /* サボテンが流れてくる周期。ダチョウのひとっ跳びも同じ周期で回す */
+  --run: 2.4s;
+}
+.n26 .bird {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.n26 .s {
   --fin: translate(-50%, -50%)
     translate(calc(var(--fx) * var(--u)), calc((var(--fy) - 8) * var(--u)))
     rotate(calc(var(--fr) * 1deg));
@@ -418,13 +431,10 @@ html.js .n26.menu-open .gnav li {
   border-radius: 999px 999px 0 0;
 }
 html.js:not(.no-hydrate) .n26 .stage .s {
-  animation: n26-fly 0.9s var(--pop) calc(var(--i) * 60ms + 120ms) both;
+  animation: n26-fly 1.2s var(--pop) calc(var(--i) * 60ms + 120ms) both;
 }
 html.js:not(.no-hydrate) .n26 .stage.done .s {
   animation: none;
-}
-html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
-  animation: n26-hop 0.5s var(--pop);
 }
 @keyframes n26-fly {
   0% {
@@ -441,10 +451,236 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
     opacity: 1;
   }
 }
-@keyframes n26-hop {
-  40% {
-    translate: 0 -12px;
+/* 四散: 組み上がった位置から、JS が決めた向き（--bx・--by）へ回りながら飛んで消える */
+html.js:not(.no-hydrate) .n26 .stage.boom .s {
+  animation: n26-boom 0.8s cubic-bezier(0.15, 0.7, 0.3, 1) forwards;
+}
+@keyframes n26-boom {
+  to {
+    transform: translate(-50%, -50%)
+      translate(
+        calc(var(--fx) * var(--u) + var(--bx) * 100cqw),
+        calc((var(--fy) - 8) * var(--u) + var(--by) * 100cqh)
+      )
+      rotate(calc((var(--fr) + var(--br)) * 1deg));
+    opacity: 0;
   }
+}
+/*
+ * 歩行（0.6 秒で 2 歩）。脚は付け根を軸に振り、足は脚の先に付いていく。
+ * 胴は 1 歩ごとに少し上下し、首と頭は歩調に合わせて少し前後する。
+ * 上下・前後は translate プロパティで足し、組み上がった位置（transform）はそのまま使う。
+ */
+html.js:not(.no-hydrate) .n26 .stage.walk .s.body {
+  animation: n26-bob 0.15s ease-in-out infinite alternate;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .s.neck {
+  --nd: 0.7;
+  animation: n26-nod 0.15s ease-in-out infinite alternate;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .s.head {
+  --nd: 1.5;
+  animation: n26-nod 0.15s ease-in-out infinite alternate;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .s.leg {
+  animation: n26-leg 0.6s ease-in-out infinite;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .s.foot {
+  animation: n26-foot 0.6s ease-in-out infinite;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .s.l2 {
+  animation-delay: -0.3s;
+}
+@keyframes n26-bob {
+  to {
+    translate: 0 calc(-0.8 * var(--u));
+  }
+}
+@keyframes n26-nod {
+  to {
+    translate: calc(var(--nd) * var(--u)) calc(-0.8 * var(--u));
+  }
+}
+/* 脚の長さ 26 単位・振り幅 ±20° のとき、足先は横に ±8.9、上に 1.6 動く */
+@keyframes n26-leg {
+  0%,
+  100% {
+    transform: var(--fin) translateY(calc(var(--h) * var(--u) * -0.5))
+      rotate(20deg) translateY(calc(var(--h) * var(--u) * 0.5));
+  }
+  25%,
+  75% {
+    transform: var(--fin);
+  }
+  50% {
+    transform: var(--fin) translateY(calc(var(--h) * var(--u) * -0.5))
+      rotate(-20deg) translateY(calc(var(--h) * var(--u) * 0.5));
+  }
+}
+@keyframes n26-foot {
+  0%,
+  100% {
+    translate: calc(-8.9 * var(--u)) calc(-1.6 * var(--u));
+  }
+  25%,
+  75% {
+    translate: 0 0;
+  }
+  50% {
+    translate: calc(8.9 * var(--u)) calc(-1.6 * var(--u));
+  }
+}
+/* サボテンが真下に来るころ（周期の半ば過ぎ）に、全体でひとっ跳びする */
+html.js:not(.no-hydrate) .n26 .stage.walk .bird {
+  animation: n26-leap var(--run) linear infinite;
+}
+@keyframes n26-leap {
+  0%,
+  39% {
+    translate: 0 0;
+    animation-timing-function: cubic-bezier(0.3, 0.7, 0.6, 1);
+  }
+  53% {
+    translate: 0 calc(-14 * var(--u));
+    animation-timing-function: cubic-bezier(0.4, 0, 0.7, 0.3);
+  }
+  67%,
+  100% {
+    translate: 0 0;
+  }
+}
+/*
+ * 地面と景色。歩いているときだけ出す。足の高さから下にしか置かず、ステージの外は切る。
+ * 山は遅く、サボテンは速く、右から左へ流す（スクロール量とは関係なく時間で回す）。
+ * どれもステージの中心を周期の半分で通るので、ダチョウのひとっ跳びと周期の中で位置が揃う。
+ */
+.n26 .scene {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .scene {
+  display: block;
+}
+.n26 .scene::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--ground);
+  height: 2px;
+  background: var(--ink);
+  opacity: 0.6;
+}
+.n26 .scene .mt,
+.n26 .scene .cactus {
+  --far: 20;
+  position: absolute;
+  left: 50%;
+  top: var(--ground);
+  translate: -50% -100%;
+  animation: n26-pass var(--run) linear infinite;
+}
+.n26 .scene .mt {
+  --far: 28;
+  width: calc(30 * var(--u));
+  height: calc(12 * var(--u));
+  background: var(--mute);
+  opacity: 0.14;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  animation-duration: 15s;
+}
+.n26 .scene .mt:nth-child(2) {
+  width: calc(22 * var(--u));
+  height: calc(8 * var(--u));
+  animation-delay: -5s;
+}
+.n26 .scene .mt:nth-child(3) {
+  width: calc(34 * var(--u));
+  height: calc(10 * var(--u));
+  animation-delay: -10s;
+}
+.n26 .scene .cactus {
+  width: calc(10 * var(--u));
+  height: calc(11 * var(--u));
+  opacity: 0.7;
+}
+.n26 .scene .cactus i,
+.n26 .scene .cactus::before,
+.n26 .scene .cactus::after {
+  position: absolute;
+  bottom: 0;
+}
+.n26 .scene .cactus i {
+  left: 50%;
+  width: calc(3.6 * var(--u));
+  height: 100%;
+  translate: -50% 0;
+  background: var(--te);
+}
+/* 腕は L 字（縦の短い四角＋幹へつなぐ横棒）を枠線で描く */
+.n26 .scene .cactus::before,
+.n26 .scene .cactus::after {
+  content: '';
+  width: calc(3.4 * var(--u));
+  height: calc(4.5 * var(--u));
+  border: 0 solid var(--te);
+  border-bottom-width: calc(1.8 * var(--u));
+}
+.n26 .scene .cactus::before {
+  left: 0;
+  bottom: calc(3 * var(--u));
+  border-left-width: calc(1.8 * var(--u));
+}
+.n26 .scene .cactus::after {
+  right: 0;
+  bottom: calc(4.5 * var(--u));
+  height: calc(3.6 * var(--u));
+  border-right-width: calc(1.8 * var(--u));
+}
+@keyframes n26-pass {
+  from {
+    transform: translateX(calc(50cqw + var(--far) * var(--u)));
+  }
+  to {
+    transform: translateX(calc(-50cqw - var(--far) * var(--u)));
+  }
+}
+/* ジャンプゲーム中は、歩くダチョウと景色を隠して canvas を重ねる */
+.n26 .stage.game .bird,
+.n26 .stage.game .scene {
+  visibility: hidden;
+}
+.n26 .jump-game {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+}
+.n26 .jump-game canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: pointer;
+}
+.n26 .jump-game button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font: var(--t-btn);
+  cursor: pointer;
 }
 .n26 .hcap {
   position: absolute;
@@ -1190,7 +1426,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     scroll-behavior: auto;
   }
   html.js:not(.no-hydrate) .n26 .stage .s,
-  html.js:not(.no-hydrate) .n26 .stage.done .s:hover,
+  html.js:not(.no-hydrate) .n26 .stage.walk .s,
+  html.js:not(.no-hydrate) .n26 .stage.walk .bird,
   html.js .n26.menu-open .gnav li {
     animation: none;
   }
