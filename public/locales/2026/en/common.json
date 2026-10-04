@@ -63,7 +63,10 @@
   },
   "hero": {
     "kick": "A Nostr conference from Japan",
-    "catch": "Nostr, off the screen."
+    "catch": "Nostr, off the screen.",
+    "fee": "Fee: {{fee}}",
+    "feeNote": "Fee: {{fee}} ({{note}})",
+    "feeTBA": "Fee: TBA"
   },
   "about": {
     "lead": "A Nostr conference\nfrom Japan.\n<m>And a festival.</m>",

@@ -63,7 +63,10 @@
   },
   "hero": {
     "kick": "日本発の Nostr カンファレンス",
-    "catch": "Nostr を、画面の外で。"
+    "catch": "Nostr を、画面の外で。",
+    "fee": "参加費 {{fee}}",
+    "feeNote": "参加費 {{fee}}（{{note}}）",
+    "feeTBA": "参加費 未定"
   },
   "about": {
     "lead": "日本発、Nostr の\nカンファレンス。\n<m>そして、お祭り。</m>",

@@ -488,6 +488,11 @@ body.menu-open .n26 .bar {
   font-size: 14px;
   letter-spacing: 0.04em;
 }
+.n26 .h-fee {
+  display: block;
+  /* スマホでは「（」の前で折り返し、右のダチョウの尾に寄らないようにする */
+  word-break: keep-all;
+}
 .n26 .h-cta {
   display: inline-flex;
   flex-direction: column;
@@ -1733,7 +1738,8 @@ html.js:not(.no-hydrate) .n26 .gantt:not(.in) .bar2 {
   .n26 .h-bb {
     position: absolute;
     right: 3vw;
-    bottom: 6%;
+    /* 参加費の 1 行ぶん下げ、キャッチがダチョウの足に重ならないようにする */
+    bottom: 3%;
     width: min(34vw, 520px);
     padding: 0;
     display: block;

@@ -215,7 +215,14 @@ const HeroVideo = ({
 export const Hero = () => {
   const { t, i18n } = useTranslation()
   const { heroRef, tailRef } = useHeroLayout()
-  const { heroVideo, venue, entryRequired } = EVENT_2026
+  const { heroVideo, venue, fee, feeNote, entryRequired } = EVENT_2026
+  const feeText = fee
+    ? t(feeNote ? 'hero.feeNote' : 'hero.fee', {
+        fee: localize(fee, i18n),
+        note: feeNote ? localize(feeNote, i18n) : '',
+        interpolation: { escapeValue: false },
+      })
+    : t('hero.feeTBA')
 
   return (
     <>
@@ -251,6 +258,7 @@ export const Hero = () => {
             <p className="h-meta">
               <b>{formatDateLabel(EVENT_2026.date, i18n)}</b>
               {venue ? localize(venue.name, i18n) : t('tbd.venue')}
+              <span className="h-fee">{feeText}</span>
             </p>
             {/* PC では補足をボタンの横に置き、右下の文字がダチョウの足に届かないようにする */}
             <div className="h-join">
