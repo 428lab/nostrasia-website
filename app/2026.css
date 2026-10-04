@@ -317,6 +317,9 @@ html.js .n26.menu-open .gnav li {
   display: block;
   font: 400 13px/1.6 var(--ja);
   letter-spacing: 0;
+  /* 「ドリンク飲み放題つき」などを語の途中で折り返さない */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .n26 .cta {
   display: inline-flex;
@@ -336,6 +339,14 @@ html.js .n26.menu-open .gnav li {
   height: 12px;
   background: var(--ye);
   border-radius: 50%;
+}
+/* 参加ボタンの下: 事前エントリーが必要なことの補足 */
+.n26 .entry-note {
+  font: 700 12px/1.6 var(--ja);
+  color: var(--mute);
+  margin-top: -2px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .n26 .stage {
   position: relative;
@@ -523,6 +534,17 @@ html.js:not(.no-hydrate) .n26 .sh.in .ic {
 .n26 .ov dd.m {
   font-family: var(--en);
   font-weight: 600;
+}
+/* 開催概要: 住所・注記などの補足行 */
+.n26 .ov dd small {
+  display: block;
+  margin-top: 4px;
+  font: 400 13px/1.6 var(--ja);
+  color: var(--mute);
+}
+.n26 .ov dd small a {
+  color: var(--pu);
+  font-weight: 700;
 }
 /* program */
 .n26 .cg {

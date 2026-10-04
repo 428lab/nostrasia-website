@@ -1,8 +1,8 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026 } from '~/data/2026'
-import { useLocalized } from '~/hooks/useLocalized'
+import { EVENT_2026 } from '~/data/2026'
+import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 import { hydratedLate } from '~/hooks/useRevealOnce'
 
 import { JoinButton } from './JoinButton'
@@ -39,6 +39,7 @@ const prefersReducedMotion = () =>
 export const Hero = () => {
   const { t } = useTranslation()
   const localized = useLocalized()
+  const dateLabel = useDateLabel()
   const [done, setDone] = useState(false)
 
   // reduced-motion・no-hydrate では飛来させず、組み上がった状態にする
@@ -54,8 +55,9 @@ export const Hero = () => {
     ? localized(EVENT_2026.venue.name)
     : t('venueTBA')
   const fee = EVENT_2026.fee
-    ? t('hero.fee', {
+    ? t(EVENT_2026.feeNote ? 'hero.feeNote' : 'hero.fee', {
         fee: localized(EVENT_2026.fee),
+        note: EVENT_2026.feeNote ? localized(EVENT_2026.feeNote) : '',
         interpolation: { escapeValue: false },
       })
     : t('hero.feeTBA')
@@ -72,7 +74,7 @@ export const Hero = () => {
           <small>{t('hero.tagline')}</small>
         </h1>
         <p className="date">
-          {formatDate2026(EVENT_2026.date)}
+          {dateLabel(EVENT_2026.date)}
           <span>
             {t('hero.place', {
               venue,
@@ -82,6 +84,13 @@ export const Hero = () => {
           </span>
         </p>
         <JoinButton className="cta" />
+        {EVENT_2026.entryRequired && (
+          <p className="entry-note">
+            {EVENT_2026.registrationUrl
+              ? t('join.entryNoteOpen')
+              : t('join.entryNote')}
+          </p>
+        )}
       </div>
       <div className={done ? 'stage done' : 'stage'} aria-hidden="true">
         {EVENT_2026.heroVideo && <HeroVideo source={EVENT_2026.heroVideo} />}

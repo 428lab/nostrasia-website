@@ -5,7 +5,7 @@ import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
 
-/** フロアマップ（会場未定のため図形によるイメージ）。key は locale の access.floor.* */
+/** フロアマップ（配置が未定のため図形によるイメージ）。key は locale の access.floor.* */
 const FLOOR = [
   { className: 'fA', key: 'main' },
   { className: 'fB', key: 'market' },
@@ -49,7 +49,14 @@ export const Access = () => {
                 opacity=".35"
               />
             </svg>
-            <p>{venue ? localized(venue.name) : t('venueTBA')}</p>
+            <p>
+              {venue
+                ? t('access.mapCaption', {
+                    venue: localized(venue.name),
+                    interpolation: { escapeValue: false },
+                  })
+                : t('venueTBA')}
+            </p>
           </div>
           {venue ? (
             <div className="panel">
@@ -82,7 +89,9 @@ export const Access = () => {
             </div>
           ))}
         </div>
-        <p className="note">{t('access.floorNote')}</p>
+        <p className="note">
+          {venue ? t('access.floorNoteVenue') : t('access.floorNote')}
+        </p>
       </div>
     </section>
   )
