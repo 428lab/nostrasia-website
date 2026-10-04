@@ -1,7 +1,14 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { hydratedLate } from '~/hooks/useRevealOnce'
+import { KeyIcon } from '~/icons/2026/KeyIcon'
+import { Note } from '~/icons/2026/Note'
+import { Npub } from '~/icons/2026/Npub'
+import { Pc } from '~/icons/2026/Pc'
+import { Phone } from '~/icons/2026/Phone'
+import { Relay } from '~/icons/2026/Relay'
+import { Sig } from '~/icons/2026/Sig'
 
 import { SectionHead } from './SectionHead'
 
@@ -12,27 +19,38 @@ type Place = readonly [number, number, number, number]
 /** 図の部品ごとの、ステップ 1〜4 での配置 */
 // prettier-ignore
 const PLACES: Record<string, readonly [Place, Place, Place, Place]> = {
-  nsec: [[34, 52, 1.4, 1], [20, 34, 0.85, 1], [12, 18, 0.55, 0.6], [12, 22, 0.55, 0.6]],
-  npub: [[68, 52, 1.2, 1], [20, 76, 0.7, 0.6], [12, 86, 0.55, 0.5], [12, 84, 0.55, 0.6]],
-  note: [[50, 52, 0.4, 0], [60, 56, 1.3, 1], [24, 50, 0.9, 1], [20, 50, 0.75, 1]],
-  sig: [[50, 52, 0.3, 0], [62, 38, 1.1, 1], [30, 40, 0.7, 1], [24, 38, 0.55, 1]],
-  r1: [[86, 20, 0.4, 0], [86, 20, 0.4, 0], [76, 20, 1, 1], [50, 20, 0.8, 1]],
-  r2: [[86, 50, 0.4, 0], [86, 50, 0.4, 0], [76, 50, 1, 1], [50, 50, 0.8, 1]],
-  r3: [[86, 80, 0.4, 0], [86, 80, 0.4, 0], [76, 80, 1, 1], [50, 80, 0.8, 1]],
-  cl: [[92, 50, 0.4, 0], [92, 50, 0.4, 0], [94, 50, 0.5, 0], [82, 52, 1, 1]],
+  phone: [[28, 55, 1.8, 1], [16, 55, 0.9, 1], [14, 50, 1, 1], [14, 50, 1, 0.4]],
+  nsec: [[66, 38, 1.1, 1], [30, 30, 0.8, 1], [30, 30, 0.6, 0], [30, 30, 0.6, 0]],
+  npub: [[66, 70, 1.1, 1], [82, 78, 0.7, 1], [82, 78, 0.6, 0], [82, 78, 0.6, 0]],
+  note: [[55, 50, 0.6, 0], [55, 50, 1.6, 1], [34, 50, 0.8, 1], [34, 50, 0.6, 0]],
+  sig: [[55, 50, 0.3, 0], [55, 50, 0.8, 1], [34, 50, 0.4, 1], [34, 50, 0.3, 0]],
+  r1: [[74, 18, 0.6, 0], [74, 18, 0.6, 0], [74, 18, 0.9, 1], [50, 18, 0.9, 1]],
+  r2: [[74, 50, 0.6, 0], [74, 50, 0.6, 0], [74, 50, 0.9, 1], [50, 50, 0.9, 1]],
+  r3: [[74, 82, 0.6, 0], [74, 82, 0.6, 0], [74, 82, 0.9, 1], [50, 82, 0.9, 1]],
+  pc: [[84, 30, 0.6, 0], [84, 30, 0.6, 0], [84, 30, 0.6, 0], [84, 30, 1.2, 1]],
+  phone2: [[84, 72, 0.6, 0], [84, 72, 0.6, 0], [84, 72, 0.6, 0], [84, 72, 1.2, 1]],
 }
 
-/** 図の部品（id は PLACES のキー、kind は形のクラス） */
-const ITEMS = [
-  { id: 'nsec', kind: 'k' },
-  { id: 'npub', kind: 'k2' },
-  { id: 'note', kind: 'n' },
-  { id: 'sig', kind: 'g' },
-  { id: 'r1', kind: 'r' },
-  { id: 'r2', kind: 'r' },
-  { id: 'r3', kind: 'r' },
-  { id: 'cl', kind: 'cl' },
-] as const
+/** 署名ロゼットをノートの右下に重ねるずらし量（ノートの 48 単位座標で、ノート中心から） */
+const SIG_OFFSET = 12
+
+/** 図の部品（id は PLACES のキー）。hint はステップ 1 だけ説明つきのラベルにする */
+const ITEMS: readonly {
+  id: string
+  icon: (step: Step) => ReactNode
+  hint?: boolean
+}[] = [
+  { id: 'phone', icon: (s) => <Phone screen={s === 1 ? 'empty' : 'post'} /> },
+  { id: 'nsec', icon: () => <KeyIcon />, hint: true },
+  { id: 'npub', icon: () => <Npub />, hint: true },
+  { id: 'note', icon: () => <Note /> },
+  { id: 'sig', icon: () => <Sig /> },
+  { id: 'r1', icon: (s) => <Relay lit={s >= 3} /> },
+  { id: 'r2', icon: (s) => <Relay lit={s >= 3} /> },
+  { id: 'r3', icon: (s) => <Relay lit={s >= 3} /> },
+  { id: 'pc', icon: () => <Pc screen="signed" /> },
+  { id: 'phone2', icon: () => <Phone screen="signed" /> },
+]
 
 const STEPS: Step[] = [1, 2, 3, 4]
 
@@ -83,31 +101,46 @@ export const HowNostr = () => {
               preserveAspectRatio="none"
             >
               <g style={{ opacity: figStep === 3 ? 1 : 0 }}>
-                <line x1="28" y1="50" x2="74" y2="20" />
-                <line x1="28" y1="50" x2="74" y2="50" />
-                <line x1="28" y1="50" x2="74" y2="80" />
+                <line x1="14" y1="50" x2="74" y2="18" />
+                <line x1="14" y1="50" x2="74" y2="50" />
+                <line x1="14" y1="50" x2="74" y2="82" />
               </g>
               <g style={{ opacity: figStep === 4 ? 1 : 0 }}>
-                <line x1="50" y1="20" x2="80" y2="50" />
-                <line x1="50" y1="50" x2="80" y2="50" />
-                <line x1="50" y1="80" x2="80" y2="50" />
-                <line x1="22" y1="50" x2="50" y2="20" />
-                <line x1="22" y1="50" x2="50" y2="50" />
-                <line x1="22" y1="50" x2="50" y2="80" />
+                <line x1="50" y1="18" x2="84" y2="30" />
+                <line x1="50" y1="50" x2="84" y2="30" />
+                <line x1="50" y1="82" x2="84" y2="30" />
+                <line x1="50" y1="18" x2="84" y2="72" />
+                <line x1="50" y1="50" x2="84" y2="72" />
+                <line x1="50" y1="82" x2="84" y2="72" />
               </g>
             </svg>
-            {ITEMS.map(({ id, kind }) => {
+            {ITEMS.map(({ id, icon, hint }) => {
               const [x, y, s, o] = PLACES[id][figStep - 1]
+              // 署名はノートと同じ位置を基準に、ノートの拡大率に合わせて右下へずらす
+              const d =
+                id === 'sig' ? SIG_OFFSET * PLACES.note[figStep - 1][2] : 0
               return (
                 <div
                   key={id}
-                  className={`it ${kind}`}
+                  className={`it i-${id}`}
                   style={
-                    { '--x': x, '--y': y, '--s': s, '--o': o } as CSSProperties
+                    {
+                      '--x': x,
+                      '--y': y,
+                      '--s': s,
+                      '--o': o,
+                      '--d': d,
+                    } as CSSProperties
                   }
                 >
-                  <i />
-                  <span>{t(`how.fig.${id}`)}</span>
+                  <i>{icon(figStep)}</i>
+                  <span>
+                    {t(
+                      hint && figStep === 1
+                        ? `how.fig.${id}Hint`
+                        : `how.fig.${id}`,
+                    )}
+                  </span>
                 </div>
               )
             })}
