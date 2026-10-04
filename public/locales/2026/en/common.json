@@ -47,7 +47,10 @@
     "register": "Register",
     "soon": "TBA",
     "soonLong": "Registration TBA",
-    "menu": "Join (fee & registration)"
+    "menu": "Join (fee & registration)",
+    "entry": "Pre-register",
+    "entryMenu": "Pre-register (fee & entry)",
+    "entrySoon": "Opening TBA"
   },
   "tbd": {
     "venue": "Venue TBA",
@@ -55,7 +58,9 @@
   },
   "hero": {
     "catch": "Still asking <br/>“What's Nostr?” <br/>Come anyway.",
-    "cap": "12 PIECES\n→ 1 OSTRICH"
+    "cap": "12 PIECES\n→ 1 OSTRICH",
+    "entryNote": "Pre-registration is required. We'll announce when it opens.",
+    "entryNoteOpen": "Pre-registration is required."
   },
   "about": {
     "capStage": "Stage",
@@ -102,7 +107,7 @@
   },
   "timetable": {
     "capMarkTbd": "Date (TBA)",
-    "capMark": "Date",
+    "capMark": "Date (7 squares = Sun–Sat)",
     "capTbd": "{{date}} TBA",
     "cap": "{{date}}",
     "leadTbd": "Date <m>TBA.</m>",
@@ -113,7 +118,12 @@
     "timeRange": "{{start}} – {{end}}",
     "kick": "TIMETABLE / CONCEPT",
     "tableLabel": "Concept timetable (times, tracks and contents TBA)",
-    "note": "This is a concept timetable. Times, tracks and contents are TBA. You can scroll the table sideways."
+    "note": "This is a concept timetable. Times, tracks and contents are TBA. You can scroll the table sideways.",
+    "capTimeTbd": "{{date}} · Time TBA",
+    "timeTbd": "Time TBA",
+    "entry": "Entry",
+    "entryRequired": "Pre-registration required",
+    "entrySoon": "We'll announce when registration opens."
   },
   "speakers": {
     "capMark": "Speakers",
@@ -135,7 +145,13 @@
     "leadTbd": "Fee <m>TBA.</m>",
     "lead": "The fee is <m>{{fee}}</m>.",
     "text": "How to register will also be announced once decided. Follow our official accounts so you don't miss it.",
-    "follow": "See official accounts ↓"
+    "follow": "See official accounts ↓",
+    "capFeeNote": "Fee: {{fee}} ({{note}})",
+    "capEntryTbd": "Pre-registration TBA",
+    "capEntry": "Pre-registration open",
+    "leadNote": "Entry: <m>{{fee}}</m>\n{{note}}.",
+    "entryText": "Pre-registration is required. We'll announce when it opens, so follow our official accounts to not miss it.",
+    "entryTextOpen": "Pre-registration is required. Use the button below to register."
   },
   "sponsors": {
     "capStage": "Stage",
@@ -182,7 +198,9 @@
     "items": {
       "first": {
         "q": "Can I come if I've never used Nostr?",
-        "a": "How to join will be announced once decided. Past editions had hands-on sessions for first-timers. The 2026 program is TBA."
+        "a": "How to join will be announced once decided. Past editions had hands-on sessions for first-timers. The 2026 program is TBA.",
+        "aEntry": "Yes, as long as you pre-register (how to pre-register will be announced once decided). Past editions had hands-on sessions for first-timers. The 2026 program is TBA.",
+        "aEntryOpen": "Yes, as long as you pre-register. Past editions had hands-on sessions for first-timers. The 2026 program is TBA."
       },
       "fee": {
         "q": "Is there a fee?",
@@ -203,6 +221,11 @@
       "zap": {
         "q": "What is a zap ⚡?",
         "a": "A feature for sending a small amount of bitcoin (Lightning) to a post. A slightly more serious cheer than a “like”."
+      },
+      "entry": {
+        "q": "Do I need to pre-register?",
+        "a": "Yes. We'll announce when registration opens.",
+        "aOpen": "Yes. Use the “Pre-register” button to sign up."
       }
     },
     "stepsKick": "NEW TO NOSTR / 4 STEPS",

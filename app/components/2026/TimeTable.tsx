@@ -1,12 +1,12 @@
 import { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026, formatTime } from '~/data/2026'
+import { EVENT_2026, formatTime } from '~/data/2026'
 import { useRevealOnce } from '~/hooks/useRevealOnce'
 import { Shape, YE } from '~/icons/2026/Shapes'
 
 import { Lead, QSection } from './QSection'
-import { localize } from './sections'
+import { formatDateLong, localize } from './sections'
 
 // TODO: 時刻が決まったら app/data/2026.ts に移す
 /** 時刻の目盛り（8 コマ）。未定のあいだは --:-- */
@@ -63,8 +63,11 @@ const LEGEND = [
 export const TimeTable = () => {
   const { t, i18n } = useTranslation()
   const [ganttRef, shown] = useRevealOnce<HTMLDivElement>(0.3)
-  const { date, startTime, endTime, venue, fee } = EVENT_2026
-  const dateText = formatDate2026(date)
+  const { date, startTime, endTime, venue, fee, feeNote, entryRequired } =
+    EVENT_2026
+  const dateText = formatDateLong(date, i18n)
+  // 日付だけ決まって時刻が未定のときは「--:-- 〜 --:--」ではなく「時刻は調整中」と出す
+  const timeTbd = !!date && !startTime && !endTime
   const raw = { interpolation: { escapeValue: false } }
 
   return (
@@ -78,7 +81,10 @@ export const TimeTable = () => {
       ]}
       caption={
         date
-          ? t('timetable.cap', { date: dateText, ...raw })
+          ? t(timeTbd ? 'timetable.capTimeTbd' : 'timetable.cap', {
+              date: dateText,
+              ...raw,
+            })
           : t('timetable.capTbd', { date: dateText, ...raw })
       }
     >
@@ -94,22 +100,58 @@ export const TimeTable = () => {
           <dd>
             {dateText}
             <small>
-              {t('timetable.timeRange', {
-                start: formatTime(startTime),
-                end: formatTime(endTime),
-                ...raw,
-              })}
+              {timeTbd
+                ? t('timetable.timeTbd')
+                : t('timetable.timeRange', {
+                    start: formatTime(startTime),
+                    end: formatTime(endTime),
+                    ...raw,
+                  })}
             </small>
           </dd>
         </div>
         <div>
           <dt>{t('timetable.venue')}</dt>
-          <dd>{venue ? localize(venue.name, i18n) : t('tbd.short')}</dd>
+          <dd>
+            {venue ? (
+              <>
+                {localize(venue.name, i18n)}
+                <span className="sub">
+                  {localize(venue.address, i18n)}{' '}
+                  <a
+                    href={venue.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('access.openMap')}
+                  </a>
+                </span>
+              </>
+            ) : (
+              t('tbd.short')
+            )}
+          </dd>
         </div>
         <div>
           <dt>{t('timetable.fee')}</dt>
-          <dd>{fee ? localize(fee, i18n) : t('tbd.short')}</dd>
+          <dd>
+            {fee ? localize(fee, i18n) : t('tbd.short')}
+            {fee && feeNote && (
+              <span className="sub">{localize(feeNote, i18n)}</span>
+            )}
+          </dd>
         </div>
+        {entryRequired && (
+          <div>
+            <dt>{t('timetable.entry')}</dt>
+            <dd>
+              {t('timetable.entryRequired')}
+              {!EVENT_2026.registrationUrl && (
+                <span className="sub">{t('timetable.entrySoon')}</span>
+              )}
+            </dd>
+          </div>
+        )}
       </dl>
       <span className="kick">{t('timetable.kick')}</span>
       {/* 横スクロールする表なので、キーボードでもスクロールできるようにフォーカスを受ける */}

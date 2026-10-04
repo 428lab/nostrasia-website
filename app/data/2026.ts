@@ -44,15 +44,33 @@ export type SponsorTier = {
 
 export const EVENT_2026 = {
   /** 開催日 'YYYY-MM-DD'。未定は null → 「2026.??.??」 */
-  date: null as string | null,
+  date: '2026-11-29' as string | null,
   /** 開始・終了・開場時刻 'HH:MM'。未定は null → 「--:--」 */
   startTime: null as string | null,
   endTime: null as string | null,
   doorsOpen: null as string | null,
   /** 会場。未定は null → 「会場 調整中」 */
-  venue: null as Venue | null,
+  venue: {
+    name: { ja: 'Crypto Lounge GOX', en: 'Crypto Lounge GOX' },
+    // 住所と地図は 2025 年版と同じ会場のもの。TODO(要確認): 2026 年も同じフロアか
+    address: {
+      ja: '〒160-0021 東京都新宿区歌舞伎町2丁目19-15 てなむタウンビル 6F',
+      en: '6F Tenam Town Building, 2-19-15 Kabukicho, Shinjuku-ku, Tokyo 160-0021',
+    },
+    mapUrl: 'https://maps.app.goo.gl/6Ux4pcr7VozUYfQc6',
+  } as Venue | null,
   /** 参加費の表記。未定は null → 「未定」 */
-  fee: null as Localized | null,
+  fee: { ja: '無料', en: 'Free' } as Localized | null,
+  /** 参加費に添える注記。無ければ null */
+  feeNote: {
+    ja: 'ドリンク飲み放題つき',
+    en: 'All-you-can-drink included',
+  } as Localized | null,
+  /**
+   * 参加には事前エントリーが必要か。true なら開催概要・参加ボタンのそばに「事前エントリーが必要です」を出す。
+   * エントリーの受付先（registrationUrl）が決まるまでは「受付開始は決まり次第お知らせします」を添える。
+   */
+  entryRequired: true,
   /** 参加登録フォーム。未定は null → ボタンは「調整中」でページ内の「いくら？」（#price）へ */
   registrationUrl: null as string | null,
   /**
@@ -114,3 +132,13 @@ export const formatDate2026 = (date: string | null) =>
 
 /** 表示用ヘルパー: 'HH:MM'、未定は '--:--' */
 export const formatTime = (time: string | null) => time ?? '--:--'
+
+/** 表示用ヘルパー: 'YYYY-MM-DD' の曜日。タイムゾーンに左右されないよう UTC で計算する。未定は null */
+export const weekday2026 = (date: string | null, lang: 'ja' | 'en') => {
+  if (!date) return null
+  const [y, m, d] = date.split('-').map(Number)
+  const w = new Date(Date.UTC(y, m - 1, d)).getUTCDay()
+  return lang === 'ja'
+    ? ['日', '月', '火', '水', '木', '金', '土'][w]
+    : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][w]
+}

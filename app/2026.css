@@ -514,6 +514,11 @@ html.js:not(.no-hydrate) .n26 .hq .hp {
   font: 700 13px/1.5 var(--zk);
   letter-spacing: 0;
 }
+/* 参加ボタンのそばの補足（事前エントリーが必要なこと） */
+.n26 .hnote {
+  font: 700 12.5px/1.5 var(--zk);
+  max-width: 22em;
+}
 .n26 .btn {
   display: inline-flex;
   align-items: center;
@@ -893,6 +898,17 @@ html.no-hydrate .n26 .gantt .gb {
   font: 600 0.6em/1 var(--ub);
   letter-spacing: 0.04em;
   margin-left: 6px;
+}
+/* 住所・エントリーの補足など、値の下に添える 1 行 */
+.n26 .ov dd .sub {
+  display: block;
+  font: 700 13.5px/1.6 var(--zk);
+  margin-top: 4px;
+}
+.n26 .ov dd .sub a {
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .n26 .tt-scroll {
   overflow-x: auto;

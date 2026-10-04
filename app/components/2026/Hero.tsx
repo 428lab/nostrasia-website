@@ -1,10 +1,10 @@
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026 } from '~/data/2026'
+import { EVENT_2026 } from '~/data/2026'
 
 import { JoinButton } from './JoinButton'
-import { localize } from './sections'
+import { formatDateLong, localize } from './sections'
 
 /**
  * NOSTR を幅いっぱいにフィットし、ASIA も同じ大きさにそろえる。
@@ -220,7 +220,7 @@ const PIECES: {
 export const Hero = () => {
   const { t, i18n } = useTranslation()
   const ref = useFitName()
-  const { heroVideo, venue } = EVENT_2026
+  const { heroVideo, venue, entryRequired, registrationUrl } = EVENT_2026
 
   return (
     <section className="hero" aria-labelledby="hero-title" ref={ref}>
@@ -272,10 +272,15 @@ export const Hero = () => {
           <Trans t={t} i18nKey="hero.catch" />
         </p>
         <p className="meta">
-          {formatDate2026(EVENT_2026.date)}
+          {formatDateLong(EVENT_2026.date, i18n)}
           <span>{venue ? localize(venue.name, i18n) : t('tbd.venue')}</span>
         </p>
         <JoinButton variant="hero" />
+        {entryRequired && (
+          <p className="hnote">
+            {registrationUrl ? t('hero.entryNoteOpen') : t('hero.entryNote')}
+          </p>
+        )}
       </div>
     </section>
   )

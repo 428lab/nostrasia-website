@@ -9,8 +9,9 @@ import { localize } from './sections'
 
 export const Price = () => {
   const { t, i18n } = useTranslation()
-  const { fee, registrationUrl } = EVENT_2026
+  const { fee, feeNote, registrationUrl, entryRequired } = EVENT_2026
   const feeText = fee ? localize(fee, i18n) : null
+  const noteText = fee && feeNote ? localize(feeNote, i18n) : null
   const raw = { interpolation: { escapeValue: false } }
 
   return (
@@ -26,10 +27,18 @@ export const Price = () => {
       caption={
         <>
           {feeText
-            ? t('price.capFee', { fee: feeText, ...raw })
+            ? noteText
+              ? t('price.capFeeNote', { fee: feeText, note: noteText, ...raw })
+              : t('price.capFee', { fee: feeText, ...raw })
             : t('price.capFeeTbd')}
           {' ・ '}
-          {registrationUrl ? t('price.capReg') : t('price.capRegTbd')}
+          {entryRequired
+            ? registrationUrl
+              ? t('price.capEntry')
+              : t('price.capEntryTbd')
+            : registrationUrl
+              ? t('price.capReg')
+              : t('price.capRegTbd')}
         </>
       }
     >
@@ -39,18 +48,31 @@ export const Price = () => {
         </p>
       )}
       {feeText ? (
-        <Lead i18nKey="price.lead" values={{ fee: feeText }} />
+        noteText ? (
+          <Lead
+            i18nKey="price.leadNote"
+            values={{ fee: feeText, note: noteText }}
+          />
+        ) : (
+          <Lead i18nKey="price.lead" values={{ fee: feeText }} />
+        )
       ) : (
         <Lead i18nKey="price.leadTbd" />
       )}
-      {!registrationUrl && <p className="txt">{t('price.text')}</p>}
+      {entryRequired ? (
+        <p className="txt">
+          {registrationUrl ? t('price.entryTextOpen') : t('price.entryText')}
+        </p>
+      ) : (
+        !registrationUrl && <p className="txt">{t('price.text')}</p>
+      )}
       <p className="acts">
         {registrationUrl ? (
           <JoinButton variant="section" />
         ) : (
           <span className="off">
-            ⚡ {t('join.register')}
-            <small>{t('join.soon')}</small>
+            ⚡ {t(entryRequired ? 'join.entry' : 'join.register')}
+            <small>{t(entryRequired ? 'join.entrySoon' : 'join.soon')}</small>
           </span>
         )}
         <a className="btn2" href="#footer">

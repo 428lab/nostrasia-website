@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from 'react'
 
-import { EVENT_2026 } from '~/data/2026'
+import { EVENT_2026, weekday2026 } from '~/data/2026'
 
 import type { SectionId } from './sections'
 
@@ -82,8 +82,9 @@ const Person = ({
   </>
 )
 
-/** 「いつ？」の 7 つの四角。日付が決まったら（例として）中央の 1 つを黄で塗る */
+/** 「いつ？」の 7 つの四角（日〜土）。日付が決まったら、その曜日の 1 つを黄で塗る */
 const WEEK_X = [112, 139, 166, 193, 220, 247, 274]
+const WEEKDAYS_JA = ['日', '月', '火', '水', '木', '金', '土']
 
 const SPEAKER_SHAPES = [
   { x: 145, body: 'fp', head: 'fw' },
@@ -96,6 +97,8 @@ const SPEAKER_SHAPES = [
 /** 答えの図形。w は最後の字群の字数 × 100（viewBox の幅） */
 const answers = (): Record<SectionId, { w: number; pieces: ReactNode[] }> => {
   const { date, venue, fee } = EVENT_2026
+  // 未定なら -1（どれも塗らない）。weekday2026 は UTC で計算するので SSR とずれない
+  const weekday = WEEKDAYS_JA.indexOf(weekday2026(date, 'ja') ?? '')
   return {
     about: {
       w: 200,
@@ -117,8 +120,8 @@ const answers = (): Record<SectionId, { w: number; pieces: ReactNode[] }> => {
     timetable: {
       w: 300,
       pieces: WEEK_X.map((x, i) => (
-        // 日付が決まったら、例として中央の 1 つを塗る（曜日とは対応させない）
-        <Sq key={x} x={x} y={77} s={22} filled={!!date && i === 3} />
+        // 1 つ目が日曜。開催日の曜日の位置を塗る
+        <Sq key={x} x={x} y={77} s={22} filled={i === weekday} />
       )),
     },
     speakers: {
