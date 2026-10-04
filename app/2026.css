@@ -378,8 +378,8 @@ html.js .n26.menu-open .gnav li {
   z-index: 1;
   container-type: size;
   height: clamp(220px, 36svh, 340px);
-  /* 上の余白は、ひとっ跳びしたときに頭が文字に重ならないぶん */
-  margin: 40px 20px 0;
+  /* 歩くときは左下に小さく置くので、ひとっ跳びしても頭は文字に届かない（上の余白は要らない） */
+  margin: 0 20px;
 }
 .n26 .hero-video {
   position: absolute;
@@ -398,15 +398,22 @@ html.js .n26.menu-open .gnav li {
 .n26 .stage {
   /* 図形の 1 単位。cqmin はステージ（container）を基準に、使う側の要素で解決される */
   --u: 1.05cqmin;
-  /* 足の裏の高さ（中心から 49 - 8 単位下）。地面の線と景色の基準 */
-  --ground: calc(50% + 41 * var(--u));
-  /* サボテンが流れてくる周期。ダチョウのひとっ跳びも同じ周期で回す */
+  /* 左下へ寄せたダチョウの 1 単位。近景の景色もこの縮尺で描く */
+  --b: calc(var(--u) * 0.62);
+  /* 地面の高さ（ステージの下端寄り）。左下へ寄せたダチョウの足の裏と、景色の基準 */
+  --ground: calc(100% - 9 * var(--u));
+  /* 近景のサボテンが流れてくる周期。ダチョウのひとっ跳びも同じ周期で回す */
   --run: 2.4s;
 }
+.n26 .rig,
 .n26 .bird {
   position: absolute;
   inset: 0;
+}
+.n26 .rig {
   z-index: 1;
+  /* 足元（中心から 49 - 8 単位下）を基準に縮め、傾ける */
+  transform-origin: 50% calc(50% + 41 * var(--u));
 }
 .n26 .s {
   --fin: translate(-50%, -50%)
@@ -467,92 +474,172 @@ html.js:not(.no-hydrate) .n26 .stage.boom .s {
   }
 }
 /*
- * 歩行（0.6 秒で 2 歩）。脚は付け根を軸に振り、足は脚の先に付いていく。
+ * 歩行（0.6 秒で 2 歩）。脚は太もも・すね・足の 3 節で、股関節と膝を合成した transform で振る
+ * （各図形は兄弟要素なので、股関節・膝まで translate してから回し、戻す）。
  * 胴は 1 歩ごとに少し上下し、首と頭は歩調に合わせて少し前後する。
  * 上下・前後は translate プロパティで足し、組み上がった位置（transform）はそのまま使う。
  */
 html.js:not(.no-hydrate) .n26 .stage.walk .s.body {
-  animation: n26-bob 0.15s ease-in-out infinite alternate;
+  animation: n26-bob 0.3s ease-in-out infinite;
 }
 html.js:not(.no-hydrate) .n26 .stage.walk .s.neck {
   --nd: 0.7;
-  animation: n26-nod 0.15s ease-in-out infinite alternate;
+  animation: n26-nod 0.3s ease-in-out infinite;
 }
 html.js:not(.no-hydrate) .n26 .stage.walk .s.head {
   --nd: 1.5;
-  animation: n26-nod 0.15s ease-in-out infinite alternate;
+  animation: n26-nod 0.3s ease-in-out infinite;
 }
-html.js:not(.no-hydrate) .n26 .stage.walk .s.leg {
-  animation: n26-leg 0.6s ease-in-out infinite;
+html.js:not(.no-hydrate) .n26 .stage.walk .s.thigh {
+  animation: n26-thigh 0.6s linear infinite;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .s.shin {
+  animation: n26-shin 0.6s linear infinite;
 }
 html.js:not(.no-hydrate) .n26 .stage.walk .s.foot {
-  animation: n26-foot 0.6s ease-in-out infinite;
+  animation: n26-foot 0.6s linear infinite;
 }
 html.js:not(.no-hydrate) .n26 .stage.walk .s.l2 {
   animation-delay: -0.3s;
 }
 @keyframes n26-bob {
-  to {
-    translate: 0 calc(-0.8 * var(--u));
+  50% {
+    translate: 0 calc(-1.2 * var(--u));
   }
 }
 @keyframes n26-nod {
-  to {
-    translate: calc(var(--nd) * var(--u)) calc(-0.8 * var(--u));
+  50% {
+    translate: calc(var(--nd) * var(--u)) calc(-1.2 * var(--u));
   }
 }
-/* 脚の長さ 26 単位・振り幅 ±20° のとき、足先は横に ±8.9、上に 1.6 動く */
-@keyframes n26-leg {
+/*
+ * 関節角（HeroGame の GAIT と同じ表）。股関節は正で足が前、膝は正ですねが後ろへ折れる。
+ * ダチョウは右向きなので、足を前へ出す股関節の回転は CSS では負になる。
+ * 0% 着地 / 25% 立脚中央 / 50% 蹴り出し / 62% 膝を畳んで持ち上げる / 80% 前へ振り出す
+ * 太もも 12・すね 14 単位。股関節は太ももの中心から 6、すねの中心から 19、足の中心から 27 上。
+ */
+@keyframes n26-thigh {
   0%,
   100% {
-    transform: var(--fin) translateY(calc(var(--h) * var(--u) * -0.5))
-      rotate(20deg) translateY(calc(var(--h) * var(--u) * 0.5));
+    transform: var(--fin) translateY(calc(-6 * var(--u))) rotate(-26deg)
+      translateY(calc(6 * var(--u)));
   }
-  25%,
-  75% {
-    transform: var(--fin);
+  25% {
+    transform: var(--fin) translateY(calc(-6 * var(--u))) rotate(0deg)
+      translateY(calc(6 * var(--u)));
   }
   50% {
-    transform: var(--fin) translateY(calc(var(--h) * var(--u) * -0.5))
-      rotate(-20deg) translateY(calc(var(--h) * var(--u) * 0.5));
+    transform: var(--fin) translateY(calc(-6 * var(--u))) rotate(26deg)
+      translateY(calc(6 * var(--u)));
+  }
+  62% {
+    transform: var(--fin) translateY(calc(-6 * var(--u))) rotate(12deg)
+      translateY(calc(6 * var(--u)));
+  }
+  80% {
+    transform: var(--fin) translateY(calc(-6 * var(--u))) rotate(-18deg)
+      translateY(calc(6 * var(--u)));
+  }
+}
+@keyframes n26-shin {
+  0%,
+  100% {
+    transform: var(--fin) translateY(calc(-19 * var(--u))) rotate(-26deg)
+      translateY(calc(12 * var(--u))) rotate(0deg)
+      translateY(calc(7 * var(--u)));
+  }
+  25% {
+    transform: var(--fin) translateY(calc(-19 * var(--u))) rotate(0deg)
+      translateY(calc(12 * var(--u))) rotate(0deg)
+      translateY(calc(7 * var(--u)));
+  }
+  50% {
+    transform: var(--fin) translateY(calc(-19 * var(--u))) rotate(26deg)
+      translateY(calc(12 * var(--u))) rotate(0deg)
+      translateY(calc(7 * var(--u)));
+  }
+  62% {
+    transform: var(--fin) translateY(calc(-19 * var(--u))) rotate(12deg)
+      translateY(calc(12 * var(--u))) rotate(70deg)
+      translateY(calc(7 * var(--u)));
+  }
+  80% {
+    transform: var(--fin) translateY(calc(-19 * var(--u))) rotate(-18deg)
+      translateY(calc(12 * var(--u))) rotate(40deg)
+      translateY(calc(7 * var(--u)));
   }
 }
 @keyframes n26-foot {
   0%,
   100% {
-    translate: calc(-8.9 * var(--u)) calc(-1.6 * var(--u));
+    transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(-26deg)
+      translateY(calc(12 * var(--u))) rotate(0deg)
+      translateY(calc(15 * var(--u)));
   }
-  25%,
-  75% {
-    translate: 0 0;
+  25% {
+    transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(0deg)
+      translateY(calc(12 * var(--u))) rotate(0deg)
+      translateY(calc(15 * var(--u)));
   }
   50% {
-    translate: calc(8.9 * var(--u)) calc(-1.6 * var(--u));
+    transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(26deg)
+      translateY(calc(12 * var(--u))) rotate(0deg)
+      translateY(calc(15 * var(--u)));
+  }
+  62% {
+    transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(12deg)
+      translateY(calc(12 * var(--u))) rotate(70deg)
+      translateY(calc(15 * var(--u)));
+  }
+  80% {
+    transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(-18deg)
+      translateY(calc(12 * var(--u))) rotate(40deg)
+      translateY(calc(15 * var(--u)));
   }
 }
-/* サボテンが真下に来るころ（周期の半ば過ぎ）に、全体でひとっ跳びする */
+/*
+ * 組み上がったら左下へ寄せて縮め（.rig）、歩くあいだは少し前傾させる。
+ * 基準は足元（中心から 41 単位下）。足元を左から 24cqw・--ground の高さへ動かす。
+ */
+html.js:not(.no-hydrate) .n26 .rig {
+  transition:
+    translate 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    scale 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    rotate 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html.js:not(.no-hydrate) .n26 .stage.placed .rig {
+  translate: -26cqw calc(50cqh - 50 * var(--u));
+  scale: 0.62;
+}
+html.js:not(.no-hydrate) .n26 .stage.walk .rig {
+  rotate: -4deg;
+}
+/*
+ * 近景のサボテンが足元（24cqw）を通るころ（周期の 74%）に、全体でひとっ跳びする。
+ * サボテンは 100cqw + 4cqw から -4cqw まで流れるので、(100 + 4 - 24) / 108 ≒ 0.74
+ */
 html.js:not(.no-hydrate) .n26 .stage.walk .bird {
   animation: n26-leap var(--run) linear infinite;
 }
 @keyframes n26-leap {
   0%,
-  39% {
+  58% {
     translate: 0 0;
     animation-timing-function: cubic-bezier(0.3, 0.7, 0.6, 1);
   }
-  53% {
-    translate: 0 calc(-14 * var(--u));
+  74% {
+    translate: 0 calc(-13 * var(--u));
     animation-timing-function: cubic-bezier(0.4, 0, 0.7, 0.3);
   }
-  67%,
+  90%,
   100% {
     translate: 0 0;
   }
 }
 /*
- * 地面と景色。歩いているときだけ出す。足の高さから下にしか置かず、ステージの外は切る。
- * 山は遅く、サボテンは速く、右から左へ流す（スクロール量とは関係なく時間で回す）。
- * どれもステージの中心を周期の半分で通るので、ダチョウのひとっ跳びと周期の中で位置が揃う。
+ * 地面と景色。左下へ寄せてから出す。足の高さから下にしか置かず、ステージの外は切る。
+ * 遠いものほど遅く・薄く・小さくして、右から左へ流す（スクロール量とは関係なく時間で回す）。
+ * 奥から 山 / 中景のサボテン / 地面の線 / 近景のサボテン / 手前の小石。
  */
 .n26 .scene {
   display: none;
@@ -562,51 +649,98 @@ html.js:not(.no-hydrate) .n26 .stage.walk .bird {
   overflow: hidden;
   pointer-events: none;
 }
-html.js:not(.no-hydrate) .n26 .stage.walk .scene {
+html.js:not(.no-hydrate) .n26 .stage.placed .scene {
   display: block;
+  animation: n26-fade 0.5s ease-out both;
 }
 .n26 .scene::before {
   content: '';
   position: absolute;
+  z-index: 2;
   left: 0;
   right: 0;
   top: var(--ground);
   height: 2px;
   background: var(--ink);
   opacity: 0.6;
+  transform-origin: 24% 50%;
 }
+html.js:not(.no-hydrate) .n26 .stage.placed .scene::before {
+  animation: n26-ground 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes n26-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes n26-ground {
+  from {
+    scale: 0 1;
+  }
+}
+/* 左端を基準に、中心を 100cqw + far から -far まで流す（far は自身の幅の半分程度） */
 .n26 .scene .mt,
-.n26 .scene .cactus {
-  --far: 20;
+.n26 .scene .cactus,
+.n26 .scene .pebble {
   position: absolute;
-  left: 50%;
+  left: 0;
   top: var(--ground);
   translate: -50% -100%;
+  transform: translateX(calc(100cqw + var(--far)));
+}
+.n26 .scene .mt,
+.n26 .scene .cactus.mid,
+.n26 .scene .pebble {
   animation: n26-pass var(--run) linear infinite;
 }
 .n26 .scene .mt {
-  --far: 28;
+  --far: calc(17 * var(--u));
+  z-index: 0;
+  top: calc(var(--ground) - 1.5 * var(--u));
   width: calc(30 * var(--u));
   height: calc(12 * var(--u));
   background: var(--mute);
-  opacity: 0.14;
+  opacity: 0.1;
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  animation-duration: 15s;
+  animation-duration: 18s;
 }
 .n26 .scene .mt:nth-child(2) {
   width: calc(22 * var(--u));
   height: calc(8 * var(--u));
-  animation-delay: -5s;
+  animation-delay: -6s;
 }
 .n26 .scene .mt:nth-child(3) {
   width: calc(34 * var(--u));
   height: calc(10 * var(--u));
-  animation-delay: -10s;
+  animation-delay: -12s;
 }
+/* サボテンの寸法は --cu で取る（近景はダチョウと同じ縮尺 --b、中景はその 0.55 倍） */
 .n26 .scene .cactus {
-  width: calc(10 * var(--u));
-  height: calc(11 * var(--u));
-  opacity: 0.7;
+  --cu: var(--b);
+  --far: 4cqw;
+  z-index: 3;
+  width: calc(10 * var(--cu));
+  height: calc(11 * var(--cu));
+  opacity: 0.9;
+}
+/* 近景のサボテンはひとっ跳びと同じ時刻に流し始め、周期の中で位置を揃える */
+html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
+  animation: n26-pass var(--run) linear infinite;
+}
+.n26 .scene .cactus.mid {
+  --cu: calc(var(--b) * 0.55);
+  --far: calc(6 * var(--cu));
+  z-index: 1;
+  top: calc(var(--ground) - 1 * var(--u));
+  opacity: 0.28;
+  animation-duration: 6.5s;
+}
+/* 並び: 山 3・中景 3（4〜6 番目）・近景 1・小石 4（8〜11 番目） */
+.n26 .scene .cactus.mid:nth-child(5) {
+  animation-delay: -2.2s;
+}
+.n26 .scene .cactus.mid:nth-child(6) {
+  animation-delay: -4.4s;
 }
 .n26 .scene .cactus i,
 .n26 .scene .cactus::before,
@@ -616,7 +750,7 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene {
 }
 .n26 .scene .cactus i {
   left: 50%;
-  width: calc(3.6 * var(--u));
+  width: calc(3.6 * var(--cu));
   height: 100%;
   translate: -50% 0;
   background: var(--te);
@@ -625,32 +759,55 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene {
 .n26 .scene .cactus::before,
 .n26 .scene .cactus::after {
   content: '';
-  width: calc(3.4 * var(--u));
-  height: calc(4.5 * var(--u));
+  width: calc(3.4 * var(--cu));
+  height: calc(4.5 * var(--cu));
   border: 0 solid var(--te);
-  border-bottom-width: calc(1.8 * var(--u));
+  border-bottom-width: calc(1.8 * var(--cu));
 }
 .n26 .scene .cactus::before {
   left: 0;
-  bottom: calc(3 * var(--u));
-  border-left-width: calc(1.8 * var(--u));
+  bottom: calc(3 * var(--cu));
+  border-left-width: calc(1.8 * var(--cu));
 }
 .n26 .scene .cactus::after {
   right: 0;
-  bottom: calc(4.5 * var(--u));
-  height: calc(3.6 * var(--u));
-  border-right-width: calc(1.8 * var(--u));
+  bottom: calc(4.5 * var(--cu));
+  height: calc(3.6 * var(--cu));
+  border-right-width: calc(1.8 * var(--cu));
+}
+.n26 .scene .pebble {
+  --far: calc(2 * var(--b));
+  z-index: 4;
+  top: calc(var(--ground) + 3 * var(--u));
+  width: calc(2 * var(--b));
+  height: var(--b);
+  border-radius: 999px;
+  background: var(--ink);
+  opacity: 0.45;
+  animation-duration: 1.6s;
+}
+.n26 .scene .pebble:nth-child(9) {
+  top: calc(var(--ground) + 2 * var(--u));
+  animation-delay: -0.4s;
+}
+.n26 .scene .pebble:nth-child(10) {
+  top: calc(var(--ground) + 4 * var(--u));
+  animation-delay: -0.8s;
+}
+.n26 .scene .pebble:nth-child(11) {
+  top: calc(var(--ground) + 2.5 * var(--u));
+  animation-delay: -1.2s;
 }
 @keyframes n26-pass {
   from {
-    transform: translateX(calc(50cqw + var(--far) * var(--u)));
+    transform: translateX(calc(100cqw + var(--far)));
   }
   to {
-    transform: translateX(calc(-50cqw - var(--far) * var(--u)));
+    transform: translateX(calc(-1 * var(--far)));
   }
 }
 /* ジャンプゲーム中は、歩くダチョウと景色を隠して canvas を重ねる */
-.n26 .stage.game .bird,
+.n26 .stage.game .rig,
 .n26 .stage.game .scene {
   visibility: hidden;
 }

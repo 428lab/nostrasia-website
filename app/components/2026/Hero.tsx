@@ -11,8 +11,10 @@ import { ROLES, SHAPES } from './ostrich'
 
 type HeroVideoSource = NonNullable<(typeof EVENT_2026)['heroVideo']>
 
-/** 飛来アニメーション（CSS）が終わるころ。以降は歩く */
+/** 飛来アニメーション（CSS）が終わるころ。以降は左下へ寄せる */
 const ASSEMBLED_MS = 2000
+/** 左下へ寄せて景色を出すあいだ。以降は歩く */
+const SETTLE_MS = 700
 /** コナミコマンドで四散してから、組み上げ直しを始めるまで */
 const SCATTER_MS = 1200
 /** この時間内に TAP_COUNT 回タップするとジャンプゲームを始める */
@@ -22,8 +24,11 @@ const TAP_COUNT = 5
 // prettier-ignore
 const KONAMI = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a']
 
-/** build: 飛来中 / walk: 組み上がった（動ける環境では歩く）/ boom: 四散中 / game: ジャンプゲーム中 */
-type Phase = 'build' | 'walk' | 'boom' | 'game'
+/**
+ * build: 飛来中 / settle: 左下へ寄せて景色を出す / walk: 組み上がった（動ける環境では歩く）
+ * boom: 四散中 / game: ジャンプゲーム中
+ */
+type Phase = 'build' | 'settle' | 'walk' | 'boom' | 'game'
 
 const isTyping = (target: EventTarget | null) =>
   target instanceof HTMLElement &&
@@ -52,14 +57,16 @@ export const Hero = () => {
   useEffect(() => {
     const skip = prefersReducedMotion() || hydratedLate()
     setStill(skip)
-    const timer = window.setTimeout(
-      () => setPhase('walk'),
-      skip ? 0 : ASSEMBLED_MS,
-    )
-    return () => window.clearTimeout(timer)
+    const timers = skip
+      ? [window.setTimeout(() => setPhase('walk'), 0)]
+      : [
+          window.setTimeout(() => setPhase('settle'), ASSEMBLED_MS),
+          window.setTimeout(() => setPhase('walk'), ASSEMBLED_MS + SETTLE_MS),
+        ]
+    return () => timers.forEach((id) => window.clearTimeout(id))
   }, [])
 
-  // コナミコマンド（↑↑↓↓←→←→BA）で四散 → 組み上げ直し → 歩行に戻る
+  // コナミコマンド（↑↑↓↓←→←→BA）で四散 → 組み上げ直し → 左下へ寄せる → 歩行に戻る
   useEffect(() => {
     const timers: number[] = []
     let pos = 0
@@ -87,7 +94,11 @@ export const Hero = () => {
       setPhase('boom')
       timers.push(
         window.setTimeout(() => setPhase('build'), SCATTER_MS),
-        window.setTimeout(() => setPhase('walk'), SCATTER_MS + ASSEMBLED_MS),
+        window.setTimeout(() => setPhase('settle'), SCATTER_MS + ASSEMBLED_MS),
+        window.setTimeout(
+          () => setPhase('walk'),
+          SCATTER_MS + ASSEMBLED_MS + SETTLE_MS,
+        ),
       )
     }
     window.addEventListener('keydown', onKey)
@@ -114,14 +125,15 @@ export const Hero = () => {
     return () => stage.removeEventListener('click', onClick)
   }, [])
 
-  const stageClass =
-    phase === 'build'
-      ? 'stage'
-      : phase === 'walk'
-        ? still
-          ? 'stage done'
-          : 'stage done walk'
-        : `stage done ${phase}`
+  // placed: 左下へ寄せて景色を出している（settle 以降。still では中央・大のまま）
+  const stageClass = [
+    'stage',
+    phase !== 'build' && 'done',
+    phase !== 'build' && !still && 'placed',
+    phase === 'walk' ? !still && 'walk' : phase !== 'build' && phase,
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   const venue = EVENT_2026.venue
     ? localized(EVENT_2026.venue.name)
@@ -178,35 +190,51 @@ export const Hero = () => {
           <i className="mt" />
           <i className="mt" />
           <i className="mt" />
+          <span className="cactus mid">
+            <i />
+          </span>
+          <span className="cactus mid">
+            <i />
+          </span>
+          <span className="cactus mid">
+            <i />
+          </span>
           <span className="cactus">
             <i />
           </span>
+          <i className="pebble" />
+          <i className="pebble" />
+          <i className="pebble" />
+          <i className="pebble" />
         </div>
-        <div className="bird" aria-hidden="true">
-          {SHAPES.map(({ k, c, ...v }, i) => (
-            <i
-              key={i}
-              className={`s ${k} ${ROLES[i]}`}
-              style={
-                {
-                  '--i': i,
-                  '--c': c,
-                  '--w': v.w,
-                  '--h': v.h,
-                  '--fx': v.fx,
-                  '--fy': v.fy,
-                  '--fr': v.fr,
-                  '--sx': v.sx,
-                  '--sy': v.sy,
-                  '--sr': v.sr,
-                  '--ss': v.ss,
-                  '--bx': scatter?.[i][0] ?? 0,
-                  '--by': scatter?.[i][1] ?? 0,
-                  '--br': scatter?.[i][2] ?? 0,
-                } as CSSProperties
-              }
-            />
-          ))}
+        {/* rig: 置き場所と大きさ（左下へ寄せる）/ bird: ひとっ跳び */}
+        <div className="rig">
+          <div className="bird" aria-hidden="true">
+            {SHAPES.map(({ k, c, ...v }, i) => (
+              <i
+                key={i}
+                className={`s ${k} ${ROLES[i]}`}
+                style={
+                  {
+                    '--i': i,
+                    '--c': c,
+                    '--w': v.w,
+                    '--h': v.h,
+                    '--fx': v.fx,
+                    '--fy': v.fy,
+                    '--fr': v.fr,
+                    '--sx': v.sx,
+                    '--sy': v.sy,
+                    '--sr': v.sr,
+                    '--ss': v.ss,
+                    '--bx': scatter?.[i][0] ?? 0,
+                    '--by': scatter?.[i][1] ?? 0,
+                    '--br': scatter?.[i][2] ?? 0,
+                  } as CSSProperties
+                }
+              />
+            ))}
+          </div>
         </div>
         {phase === 'game' && <HeroGame onClose={() => setPhase('walk')} />}
       </div>

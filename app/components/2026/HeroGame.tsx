@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { FOOT_Y, LEG_LEN, SHAPES } from './ostrich'
+import { FOOT_Y, ROLES, SHAPES, SHIN_LEN, THIGH_LEN } from './ostrich'
 
 /**
  * ヒーローのダチョウを 5 回タップすると始まるジャンプゲーム（恐竜ゲーム相当）。
@@ -25,6 +25,8 @@ const READY_MS = 1000
 const RETRY_LOCK_MS = 400
 /** zap（低く飛ぶ稲妻）を出し始めるまでの時間 */
 const ZAP_AFTER_S = 12
+/** 歩行 1 周期（2 歩）。ヒーローの CSS と同じ */
+const GAIT_MS = 600
 
 const INK = '#161616'
 const TEAL = '#0E7C7B'
@@ -106,37 +108,65 @@ const drawShape = (
   ctx.restore()
 }
 
-/** ダチョウを足の裏（x, baseY）基準で描く。swing は脚の振り角（度） */
+/**
+ * 歩行 1 周期の関節角（CSS の n26-thigh / n26-shin / n26-foot と同じ表）。
+ * at: 周期の位置、hip: 股関節（正で足が前）、knee: 膝（正ですねが後ろへ折れる）
+ */
+// prettier-ignore
+const GAIT = [
+  { at: 0, hip: 26, knee: 0 },
+  { at: 0.25, hip: 0, knee: 0 },
+  { at: 0.5, hip: -26, knee: 0 },
+  { at: 0.62, hip: -12, knee: 70 },
+  { at: 0.8, hip: 18, knee: 40 },
+  { at: 1, hip: 26, knee: 0 },
+] as const
+
+/** 周期の位置 p（0〜1）での関節角を、表のあいだを直線で補う */
+const gait = (p: number) => {
+  const n = GAIT.findIndex((g) => g.at > p)
+  const a = GAIT[Math.max(0, n - 1)]
+  const b = GAIT[n < 0 ? GAIT.length - 1 : n]
+  const r = b.at === a.at ? 0 : (p - a.at) / (b.at - a.at)
+  return {
+    hip: a.hip + (b.hip - a.hip) * r,
+    knee: a.knee + (b.knee - a.knee) * r,
+  }
+}
+
+/** 股関節から図形の中心までの長さ（膝より上は太ももだけ、下は膝を通る） */
+const DROP = { thigh: THIGH_LEN / 2, shin: SHIN_LEN / 2, foot: SHIN_LEN + 1 }
+
+/** ダチョウを足の裏（x, baseY）基準で描く。p1・p2 は左右の脚の歩行周期の位置 */
 const drawBird = (
   ctx: CanvasRenderingContext2D,
   x: number,
   baseY: number,
-  swing: number,
+  p1: number,
+  p2: number,
 ) => {
   SHAPES.forEach((shape, i) => {
-    let cx = x + shape.fx * K
-    let cy = baseY + (shape.fy - FOOT_Y) * K
-    const a = i === 8 || i === 10 ? swing : -swing
-    if (i === 8 || i === 9) {
-      // 脚は付け根を軸に振る
-      const half = (shape.h * K) / 2
-      ctx.save()
-      ctx.translate(cx, cy)
-      ctx.rotate((shape.fr * Math.PI) / 180)
-      ctx.translate(0, -half)
-      ctx.rotate((a * Math.PI) / 180)
-      ctx.translate(0, half)
-      drawShape(ctx, shape, 0, 0, 0)
-      ctx.restore()
+    const cx = x + shape.fx * K
+    const cy = baseY + (shape.fy - FOOT_Y) * K
+    const [role, side] = ROLES[i].split(' ')
+    if (!(role in DROP)) {
+      drawShape(ctx, shape, cx, cy, shape.fr)
       return
     }
-    if (i === 10 || i === 11) {
-      // 足は脚の先に付いていく
-      const r = (a * Math.PI) / 180
-      cx += -LEG_LEN * K * Math.sin(r)
-      cy += -LEG_LEN * K * (1 - Math.cos(r))
+    const part = role as keyof typeof DROP
+    // 脚は股関節を軸に太ももを振り、すねと足は膝でさらに折る
+    const { hip, knee } = gait(side === 'l1' ? p1 : p2)
+    const fromHip = part === 'thigh' ? DROP.thigh : THIGH_LEN + DROP[part]
+    ctx.save()
+    ctx.translate(cx, cy - fromHip * K)
+    ctx.rotate((-hip * Math.PI) / 180)
+    if (part !== 'thigh') {
+      ctx.translate(0, THIGH_LEN * K)
+      ctx.rotate((knee * Math.PI) / 180)
     }
-    drawShape(ctx, shape, cx, cy, shape.fr)
+    ctx.translate(0, DROP[part] * K)
+    drawShape(ctx, shape, 0, 0, 0)
+    ctx.restore()
   })
 }
 
@@ -278,13 +308,15 @@ export const HeroGame = ({ onClose }: { onClose: () => void }) => {
       ctx.fillStyle = INK
       ctx.fillRect(0, GROUND, viewW, 0.5)
       s.obstacles.forEach((o) => drawObstacle(ctx, o))
-      const swing =
-        s.mode !== 'run'
-          ? 0
-          : s.y > 0
-            ? 12
-            : Math.sin((now / 360) * Math.PI * 2) * 22
-      drawBird(ctx, BIRD_X, GROUND - s.y, swing)
+      // 走っていないときは両脚をまっすぐ、跳んでいる間は片脚を畳んだ形で止める
+      const p = s.mode !== 'run' ? 0.25 : s.y > 0 ? 0.8 : (now / GAIT_MS) % 1
+      drawBird(
+        ctx,
+        BIRD_X,
+        GROUND - s.y,
+        p,
+        s.mode !== 'run' ? 0.25 : (p + 0.5) % 1,
+      )
 
       ctx.fillStyle = INK
       ctx.textBaseline = 'top'
