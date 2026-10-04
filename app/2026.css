@@ -476,12 +476,10 @@ html.js:not(.no-hydrate) .n26 .stage.boom .s {
 /*
  * 歩行（0.6 秒で 2 歩）。脚は太もも・すね・足の 3 節で、股関節と膝を合成した transform で振る
  * （各図形は兄弟要素なので、股関節・膝まで translate してから回し、戻す）。
- * 胴は 1 歩ごとに少し上下し、首と頭は歩調に合わせて少し前後する。
- * 上下・前後は translate プロパティで足し、組み上がった位置（transform）はそのまま使う。
+ * 脚を開くと足が浮くので、そのぶん全体（.bird）を沈めて、立っている足を地面に付けたままにする。
+ * 首と頭は歩調に合わせて少し前後する（translate プロパティで足す）。
+ * 足は立脚のあいだ地面と平行に保つ（最後の rotate で脚の傾きを打ち消す）。
  */
-html.js:not(.no-hydrate) .n26 .stage.walk .s.body {
-  animation: n26-bob 0.3s ease-in-out infinite;
-}
 html.js:not(.no-hydrate) .n26 .stage.walk .s.neck {
   --nd: 0.7;
   animation: n26-nod 0.3s ease-in-out infinite;
@@ -502,14 +500,9 @@ html.js:not(.no-hydrate) .n26 .stage.walk .s.foot {
 html.js:not(.no-hydrate) .n26 .stage.walk .s.l2 {
   animation-delay: -0.3s;
 }
-@keyframes n26-bob {
-  50% {
-    translate: 0 calc(-1.2 * var(--u));
-  }
-}
 @keyframes n26-nod {
   50% {
-    translate: calc(var(--nd) * var(--u)) calc(-1.2 * var(--u));
+    translate: calc(var(--nd) * var(--u)) 0;
   }
 }
 /*
@@ -574,52 +567,64 @@ html.js:not(.no-hydrate) .n26 .stage.walk .s.l2 {
   100% {
     transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(-26deg)
       translateY(calc(12 * var(--u))) rotate(0deg)
-      translateY(calc(15 * var(--u)));
+      translateY(calc(15 * var(--u))) rotate(26deg);
   }
   25% {
     transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(0deg)
       translateY(calc(12 * var(--u))) rotate(0deg)
-      translateY(calc(15 * var(--u)));
+      translateY(calc(15 * var(--u))) rotate(0deg);
   }
   50% {
     transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(26deg)
       translateY(calc(12 * var(--u))) rotate(0deg)
-      translateY(calc(15 * var(--u)));
+      translateY(calc(15 * var(--u))) rotate(-26deg);
   }
   62% {
     transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(12deg)
       translateY(calc(12 * var(--u))) rotate(70deg)
-      translateY(calc(15 * var(--u)));
+      translateY(calc(15 * var(--u))) rotate(-60deg);
   }
   80% {
     transform: var(--fin) translateY(calc(-27 * var(--u))) rotate(-18deg)
       translateY(calc(12 * var(--u))) rotate(40deg)
-      translateY(calc(15 * var(--u)));
+      translateY(calc(15 * var(--u))) rotate(-22deg);
   }
 }
 /*
- * 組み上がったら左下へ寄せて縮め（.rig）、歩くあいだは少し前傾させる。
+ * 組み上がったら左下へ寄せて縮め（.rig）。
  * 基準は足元（中心から 41 単位下）。足元を左から 24cqw・--ground の高さへ動かす。
  */
 html.js:not(.no-hydrate) .n26 .rig {
   transition:
     translate 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    scale 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    rotate 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    scale 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 html.js:not(.no-hydrate) .n26 .stage.placed .rig {
   translate: -26cqw calc(50cqh - 54 * var(--u));
   scale: 0.62;
-}
-html.js:not(.no-hydrate) .n26 .stage.walk .rig {
-  rotate: -4deg;
 }
 /*
  * 近景のサボテンが足元（24cqw）を通るころ（周期の 74%）に、全体でひとっ跳びする。
  * サボテンは 100cqw + 4cqw から -4cqw まで流れるので、(100 + 4 - 24) / 108 ≒ 0.74
  */
 html.js:not(.no-hydrate) .n26 .stage.walk .bird {
-  animation: n26-leap var(--run) linear infinite;
+  animation:
+    n26-leap var(--run) linear infinite,
+    n26-sink 0.3s linear infinite;
+}
+/* 両脚が 26° 開く瞬間（1 歩ごと）に 27 × (1 − cos 26°) ≒ 2.7 単位、13° で 0.7 単位沈む */
+@keyframes n26-sink {
+  0%,
+  100% {
+    transform: translateY(calc(2.7 * var(--u)));
+  }
+  25%,
+  75% {
+    transform: translateY(calc(0.7 * var(--u)));
+  }
+  50% {
+    transform: translateY(0);
+  }
 }
 @keyframes n26-leap {
   0%,
@@ -696,7 +701,6 @@ html.js:not(.no-hydrate) .n26 .stage.placed .scene::before {
 .n26 .scene .mt {
   --far: calc(45 * var(--u));
   z-index: 0;
-  top: calc(var(--ground) - 1.5 * var(--u));
   width: calc(70 * var(--u));
   height: calc(22 * var(--u));
   background: var(--mute);
@@ -731,7 +735,6 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
   --cu: calc(var(--b) * 0.55);
   --far: calc(6 * var(--cu));
   z-index: 1;
-  top: calc(var(--ground) - 1 * var(--u));
   opacity: 0.28;
   animation-duration: 6.5s;
 }
