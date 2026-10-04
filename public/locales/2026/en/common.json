@@ -46,7 +46,11 @@
     "register": "Register",
     "soon": "TBA",
     "soonLong": "Registration TBA",
-    "menu": "Join (fee & registration)"
+    "menu": "Join (fee & registration)",
+    "entry": "Pre-register",
+    "entrySoon": "Opening TBA",
+    "entryMenu": "Pre-register (fee & entry)",
+    "entryRequired": "Pre-registration is required to attend."
   },
   "tbd": {
     "venue": "Venue TBA",
@@ -101,6 +105,11 @@
     "venue": "Venue",
     "fee": "Fee",
     "timeRange": "{{start}} – {{end}}",
+    "timeTbd": "Time TBA",
+    "entry": "Entry",
+    "entryRequired": "Pre-registration required",
+    "entrySoon": "Registration opening TBA.",
+    "openMap": "Open map ↗",
     "kick": "TIME TABLE / CONCEPT",
     "tableLabel": "Concept timetable (times, tracks and contents not decided)",
     "scrollHint": "← Scroll sideways → Details will be added once decided"
@@ -114,6 +123,8 @@
     "tbdLabel": "Fee TBA",
     "lead": "Admission: <m>{{fee}}</m>",
     "leadTbd": "The fee is <m>TBA.</m>",
+    "leadEntry": "<m>Pre-registration</m>\nis required.",
+    "textEntry": "We'll announce when pre-registration opens. Follow our official accounts so you don't miss it.",
     "text": "How to register will also be announced once decided. Follow our official accounts so you don't miss it.",
     "follow": "See our official accounts",
     "followSub": "↓ Bottom of page"
@@ -143,6 +154,7 @@
     "floorCapTbd": "A concept of the layout. The 2026 venue and layout are not decided.",
     "floorCap": "A concept of the layout. The 2026 layout is not decided.",
     "mapLabelTbd": "Abstract drawing in place of a map. Venue TBA",
+    "mapLabel": "Abstract drawing in place of a map. Venue: {{venue}}",
     "text": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, address and nearest station will be posted here once decided.",
     "openMap": "Open map"
   },
@@ -152,7 +164,14 @@
       "first": {
         "q": "Can I come if I've never used Nostr?",
         "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is TBA.",
-        "aOpen": "Registration is open via the Register button. Past editions included hands-on sessions for first-timers. The 2026 program is TBA."
+        "aOpen": "Registration is open via the Register button. Past editions included hands-on sessions for first-timers. The 2026 program is TBA.",
+        "aEntry": "Yes, as long as you pre-register (how to pre-register will be announced once decided). Past editions included hands-on sessions for first-timers. The 2026 program is TBA.",
+        "aEntryOpen": "Yes, as long as you pre-register. Past editions included hands-on sessions for first-timers. The 2026 program is TBA."
+      },
+      "entry": {
+        "q": "Do I need to pre-register?",
+        "a": "Yes. We'll announce when registration opens.",
+        "aOpen": "Yes. Use the “Pre-register” button to sign up."
       },
       "keys": {
         "q": "What are npub and nsec?",

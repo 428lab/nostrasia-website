@@ -2,27 +2,46 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { EVENT_2026 } from '~/data/2026'
 
+import { JoinButton } from './JoinButton'
 import { Lead, QSection } from './QSection'
 
-const QUESTIONS = ['first', 'keys', 'relay', 'zap', 'nip'] as const
+const QUESTIONS = ['first', 'entry', 'keys', 'relay', 'zap', 'nip'] as const
 const STEPS = ['client', 'keys', 'post'] as const
 
 export const Faq = () => {
   const { t } = useTranslation()
+  const { entryRequired, registrationUrl } = EVENT_2026
+  // 事前エントリーが要らなければ「事前エントリーは必要？」は出さない
+  const questions = QUESTIONS.filter((key) => key !== 'entry' || entryRequired)
+
+  /** 参加登録・事前エントリーの受付が始まったら、「決まり次第」ではない答えに切り替える */
+  const answer = (key: (typeof QUESTIONS)[number]) => {
+    if (key === 'first') {
+      if (entryRequired)
+        return registrationUrl
+          ? t('faq.items.first.aEntryOpen')
+          : t('faq.items.first.aEntry')
+      return registrationUrl
+        ? t('faq.items.first.aOpen')
+        : t('faq.items.first.a')
+    }
+    if (key === 'entry' && registrationUrl) return t('faq.items.entry.aOpen')
+    return t(`faq.items.${key}.a`)
+  }
 
   return (
     <QSection id="faq">
       <Lead i18nKey="faq.lead" />
       <div className="faq card">
-        {QUESTIONS.map((key) => (
+        {questions.map((key) => (
           <details key={key}>
             <summary>{t(`faq.items.${key}.q`)}</summary>
-            <p>
-              {/* 参加登録が始まったら、「決まり次第」ではない答えに切り替える */}
-              {key === 'first' && EVENT_2026.registrationUrl
-                ? t('faq.items.first.aOpen')
-                : t(`faq.items.${key}.a`)}
-            </p>
+            <p>{answer(key)}</p>
+            {key === 'entry' && registrationUrl && (
+              <p className="act">
+                <JoinButton variant="section" />
+              </p>
+            )}
           </details>
         ))}
       </div>

@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026 } from '~/data/2026'
+import { EVENT_2026 } from '~/data/2026'
 
 import { GlyphWord } from './Glyph'
 import { JoinButton } from './JoinButton'
-import { localize } from './sections'
+import { formatDateLong, localize } from './sections'
 
 /** 生成動画。読み込めて再生できたら薄く重ねる。reduced-motion / データセーバーでは読み込まない */
 const HeroVideo = ({
@@ -95,10 +95,15 @@ export const Hero = () => {
         <div className="hero-row">
           <p className="meta">
             <small>{t('hero.kind')}</small>
-            <span className="d">{formatDate2026(EVENT_2026.date)}</span>
+            <span className="d">{formatDateLong(EVENT_2026.date, i18n)}</span>
             {venue ? localize(venue.name, i18n) : t('tbd.venue')}
           </p>
-          <JoinButton variant="hero" />
+          <div className="hero-cta">
+            <JoinButton variant="hero" />
+            {EVENT_2026.entryRequired && (
+              <p className="enote">{t('join.entryRequired')}</p>
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -500,6 +500,17 @@ html.js .n26 .hero.done .gw .pc:hover {
   letter-spacing: 0.02em;
   display: block;
 }
+/* 参加ボタンと、その下の「事前エントリーが必要です」 */
+.n26 .hero-cta {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+.n26 .enote {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.5;
+}
 .n26 .btn {
   display: inline-flex;
   align-items: center;
@@ -781,6 +792,19 @@ html.js:not(.no-hydrate) .n26 .q.in .qm .pc {
   font-family: var(--en);
   font-size: 0.6em;
 }
+/* 住所・注記・地図のリンクなど、値の下に添える小さい行 */
+.n26 .ov dd .sub {
+  display: block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.n26 .ov dd a.sub {
+  color: var(--ink);
+  width: fit-content;
+}
 .n26 .tt {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -887,6 +911,26 @@ html.js:not(.no-hydrate) .n26 .q.in .qm .pc {
 }
 .n26 .pq {
   width: min(54vw, 400px);
+}
+/* 参加費が決まったら、図形文字の代わりに金額を文字で大きく出す */
+.n26 .fee {
+  margin: 0 0 24px;
+}
+.n26 .fee b {
+  display: block;
+  font-family: var(--jp);
+  font-weight: 400;
+  font-size: clamp(72px, 22vw, 180px);
+  line-height: 1.1;
+}
+.n26 .fee small {
+  display: inline-block;
+  margin-top: 8px;
+  background: var(--ink);
+  color: var(--hi);
+  font-family: var(--jp);
+  font-size: clamp(16px, 4.4vw, 24px);
+  padding: 4px 12px;
 }
 
 /* sponsors */

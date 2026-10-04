@@ -1,5 +1,6 @@
 import type { i18n as I18n } from 'i18next'
 
+import { formatDate2026, weekday2026 } from '~/data/2026'
 import type { Localized } from '~/data/2026'
 
 /**
@@ -34,6 +35,32 @@ export const isJa = (i18n: LanguageSource) =>
 /** app/data/2026.ts の Localized を表示中の言語で取り出す */
 export const localize = (value: Localized, i18n: LanguageSource) =>
   isJa(i18n) ? value.ja : value.en
+
+const MONTHS = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
+
+/**
+ * 曜日つきの日付（ja「2026.11.29（日）」、en「Sun, Nov 29, 2026」）。
+ * 未定のあいだは formatDate2026 と同じ「2026.??.??」
+ */
+export const formatDateLong = (date: string | null, i18n: LanguageSource) => {
+  if (!date) return formatDate2026(date)
+  if (isJa(i18n)) return `${formatDate2026(date)}（${weekday2026(date, 'ja')}）`
+  const [y, m, d] = date.split('-').map(Number)
+  return `${weekday2026(date, 'en')}, ${MONTHS[m - 1]} ${d}, ${y}`
+}
 
 /**
  * 見出し用の改行（\n）を取り除いて 1 行にする（帯・メニュー・読み上げ用）。

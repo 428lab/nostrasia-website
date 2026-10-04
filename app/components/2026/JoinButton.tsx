@@ -5,6 +5,7 @@ import { EVENT_2026 } from '~/data/2026'
 /**
  * 参加登録ボタン。ヘッダー・ヒーロー・メニュー・下部の帯・いくら？ で共通。
  * registrationUrl が未定のあいだはページ内の「いくら？」へ飛ばし、「調整中」を添える。
+ * entryRequired のあいだは「事前エントリー」の文言にする（menu 以外は entry、menu は entryMenu）。
  */
 const VARIANTS = {
   header: { className: 'cta-s', label: 'join.go', soon: null, bolt: 'text' },
@@ -34,11 +35,19 @@ export const JoinButton = ({ variant }: { variant: keyof typeof VARIANTS }) => {
   const v = VARIANTS[variant]
   const url = EVENT_2026.registrationUrl
 
+  const entry = EVENT_2026.entryRequired
+  const label = entry
+    ? variant === 'menu'
+      ? 'join.entryMenu'
+      : 'join.entry'
+    : v.label
+  const soon = v.soon && entry ? 'join.entrySoon' : v.soon
+
   const content = (
     <>
       {v.bolt === 'span' ? <span className="bolt">⚡</span> : '⚡ '}
-      {t(v.label)}
-      {!url && v.soon && <small>{t(v.soon)}</small>}
+      {t(label)}
+      {!url && soon && <small>{t(soon)}</small>}
     </>
   )
 
