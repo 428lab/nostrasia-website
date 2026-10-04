@@ -1,7 +1,7 @@
 /**
  * Nostrasia 2026 のイベント情報。
  *
- * 未定の値は null にしておき、画面側で「調整中」「TBA」「近日公開」を出す。
+ * 未定の値は null にしておき、画面側で「調整中」「未定」「TBA」を出す。
  * 決まったらこのファイルだけを書き換える（画面側のコードは触らなくてよい）。
  * 推測で値を埋めないこと。
  *
@@ -51,9 +51,9 @@ export const EVENT_2026 = {
   doorsOpen: null as string | null,
   /** 会場。未定は null → 「会場 調整中」 */
   venue: null as Venue | null,
-  /** 参加費の表記。未定は null → 「詳細は後日」 */
+  /** 参加費の表記。未定は null → 「未定」 */
   fee: null as Localized | null,
-  /** 参加登録フォーム。未定は null → ボタンは「近日公開」でページ内の開催概要へ */
+  /** 参加登録フォーム。未定は null → ボタンは「調整中」でページ内の開催概要へ */
   registrationUrl: null as string | null,
   /**
    * お問い合わせフォーム。2025 年版と同じフォーム。
