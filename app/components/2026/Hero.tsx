@@ -15,7 +15,8 @@ const px = (v: number) => v.toFixed(1) + 'px'
 
 /**
  * NOSTR / ASIA の 2 行を幅いっぱいに合わせ、境目の斜線を「ASIA の下端」と「ダチョウの首」を通るように引く。
- * スクロールとは無関係に、マウント時・フォント読み込み後・幅が変わったときだけ計算する。
+ * スクロールとは無関係に、マウント時・フォント読み込み後・大きさが変わったときだけ計算する
+ * （ヒーローの幅、PC ではヒーローの高さも。言語切替などで右下の文字の大きさが変わったときも）。
  * SSR と計算前は 2026.css の既定値（--yl / --yr / --xt / --xb と vw の文字サイズ）で表示する。
  * document.fonts.ready は Google Fonts の CSS が適用される前に解決することがあるので、
  * フォントの読み込みが終わるたび（loadingdone）にも計算し直す。
@@ -114,28 +115,44 @@ const useHeroLayout = () => {
 
     let raf = 0
     let lastWidth = -1
+    let lastHeight = -1
+    let lastTxt = ''
     const relayout = (force: boolean) => {
       const width = hero.clientWidth
-      if (!force && width === lastWidth) return
+      const height = hero.clientHeight
+      // PC はヒーローの高さが画面の高さで決まるので、高さの変化でも計算し直す。
+      // スマホはアドレスバーの出入りで高さが変わるので、幅が変わったときだけ計算し直す
+      const changed =
+        width !== lastWidth || (mq.matches && height !== lastHeight)
+      if (!force && !changed) return
       lastWidth = width
+      lastHeight = height
       cancelAnimationFrame(raf)
       raf = requestAnimationFrame(layout)
     }
-    // モバイルではアドレスバーの出入りで resize が来るので、幅が変わったときだけ計算し直す
-    const onResize = () => relayout(false)
     const onForce = () => relayout(true)
     let alive = true
     lastWidth = hero.clientWidth
+    lastHeight = hero.clientHeight
+    lastTxt = `${txt.offsetWidth}x${txt.offsetHeight}`
     layout()
     document.fonts?.ready.then(() => alive && relayout(true))
     document.fonts?.addEventListener('loadingdone', onForce)
-    window.addEventListener('resize', onResize)
+    // ヒーローの大きさと、右下の文字（言語で高さが変わる）の大きさを見る
+    const ro = new ResizeObserver(() => {
+      const size = `${txt.offsetWidth}x${txt.offsetHeight}`
+      const txtChanged = size !== lastTxt
+      lastTxt = size
+      relayout(txtChanged)
+    })
+    ro.observe(hero)
+    ro.observe(txt)
     mq.addEventListener('change', onForce)
     return () => {
       alive = false
       cancelAnimationFrame(raf)
+      ro.disconnect()
       document.fonts?.removeEventListener('loadingdone', onForce)
-      window.removeEventListener('resize', onResize)
       mq.removeEventListener('change', onForce)
     }
   }, [])

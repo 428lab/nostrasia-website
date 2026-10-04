@@ -22,7 +22,12 @@ export const Sponsors = () => {
       arch={{ side: -1, rotate: -10 }}
     >
       <BbHead icon="sponsors" headingId="h-sp" />
-      <p className="bl">{t('sponsors.lead')}</p>
+      {/* 1 社でも決まったら「募集しています」のリードにしない */}
+      <p className="bl">
+        {SPONSOR_TIERS_2026.every((tier) => tier.sponsors.length === 0)
+          ? t('sponsors.lead')
+          : t('sponsors.leadGot')}
+      </p>
       <ul className="slots">
         {SPONSOR_TIERS_2026.flatMap((tier) =>
           tier.sponsors.length > 0

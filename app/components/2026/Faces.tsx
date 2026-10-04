@@ -74,7 +74,8 @@ export const GtFace = ({
         <Question id={headingId} text={question} anim={anim} />
         <p className="qen">{t(`q.${id}.en`)}</p>
       </div>
-      <p className="band">
+      {/* 直後の問いと同じ文なので読み上げない */}
+      <p className="band" aria-hidden="true">
         <b>Q.{no}</b>
         {question}
         <small>{t(`q.${id}.band`)}</small>
@@ -147,7 +148,8 @@ export const Lead = ({
         i18nKey={i18nKey}
         values={values}
         components={{ m: <mark /> }}
-        tOptions={{ interpolation: { escapeValue: false } }}
+        // 値はエスケープして差し込み、タグとして解釈させない。表示時に戻すので「A & B」が「A &amp; B」にならない
+        shouldUnescape
       />
     </p>
   )

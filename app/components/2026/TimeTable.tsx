@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026 } from '~/data/2026'
+import { EVENT_2026, formatDate2026, formatTime } from '~/data/2026'
 import { useRevealOnce } from '~/hooks/useRevealOnce'
 
 import { BbFace, BbHead } from './Faces'
@@ -50,7 +50,7 @@ const LEGEND: { label: string; color: string }[] = [
 /** 開催概要。未定の値は「調整中」「未定」の locale キーで出す */
 const Overview = () => {
   const { t, i18n } = useTranslation()
-  const { startTime, endTime, venue, fee } = EVENT_2026
+  const { startTime, endTime, doorsOpen, venue, fee } = EVENT_2026
 
   return (
     <>
@@ -63,14 +63,27 @@ const Overview = () => {
           </dt>
           <dd className="m">
             {formatDate2026(EVENT_2026.date)}
-            {startTime && endTime ? (
+            {/* 片方だけ決まったときも出す（未定の側は --:--） */}
+            {startTime || endTime ? (
               <small>
-                {t('when.timeRange', { start: startTime, end: endTime })}
+                {t('when.timeRange', {
+                  start: formatTime(startTime),
+                  end: formatTime(endTime),
+                  interpolation: { escapeValue: false },
+                })}
               </small>
             ) : (
               <small>
                 <i className="tq" />〜<i className="tq" />
                 {t('tbd.time')}
+              </small>
+            )}
+            {doorsOpen && (
+              <small>
+                {t('when.doors', {
+                  time: formatTime(doorsOpen),
+                  interpolation: { escapeValue: false },
+                })}
               </small>
             )}
           </dd>

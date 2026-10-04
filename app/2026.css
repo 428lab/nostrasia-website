@@ -190,6 +190,11 @@ body.menu-open:has(.n26) {
 .n26 .burger i::after {
   top: 8px;
 }
+/* JS 無しではメニューを開けないので、ハンバーガーをフッターへのリンクに差し替える */
+html.js .n26 .burger-nojs,
+html:not(.js) .n26 button.burger {
+  display: none;
+}
 .n26 .burger[aria-expanded='true'] i {
   background: transparent;
 }

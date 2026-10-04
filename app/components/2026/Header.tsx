@@ -11,6 +11,9 @@ import { NAV_IDS, SECTIONS } from './sections'
 /** 横並びナビにする幅（2026.css と揃える）。これ未満はハンバーガー → 全画面メニュー */
 const WIDE_QUERY = '(min-width: 1180px)'
 
+/** メニューを開いている間、Tab で抜けないように inert にする背面の要素 */
+const BEHIND_MENU = '.n26 > main, .n26 > footer, .n26 > .bar'
+
 /**
  * ヘッダーと、1180px 未満で開く全画面メニュー。
  * 横並びのナビは現在地の下線を陣営の色にする（GT は橙、BB は 4 色）。
@@ -36,6 +39,9 @@ export const Header = () => {
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open)
+    document
+      .querySelectorAll(BEHIND_MENU)
+      .forEach((el) => el.toggleAttribute('inert', open))
     if (!open) {
       if (focusBack.current) {
         focusBack.current = false
@@ -59,20 +65,28 @@ export const Header = () => {
     }
   }, [open, close])
 
-  // リンクを選ぶ・背景をタップすると閉じる
+  // リンクを選ぶ・リンク以外のところ（li の余白など）をタップすると閉じる。メニュー内のボタンは除く
   useEffect(() => {
     const menu = menuRef.current
     if (!menu) return
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (target.closest('a')) close(false)
-      else if (target === menu || target.tagName === 'UL') close(true)
+      else if (!target.closest('button')) close(true)
     }
     menu.addEventListener('click', onClick)
     return () => menu.removeEventListener('click', onClick)
   }, [close])
 
-  useEffect(() => () => document.body.classList.remove('menu-open'), [])
+  useEffect(
+    () => () => {
+      document.body.classList.remove('menu-open')
+      document
+        .querySelectorAll(BEHIND_MENU)
+        .forEach((el) => el.removeAttribute('inert'))
+    },
+    [],
+  )
 
   return (
     <>
@@ -109,6 +123,14 @@ export const Header = () => {
         >
           <i />
         </button>
+        {/* JS 無しのときだけ出す（2026.css）。全画面メニューの代わりにフッターのリンク一覧へ飛ぶ */}
+        <a
+          className="burger burger-nojs"
+          href="#footer"
+          aria-label={t('a11y.menu')}
+        >
+          <i />
+        </a>
       </header>
 
       <nav
@@ -125,12 +147,18 @@ export const Header = () => {
               style={{ '--n': i } as CSSProperties}
             >
               {camp === 'gt' ? (
-                <a href={`#${id}`}>
+                <a
+                  href={`#${id}`}
+                  aria-current={currentId === id ? 'true' : undefined}
+                >
                   <span className="mq">{t(`q.${id}.q`)}</span>
                   <span className="me">{t(`q.${id}.band`)}</span>
                 </a>
               ) : (
-                <a href={`#${id}`}>
+                <a
+                  href={`#${id}`}
+                  aria-current={currentId === id ? 'true' : undefined}
+                >
                   <ShapeIcon name={id as ShapeName} />
                   <span className="mb">
                     {t(`menu.${id}.en`)}

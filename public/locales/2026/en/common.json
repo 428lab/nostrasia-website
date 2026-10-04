@@ -133,7 +133,8 @@
     "date": "Date",
     "venue": "Venue",
     "fee": "Fee",
-    "timeRange": "{{start}}–{{end}}"
+    "timeRange": "{{start}}–{{end}}",
+    "doors": "Doors open {{time}}"
   },
   "timetable": {
     "kick": "TIMETABLE (CONCEPT)",
@@ -160,9 +161,10 @@
   },
   "sponsors": {
     "lead": "Help us make Nostrasia 2026. We're looking for sponsors.",
+    "leadGot": "Nostrasia 2026 is supported by the following sponsors.",
     "open": "Open",
     "contact": "Talk to us about sponsoring →",
-    "note": "Sponsorship plans and prices will be published once decided. For inquiries, contact our official accounts (X @nostrasia / Nostr)."
+    "note": "Sponsorship plans and prices will be published once decided. For inquiries, use the form via “Talk to us about sponsoring” above, or contact our official accounts (X @nostrasia / Nostr)."
   },
   "access": {
     "leadTbd": "Venue: <m>TBA.</m>",
@@ -191,7 +193,7 @@
       },
       "sponsor": {
         "q": "I'd like to talk about sponsoring",
-        "a": "We're looking for sponsors. Sponsorship plans will be published once decided. Please contact our official accounts."
+        "a": "We're looking for sponsors. Sponsorship plans will be published once decided. Please reach us through the contact form in the Sponsors section or our official accounts."
       }
     }
   },

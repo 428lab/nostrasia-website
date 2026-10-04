@@ -53,7 +53,7 @@ export const EVENT_2026 = {
   venue: null as Venue | null,
   /** 参加費の表記。未定は null → 「未定」 */
   fee: null as Localized | null,
-  /** 参加登録フォーム。未定は null → ボタンは「調整中」でページ内の開催概要へ */
+  /** 参加登録フォーム。未定は null → ボタンは「調整中」でページ内の「いくら？」（#price）へ */
   registrationUrl: null as string | null,
   /**
    * お問い合わせフォーム。2025 年版と同じフォーム。

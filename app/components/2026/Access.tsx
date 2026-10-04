@@ -21,7 +21,10 @@ export const Access = () => {
         <div
           className="pin"
           role="img"
-          aria-label={t('access.pinLabel', { venue: name })}
+          aria-label={t('access.pinLabel', {
+            venue: name,
+            interpolation: { escapeValue: false },
+          })}
         >
           <b>{name}</b>
         </div>
