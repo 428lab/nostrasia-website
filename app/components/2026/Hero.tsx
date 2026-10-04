@@ -220,7 +220,15 @@ const PIECES: {
 export const Hero = () => {
   const { t, i18n } = useTranslation()
   const ref = useFitName()
-  const { heroVideo, venue, entryRequired, registrationUrl } = EVENT_2026
+  const { heroVideo, venue, fee, feeNote, entryRequired, registrationUrl } =
+    EVENT_2026
+  const feeText = fee
+    ? t(feeNote ? 'hero.feeNote' : 'hero.fee', {
+        fee: localize(fee, i18n),
+        note: feeNote ? localize(feeNote, i18n) : '',
+        interpolation: { escapeValue: false },
+      })
+    : t('hero.feeTBA')
 
   return (
     <section className="hero" aria-labelledby="hero-title" ref={ref}>
@@ -274,6 +282,7 @@ export const Hero = () => {
         <p className="meta">
           {formatDateLong(EVENT_2026.date, i18n)}
           <span>{venue ? localize(venue.name, i18n) : t('tbd.venue')}</span>
+          <span>{feeText}</span>
         </p>
         <JoinButton variant="hero" />
         {entryRequired && (

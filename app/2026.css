@@ -1387,10 +1387,11 @@ html.no-hydrate .n26 .gantt .gb {
     --hqh: min(76vh, 700px);
     height: var(--hqh);
   }
+  /* 参加費の 1 行を足しても、エントリーの補足まで最初の画面（1280×800）に入る間隔 */
   .n26 .side {
     align-self: start;
-    padding-top: 14px;
-    gap: 14px;
+    padding-top: 10px;
+    gap: 10px;
   }
   .n26 .catch {
     font-size: clamp(18px, 2vw, 30px);

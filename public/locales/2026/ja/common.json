@@ -55,6 +55,9 @@
   "hero": {
     "catch": "『Nostr って<br/>何？』のままで、<br/>来てください。",
     "cap": "12 PIECES\n→ 1 OSTRICH",
+    "fee": "参加費 {{fee}}",
+    "feeNote": "参加費 {{fee}}（{{note}}）",
+    "feeTBA": "参加費 未定",
     "entryNote": "参加には事前エントリーが必要です。受付の開始は決まり次第お知らせします。",
     "entryNoteOpen": "参加には事前エントリーが必要です。"
   },

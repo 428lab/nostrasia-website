@@ -59,6 +59,9 @@
   "hero": {
     "catch": "Still asking <br/>“What's Nostr?” <br/>Come anyway.",
     "cap": "12 PIECES\n→ 1 OSTRICH",
+    "fee": "Fee: {{fee}}",
+    "feeNote": "Fee: {{fee}} ({{note}})",
+    "feeTBA": "Fee: TBA",
     "entryNote": "Pre-registration is required. We'll announce when it opens.",
     "entryNoteOpen": "Pre-registration is required."
   },
