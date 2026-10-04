@@ -108,7 +108,7 @@
   "speakers": {
     "lead": "Speakers will be\n<m>announced</m> once confirmed.",
     "tba": "To be announced",
-    "note": "We'll also announce them on our official accounts (X @nostrasia and others)."
+    "note": "We'll also announce them on our official accounts."
   },
   "price": {
     "tbdLabel": "Fee TBA",
@@ -120,9 +120,10 @@
   },
   "sponsors": {
     "lead": "It might be you.\n<m>Sponsors wanted.</m>",
+    "leadHas": "The sponsors\n<m>behind Nostrasia 2026.</m>",
     "openLarge": "Sponsors wanted",
     "open": "Open",
-    "text": "Sponsorship plans and pricing will be published once decided. For inquiries, use the contact form or reach our official accounts (X @nostrasia / Nostr).",
+    "text": "Sponsorship plans and pricing will be published once decided. For inquiries, use the contact form below or reach our official accounts.",
     "contact": "Talk about sponsoring",
     "contactSub": "Contact form"
   },
@@ -150,7 +151,8 @@
     "items": {
       "first": {
         "q": "Can I come if I've never used Nostr?",
-        "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is TBA."
+        "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is TBA.",
+        "aOpen": "Registration is open via the Register button. Past editions included hands-on sessions for first-timers. The 2026 program is TBA."
       },
       "keys": {
         "q": "What are npub and nsec?",

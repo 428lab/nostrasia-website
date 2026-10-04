@@ -94,7 +94,8 @@ export const QSection = ({
         <span>Q.{s.no}</span>
       </div>
       <section className={`sec ${s.tone}`} id={id} aria-labelledby={headingId}>
-        <p className="band">
+        {/* 直後の h2 と同じ問いなので読み上げから外す */}
+        <p className="band" aria-hidden="true">
           <b>Q.{s.no}</b>
           <span>
             {band.body}

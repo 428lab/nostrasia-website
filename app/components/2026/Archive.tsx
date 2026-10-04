@@ -7,7 +7,7 @@ import { GlyphWord, Ostrich } from './Glyph'
 import { Lead, QSection } from './QSection'
 
 export const Archive = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const to = useTo()
 
   return (
@@ -21,7 +21,10 @@ export const Archive = () => {
                 <GlyphWord className="yr" text={String(a.year)} acc="...y" />
                 <span className="sr">{a.year}</span>
                 <span className="s">
-                  {t(`archive.y${a.year}`)}
+                  {/* locale にキーが無い年（ARCHIVES に足したばかり等）は年号だけ出す */}
+                  {i18n.exists(`archive.y${a.year}`)
+                    ? t(`archive.y${a.year}`)
+                    : a.year}
                   {'\n'}
                   {a.external ? t('archive.external') : t('archive.internal')}
                 </span>

@@ -17,7 +17,12 @@ export const Faq = () => {
         {QUESTIONS.map((key) => (
           <details key={key}>
             <summary>{t(`faq.items.${key}.q`)}</summary>
-            <p>{t(`faq.items.${key}.a`)}</p>
+            <p>
+              {/* 参加登録が始まったら、「決まり次第」ではない答えに切り替える */}
+              {key === 'first' && EVENT_2026.registrationUrl
+                ? t('faq.items.first.aOpen')
+                : t(`faq.items.${key}.a`)}
+            </p>
           </details>
         ))}
       </div>

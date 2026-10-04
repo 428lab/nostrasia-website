@@ -13,10 +13,12 @@ const TIER_CLASS: Record<SponsorTier['id'], string> = {
 
 export const Sponsors = () => {
   const { t } = useTranslation()
+  // 1 社でも決まったら、リードは「募集中」ではなくする
+  const allOpen = SPONSOR_TIERS_2026.every((tier) => tier.sponsors.length === 0)
 
   return (
     <QSection id="sponsors">
-      <Lead i18nKey="sponsors.lead" />
+      <Lead i18nKey={allOpen ? 'sponsors.lead' : 'sponsors.leadHas'} />
       <ul className="sp">
         {SPONSOR_TIERS_2026.flatMap((tier) =>
           tier.sponsors.length > 0

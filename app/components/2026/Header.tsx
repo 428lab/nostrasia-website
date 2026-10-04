@@ -30,6 +30,10 @@ export const Header = () => {
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open)
+    // 開いている間は背面（本文・フッター・下部の帯）へ Tab で抜けないようにする
+    document
+      .querySelectorAll('.n26 > main, .n26 > footer, .n26 > .bar')
+      .forEach((el) => el.toggleAttribute('inert', open))
     if (!open) {
       if (focusBack.current) {
         focusBack.current = false
@@ -53,20 +57,28 @@ export const Header = () => {
     }
   }, [open, close])
 
-  // リンクを選ぶ・背景をタップすると閉じる
+  // リンクを選ぶ・リンク以外（余白）をタップすると閉じる。メニュー内のボタンは除く
   useEffect(() => {
     const menu = menuRef.current
     if (!menu) return
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (target.closest('a')) close(false)
-      else if (target === menu || target.tagName === 'UL') close(true)
+      else if (!target.closest('button')) close(true)
     }
     menu.addEventListener('click', onClick)
     return () => menu.removeEventListener('click', onClick)
   }, [close])
 
-  useEffect(() => () => document.body.classList.remove('menu-open'), [])
+  useEffect(
+    () => () => {
+      document.body.classList.remove('menu-open')
+      document
+        .querySelectorAll('.n26 [inert]')
+        .forEach((el) => el.removeAttribute('inert'))
+    },
+    [],
+  )
 
   return (
     <>
@@ -111,7 +123,10 @@ export const Header = () => {
             const q = splitQuestion(t(`q.${id}.q`), true)
             return (
               <li key={id}>
-                <a href={`#${id}`}>
+                <a
+                  href={`#${id}`}
+                  aria-current={current === id ? 'true' : undefined}
+                >
                   <span className="mq">
                     {q.body}
                     {q.mark && <QMark v="k" />}

@@ -91,11 +91,8 @@ export const TimeTable = () => {
         }
       />
       {!date && <p className="dcap">{t('timetable.dateNote')}</p>}
-      <dl
-        className="ov card"
-        id="overview"
-        aria-label={t('timetable.overview')}
-      >
+      <h3 className="sr">{t('timetable.overview')}</h3>
+      <dl className="ov card" id="overview">
         <div>
           <dt>{t('timetable.date')}</dt>
           <dd>
