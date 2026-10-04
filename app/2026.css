@@ -401,7 +401,7 @@ html.js .n26.menu-open .gnav li {
   /* 左下へ寄せたダチョウの 1 単位。近景の景色もこの縮尺で描く */
   --b: calc(var(--u) * 0.62);
   /* 地面の高さ（ステージの下端寄り）。左下へ寄せたダチョウの足の裏と、景色の基準 */
-  --ground: calc(100% - 9 * var(--u));
+  --ground: calc(100% - 13 * var(--u));
   /* 近景のサボテンが流れてくる周期。ダチョウのひとっ跳びも同じ周期で回す */
   --run: 2.4s;
 }
@@ -608,7 +608,7 @@ html.js:not(.no-hydrate) .n26 .rig {
     rotate 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 html.js:not(.no-hydrate) .n26 .stage.placed .rig {
-  translate: -26cqw calc(50cqh - 50 * var(--u));
+  translate: -26cqw calc(50cqh - 54 * var(--u));
   scale: 0.62;
 }
 html.js:not(.no-hydrate) .n26 .stage.walk .rig {
@@ -628,7 +628,7 @@ html.js:not(.no-hydrate) .n26 .stage.walk .bird {
     animation-timing-function: cubic-bezier(0.3, 0.7, 0.6, 1);
   }
   74% {
-    translate: 0 calc(-13 * var(--u));
+    translate: 0 calc(-22 * var(--u));
     animation-timing-function: cubic-bezier(0.4, 0, 0.7, 0.3);
   }
   90%,
@@ -694,24 +694,24 @@ html.js:not(.no-hydrate) .n26 .stage.placed .scene::before {
   animation: n26-pass var(--run) linear infinite;
 }
 .n26 .scene .mt {
-  --far: calc(17 * var(--u));
+  --far: calc(45 * var(--u));
   z-index: 0;
   top: calc(var(--ground) - 1.5 * var(--u));
-  width: calc(30 * var(--u));
-  height: calc(12 * var(--u));
+  width: calc(70 * var(--u));
+  height: calc(22 * var(--u));
   background: var(--mute);
-  opacity: 0.1;
+  opacity: 0.09;
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
   animation-duration: 18s;
 }
 .n26 .scene .mt:nth-child(2) {
-  width: calc(22 * var(--u));
-  height: calc(8 * var(--u));
+  width: calc(50 * var(--u));
+  height: calc(15 * var(--u));
   animation-delay: -6s;
 }
 .n26 .scene .mt:nth-child(3) {
-  width: calc(34 * var(--u));
-  height: calc(10 * var(--u));
+  width: calc(90 * var(--u));
+  height: calc(19 * var(--u));
   animation-delay: -12s;
 }
 /* サボテンの寸法は --cu で取る（近景はダチョウと同じ縮尺 --b、中景はその 0.55 倍） */
@@ -719,8 +719,8 @@ html.js:not(.no-hydrate) .n26 .stage.placed .scene::before {
   --cu: var(--b);
   --far: 4cqw;
   z-index: 3;
-  width: calc(10 * var(--cu));
-  height: calc(11 * var(--cu));
+  width: calc(16 * var(--cu));
+  height: calc(18 * var(--cu));
   opacity: 0.9;
 }
 /* 近景のサボテンはひとっ跳びと同じ時刻に流し始め、周期の中で位置を揃える */
@@ -750,7 +750,7 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
 }
 .n26 .scene .cactus i {
   left: 50%;
-  width: calc(3.6 * var(--cu));
+  width: calc(4.6 * var(--cu));
   height: 100%;
   translate: -50% 0;
   background: var(--te);
@@ -759,21 +759,21 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
 .n26 .scene .cactus::before,
 .n26 .scene .cactus::after {
   content: '';
-  width: calc(3.4 * var(--cu));
-  height: calc(4.5 * var(--cu));
+  width: calc(6.3 * var(--cu));
+  height: calc(8 * var(--cu));
   border: 0 solid var(--te);
-  border-bottom-width: calc(1.8 * var(--cu));
+  border-bottom-width: calc(2.4 * var(--cu));
 }
 .n26 .scene .cactus::before {
   left: 0;
-  bottom: calc(3 * var(--cu));
-  border-left-width: calc(1.8 * var(--cu));
+  bottom: calc(5.5 * var(--cu));
+  border-left-width: calc(2.4 * var(--cu));
 }
 .n26 .scene .cactus::after {
   right: 0;
-  bottom: calc(4.5 * var(--cu));
-  height: calc(3.6 * var(--cu));
-  border-right-width: calc(1.8 * var(--cu));
+  bottom: calc(8 * var(--cu));
+  height: calc(6.5 * var(--cu));
+  border-right-width: calc(2.4 * var(--cu));
 }
 .n26 .scene .pebble {
   --far: calc(2 * var(--b));
