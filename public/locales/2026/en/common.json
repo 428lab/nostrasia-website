@@ -1,1 +1,200 @@
-{}
+{
+  "a11y": {
+    "mainNav": "Main",
+    "footerNav": "Site links",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "sns": "Official accounts"
+  },
+  "nav": {
+    "about": "About",
+    "program": "Program",
+    "timetable": "Time Table",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "access": "Access",
+    "faq": "FAQ",
+    "archive": "Archive"
+  },
+  "q": {
+    "about": { "q": "What?", "en": "WHAT IS IT?", "band": "ABOUT" },
+    "program": { "q": "What's on?", "en": "WHAT'S ON?", "band": "PROGRAM" },
+    "timetable": { "q": "When?", "en": "WHEN?", "band": "TIME TABLE" },
+    "speakers": {
+      "q": "Who's\nspeaking?",
+      "en": "WHO'S SPEAKING?",
+      "band": "SPEAKERS"
+    },
+    "price": { "q": "How much?", "en": "HOW MUCH?", "band": "ENTRY" },
+    "sponsors": {
+      "q": "Who's\nbacking it?",
+      "en": "SUPPORTED BY",
+      "band": "SPONSORS"
+    },
+    "access": { "q": "Where?", "en": "WHERE?", "band": "ACCESS" },
+    "faq": { "q": "Questions?", "en": "QUESTIONS?", "band": "FAQ" },
+    "archive": {
+      "q": "Before\nthis?",
+      "en": "PAST EDITIONS",
+      "band": "ARCHIVE"
+    }
+  },
+  "join": {
+    "go": "Join",
+    "register": "Register",
+    "soon": "TBA",
+    "soonLong": "Registration TBA",
+    "menu": "Join (fee & registration)"
+  },
+  "tbd": {
+    "venue": "Venue TBA",
+    "short": "TBA"
+  },
+  "hero": {
+    "catch": "Nostr, off the screen.",
+    "kind": "A Nostr conference from Japan"
+  },
+  "about": {
+    "lead": "A Nostr conference\nfrom Japan. <m>And a festival.</m>",
+    "nostrasiaSub": "Nostr × Asia",
+    "nostrasiaText": "Started in 2023, it's a place where people who build Nostr, use it, or are just curious about it come together. Past editions have had talks, hands-on sessions, a market, the Nostr Shrine and more. The 2024 and 2025 editions were held in Tokyo, and a 2026 edition is planned.",
+    "nostrSub": "Notes and Other Stuff Transmitted by Relays",
+    "nostrText": "A decentralized protocol that doesn't rely on any single company. Your account is a key pair you create yourself: an npub you can show to others, and an nsec only you keep. Posts (notes) are stored on multiple relays (servers that store and pass posts along), and you can read and write them with any app (client) you like. You can cheer on posts you like with a zap ⚡ (a way to send a small amount of bitcoin)."
+  },
+  "program": {
+    "lead": "Listen, try, shop,\npray, <m>dance.</m>",
+    "note": "* These are from past editions. The 2026 program is TBA.",
+    "items": {
+      "talk": {
+        "title": "Talks & LT",
+        "text": "People who build and use Nostr talked about where it is now and where it's going. In the LT session, short talks came one after another."
+      },
+      "handson": {
+        "title": "Hands-on",
+        "text": "From creating keys to using an app, people tried it out themselves on the spot."
+      },
+      "market": {
+        "title": "Market",
+        "text": "A shop with Nostr-related goods and books."
+      },
+      "shrine": {
+        "title": "Nostr Shrine",
+        "text": "Somehow, there was a shrine. In 2025, you could make an offering with a zap and draw an omikuji fortune."
+      },
+      "show": {
+        "title": "Hero Show",
+        "text": "A hero appeared on stage."
+      },
+      "dj": {
+        "title": "DJ & Social Space",
+        "text": "A time and place to talk in person at the venue, with DJ music playing."
+      }
+    }
+  },
+  "timetable": {
+    "dateTbd": "{{date}} (date TBA)",
+    "dateNote": "The date is TBA.\nWe'll announce it once it's decided.",
+    "overview": "Overview",
+    "date": "Date",
+    "venue": "Venue",
+    "fee": "Fee",
+    "timeRange": "{{start}} – {{end}}",
+    "kick": "TIME TABLE / CONCEPT",
+    "tableLabel": "Concept timetable (times, tracks and contents not decided)",
+    "scrollHint": "← Scroll sideways → Details will be added once decided"
+  },
+  "speakers": {
+    "lead": "Speakers will be\n<m>announced</m> once confirmed.",
+    "tba": "To be announced",
+    "note": "We'll also announce them on our official accounts (X @nostrasia and others)."
+  },
+  "price": {
+    "tbdLabel": "Fee TBA",
+    "lead": "Admission: <m>{{fee}}</m>",
+    "leadTbd": "The fee is <m>TBA.</m>",
+    "text": "How to register will also be announced once decided. Follow our official accounts so you don't miss it.",
+    "follow": "See our official accounts",
+    "followSub": "↓ Bottom of page"
+  },
+  "sponsors": {
+    "lead": "It might be you.\n<m>Sponsors wanted.</m>",
+    "openLarge": "Sponsors wanted",
+    "open": "Open",
+    "text": "Sponsorship plans and pricing will be published once decided. For inquiries, use the contact form or reach our official accounts (X @nostrasia / Nostr).",
+    "contact": "Talk about sponsoring",
+    "contactSub": "Contact form"
+  },
+  "access": {
+    "leadTbd": "The venue is <m>TBA.</m>",
+    "lead": "The venue is <m>{{venue}}</m>.",
+    "floorKick": "FLOOR MAP / CONCEPT",
+    "floorLabel": "Concept floor map: main stage, workshop, market, Nostr Shrine, social space, entrance. The 2026 layout is not decided.",
+    "floor": {
+      "main": "MAIN STAGE",
+      "workshop": "WORKSHOP",
+      "market": "MARKET",
+      "shrine": "Nostr Shrine",
+      "social": "SOCIAL",
+      "entrance": "ENTRANCE"
+    },
+    "floorCapTbd": "A concept of the layout. The 2026 venue and layout are not decided.",
+    "floorCap": "A concept of the layout. The 2026 layout is not decided.",
+    "mapLabelTbd": "Abstract drawing in place of a map. Venue TBA",
+    "text": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, address and nearest station will be posted here once decided.",
+    "openMap": "Open map"
+  },
+  "faq": {
+    "lead": "Don't worry.\n<m>Everyone</m> was new once.",
+    "items": {
+      "first": {
+        "q": "Can I come if I've never used Nostr?",
+        "a": "How to join will be announced once decided. Past editions included hands-on sessions for first-timers. The 2026 program is TBA."
+      },
+      "keys": {
+        "q": "What are npub and nsec?",
+        "a": "npub is your public key, an ID you can share. nsec is your private key, which only you should have. Unlike a password, it can't be reissued if you lose it. Never show your nsec to anyone."
+      },
+      "relay": {
+        "q": "What is a relay?",
+        "a": "A server that stores and delivers posts (notes). You connect to several relays at once, so one going down doesn't cause much trouble."
+      },
+      "zap": {
+        "q": "What is a zap ⚡?",
+        "a": "A way to send a small amount of bitcoin to a post. A more serious kind of cheer than a \"like\"."
+      },
+      "nip": {
+        "q": "What is a NIP?",
+        "a": "The Nostr spec, split into numbered documents. For example, NIP-01 covers the basics and NIP-57 covers zaps."
+      }
+    },
+    "stepsKick": "NEW TO NOSTR / 3 STEPS",
+    "steps": {
+      "client": {
+        "title": "Pick an app (client)",
+        "text": "Choose one: a phone app or one that runs in your browser."
+      },
+      "keys": {
+        "title": "Make your keys",
+        "text": "<c>npub</c> is an ID you can share; <c>nsec</c> is a secret key you keep to yourself."
+      },
+      "post": {
+        "title": "Post with #{{tag}}",
+        "text": "Use the hashtag and build the buzz together until the day."
+      }
+    }
+  },
+  "archive": {
+    "lead": "Since 2023,\nwe've held it <m>{{n}} times</m>.",
+    "y2023": "First edition",
+    "y2024": "2nd edition · Tokyo",
+    "y2025": "3rd edition · Tokyo",
+    "external": "Archive ↗",
+    "internal": "Archive →"
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacy": "Privacy Policy"
+  }
+}

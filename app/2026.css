@@ -1,0 +1,1296 @@
+/*
+ * Nostrasia 2026 トップページ（14 GLYPH BUILD）
+ * dev では Vite が style タグで注入し、ページ遷移後も残るので、全セレクタを .n26 配下に閉じる。
+ * html / body に効かせたいものは :has(.n26) で書く。
+ * 「初回表示で隠してから出す」状態は html.js:not(.no-hydrate) の下でだけ隠す。
+ */
+
+.n26 {
+  --or: #ff5a1f;
+  --ink: #1b0b2e;
+  --pu: #8e30eb;
+  --wh: #f5f5f5;
+  --hi: #ffd400;
+  --pad: max(16px, env(safe-area-inset-left));
+  --hdh: 56px;
+  --en: 'Anton', Impact, sans-serif;
+  --jp: 'Dela Gothic One', 'BIZ UDPGothic', sans-serif;
+  --body: 'BIZ UDPGothic', 'Hiragino Sans', sans-serif;
+  background: var(--or);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.8;
+}
+/* .n26 の --hdh (56px / 64px) + 帯の高さ。html からは .n26 の変数が見えないので数値で書く */
+html:has(.n26) {
+  color-scheme: light;
+  background: #ff5a1f;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 104px;
+}
+body:has(.n26) {
+  margin: 0;
+  background: #ff5a1f;
+  overflow-x: clip;
+}
+body.menu-open:has(.n26) {
+  overflow: hidden;
+}
+.n26 *,
+.n26 *::before,
+.n26 *::after {
+  box-sizing: border-box;
+}
+.n26 a {
+  color: inherit;
+}
+.n26 h1,
+.n26 h2,
+.n26 h3,
+.n26 p,
+.n26 dl,
+.n26 dd,
+.n26 ul,
+.n26 ol {
+  margin: 0;
+}
+.n26 ul,
+.n26 ol {
+  padding: 0;
+  list-style: none;
+}
+.n26 :focus-visible {
+  outline: 4px solid var(--hi);
+  outline-offset: 3px;
+}
+.n26 .sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.n26 .o {
+  background: var(--or);
+  color: var(--ink);
+}
+.n26 .p {
+  background: var(--pu);
+  color: var(--wh);
+}
+
+/* ===== 図形文字（components/2026/Glyph.tsx が SVG で描く） ===== */
+.n26 .gw {
+  display: block;
+  line-height: 0;
+}
+.n26 .gw svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.n26 .pc {
+  fill: var(--gk, var(--ink));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.n26 .pc.aw {
+  fill: var(--wh);
+}
+.n26 .pc.ay {
+  fill: var(--hi);
+}
+.n26 .pc.ap {
+  fill: var(--pu);
+}
+.n26 .pc.ok {
+  fill: var(--ink);
+}
+.n26 .pc.ow {
+  fill: var(--wh);
+}
+.n26 .pc.op {
+  fill: var(--pu);
+}
+.n26 .pc.oy {
+  fill: var(--hi);
+}
+.n26 .qtile {
+  fill: var(--ink);
+}
+/* 文中・見出しの「？」 */
+.n26 .qm {
+  display: inline-block;
+  vertical-align: -0.1em;
+  height: 0.92em;
+  width: 0.55em;
+}
+.n26 .qm.k,
+.n26 .qm.c {
+  height: 0.9em;
+  width: 0.46em;
+}
+.n26 .qm svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.n26 .qm.k .pc {
+  fill: currentColor;
+}
+.n26 .gw.pc-only {
+  display: none;
+}
+@keyframes n26-gfly {
+  0% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scale(1.3);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes n26-gdrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-150px) rotate(calc(var(--r) / 4));
+  }
+  15% {
+    opacity: 1;
+  }
+  68% {
+    transform: translateY(4px);
+  }
+  84% {
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes n26-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(2.6) rotate(-10deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.9) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes n26-hop {
+  40% {
+    transform: translateY(-10px) rotate(-6deg);
+  }
+}
+/* 画面に入ったら 1 回だけ組み上がる（日付・ダチョウ） */
+html.js:not(.no-hydrate) .n26 .io:not(.in) .pc {
+  opacity: 0;
+}
+html.js:not(.no-hydrate) .n26 .io.in .pc {
+  animation: n26-gfly 0.8s cubic-bezier(0.2, 0.75, 0.25, 1.08) both;
+  animation-delay: calc(var(--gi) * 60ms);
+}
+
+/* ===== header ===== */
+.n26 .hd {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  height: var(--hdh);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 var(--pad);
+  background: var(--or);
+  color: var(--ink);
+  border-bottom: 3px solid var(--ink);
+}
+.n26 .logo {
+  font-family: var(--en);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  background: var(--ink);
+  color: var(--or);
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+.n26 .gnav {
+  display: none;
+}
+.n26 .lang {
+  margin-left: auto;
+  display: flex;
+  font-family: var(--en);
+  font-size: 14px;
+  border: 2px solid var(--ink);
+}
+.n26 .lang button {
+  padding: 2px 8px;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: 1.8;
+  cursor: pointer;
+}
+.n26 .lang button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--or);
+}
+.n26 .cta-s {
+  display: none;
+  font-family: var(--jp);
+  font-size: 14px;
+  background: var(--hi);
+  color: var(--ink);
+  text-decoration: none;
+  padding: 7px 14px;
+  border: 3px solid var(--ink);
+  white-space: nowrap;
+}
+.n26 .cta-s:hover {
+  background: var(--ink);
+  color: var(--hi);
+}
+.n26 .burger {
+  width: 48px;
+  height: 48px;
+  margin-right: -6px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+}
+.n26 .burger i {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: currentColor;
+  position: relative;
+  transition: background 0.15s;
+}
+.n26 .burger i::before,
+.n26 .burger i::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 26px;
+  height: 3px;
+  background: currentColor;
+  transition: transform 0.2s;
+}
+.n26 .burger i::before {
+  top: -8px;
+}
+.n26 .burger i::after {
+  top: 8px;
+}
+.n26 .burger[aria-expanded='true'] i {
+  background: transparent;
+}
+.n26 .burger[aria-expanded='true'] i::before {
+  transform: translateY(8px) rotate(45deg);
+}
+.n26 .burger[aria-expanded='true'] i::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* 全画面メニュー: 各行「問い ＋ 英字」。？ は図形部品を使い回す */
+.n26 .menu {
+  position: fixed;
+  inset: var(--hdh) 0 0;
+  z-index: 75;
+  background: var(--or);
+  color: var(--ink);
+  overflow-y: auto;
+  padding: 12px var(--pad) 40px;
+  display: none;
+}
+.n26 .menu.open {
+  display: block;
+}
+.n26 .menu ul {
+  max-width: 640px;
+}
+.n26 .menu li {
+  border-bottom: 3px solid var(--ink);
+}
+.n26 .menu li a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 2px;
+  text-decoration: none;
+  min-height: 44px;
+}
+.n26 .menu .mq {
+  font-family: var(--jp);
+  font-size: clamp(26px, 8.4vw, 60px);
+  line-height: 1.2;
+  /* EN の長い問いは英字ラベルを押し出さないよう折り返す */
+  min-width: 0;
+}
+.n26 .menu .me {
+  font-family: var(--en);
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.n26 .menu a:hover .mq,
+.n26 .menu a:focus-visible .mq {
+  color: var(--wh);
+}
+.n26 .menu .mcta {
+  display: block;
+  margin-top: 22px;
+  text-align: center;
+  font-family: var(--jp);
+  font-size: 20px;
+  background: var(--ink);
+  color: var(--hi);
+  text-decoration: none;
+  padding: 14px;
+}
+
+/* 下部の参加登録帯（スマホ） */
+.n26 .bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: calc(48px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--ink);
+  color: var(--hi);
+  font-family: var(--jp);
+  font-size: 16px;
+  text-decoration: none;
+  border-top: 3px solid var(--hi);
+}
+.n26 .bar small {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--wh);
+}
+body.menu-open .n26 .bar {
+  display: none;
+}
+
+/* ===== hero ===== */
+.n26 .hero {
+  min-height: calc(100svh - var(--hdh));
+  padding: 18px var(--pad) 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+}
+.n26 .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+      115deg,
+      transparent 0 58%,
+      var(--pu) 58% 70%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 26px,
+      rgba(27, 11, 46, 0.07) 26px 28px
+    );
+}
+.n26 .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.n26 .hero-video.ok {
+  opacity: 0.22;
+}
+.n26 .hero h1 {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 2.2vw, 20px);
+  font-weight: 400;
+}
+.n26 .hl svg {
+  max-height: 36svh;
+}
+.n26 .hy {
+  width: 40%;
+}
+/* 読み込み時: 各字のピースが散らばった位置から回転して定位置へ（左の字から 60ms ずつ。2 秒以内に終わる） */
+html.js:not(.no-hydrate) .n26 .hero .gw .pc {
+  animation: n26-gfly 0.8s cubic-bezier(0.2, 0.75, 0.25, 1.08) both;
+  animation-delay: calc(var(--gi) * 60ms + 60ms);
+}
+html.js .n26 .hero.done .gw .pc {
+  animation: none;
+}
+html.js .n26 .hero.done .gw .pc:hover {
+  animation: n26-hop 0.45s cubic-bezier(0.3, 0.9, 0.3, 1);
+}
+.n26 .hero-foot {
+  display: grid;
+  gap: 16px;
+}
+.n26 .catch {
+  font-family: var(--jp);
+  font-size: clamp(22px, 6vw, 40px);
+  line-height: 1.4;
+  white-space: pre-line;
+}
+.n26 .hero-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+.n26 .meta {
+  font-family: var(--jp);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.n26 .meta small {
+  display: block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 13px;
+}
+.n26 .meta .d {
+  font-family: var(--en);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  display: block;
+}
+.n26 .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--jp);
+  font-size: 18px;
+  background: var(--ink);
+  color: var(--hi);
+  text-decoration: none;
+  padding: 16px 22px;
+  border: 3px solid var(--ink);
+  transition: transform 0.15s;
+}
+.n26 .btn:hover {
+  background: var(--hi);
+  color: var(--ink);
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.n26 .btn small {
+  font-family: var(--body);
+  font-size: 12px;
+  color: var(--wh);
+  font-weight: 700;
+}
+.n26 .btn:hover small {
+  color: var(--ink);
+}
+.n26 .bolt {
+  color: var(--hi);
+}
+.n26 .btn:hover .bolt {
+  color: var(--ink);
+}
+
+/* ===== 斜めカット（静的な面の境界） ===== */
+.n26 .cut {
+  position: relative;
+  height: clamp(56px, 12vw, 140px);
+}
+.n26 .cut::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--to);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+.n26 .cut.r::after {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+.n26 .cut span {
+  position: absolute;
+  z-index: 1;
+  font-family: var(--en);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  left: var(--pad);
+  top: 10px;
+}
+.n26 .cut.r span {
+  left: auto;
+  right: var(--pad);
+}
+.n26 .to-o {
+  --to: var(--or);
+}
+.n26 .to-p {
+  --to: var(--pu);
+}
+
+/* ===== section ===== */
+.n26 .sec {
+  position: relative;
+  padding-bottom: 88px;
+}
+.n26 .band {
+  position: sticky;
+  top: var(--hdh);
+  z-index: 20;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px var(--pad);
+  background: var(--ink);
+  color: var(--or);
+  font-family: var(--jp);
+  font-size: 17px;
+  line-height: 1.4;
+}
+.n26 .p .band {
+  color: var(--hi);
+}
+.n26 .band b {
+  font-family: var(--en);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  font-size: 15px;
+}
+.n26 .band small {
+  margin-left: auto;
+  font-family: var(--en);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--wh);
+}
+.n26 .qb {
+  padding: 44px var(--pad) 36px;
+  text-align: center;
+}
+.n26 .q {
+  font-family: var(--jp);
+  font-weight: 400;
+  line-height: 1.08;
+  white-space: nowrap;
+  font-size: min(calc(86vw / var(--n, 3)), 30vh, 240px);
+}
+.n26 .q .ch {
+  display: inline-block;
+  /* inline-block だと空白だけの span が幅 0 になり、EN の語間が詰まるので空白を残す */
+  white-space: pre;
+}
+.n26 .qen {
+  font-family: var(--en);
+  font-size: clamp(16px, 4vw, 28px);
+  letter-spacing: 0.14em;
+  margin-top: 14px;
+}
+/* 問い: 漢字がスタンプのように押され、続いて「？」の 3 ピースが落ちてはまる（1 回だけ） */
+html.js:not(.no-hydrate) .n26 .q:not(.in) .ch {
+  opacity: 0;
+}
+html.js:not(.no-hydrate) .n26 .q.in .ch {
+  animation: n26-stamp 0.42s cubic-bezier(0.5, 0, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 110ms);
+}
+html.js:not(.no-hydrate) .n26 .q.in .qm .pc {
+  animation: n26-gdrop 0.6s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+  animation-delay: calc(var(--qd) + var(--j) * 140ms);
+}
+
+.n26 .body {
+  padding: 0 var(--pad);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.n26 .lead {
+  font-family: var(--jp);
+  font-size: clamp(24px, 6.4vw, 52px);
+  line-height: 1.35;
+  margin-bottom: 28px;
+  white-space: pre-line;
+}
+.n26 mark {
+  background: var(--hi);
+  color: var(--ink);
+  padding: 0 0.12em;
+}
+.n26 .card {
+  background: var(--wh);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 20px 18px;
+}
+.n26 .txt {
+  font-size: 16px;
+  max-width: 38em;
+}
+.n26 .kick {
+  font-family: var(--en);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  margin: 40px 0 12px;
+  display: block;
+}
+.n26 .note {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+.n26 .cap {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.n26 .act {
+  margin-top: 28px;
+}
+
+/* about */
+.n26 .def {
+  display: grid;
+  gap: 22px;
+}
+.n26 .def h3 {
+  font-family: var(--en);
+  font-weight: 400;
+  font-size: clamp(48px, 14vw, 110px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.n26 .def h3 small {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 13px;
+  display: block;
+  margin-top: 8px;
+  text-transform: none;
+  line-height: 1.4;
+}
+
+/* program */
+.n26 .prog {
+  display: grid;
+  gap: 18px;
+}
+.n26 .prog .n {
+  font-family: var(--en);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+.n26 .prog h3 {
+  font-family: var(--jp);
+  font-weight: 400;
+  font-size: clamp(28px, 8.4vw, 44px);
+  line-height: 1.15;
+  margin: 8px 0;
+}
+.n26 .prog p {
+  font-size: 15px;
+}
+
+/* when */
+.n26 .dg {
+  display: grid;
+  gap: clamp(10px, 3vw, 24px);
+  margin: 4px 0 8px;
+}
+.n26 .dcap {
+  font-family: var(--jp);
+  font-size: clamp(18px, 4.8vw, 28px);
+  line-height: 1.45;
+  margin: 18px 0 28px;
+  white-space: pre-line;
+}
+.n26 .ov {
+  margin-top: 28px;
+}
+.n26 .dcap + .ov {
+  margin-top: 0;
+}
+.n26 .ov div {
+  display: grid;
+  grid-template-columns: 5em 1fr;
+  gap: 12px;
+  border-top: 2px solid var(--ink);
+  padding: 12px 0;
+  align-items: baseline;
+}
+.n26 .ov div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.n26 .ov div:last-child {
+  padding-bottom: 0;
+}
+.n26 .ov dt {
+  font-family: var(--jp);
+  font-size: 15px;
+}
+.n26 .ov dd {
+  font-family: var(--jp);
+  font-size: clamp(20px, 5.4vw, 34px);
+  line-height: 1.3;
+}
+.n26 .ov dd small {
+  font-family: var(--en);
+  font-size: 0.6em;
+}
+.n26 .tt {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--wh);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.n26 .tt table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  font-size: 14px;
+}
+.n26 .tt th,
+.n26 .tt td {
+  border: 2px solid var(--ink);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+.n26 .tt thead th {
+  background: var(--ink);
+  color: var(--or);
+  font-family: var(--en);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+.n26 .tt td.t {
+  font-family: var(--en);
+  width: 5em;
+}
+.n26 .tag {
+  display: inline-block;
+  font-family: var(--en);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  border: 2px solid var(--ink);
+  padding: 0 6px;
+}
+.n26 .tag.on {
+  background: var(--ink);
+  color: var(--hi);
+}
+.n26 .scroll-hint {
+  font-size: 13px;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+/* speakers: 顔の枠に組みかけの「？」 */
+.n26 .spk {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.n26 .spk li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+.n26 .face {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  overflow: hidden;
+}
+.n26 .face svg {
+  width: 80%;
+  height: 80%;
+  overflow: visible;
+}
+.n26 .face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.n26 .spk b {
+  font-family: var(--en);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+.n26 .spk span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* price */
+.n26 .price {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 0 0 24px;
+}
+.n26 .yen {
+  font-family: var(--en);
+  font-size: clamp(56px, 18vw, 160px);
+  line-height: 0.8;
+}
+.n26 .pq {
+  width: min(54vw, 400px);
+}
+
+/* sponsors */
+.n26 .sp {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0 0 28px;
+}
+.n26 .sp li {
+  border: 3px dashed currentColor;
+  min-height: 96px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--jp);
+  font-size: 15px;
+  padding: 10px;
+  line-height: 1.3;
+}
+.n26 .sp li.lg {
+  grid-column: 1 / -1;
+  min-height: 140px;
+  font-size: 22px;
+}
+.n26 .sp li.has {
+  border-style: solid;
+}
+.n26 .sp li.has a {
+  text-decoration: none;
+}
+.n26 .sp li.has img {
+  max-height: 96px;
+  width: auto;
+  margin: 0 auto;
+}
+.n26 .sp small {
+  display: block;
+  font-family: var(--en);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+
+/* access */
+.n26 .fmap {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(54px, auto);
+  gap: 6px;
+}
+.n26 .fmap > div {
+  border: 3px solid var(--ink);
+  display: flex;
+  align-items: flex-end;
+  padding: 6px;
+  font-family: var(--jp);
+  font-size: clamp(13px, 3.4vw, 18px);
+  line-height: 1.2;
+}
+.n26 .fmap .a {
+  grid-column: 1 / 5;
+  grid-row: span 2;
+  background: var(--ink);
+  color: var(--or);
+}
+.n26 .fmap .b {
+  grid-column: 5 / 7;
+  grid-row: span 2;
+}
+.n26 .fmap .c {
+  grid-column: 1 / 3;
+}
+.n26 .fmap .d2 {
+  grid-column: 3 / 5;
+}
+.n26 .fmap .e2 {
+  grid-column: 5 / 7;
+  background: var(--hi);
+}
+.n26 .fmap .x {
+  grid-column: 1 / 7;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--en);
+  letter-spacing: 0.2em;
+  border-style: dashed;
+}
+.n26 .access {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+}
+.n26 .pin {
+  aspect-ratio: 2 / 1;
+  border: 3px solid var(--ink);
+  position: relative;
+  background: repeating-linear-gradient(
+      0deg,
+      transparent 0 22px,
+      rgba(27, 11, 46, 0.18) 22px 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 22px,
+      rgba(27, 11, 46, 0.18) 22px 24px
+    ),
+    var(--or);
+}
+.n26 .pin::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56%;
+  height: 10px;
+  background: var(--ink);
+}
+.n26 .pin::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 38%;
+  width: 10px;
+  background: var(--ink);
+}
+.n26 .pin b {
+  position: absolute;
+  left: 38%;
+  top: 56%;
+  transform: translate(-40%, -110%);
+  font-family: var(--jp);
+  font-weight: 400;
+  background: var(--hi);
+  color: var(--ink);
+  padding: 4px 10px;
+  font-size: 18px;
+  white-space: nowrap;
+  z-index: 1;
+  border: 2px solid var(--ink);
+}
+
+/* faq */
+.n26 .faq {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.n26 .faq details {
+  border-top: 2px solid var(--ink);
+}
+.n26 .faq details:first-child {
+  border-top: 0;
+}
+.n26 .faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 36px 14px 0;
+  font-family: var(--jp);
+  font-size: clamp(17px, 4.6vw, 24px);
+  line-height: 1.4;
+  position: relative;
+}
+.n26 .faq summary::-webkit-details-marker {
+  display: none;
+}
+.n26 .faq summary::after {
+  content: '+';
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  font-family: var(--en);
+  font-size: 30px;
+}
+.n26 .faq details[open] summary::after {
+  content: '−';
+}
+.n26 .faq details p {
+  padding: 0 0 16px;
+  font-size: 15px;
+}
+.n26 .steps {
+  display: grid;
+  gap: 14px;
+  counter-reset: s;
+}
+.n26 .steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 14px;
+}
+.n26 .steps li::before {
+  counter-increment: s;
+  content: counter(s);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  font-family: var(--en);
+  font-size: 28px;
+  line-height: 1;
+  background: var(--hi);
+  border: 3px solid var(--ink);
+}
+.n26 .steps b {
+  font-family: var(--jp);
+  font-weight: 400;
+  font-size: 18px;
+  display: block;
+}
+.n26 .steps code {
+  font-family: ui-monospace, monospace;
+  background: var(--hi);
+  padding: 0 4px;
+}
+
+/* archive */
+.n26 .arc li {
+  border-top: 3px solid currentColor;
+}
+.n26 .arc li:last-child {
+  border-bottom: 3px solid currentColor;
+}
+.n26 .arc a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  text-decoration: none;
+}
+.n26 .arc .yr {
+  width: min(58vw, 420px);
+  flex: none;
+}
+.n26 .arc .s {
+  font-family: var(--jp);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: right;
+  white-space: pre-line;
+}
+.n26 .arc a:hover .yr {
+  --gk: var(--hi);
+}
+
+/* ostrich（フッター手前だけ） */
+.n26 .ost {
+  padding: 12px var(--pad) 72px;
+  text-align: center;
+}
+.n26 .ostrich {
+  width: min(64vw, 340px);
+  margin: 0 auto;
+  min-height: 120px;
+}
+.n26 .ostrich svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.n26 .ost-cap {
+  font-family: var(--en);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  margin-top: 20px;
+}
+
+/* footer */
+.n26 .ft {
+  background: var(--ink);
+  color: var(--wh);
+  padding: 56px var(--pad) 120px;
+}
+.n26 .ft .fl {
+  font-family: var(--en);
+  font-size: clamp(48px, 15vw, 140px);
+  line-height: 0.9;
+  color: var(--or);
+}
+.n26 .ft ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 24px 0;
+  font-size: 15px;
+}
+.n26 .ft p {
+  font-size: 13px;
+}
+.n26 .ft a {
+  color: var(--wh);
+}
+
+@media (min-width: 760px) {
+  .n26 .spk {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .n26 .def,
+  .n26 .prog {
+    grid-template-columns: 1fr 1fr;
+  }
+  .n26 .sp {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .n26 .sp li.lg {
+    grid-column: span 2;
+  }
+  .n26 .sp li.lg.full {
+    grid-column: 1 / -1;
+  }
+  .n26 .access {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/* ヒーローと日付の図形文字: スマホは 2 行、PC は 1 行 */
+@media (min-width: 900px) {
+  .n26 .gw.sp-only {
+    display: none;
+  }
+  .n26 .gw.pc-only {
+    display: block;
+  }
+  .n26 .hy {
+    width: 21.7%;
+  }
+  .n26 .hero-foot {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+@media (min-width: 1100px) {
+  .n26 .prog {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/*
+ * ヘッダー・メニュー・下部の帯の切り替え境界。Header.tsx の matchMedia と揃える。
+ * 8 項目 + 言語切替 + 参加ボタンが 1 行に収まる幅から横並びにする（言語切替を隠す幅を作らない）
+ */
+@media (min-width: 1121px) {
+  html:has(.n26) {
+    scroll-padding-top: 112px;
+  }
+  .n26 {
+    --hdh: 64px;
+  }
+  .n26 .burger,
+  .n26 .menu,
+  .n26 .bar {
+    display: none !important;
+  }
+  .n26 .gnav {
+    display: flex;
+    gap: 2px;
+    margin-left: 12px;
+  }
+  .n26 .gnav a {
+    position: relative;
+    font-family: var(--en);
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    padding: 6px 9px;
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .n26 .gnav a:hover {
+    border-color: var(--ink);
+  }
+  /* 現在地: 下に黄の四角（墨の縁つき） */
+  .n26 .gnav a[aria-current]::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    background: var(--hi);
+    border: 2px solid var(--ink);
+  }
+  .n26 .cta-s {
+    display: inline-block;
+  }
+  .n26 .ft {
+    padding-bottom: 72px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .n26 .pc,
+  .n26 .ch {
+    animation: none !important;
+  }
+  html.js .n26 .q .ch,
+  html.js .n26 .io .pc {
+    opacity: 1 !important;
+  }
+  .n26 .btn,
+  .n26 .burger i::before,
+  .n26 .burger i::after,
+  .n26 .hero-video {
+    transition: none;
+  }
+}
