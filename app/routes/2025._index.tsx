@@ -23,7 +23,10 @@ import { TimeTable } from '~/icons/2025/TimeTable'
 import { FloorMap } from '~/icons/2025/FloorMap'
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Nostrasia 2025' }]
+  return [
+    { title: 'Nostrasia 2025' },
+    { property: 'og:title', content: 'Nostrasia 2025' },
+  ]
 }
 
 export default function Index() {

@@ -1,0 +1,253 @@
+{
+  "venueTBA": "Venue TBA",
+  "feeTBA": "TBA",
+  "join": {
+    "label": "Register",
+    "soon": "Not open yet",
+    "entryLabel": "Pre-register",
+    "entrySoon": "Not open yet",
+    "entryNote": "Pre-registration is required. We will announce when it opens.",
+    "entryNoteOpen": "Pre-registration is required."
+  },
+  "lang": {
+    "label": "Language"
+  },
+  "menu": {
+    "label": "Main menu",
+    "open": "Open menu",
+    "close": "Close menu",
+    "openShort": "MENU",
+    "closeShort": "CLOSE"
+  },
+  "nav": {
+    "about": "About",
+    "program": "Program",
+    "timetable": "Timetable",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "access": "Access",
+    "faq": "FAQ",
+    "archive": "Archive"
+  },
+  "hero": {
+    "catch": "All kinds of people and fun\ncome together in one place.",
+    "tagline": "Nostr Conference in Asia",
+    "place": "{{venue}} · {{fee}}",
+    "fee": "Fee: {{fee}}",
+    "feeTBA": "Fee: TBA",
+    "caption": "12 PIECES\n→ 1 OSTRICH",
+    "feeNote": "Fee: {{fee}} ({{note}})"
+  },
+  "about": {
+    "label": "ABOUT",
+    "title": "What is Nostrasia?",
+    "lead1": "Nostrasia is a Nostr conference, and a festival, that started in Japan. First held in 2023, it has run every year since, with the 2024 and 2025 editions in Tokyo. Past editions brought talks, LTs, hands-on sessions, a market, the Nostr Shrine, a hero show and DJs together in one place, along with all kinds of people.",
+    "lead2": "Nostr is a decentralized protocol that doesn't rely on any particular company or server. You sign your posts with your own key and put them on several relays (servers that store and pass posts along). The “New to Nostr?” section below shows how it works.",
+    "overviewTitle": "Nostrasia 2026 at a glance",
+    "overviewNote": "The date, venue and fee are all still being arranged. We will announce when registration opens on our official accounts. The hashtag is #{{hashtag}} (tentative).",
+    "date": "DATE",
+    "venue": "VENUE",
+    "fee": "FEE",
+    "overviewNoteTime": "Start and end times are TBA and will be announced on our official accounts. The hashtag is #{{hashtag}} (tentative).",
+    "overviewNoteHashtag": "The hashtag is #{{hashtag}} (tentative).",
+    "entry": "ENTRY",
+    "entryRequired": "Pre-registration required",
+    "entrySoon": "We will announce when registration opens.",
+    "entryOpen": "Sign up with the “Pre-register” button."
+  },
+  "how": {
+    "label": "NOSTR 101",
+    "title": "New to Nostr?",
+    "lead": "Keys are circles, relays are squares. Four steps show how a Nostr post reaches its readers.",
+    "figStep": "STEP {{n}} / 4",
+    "fig": {
+      "nsec": "nsec secret key",
+      "npub": "npub public key",
+      "note": "note (post)",
+      "sig": "sig",
+      "r1": "relay A",
+      "r2": "relay B",
+      "r3": "relay C",
+      "cl": "client"
+    },
+    "steps": {
+      "1": {
+        "name": "Keys",
+        "title": "Make your keys",
+        "body": "First, you create a pair of keys: a secret key <c>nsec</c> and a public key <c>npub</c>. Your npub is the ID that identifies you, and it's fine to share. Your nsec is the secret key only you hold. You don't need to sign up with an email address or anything else."
+      },
+      "2": {
+        "name": "Signature",
+        "title": "Sign",
+        "body": "When you write a post (a note), you sign it with your secret key. Thanks to the signature, anyone can check that you really wrote it, wherever it ends up."
+      },
+      "3": {
+        "name": "Relays ×3",
+        "title": "Send it to relays",
+        "body": "You send the signed post to several relays (the squares). A relay is just a server that stores and passes posts along. Even if one goes down, the same post stays on the others."
+      },
+      "4": {
+        "name": "Client",
+        "title": "Read it in a client",
+        "body": "An app (client) gathers posts from whichever relays you like and shows them. As long as you have your key, you keep the same account even if you switch apps. You can also send a zap ⚡ (a small amount of bitcoin) to posts you like."
+      }
+    }
+  },
+  "program": {
+    "label": "PROGRAM",
+    "title": "From past editions",
+    "items": {
+      "talk": {
+        "label": "TALK",
+        "title": "Talks",
+        "desc": "The main stage for talking about Nostr today and tomorrow."
+      },
+      "lt": {
+        "label": "LIGHTNING TALK",
+        "title": "LT",
+        "desc": "Short talks, one after another."
+      },
+      "handson": {
+        "label": "HANDS-ON",
+        "title": "Hands-on",
+        "desc": "From making your keys to your very first post."
+      },
+      "market": {
+        "label": "MARKET",
+        "title": "Market",
+        "desc": "Nostr goods and books for sale."
+      },
+      "shrine": {
+        "label": "NOSTR SHRINE",
+        "title": "Nostr Shrine",
+        "desc": "Pay your respects with a zap and draw a fortune."
+      },
+      "heroShow": {
+        "label": "HERO SHOW",
+        "title": "Hero Show",
+        "desc": "A hero appears on stage."
+      },
+      "dj": {
+        "label": "DJ",
+        "title": "DJ",
+        "desc": "DJs play while people hang out."
+      },
+      "social": {
+        "label": "SOCIAL SPACE",
+        "title": "Social Space",
+        "desc": "A place to meet face to face and swap npubs."
+      }
+    },
+    "note": "* These are examples from past editions. The 2026 program is still being arranged."
+  },
+  "timetable": {
+    "label": "TIME TABLE",
+    "title": "Timetable",
+    "track": "TRACK {{id}}",
+    "tracks": {
+      "main": "Main",
+      "sub": "Sub",
+      "handson": "Hands-on",
+      "plaza": "Plaza"
+    },
+    "bars": {
+      "talk": "Talk",
+      "lt": "LT",
+      "workshop": "Workshop",
+      "social": "Social",
+      "socialMarket": "Social / Market",
+      "socialDj": "Social / DJ",
+      "tba": "TBA"
+    },
+    "note": "* The slot layout is only an illustration. Times, contents and the number of tracks are undecided. You can scroll the table sideways."
+  },
+  "speakers": {
+    "label": "SPEAKERS",
+    "title": "Speakers",
+    "tba": "Speaker TBA",
+    "soon": "Announced once confirmed",
+    "note": "Speakers will be announced as they are confirmed."
+  },
+  "sponsors": {
+    "label": "SPONSORS",
+    "title": "Sponsors",
+    "lead": "Help us build Nostrasia 2026.",
+    "tiers": {
+      "tier1": "TIER 1",
+      "tier2": "TIER 2",
+      "tier3": "TIER 3"
+    },
+    "open": "Open for sponsors",
+    "openShort": "Open",
+    "contact": "Talk to us about sponsoring →",
+    "note": "Sponsorship plans and pricing will be announced once decided."
+  },
+  "access": {
+    "label": "ACCESS",
+    "title": "Access",
+    "panelTitle": "The venue is still being arranged",
+    "panelText": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, nearest station and directions will be announced once decided.",
+    "map": "Open map →",
+    "floorTitle": "FLOOR MAP (ILLUSTRATIVE)",
+    "floorLabel": "Illustrative floor map (layout undecided)",
+    "floor": {
+      "main": "Main Stage",
+      "market": "Market",
+      "shrine": "Shrine",
+      "workshop": "Workshop",
+      "social": "Social",
+      "reception": "Reception"
+    },
+    "floorNote": "* The venue isn't decided yet, so this layout is just an illustration made of shapes.",
+    "mapCaption": "{{venue}} (illustration)",
+    "floorNoteVenue": "* The floor layout isn't decided yet, so this is just an illustration made of shapes."
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently asked questions",
+    "items": {
+      "1": {
+        "q": "Can I join if I've never used Nostr?",
+        "a": "How to join will be announced once decided. Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well.",
+        "aEntry": "Yes, as long as you pre-register (how to register will be announced once decided). Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well.",
+        "aEntryOpen": "Yes, as long as you pre-register. Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well."
+      },
+      "2": {
+        "q": "Is there a fee?",
+        "a": "The fee hasn't been decided yet. We will announce it once it is.",
+        "aFee": "Fee: {{fee}}.",
+        "aFeeNote": "Fee: {{fee}} ({{note}})."
+      },
+      "3": {
+        "q": "When will the date and venue be decided?",
+        "a": "They are being arranged now. We will announce them on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr).",
+        "qDecided": "When and where is it?",
+        "aDecidedTime": "On {{date}}, at {{venue}}. Start and end times are TBA and will be announced on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr). See “Access” for the address and map.",
+        "aDecided": "On {{date}}, at {{venue}}. See “Access” for the address and map."
+      },
+      "4": {
+        "q": "I'd like to talk about sponsoring or exhibiting",
+        "a": "We are looking for sponsors. Plan details will be announced once decided. Please get in touch via our official accounts. The same goes for exhibiting."
+      },
+      "entry": {
+        "q": "Do I need to pre-register?",
+        "a": "Yes. We will announce when registration opens.",
+        "aOpen": "Yes. Please sign up with the “Pre-register” button."
+      }
+    }
+  },
+  "archive": {
+    "label": "ARCHIVE",
+    "title": "Past Nostrasia",
+    "years": {
+      "2023": "First edition / nostr.world",
+      "2024": "nostrasia.com/2024",
+      "2025": "nostrasia.com/2025"
+    }
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "copyright": "© Nostrasia 2026"
+  }
+}

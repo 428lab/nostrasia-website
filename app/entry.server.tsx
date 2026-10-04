@@ -12,6 +12,8 @@ import enCommon2024 from '../public/locales/2024/en/common.json'
 import jaCommon2024 from '../public/locales/2024/ja/common.json'
 import enCommon2025 from '../public/locales/2025/en/common.json'
 import jaCommon2025 from '../public/locales/2025/ja/common.json'
+import enCommon2026 from '../public/locales/2026/en/common.json'
+import jaCommon2026 from '../public/locales/2026/ja/common.json'
 
 import type { EntryContext } from '@remix-run/server-runtime'
 
@@ -25,6 +27,10 @@ const resourceMap: Record<string, { [key in 'en' | 'ja']: ResourceLanguage }> =
     '2025': {
       en: { common: enCommon2025 },
       ja: { common: jaCommon2025 },
+    },
+    '2026': {
+      en: { common: enCommon2026 },
+      ja: { common: jaCommon2026 },
     },
   }
 
