@@ -1,1 +1,236 @@
-{}
+{
+  "a11y": {
+    "mainNav": "メイン",
+    "footerNav": "サイト内リンク",
+    "menu": "メニュー",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "language": "言語切替",
+    "sns": "公式アカウント",
+    "overview": "開催概要"
+  },
+  "nav": {
+    "about": "About",
+    "program": "Program",
+    "timetable": "Timetable",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "access": "Access",
+    "faq": "FAQ",
+    "archive": "Archive"
+  },
+  "q": {
+    "about": { "q": "何？", "en": "WHAT IS IT?", "band": "ABOUT" },
+    "program": { "q": "何する？", "en": "WHAT'S ON?", "band": "PROGRAM" },
+    "timetable": { "q": "いつ？", "en": "WHEN?", "band": "TIMETABLE" },
+    "speakers": {
+      "q": "誰が出る？",
+      "en": "WHO'S SPEAKING?",
+      "band": "SPEAKERS"
+    },
+    "price": { "q": "いくら？", "en": "HOW MUCH?", "band": "ENTRY" },
+    "sponsors": {
+      "q": "支えているのは？",
+      "en": "SUPPORTED BY",
+      "band": "SPONSORS"
+    },
+    "access": { "q": "どこ？", "en": "WHERE?", "band": "ACCESS" },
+    "faq": { "q": "気になることは？", "en": "QUESTIONS?", "band": "FAQ" },
+    "archive": { "q": "これまでは？", "en": "PAST EDITIONS", "band": "ARCHIVE" }
+  },
+  "join": {
+    "go": "参加する",
+    "register": "参加登録",
+    "soon": "調整中",
+    "soonLong": "参加登録は調整中",
+    "menu": "参加する（参加費・登録）"
+  },
+  "tbd": {
+    "venue": "会場 調整中",
+    "short": "調整中"
+  },
+  "hero": {
+    "catch": "『Nostr って<br/>何？』のままで、<br/>来てください。",
+    "cap": "12 PIECES\n→ 1 OSTRICH"
+  },
+  "about": {
+    "capStage": "ステージ",
+    "capPeople": "人",
+    "cap": "人が集まる、日本発の Nostr カンファレンス。そして、お祭り。",
+    "lead": "日本発、Nostr のカンファレンス。\nそして、<m>お祭り。</m>",
+    "nostrasiaText": "2023 年に始まった、Nostr を作る人・使う人・気になっている人が一か所に集まる場です。これまで、トークも、ハンズオンも、マーケットも、神社もありました。2024 年・2025 年は東京で開催し、2026 年も開催を予定しています。",
+    "nostrText": "特定の会社やサーバーに頼らない、分散型のプロトコル（通信のしくみ）です。npub（公開鍵）と nsec（秘密鍵）の 1 組の鍵が、自分のアカウントになります。投稿は複数のリレー（投稿を預かって配るサーバー）に置かれ、好きなアプリ（クライアント）で読み書きできます。気に入った投稿には、zap ⚡（少額のビットコインを送る機能）で応援を届けられます。"
+  },
+  "program": {
+    "capStage": "ステージ（トーク・LT・ヒーローショー・DJ）",
+    "capHandson": "ハンズオン（鍵づくり）",
+    "capMarket": "マーケット・Nostr 神社",
+    "cap": "どれも過去回の企画です。2026 年のプログラムは調整中です。",
+    "kick": "PROGRAM ／ これまでのプログラム",
+    "lead": "聞く、試す、買う、\n拝む、<m>踊る。</m>",
+    "note": "※ 過去回で実施した企画の例です。2026 年のプログラムは調整中です。",
+    "items": {
+      "talk": {
+        "title": "トーク・LT",
+        "text": "Nostr の今とこれからを、作る人と使う人がステージで話しました。LT は、短い持ち時間の発表です。"
+      },
+      "handson": {
+        "title": "ハンズオン",
+        "text": "「Nostr って何？」という人に向けて、アカウントの作り方からリレーの選び方まで、その場で教わる時間がありました。"
+      },
+      "market": {
+        "title": "マーケット",
+        "text": "Nostr にまつわるグッズや本が並びました。2025 年は Lightning 払いに対応していました。"
+      },
+      "shrine": {
+        "title": "Nostr 神社",
+        "text": "2025 年は、zap で参拝しておみくじを引けました。"
+      },
+      "show": {
+        "title": "ヒーローショー",
+        "text": "2025 年は、超神ネイガーがステージに現れました。"
+      },
+      "dj": {
+        "title": "DJ・ソーシャルスペース",
+        "text": "DJ の音楽を聞きながら、会場で直接話せる場所がありました。"
+      }
+    }
+  },
+  "timetable": {
+    "capMarkTbd": "日付（未定）",
+    "capMark": "日付",
+    "capTbd": "{{date}} 調整中",
+    "cap": "{{date}}",
+    "leadTbd": "日程は、<m>調整中</m>です。",
+    "lead": "日程は、<m>{{date}}</m> です。",
+    "date": "日時",
+    "venue": "会場",
+    "fee": "参加費",
+    "timeRange": "{{start}} 〜 {{end}}",
+    "kick": "TIMETABLE ／ イメージ",
+    "tableLabel": "タイムテーブルのイメージ（時刻・トラック・内容は未定）",
+    "note": "タイムテーブルのイメージです。時刻・トラック・内容は未定です。表は横にスクロールできます。"
+  },
+  "speakers": {
+    "capMark": "登壇者",
+    "capTbd": "Speaker TBA ・ 決まり次第お知らせします",
+    "cap": "登壇者は、下に載せています。",
+    "lead": "登壇者は、<m>決まり次第</m>お知らせします。",
+    "tba": "決まり次第発表",
+    "note": "公式アカウント（X @nostrasia ほか）をフォローしておくと、発表を見逃しません。"
+  },
+  "price": {
+    "capYou": "あなた",
+    "capFeeMarkTbd": "参加費（調整中）",
+    "capFeeMark": "参加費",
+    "capFeeTbd": "参加費 調整中",
+    "capFee": "参加費 {{fee}}",
+    "capRegTbd": "参加登録 調整中",
+    "capReg": "参加登録 受付中",
+    "tbdLabel": "参加費 調整中",
+    "leadTbd": "参加費は、<m>調整中</m>です。",
+    "lead": "参加費は、<m>{{fee}}</m> です。",
+    "text": "参加登録の方法も、決まり次第お知らせします。先に公式アカウントをフォローしておくと、お知らせを見逃しません。",
+    "follow": "公式アカウントを見る ↓"
+  },
+  "sponsors": {
+    "capStage": "ステージ",
+    "capRing": "スポンサー（募集中）",
+    "cap": "スポンサー募集中",
+    "lead": "Nostrasia 2026 を、\n<m>一緒につくりませんか。</m>",
+    "openLarge": "スポンサー募集中",
+    "open": "募集中",
+    "text": "協賛プランと金額は、決まり次第公開します。ご相談は、お問い合わせフォームか公式アカウント（X @nostrasia／Nostr）までどうぞ。",
+    "contact": "協賛のご相談 →"
+  },
+  "access": {
+    "capMarkTbd": "会場（円の中は空き＝未定）",
+    "capMark": "会場",
+    "capTbd": "会場 調整中（2024 年・2025 年は東京で開催）",
+    "cap": "{{venue}}",
+    "leadTbd": "会場は、<m>調整中</m>です。",
+    "lead": "会場は、<m>{{venue}}</m> です。",
+    "mapLabelTbd": "地図の代わりの抽象図。会場は調整中",
+    "mapLabel": "地図の代わりの抽象図。会場は {{venue}}",
+    "text": "2024 年・2025 年は東京で開催しました。2026 年の会場・住所・最寄り駅は、決まり次第ここに載せます。",
+    "openMap": "地図を開く ↗",
+    "floorKick": "FLOOR MAP ／ イメージ",
+    "floorLabel": "フロアマップのイメージ。メインステージ、マーケット、Nostr 神社、ワークショップ、ソーシャル、受付。配置は未定。",
+    "floor": {
+      "main": "Main Stage",
+      "market": "Market",
+      "shrine": "Nostr 神社",
+      "workshop": "Workshop",
+      "social": "Social",
+      "entrance": "受付"
+    },
+    "floorNoteTbd": "会場が決まっていないため、配置はイメージです。",
+    "floorNote": "配置はイメージです。"
+  },
+  "faq": {
+    "capKey": "鍵（npub／nsec）",
+    "capRelay": "リレー",
+    "cap": "鍵やリレーなど、よく聞かれることに答えます。",
+    "lead": "大丈夫。\n<m>誰でも最初ははじめてです。</m>",
+    "items": {
+      "first": {
+        "q": "Nostr を使ったことがなくても、行っていい？",
+        "a": "参加方法は決まり次第お知らせします。過去回では、はじめての人向けのハンズオンを開きました。2026 年の内容は調整中です。"
+      },
+      "fee": {
+        "q": "参加費はかかる？",
+        "a": "参加費はまだ決まっていません。決まり次第お知らせします。"
+      },
+      "when": {
+        "q": "日程と会場は、いつ決まる？",
+        "a": "どちらも調整中です。決まり次第、公式アカウント（X @nostrasia／Bluesky nostrasia.com／note／Nostr）でお知らせします。"
+      },
+      "keys": {
+        "q": "npub と nsec って何？",
+        "a": "npub はあなたを示す ID で、人に教えてよいものです。nsec はあなただけが持つ秘密の鍵で、パスワードと違って、なくすと再発行できません。誰にも見せないでください。"
+      },
+      "relay": {
+        "q": "リレーって何？",
+        "a": "投稿を預かって配るサーバーです。複数のリレーに同時につなぐので、1 つが止まっても、ほかのリレーに同じ投稿が残ります。"
+      },
+      "zap": {
+        "q": "zap ⚡ って何？",
+        "a": "投稿に少額のビットコイン（Lightning）を送る機能です。「いいね」より、ちょっと本気の応援です。"
+      }
+    },
+    "stepsKick": "はじめての NOSTR ／ 4 STEPS",
+    "steps": {
+      "client": {
+        "title": "アプリ（クライアント）を選ぶ",
+        "text": "スマホのアプリか、ブラウザで開くものを 1 つ選びます。"
+      },
+      "keys": {
+        "title": "鍵をつくる",
+        "text": "npub は人に教えてよい ID、nsec は自分だけで保管する秘密の鍵です。メールアドレスなどでのアカウント登録は要りません。"
+      },
+      "relay": {
+        "title": "リレーにつなぐ",
+        "text": "投稿は、つないだ複数のリレーに置かれます。リレーは、あとから足したり外したりできます。"
+      },
+      "post": {
+        "title": "#{{tag}} で投稿する",
+        "text": "ハッシュタグで、当日までの盛り上がりを一緒につくりましょう。"
+      }
+    }
+  },
+  "archive": {
+    "capYears": "開催した年（2023・2024・2025）",
+    "cap2026": "2026 年",
+    "cap": "2023 年に初開催。2024 年・2025 年は東京で開催しました。",
+    "lead": "2023 年から、<m>{{n}} 回</m>開催しました。",
+    "y2023": "初回",
+    "y2024": "第 2 回・東京",
+    "y2025": "第 3 回・東京",
+    "external": "アーカイブ ↗",
+    "internal": "アーカイブ →"
+  },
+  "footer": {
+    "contact": "お問い合わせ",
+    "privacy": "プライバシーポリシー"
+  }
+}
