@@ -1,1 +1,210 @@
-{}
+{
+  "a11y": {
+    "toTop": "Nostrasia 2026 home",
+    "mainNav": "Main",
+    "footerNav": "Site links",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "sns": "Official accounts"
+  },
+  "nav": {
+    "about": "About",
+    "program": "Program",
+    "timetable": "Timetable",
+    "speakers": "Speakers",
+    "sponsors": "Sponsors",
+    "access": "Access",
+    "faq": "FAQ",
+    "archive": "Archive"
+  },
+  "q": {
+    "about": { "q": "What?", "en": "WHAT IS IT?", "band": "ABOUT" },
+    "program": { "q": "What's on?", "en": "WHAT'S ON?", "band": "PROGRAM" },
+    "speakers": {
+      "q": "Who's speaking?",
+      "en": "WHO'S SPEAKING?",
+      "band": "SPEAKERS"
+    },
+    "access": { "q": "Where?", "en": "WHERE?", "band": "ACCESS" },
+    "archive": { "q": "Before this?", "en": "PAST EDITIONS", "band": "ARCHIVE" }
+  },
+  "bb": {
+    "nostr": { "en": "NEW TO NOSTR?", "ja": "Never used Nostr?" },
+    "timetable": { "en": "WHEN?", "ja": "When is it?" },
+    "price": { "en": "HOW MUCH?", "ja": "How much is it?" },
+    "sponsors": { "en": "SUPPORTED BY", "ja": "Who supports it?" },
+    "faq": { "en": "QUESTIONS?", "ja": "Still have questions?" }
+  },
+  "menu": {
+    "nostr": { "en": "NOSTR 101", "sub": "New to Nostr?" },
+    "timetable": { "en": "TIMETABLE", "sub": "When? How much?" },
+    "sponsors": { "en": "SPONSORS", "sub": "Supported by" },
+    "faq": { "en": "FAQ", "sub": "Questions?" }
+  },
+  "join": {
+    "go": "Join",
+    "register": "Register",
+    "soon": "TBA",
+    "soonLong": "Registration TBA",
+    "menu": "Join (fee & registration)",
+    "sectionTbd": "Register (TBA)"
+  },
+  "tbd": {
+    "venue": "Venue TBA",
+    "fee": "TBA",
+    "time": "Time TBA"
+  },
+  "hero": {
+    "kick": "A Nostr conference from Japan",
+    "catch": "Nostr, off the screen."
+  },
+  "about": {
+    "lead": "A Nostr conference\nfrom Japan.\n<m>And a festival.</m>",
+    "nostrasia": "Started in 2023, it's a place where people who build Nostr, use it, or are just curious about it come together. Past editions featured talks and LTs, hands-on sessions, a market, the Nostr Shrine and more. The 2024 and 2025 editions were held in Tokyo.",
+    "nostr": "A protocol for decentralized social media that doesn't depend on any particular company. Instead of signing up with an email address, you make your own keys. Your public key (npub) is an ID you can share with others; your secret key (nsec) is something only you keep. Posts are stored on servers called relays, and you can read and write them with any app (client) you like. You can cheer on posts you like with a zap ⚡ (a way to send a small amount of bitcoin)."
+  },
+  "how": {
+    "lead": "Keys are circles, relays are squares. Four diagrams walk through how a Nostr post reaches its readers.",
+    "figStep": "STEP {{n}} / 4",
+    "fig": {
+      "nsec": "nsec secret key",
+      "npub": "npub public key",
+      "note": "note (post)",
+      "sig": "signature",
+      "r1": "relay A",
+      "r2": "relay B",
+      "r3": "relay C",
+      "cl": "client (app)"
+    },
+    "steps": {
+      "1": {
+        "name": "Keys",
+        "title": "Make your keys",
+        "body": "First, you make a pair of keys: a secret key <c>nsec</c> and a public key <c>npub</c>. Your npub is the ID that identifies you, and it's fine to share. Your nsec is the secret key only you hold. You don't need to sign up with an email address or anything else."
+      },
+      "2": {
+        "name": "Signature",
+        "title": "Sign",
+        "body": "When you write a post, you sign it with your secret key. Thanks to the signature, anyone can check that you really wrote it, wherever it ends up."
+      },
+      "3": {
+        "name": "Relays ×3",
+        "title": "Send it to relays",
+        "body": "You send the signed post to several relays. A relay is a server that stores posts and passes them along. Even if one goes down, the same post stays on the others."
+      },
+      "4": {
+        "name": "App",
+        "title": "Read it in an app",
+        "body": "An app (client) gathers posts from whichever relays you like and shows them. As long as you have your keys, you keep the same account even if you switch apps. You can also send a zap ⚡ to posts you like."
+      }
+    }
+  },
+  "program": {
+    "lead": "Listen, try, shop,\npray, <m>dance.</m>",
+    "note": "* These are from past editions. The 2026 program is TBA.",
+    "items": {
+      "talk": {
+        "title": "Talks & LT",
+        "text": "People who build and use Nostr talked about where it is now and where it's going."
+      },
+      "handson": {
+        "title": "Hands-on",
+        "text": "From making your keys to using an app, people tried it out on the spot."
+      },
+      "market": {
+        "title": "Market",
+        "text": "Nostr goods and books were on sale."
+      },
+      "shrine": {
+        "title": "Nostr Shrine",
+        "text": "In 2025, you could pay your respects with a zap and draw a fortune."
+      },
+      "show": { "title": "Hero Show", "text": "A hero appeared on stage." },
+      "dj": {
+        "title": "DJ & Social Space",
+        "text": "There was time to talk with people face to face while listening to DJs."
+      }
+    }
+  },
+  "when": {
+    "overview": "Overview",
+    "date": "Date",
+    "venue": "Venue",
+    "fee": "Fee",
+    "timeRange": "{{start}}–{{end}}"
+  },
+  "timetable": {
+    "kick": "TIMETABLE (CONCEPT)",
+    "regionLabel": "Concept timetable (times, tracks and contents TBA)",
+    "bars": {
+      "talk": "Talk",
+      "lt": "LT",
+      "workshop": "Workshop",
+      "social": "Social",
+      "socialDj": "Social / DJ"
+    },
+    "note": "* The layout is only a concept. Times, tracks and contents are TBA. Scroll the table sideways."
+  },
+  "price": {
+    "lead": "Admission: {{fee}}.",
+    "leadTbd": "Admission: TBA.",
+    "text": "How to register will be announced once decided. Follow our official accounts so you don't miss it.",
+    "note": "Once registration opens, you'll be able to register from this button."
+  },
+  "speakers": {
+    "lead": "Speakers: <m>TBA.</m>",
+    "tba": "To be announced",
+    "note": "Speakers will be announced on our official accounts (X @nostrasia and others) once confirmed."
+  },
+  "sponsors": {
+    "lead": "Help us make Nostrasia 2026. We're looking for sponsors.",
+    "open": "Open",
+    "contact": "Talk to us about sponsoring →",
+    "note": "Sponsorship plans and prices will be published once decided. For inquiries, contact our official accounts (X @nostrasia / Nostr)."
+  },
+  "access": {
+    "leadTbd": "Venue: <m>TBA.</m>",
+    "lead": "Venue: <m>{{venue}}.</m>",
+    "pinLabel": "Abstract drawing in place of a map. {{venue}}",
+    "textTbd": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, address and nearest station will be posted here once decided.",
+    "openMap": "Open map ↗"
+  },
+  "faq": {
+    "items": {
+      "first": {
+        "q": "Can I join if I've never used Nostr?",
+        "a": "Past editions included hands-on sessions for first-timers. The 2026 program is TBA. If you've never used Nostr, start with “New to Nostr?” above."
+      },
+      "fee": {
+        "q": "Is there an admission fee?",
+        "a": "The fee is TBA. We'll announce it once decided."
+      },
+      "when": {
+        "q": "When will the date and venue be decided?",
+        "a": "They're TBA. We'll announce them on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr) once decided."
+      },
+      "keys": {
+        "q": "What are npub and nsec?",
+        "a": "npub is your public key — like a business card, it's fine to share. nsec is your secret key — like a password, only you should keep it. Unlike a password, it can't be reissued if you lose it."
+      },
+      "sponsor": {
+        "q": "I'd like to talk about sponsoring",
+        "a": "We're looking for sponsors. Sponsorship plans will be published once decided. Please contact our official accounts."
+      }
+    }
+  },
+  "archive": {
+    "lead": "Since 2023,\n<m>{{n}} editions</m> so far.",
+    "y2023": "1st edition",
+    "y2024": "2nd edition · Tokyo",
+    "y2025": "3rd edition · Tokyo",
+    "external": "Archive ↗",
+    "internal": "Archive →"
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacy": "Privacy Policy"
+  }
+}
