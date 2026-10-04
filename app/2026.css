@@ -1337,7 +1337,10 @@ html.no-hydrate .n26 .gantt .gb {
     align-items: center;
   }
   .n26 .arc {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .n26 .arc .y {
+    font-size: clamp(40px, 6vw, 88px);
   }
   .n26 .arc a,
   .n26 .arc .na {

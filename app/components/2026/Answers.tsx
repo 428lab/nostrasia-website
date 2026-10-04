@@ -117,6 +117,7 @@ const answers = (): Record<SectionId, { w: number; pieces: ReactNode[] }> => {
     timetable: {
       w: 300,
       pieces: WEEK_X.map((x, i) => (
+        // 日付が決まったら、例として中央の 1 つを塗る（曜日とは対応させない）
         <Sq key={x} x={x} y={77} s={22} filled={!!date && i === 3} />
       )),
     },

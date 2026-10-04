@@ -54,7 +54,7 @@
     "short": "TBA"
   },
   "hero": {
-    "catch": "Still asking<br/>“What's Nostr?”<br/>Come anyway.",
+    "catch": "Still asking <br/>“What's Nostr?” <br/>Come anyway.",
     "cap": "12 PIECES\n→ 1 OSTRICH"
   },
   "about": {
@@ -140,11 +140,14 @@
   "sponsors": {
     "capStage": "Stage",
     "capRing": "Sponsors (wanted)",
+    "capRingHas": "Sponsors",
     "cap": "Sponsors wanted",
+    "capHas": "The sponsors supporting Nostrasia 2026.",
     "lead": "Help us make Nostrasia 2026\n<m>together.</m>",
+    "leadHas": "Nostrasia 2026 is\n<m>supported by:</m>",
     "openLarge": "Sponsors wanted",
     "open": "Open",
-    "text": "Sponsorship plans and prices will be published once decided. For inquiries, use the contact form or reach our official accounts (X @nostrasia / Nostr).",
+    "text": "Sponsorship plans and prices will be published once decided. For inquiries, use the form below or reach our official accounts (X @nostrasia / Nostr).",
     "contact": "Talk about sponsoring →"
   },
   "access": {

@@ -11,11 +11,11 @@ import i18nConfig from '~/i18n'
 export function getLocaleYearFromPath(pathname: string): string {
   // Extract year from path like /2024, /2025, etc.
   const yearMatch = pathname.match(/^\/(\d{4})/)
-  
+
   if (yearMatch) {
     return yearMatch[1]
   }
-  
+
   // Default to configured year for root path or non-year paths
   return i18nConfig.localeYear
 }
@@ -38,6 +38,6 @@ export function getLocaleYearFromLocation(): string {
   if (typeof window === 'undefined') {
     return i18nConfig.localeYear
   }
-  
+
   return getLocaleYearFromPath(window.location.pathname)
 }

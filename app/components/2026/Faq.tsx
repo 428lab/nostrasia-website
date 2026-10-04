@@ -6,6 +6,16 @@ import { PU, Shape, YE } from '~/icons/2026/Shapes'
 import { Lead, QSection } from './QSection'
 
 const QUESTIONS = ['first', 'fee', 'when', 'keys', 'relay', 'zap'] as const
+/**
+ * 値が決まると答えと食い違う問い。fee は参加費、when は日程と会場が
+ * どちらも未定（null）のあいだだけ出す
+ */
+const showItem = (key: (typeof QUESTIONS)[number]) => {
+  const { fee, date, venue } = EVENT_2026
+  if (key === 'fee') return !fee
+  if (key === 'when') return !date && !venue
+  return true
+}
 /** はじめての Nostr の 4 ステップ。鍵は円、リレーは四角 */
 const STEPS = [
   { key: 'client', icon: null },
@@ -28,7 +38,7 @@ export const Faq = () => {
     >
       <Lead i18nKey="faq.lead" />
       <div className="faq">
-        {QUESTIONS.map((key) => (
+        {QUESTIONS.filter(showItem).map((key) => (
           <details key={key}>
             <summary>{t(`faq.items.${key}.q`)}</summary>
             <p>{t(`faq.items.${key}.a`)}</p>

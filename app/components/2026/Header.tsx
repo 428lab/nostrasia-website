@@ -2,7 +2,7 @@ import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useCurrentSection } from '~/hooks/useCurrentSection'
-import { Mark } from '~/icons/2026/Shapes'
+import { Mark, markFilled } from '~/icons/2026/Shapes'
 
 import { JoinButton } from './JoinButton'
 import { LanguageSwitch } from './LanguageSwitch'
@@ -38,6 +38,11 @@ export const Header = () => {
       }
       return
     }
+    // 開いている間は背面（本文・フッター・下部の帯）へ Tab で抜けないようにする
+    const behind = document.querySelectorAll<HTMLElement>(
+      '.n26 > main, .n26 > footer, .n26 > .bar',
+    )
+    behind.forEach((el) => (el.inert = true))
     menuRef.current?.querySelector('a')?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close(true)
@@ -49,19 +54,20 @@ export const Header = () => {
     window.addEventListener('keydown', onKey)
     wide.addEventListener('change', onWide)
     return () => {
+      behind.forEach((el) => (el.inert = false))
       window.removeEventListener('keydown', onKey)
       wide.removeEventListener('change', onWide)
     }
   }, [open, close])
 
-  // リンクを選ぶ・背景をタップすると閉じる
+  // リンクを選ぶと閉じる。リンク以外の場所（行の余白・背景）をタップしても閉じる（ボタンは除く）
   useEffect(() => {
     const menu = menuRef.current
     if (!menu) return
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (target.closest('a')) close(false)
-      else if (target === menu || target.tagName === 'UL') close(true)
+      else if (!target.closest('button')) close(true)
     }
     menu.addEventListener('click', onClick)
     return () => menu.removeEventListener('click', onClick)
@@ -82,7 +88,7 @@ export const Header = () => {
               href={`#${id}`}
               aria-current={current === id ? 'true' : undefined}
             >
-              <Mark id={id} className="gm" />
+              <Mark id={id} filled={markFilled(id)} className="gm" />
               {t(`nav.${id}`)}
             </a>
           ))}
@@ -111,9 +117,12 @@ export const Header = () => {
         <ul>
           {NAV_IDS.map((id, k) => (
             <li key={id} style={{ '--k': k } as CSSProperties}>
-              <a href={`#${id}`}>
+              <a
+                href={`#${id}`}
+                aria-current={current === id ? 'true' : undefined}
+              >
                 <span className="mq">{t(`q.${id}.q`)}</span>
-                <Mark id={id} />
+                <Mark id={id} filled={markFilled(id)} />
                 <span className="me">{t(`nav.${id}`)}</span>
               </a>
             </li>

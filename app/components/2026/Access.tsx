@@ -27,7 +27,7 @@ export const Access = () => {
       id="access"
       marks={[
         {
-          icon: <Mark id="access" />,
+          icon: <Mark id="access" filled={!!venue} />,
           label: venue ? t('access.capMark') : t('access.capMarkTbd'),
         },
       ]}

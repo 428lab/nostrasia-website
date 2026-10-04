@@ -17,16 +17,18 @@
 }
 
 @layer base {
-  html,body {
+  html,
+  body {
     @apply bg-background text-default h-full;
   }
   @media (prefers-color-scheme: dark) {
-    html,body {
+    html,
+    body {
       @apply dark:bg-dark-background dark:text-dark;
     }
   }
 }
 
-.gm-style iframe+div {
+.gm-style iframe + div {
   border: none !important;
 }

@@ -2,7 +2,7 @@ import { CSSProperties, ReactNode } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { useRevealOnce } from '~/hooks/useRevealOnce'
-import { Mark } from '~/icons/2026/Shapes'
+import { Mark, markFilled } from '~/icons/2026/Shapes'
 
 import { Answer } from './Answers'
 import { SECTIONS, SectionId, isJa } from './sections'
@@ -101,9 +101,10 @@ export const QSection = ({
 
   return (
     <section className="sec" id={id} aria-labelledby={headingId}>
-      <p className="band">
+      {/* 直後の h2 と同じ問いなので読み上げから外す（帯の中にフォーカスできる要素は置かない） */}
+      <p className="band" aria-hidden="true">
         <b>Q.{s.no}</b>
-        <Mark id={id} />
+        <Mark id={id} filled={markFilled(id)} />
         {t(`q.${id}.q`)}
         <small>{t(`q.${id}.band`)}</small>
       </p>
@@ -130,7 +131,11 @@ export const QSection = ({
   )
 }
 
-/** リード文。locale の <m>…</m> を黄色のマーカーにする。改行は \n */
+/**
+ * リード文。locale の <m>…</m> を黄色のマーカーにする。改行は \n
+ * 差し込む値（会場名など）はエスケープしたまま組み立て、最後に shouldUnescape で戻す。
+ * こうすると値に < や & が入ってもタグとして解釈されず、そのままの文字で出る
+ */
 export const Lead = ({
   i18nKey,
   values,
@@ -146,7 +151,7 @@ export const Lead = ({
         i18nKey={i18nKey}
         values={values}
         components={{ m: <mark /> }}
-        tOptions={{ interpolation: { escapeValue: false } }}
+        shouldUnescape
       />
     </p>
   )

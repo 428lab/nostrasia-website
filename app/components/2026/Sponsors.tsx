@@ -14,6 +14,8 @@ const TIER_CLASS: Record<SponsorTier['id'], string> = {
 
 export const Sponsors = () => {
   const { t } = useTranslation()
+  // 「募集中」の文言は、どの tier にもスポンサーがいないときだけ出す
+  const hasAny = SPONSOR_TIERS_2026.some((tier) => tier.sponsors.length > 0)
 
   return (
     <QSection
@@ -23,11 +25,14 @@ export const Sponsors = () => {
           icon: <Shape kind="half" color={TE} />,
           label: t('sponsors.capStage'),
         },
-        { icon: <Shape kind="ring" />, label: t('sponsors.capRing') },
+        {
+          icon: <Shape kind="ring" />,
+          label: hasAny ? t('sponsors.capRingHas') : t('sponsors.capRing'),
+        },
       ]}
-      caption={t('sponsors.cap')}
+      caption={hasAny ? t('sponsors.capHas') : t('sponsors.cap')}
     >
-      <Lead i18nKey="sponsors.lead" />
+      <Lead i18nKey={hasAny ? 'sponsors.leadHas' : 'sponsors.lead'} />
       <ul className="slots">
         {SPONSOR_TIERS_2026.flatMap((tier) =>
           tier.sponsors.length > 0

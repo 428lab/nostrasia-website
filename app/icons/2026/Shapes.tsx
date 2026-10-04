@@ -1,4 +1,5 @@
 import type { SectionId } from '~/components/2026/sections'
+import { EVENT_2026 } from '~/data/2026'
 
 /*
  * 図形アイコン。意味は固定: 円＝人・鍵 / 四角＝時間・リレー / 三角＝場所 / 半円＝ステージ。白抜き＝未定。
@@ -184,11 +185,63 @@ const MARKS: Record<SectionId, JSX.Element> = {
   ),
 }
 
+/** 値が決まったときの印。白抜きだったところを黄で塗る（外形の大きさは白抜きと揃える） */
+const MARKS_FILLED: Partial<Record<SectionId, JSX.Element>> = {
+  timetable: (
+    <>
+      <Hollow
+        kind="rect"
+        x={3}
+        y={15}
+        width={9}
+        height={9}
+        outer={7}
+        inner={2.5}
+      />
+      <rect x={14} y={13.5} width={12} height={12} fill={YE} />
+      <Hollow
+        kind="rect"
+        x={28}
+        y={15}
+        width={9}
+        height={9}
+        outer={7}
+        inner={2.5}
+      />
+    </>
+  ),
+  price: (
+    <>
+      <path d="M1 37a9 9 0 0 1 18 0z" fill={PU} />
+      <circle cx="10" cy="22" r="5" fill={WH} />
+      <rect x={22.5} y={14.5} width={16} height={16} fill={YE} />
+    </>
+  ),
+  access: (
+    <>
+      <path d="M10 18h20L20 39z" fill={TE} />
+      <circle cx={20} cy={13} r={11} fill={YE} />
+    </>
+  ),
+}
+
+/** その面の値（日付・参加費・会場）が決まっているか。決まっていれば印を塗りにする */
+export const markFilled = (id: SectionId) => {
+  const { date, fee, venue } = EVENT_2026
+  if (id === 'timetable') return !!date
+  if (id === 'price') return !!fee
+  if (id === 'access') return !!venue
+  return false
+}
+
 export const Mark = ({
   id,
+  filled = false,
   className,
 }: {
   id: SectionId
+  /** 白抜きの部分を塗りにする（値が決まったとき） */
+  filled?: boolean
   className?: string
 }) => (
   <svg
@@ -197,6 +250,6 @@ export const Mark = ({
     aria-hidden="true"
     focusable="false"
   >
-    {MARKS[id]}
+    {(filled && MARKS_FILLED[id]) || MARKS[id]}
   </svg>
 )

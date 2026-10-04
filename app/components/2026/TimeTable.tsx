@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { EVENT_2026, formatDate2026, formatTime } from '~/data/2026'
 import { useRevealOnce } from '~/hooks/useRevealOnce'
-import { Shape } from '~/icons/2026/Shapes'
+import { Shape, YE } from '~/icons/2026/Shapes'
 
 import { Lead, QSection } from './QSection'
 import { localize } from './sections'
@@ -72,7 +72,7 @@ export const TimeTable = () => {
       id="timetable"
       marks={[
         {
-          icon: <Shape kind="sqh" />,
+          icon: date ? <Shape kind="sq" color={YE} /> : <Shape kind="sqh" />,
           label: date ? t('timetable.capMark') : t('timetable.capMarkTbd'),
         },
       ]}
@@ -87,7 +87,8 @@ export const TimeTable = () => {
       ) : (
         <Lead i18nKey="timetable.leadTbd" />
       )}
-      <dl className="ov" id="overview" aria-label={t('a11y.overview')}>
+      <h3 className="sr">{t('a11y.overview')}</h3>
+      <dl className="ov" id="overview">
         <div>
           <dt>{t('timetable.date')}</dt>
           <dd>

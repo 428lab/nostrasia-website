@@ -136,11 +136,14 @@
   "sponsors": {
     "capStage": "ステージ",
     "capRing": "スポンサー（募集中）",
+    "capRingHas": "スポンサー",
     "cap": "スポンサー募集中",
+    "capHas": "Nostrasia 2026 を支えるスポンサーです。",
     "lead": "Nostrasia 2026 を、\n<m>一緒につくりませんか。</m>",
+    "leadHas": "Nostrasia 2026 は、\n<m>この皆さまに支えられています。</m>",
     "openLarge": "スポンサー募集中",
     "open": "募集中",
-    "text": "協賛プランと金額は、決まり次第公開します。ご相談は、お問い合わせフォームか公式アカウント（X @nostrasia／Nostr）までどうぞ。",
+    "text": "協賛プランと金額は、決まり次第公開します。ご相談は、下のフォーム、または公式アカウント（X @nostrasia／Nostr）からどうぞ。",
     "contact": "協賛のご相談 →"
   },
   "access": {
