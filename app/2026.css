@@ -34,11 +34,52 @@ body:has(.n26.menu-open) {
   --hh: 60px;
   --ja: 'Zen Kaku Gothic New', sans-serif;
   --en: 'Unbounded', 'Zen Kaku Gothic New', sans-serif;
-  --tx: 'Familjen Grotesk', 'Zen Kaku Gothic New', sans-serif;
+  --gr: 'Familjen Grotesk', 'Zen Kaku Gothic New', sans-serif;
+  /* 本文の書体。日本語ページでは下の html[lang='ja'] で Zen Kaku に切り替える */
+  --tx: var(--gr);
   --pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /*
+   * タイプスケール（8 段＋補助 2 段）。各セレクタは font: var(--t-*) と
+   * letter-spacing: var(--t-*-ls) だけを参照し、ここ以外に生の値を書かない。
+   * 900 は display（ロゴ）・h2・キャッチ・全画面メニューだけ。
+   */
+  /* h2: セクション題 / catch: ヒーローのキャッチ（h2 の 0.7 倍） */
+  --t-h2: 900 clamp(28px, 7.4vw, 44px) / 1.25 var(--ja);
+  --t-catch: 900 clamp(20px, 5.2vw, 28px) / 1.25 var(--ja);
+  /* eyebrow: 題の上の英字ラベル、表の列名、図の STEP、英字の小見出し */
+  --t-eyebrow: 600 12px/1.3 var(--en);
+  --t-eyebrow-ls: 0.12em;
+  /* lead: セクション冒頭の導入文 */
+  --t-lead: 400 clamp(16px, 4.3vw, 18px) / 1.9 var(--ja);
+  --t-lead-ls: 0.02em;
+  /* h3: カード題、ステップ題、パネル題、FAQ の質問、概要の値 */
+  --t-h3: 700 18px/1.45 var(--ja);
+  /* h3 の名前版: 登壇者名（和文の名前も入るので Zen 700 15px） */
+  --t-name: 700 15px/1.3 var(--ja);
+  /* body: 本文すべて */
+  --t-body: 400 15px/1.8 var(--tx);
+  --t-body-ls: 0.02em;
+  /* caption: 注記、補足、住所、カードの小文字 */
+  --t-cap: 400 13px/1.7 var(--tx);
+  --t-cap-ls: 0.02em;
+  /* button: 主（参加ボタン）／副（副ボタン、空き枠） */
+  --t-btn: 700 16px/1 var(--ja);
+  --t-btn2: 700 15px/1 var(--ja);
+  --t-btn-ls: 0.04em;
+  /* （補）micro: 図のラベル、ガントのバー、凡例、言語切替。nav は PC のナビ */
+  --t-micro: 700 12px/1.25 var(--gr);
+  --t-micro-nav: 700 14px/1 var(--gr);
+  --t-micro-ls: 0.02em;
+  /* （補）numeral: 日付・年・時刻。サイズは文脈の段に合わせる（h3 相当 18px / 年 28px） */
+  --t-num: 600 18px/1.3 var(--en);
+  --t-num-xl: 600 28px/1 var(--en);
+  --t-num-ls: 0.04em;
   color: var(--ink);
-  font-family: var(--tx);
-  line-height: 1.75;
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
+}
+html[lang='ja'] .n26 {
+  --tx: var(--ja);
 }
 .n26 * {
   box-sizing: border-box;
@@ -75,6 +116,7 @@ body:has(.n26.menu-open) {
   display: flex;
   align-items: center;
   gap: 8px;
+  /* ロゴ（ワードマーク）なので型の外に置く（C-3: 変更なし） */
   font: 600 13px/1 var(--en);
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -85,7 +127,8 @@ body:has(.n26.menu-open) {
   height: 30px;
 }
 .n26 .lang {
-  font: 700 12px/1 var(--tx);
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
   border: 2px solid var(--ink);
   display: flex;
 }
@@ -113,6 +156,7 @@ body:has(.n26.menu-open) {
   align-items: center;
   justify-content: center;
   gap: 3px;
+  /* MENU / CLOSE。12px だと CLOSE が 56px のボタンからはみ出すので、例外として 10px */
   font: 600 10px/1 var(--en);
   letter-spacing: 0.08em;
 }
@@ -177,6 +221,7 @@ html:not(.js) .n26 .burger {
   gap: 16px;
   padding: 9px 4px;
   text-decoration: none;
+  /* 全画面メニューの項目は型の例外（メニュー専用の display 小、900 を維持） */
   font: 900 clamp(25px, 7.6vw, 38px) / 1.15 var(--en);
   letter-spacing: -0.01em;
   border-bottom: 2px solid var(--ink);
@@ -204,15 +249,15 @@ html.js .n26.menu-open .gnav li {
   color: #fff;
   border: 3px solid var(--ink);
   box-shadow: 5px 5px 0 var(--ink);
-  font: 900 18px/1 var(--ja);
+  font: var(--t-btn);
+  letter-spacing: var(--t-btn-ls);
   padding: 16px;
   text-decoration: none;
 }
-/* 参加登録ボタン共通: 「近日公開」の小さい表記 */
+/* 参加登録ボタン共通: 「近日公開」の小さい表記（12px 700。和文は Zen にフォールバック） */
 .n26 .jb small {
-  font-size: 0.7em;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
 }
 .n26 .regbar {
   position: fixed;
@@ -229,7 +274,8 @@ html.js .n26.menu-open .gnav li {
   background: var(--pu);
   color: #fff;
   border-top: 3px solid var(--ink);
-  font: 900 15px/1 var(--ja);
+  font: var(--t-btn);
+  letter-spacing: var(--t-btn-ls);
   text-decoration: none;
 }
 .n26.menu-open .regbar {
@@ -256,9 +302,11 @@ html.js .n26.menu-open .gnav li {
   padding: 0 20px;
 }
 .n26 .catch {
-  font: 900 clamp(17px, 4.6vw, 24px) / 1.5 var(--ja);
+  font: var(--t-catch);
+  letter-spacing: 0;
   white-space: pre-line;
 }
+/* display: ロゴのみ。サイズは .n / .y ごとに個別（下の media query でも変える）ので型の変数にしない */
 .n26 .logo {
   font-family: var(--en);
   font-weight: 900;
@@ -283,8 +331,8 @@ html.js .n26.menu-open .gnav li {
 }
 .n26 .logo small {
   display: block;
-  font: 700 12px/1.3 var(--tx);
-  letter-spacing: 0.12em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   text-transform: uppercase;
   border-top: 3px solid var(--ink);
   padding-top: 6px;
@@ -292,13 +340,13 @@ html.js .n26.menu-open .gnav li {
   max-width: 22em;
 }
 .n26 .date {
-  font: 600 clamp(15px, 4vw, 20px) / 1.4 var(--en);
-  letter-spacing: 0.06em;
+  font: var(--t-num);
+  letter-spacing: var(--t-num-ls);
 }
 .n26 .date span {
   display: block;
-  font: 400 13px/1.6 var(--ja);
-  letter-spacing: 0;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   /* 「ドリンク飲み放題つき」などを語の途中で折り返さない */
   word-break: keep-all;
   overflow-wrap: anywhere;
@@ -309,7 +357,8 @@ html.js .n26.menu-open .gnav li {
   gap: 10px;
   background: var(--pu);
   color: #fff;
-  font: 900 16px/1 var(--ja);
+  font: var(--t-btn);
+  letter-spacing: var(--t-btn-ls);
   padding: 15px 22px;
   text-decoration: none;
   border: 3px solid var(--ink);
@@ -317,7 +366,8 @@ html.js .n26.menu-open .gnav li {
 }
 /* 参加ボタンの下: 事前エントリーが必要なことの補足 */
 .n26 .entry-note {
-  font: 700 12px/1.6 var(--ja);
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   color: var(--mute);
   margin-top: -2px;
   word-break: keep-all;
@@ -401,8 +451,8 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   right: 0;
   top: 0;
   z-index: 2;
-  font: 600 10px/1.4 var(--en);
-  letter-spacing: 0.1em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   color: var(--te);
   text-align: right;
   white-space: pre-line;
@@ -416,18 +466,20 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   margin-bottom: 32px;
 }
 .n26 .sh h2 {
-  font: 900 clamp(26px, 6.4vw, 44px) / 1.15 var(--ja);
+  font: var(--t-h2);
+  letter-spacing: 0;
 }
 .n26 .sh h2 small {
   display: block;
-  font: 600 12px/1.4 var(--en);
-  letter-spacing: 0.14em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   color: var(--mute);
   margin-bottom: 4px;
 }
 .n26 .lead {
-  font: 400 16px/1.95 var(--ja);
-  max-width: 40em;
+  font: var(--t-lead);
+  letter-spacing: var(--t-lead-ls);
+  max-width: 36em;
 }
 .n26 .lead + .lead {
   margin-top: 14px;
@@ -441,19 +493,22 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   padding: 22px 20px;
 }
 .n26 .note {
-  font-size: 13px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   color: var(--mute);
   margin-top: 16px;
 }
 .n26 .ptl {
-  font: 900 18px/1.6 var(--ja);
+  font: var(--t-h3);
+  letter-spacing: 0;
 }
 .n26 .ptl + .note {
   margin-top: 6px;
 }
 .n26 .ptx {
   margin-top: 8px;
-  font-size: 15px;
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
 }
 /* about */
 .n26 .about-g {
@@ -478,31 +533,33 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   border-top: 0;
 }
 .n26 .ov dt {
-  font: 600 11px/1.3 var(--en);
-  letter-spacing: 0.1em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
 }
 .n26 .ov dd {
-  font: 900 17px/1.4 var(--ja);
+  font: var(--t-h3);
+  letter-spacing: 0;
 }
 .n26 .ov dd.m {
-  font-family: var(--en);
-  font-weight: 600;
+  font: var(--t-num);
+  letter-spacing: var(--t-num-ls);
 }
 /* 開催概要: 住所・注記などの補足行 */
 .n26 .ov dd small {
   display: block;
   margin-top: 4px;
-  font: 400 13px/1.6 var(--ja);
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
 .n26 .ov dd small a {
   color: var(--pu);
-  font-weight: 700;
 }
 /* program */
 .n26 .cg {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* 本文 15px が 2 列で 1 行 8 字前後に詰まるので、最小幅を 170px にする（390 幅では 1 列） */
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 14px;
 }
 .n26 .cc {
@@ -515,17 +572,18 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   transform: translateY(-4px);
 }
 .n26 .cc h3 {
-  font: 900 17px/1.35 var(--ja);
+  font: var(--t-h3);
+  letter-spacing: 0;
 }
 .n26 .cc h3 small {
   display: block;
-  font: 600 10px/1.4 var(--en);
-  letter-spacing: 0.1em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   color: var(--mute);
 }
 .n26 .cc p {
-  font-size: 13.5px;
-  line-height: 1.7;
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
   margin-top: 6px;
 }
 /* how */
@@ -546,13 +604,13 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   position: absolute;
   left: 12px;
   top: 8px;
-  font: 600 10px/1.3 var(--en);
-  letter-spacing: 0.1em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   z-index: 2;
 }
 .n26 .fig .lbl b {
   display: block;
-  font: 900 16px/1.3 var(--ja);
+  font: var(--t-h3);
   letter-spacing: 0;
 }
 .n26 .fig svg.ln {
@@ -596,7 +654,8 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   top: calc(50% + 50% * var(--s) + 4px);
   transform: translateX(-50%);
   transition: top 0.55s var(--pop);
-  font: 700 11px/1.25 var(--tx);
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
   background: var(--paper);
   padding: 1px 4px;
   white-space: nowrap;
@@ -660,25 +719,28 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   box-shadow: 6px 6px 0 var(--pu);
 }
 .n26 .step h3 {
-  font: 900 19px/1.4 var(--ja);
+  font: var(--t-h3);
+  letter-spacing: 0;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 .n26 .step h3 em {
-  font: 600 12px/1 var(--en);
-  font-style: normal;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   background: var(--ink);
   color: #fff;
   padding: 5px 7px;
 }
 .n26 .step p {
-  font-size: 15px;
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
   margin-top: 8px;
 }
+/* 本文中の nsec / npub。eyebrow と同じ書体・大きさで、字間だけ詰める */
 .n26 .step code {
-  font-family: var(--en);
-  font-size: 12px;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-num-ls);
   background: var(--bg);
   padding: 1px 4px;
 }
@@ -702,7 +764,8 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
 .n26 .axis .tk {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  font: 600 10px/1 var(--en);
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   color: var(--mute);
 }
 .n26 .axis .tk span {
@@ -714,14 +777,14 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   min-height: 58px;
 }
 .n26 .row b {
-  font: 600 11px/1.3 var(--en);
-  letter-spacing: 0.06em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
 }
 .n26 .row b small {
   display: block;
-  font: 400 11px/1.3 var(--ja);
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   color: var(--mute);
-  letter-spacing: 0;
 }
 .n26 .lane {
   position: relative;
@@ -740,17 +803,19 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   width: calc(var(--l) * 12.5% - 4px);
   border: 2px solid var(--ink);
   padding: 4px 7px;
-  font: 700 11px/1.25 var(--tx);
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
   overflow: hidden;
   transform-origin: left center;
   transition: transform 0.8s cubic-bezier(0.6, 0, 0.2, 1)
     calc(var(--d, 0) * 1ms);
 }
+/* 時刻。バーの高さ（58px の行）に 2 行収めるため、行間だけ 1 に詰める */
 .n26 .bar small {
   display: block;
-  font-weight: 400;
-  font-family: var(--en);
-  font-size: 10px;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-num-ls);
+  line-height: 1;
 }
 .n26 .bar.T {
   background: var(--pu);
@@ -777,7 +842,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   flex-wrap: wrap;
   gap: 8px 16px;
   margin-top: 14px;
-  font: 700 12px/1 var(--tx);
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
 }
 .n26 .legend span {
   display: flex;
@@ -814,11 +880,13 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   object-fit: cover;
 }
 .n26 .sp b {
-  font: 600 13px/1.3 var(--en);
+  font: var(--t-name);
+  letter-spacing: 0;
   display: block;
 }
 .n26 .sp small {
-  font-size: 12px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
 /* floor */
@@ -836,7 +904,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 900 13px/1.3 var(--ja);
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
   text-align: center;
   padding: 4px;
 }
@@ -865,8 +934,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   grid-row: 5/6;
 }
 .n26 .h3s {
-  font: 600 12px/1 var(--en);
-  letter-spacing: 0.14em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   margin: 36px 0 12px;
 }
 /* sponsors */
@@ -874,8 +943,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   margin-bottom: 18px;
 }
 .n26 .tier h3 {
-  font: 600 12px/1 var(--en);
-  letter-spacing: 0.14em;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
   margin-bottom: 10px;
 }
 .n26 .slots {
@@ -888,7 +957,10 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 900 15px/1.3 var(--ja);
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
+  /* 社名が 2 行に折り返したとき用 */
+  line-height: 1.3;
   background: rgba(248, 249, 250, 0.6);
 }
 .n26 a.slot {
@@ -910,14 +982,16 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 }
 .n26 .slots.s3 .slot {
   min-height: 60px;
-  font-size: 12px;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
 }
 .n26 .btn2 {
   display: inline-block;
   margin-top: 10px;
   border: 3px solid var(--ink);
   padding: 12px 18px;
-  font: 900 15px/1 var(--ja);
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
   text-decoration: none;
   background: var(--paper);
   color: var(--ink);
@@ -941,7 +1015,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   cursor: pointer;
   list-style: none;
   padding: 14px 46px 14px 16px;
-  font: 900 16px/1.5 var(--ja);
+  font: var(--t-h3);
+  letter-spacing: 0;
   position: relative;
 }
 .n26 summary::-webkit-details-marker {
@@ -964,7 +1039,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 }
 .n26 details p {
   padding: 0 16px 16px;
-  font-size: 15px;
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
 }
 /* archive */
 .n26 .ar {
@@ -982,11 +1058,13 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 }
 .n26 .ar b {
   display: block;
-  font: 900 40px/1 var(--en);
+  font: var(--t-num-xl);
+  letter-spacing: var(--t-num-ls);
   margin-bottom: 8px;
 }
 .n26 .ar span {
-  font-size: 13px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   display: block;
   color: var(--mute);
 }
@@ -998,7 +1076,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   margin-top: 40px;
 }
 .n26 footer .fl {
-  font: 900 22px/1.2 var(--en);
+  font: var(--t-num);
+  letter-spacing: var(--t-num-ls);
   margin-bottom: 14px;
 }
 .n26 footer ul {
@@ -1006,7 +1085,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 18px;
-  font-size: 14px;
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
 }
 .n26 footer ul + ul {
   margin-top: 12px;
@@ -1015,7 +1095,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   color: #e9ecef;
 }
 .n26 footer p {
-  font-size: 12px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
   color: #b9bdc2;
   margin-top: 18px;
 }
@@ -1101,11 +1182,11 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     gap: 2px;
   }
   .n26 .gnav li a {
-    font: 700 14px/1 var(--tx);
+    font: var(--t-micro-nav);
     border: 0;
     padding: 8px 7px;
     gap: 0;
-    letter-spacing: 0.01em;
+    letter-spacing: var(--t-micro-ls);
   }
   .n26 .gnav li a.on {
     color: var(--ink);
@@ -1113,7 +1194,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   }
   .n26 .gnav .ncta {
     margin: 0 0 0 8px;
-    font-size: 14px;
+    font: var(--t-btn2);
     padding: 11px 14px;
     box-shadow: 3px 3px 0 var(--ink);
     flex-direction: column;

@@ -31,7 +31,7 @@ export const links: LinksFunction = () => [
   }),
   {
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;700&family=Unbounded:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;900&display=swap',
+    href: 'https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;700&family=Unbounded:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap',
   },
 ]
 
