@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 
 import { useCurrentSection } from '~/hooks/useCurrentSection'
 import { Mark } from '~/icons/2026/Mark'
-import { ShapeIcon } from '~/icons/2026/ShapeIcon'
 
 import { JoinButton } from './JoinButton'
 import { LanguageSwitch } from './LanguageSwitch'
@@ -102,9 +101,9 @@ export const Header = ({
         onClick={() => setMenu(!menuOpen, true)}
       >
         <span className="bs" aria-hidden="true">
-          <i className="b1" />
-          <i className="b2" />
-          <i className="b3" />
+          <i />
+          <i />
+          <i />
         </span>
         <span className="bl" aria-hidden="true">
           {menuOpen ? t('menu.closeShort') : t('menu.openShort')}
@@ -119,7 +118,6 @@ export const Header = ({
                 className={current === id ? 'on' : undefined}
                 aria-current={current === id ? 'true' : undefined}
               >
-                <ShapeIcon name={id} className="mi" />
                 {t(label)}
               </a>
             </li>

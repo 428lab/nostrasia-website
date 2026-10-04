@@ -80,7 +80,6 @@ export const TimeTable = () => {
     <section className="sec" id="timetable">
       <div className="wrap">
         <SectionHead
-          icon="timetable"
           label={t('timetable.label')}
           title={t('timetable.title')}
         />

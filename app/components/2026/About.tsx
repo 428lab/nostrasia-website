@@ -22,11 +22,7 @@ export const About = () => {
   return (
     <section className="sec" id="about">
       <div className="wrap">
-        <SectionHead
-          icon="about"
-          label={t('about.label')}
-          title={t('about.title')}
-        />
+        <SectionHead label={t('about.label')} title={t('about.title')} />
         <p className="lead">{t('about.lead1')}</p>
         <p className="lead">{t('about.lead2')}</p>
         <div className="about-g" id="overview">

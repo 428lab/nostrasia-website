@@ -1,7 +1,5 @@
-import type { ShapeName } from '~/icons/2026/ShapeIcon'
-
 /** ヘッダー・メニュー・フッターで共通のナビ項目（id はセクションの id） */
-export const NAV_ITEMS: { id: ShapeName; label: string }[] = [
+export const NAV_ITEMS: { id: string; label: string }[] = [
   { id: 'about', label: 'nav.about' },
   { id: 'program', label: 'nav.program' },
   { id: 'timetable', label: 'nav.timetable' },
