@@ -25,33 +25,18 @@ export const Access = () => {
       <div className="wrap">
         <SectionHead label={t('access.label')} title={t('access.title')} />
         <div className="acc">
-          <div className="amap">
-            <svg viewBox="0 0 400 300" aria-hidden="true">
-              <rect x="0" y="130" width="400" height="16" fill="#C9CDD2" />
-              <rect x="180" y="0" width="16" height="300" fill="#C9CDD2" />
-            </svg>
-            <p>
-              {venue
-                ? t('access.mapCaption', {
-                    venue: localized(venue.name),
-                    interpolation: { escapeValue: false },
-                  })
-                : t('venueTBA')}
-            </p>
-          </div>
           {venue ? (
             <div className="panel">
               <p className="ptl">{localized(venue.name)}</p>
               <p className="ptx">{localized(venue.address)}</p>
-              <p className="ptx">
-                <a
-                  href={venue.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('access.map')}
-                </a>
-              </p>
+              <a
+                className="btn2"
+                href={venue.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('access.map')}
+              </a>
             </div>
           ) : (
             <div className="panel">

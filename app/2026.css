@@ -113,7 +113,7 @@ body:has(.n26.menu-open) {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  font: 600 8px/1 var(--en);
+  font: 600 10px/1 var(--en);
   letter-spacing: 0.08em;
 }
 html:not(.js) .n26 .burger {
@@ -163,9 +163,6 @@ html:not(.js) .n26 .burger {
   background: var(--bg);
   overflow-y: auto;
   padding: 22px 20px calc(28px + env(safe-area-inset-bottom));
-  background-image: linear-gradient(rgba(22, 22, 22, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(22, 22, 22, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
   display: none;
 }
 .n26.menu-open .gnav {
@@ -234,13 +231,6 @@ html.js .n26.menu-open .gnav li {
   border-top: 3px solid var(--ink);
   font: 900 15px/1 var(--ja);
   text-decoration: none;
-}
-.n26 .regbar:before {
-  content: '';
-  width: 11px;
-  height: 11px;
-  background: var(--ye);
-  border-radius: 50%;
 }
 .n26.menu-open .regbar {
   display: none;
@@ -324,13 +314,6 @@ html.js .n26.menu-open .gnav li {
   text-decoration: none;
   border: 3px solid var(--ink);
   box-shadow: 5px 5px 0 var(--ink);
-}
-.n26 .cta:before {
-  content: '';
-  width: 12px;
-  height: 12px;
-  background: var(--ye);
-  border-radius: 50%;
 }
 /* 参加ボタンの下: 事前エントリーが必要なことの補足 */
 .n26 .entry-note {
@@ -591,25 +574,28 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   position: absolute;
   left: calc(var(--x) * 1%);
   top: calc(var(--y) * 1%);
-  transform: translate(-50%, -50%) scale(var(--s));
+  transform: translate(-50%, -50%);
   opacity: var(--o);
   transition:
     left 0.55s var(--pop),
     top 0.55s var(--pop),
-    transform 0.55s var(--pop),
     opacity 0.4s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
   text-align: center;
 }
+/* 拡縮はアイコンだけ。ラベルは拡縮したアイコンの下端に付けて、大きさを変えない */
 .n26 .it i {
   display: block;
   width: 54px;
   height: 54px;
+  transform: scale(var(--s));
+  transition: transform 0.55s var(--pop);
 }
 .n26 .it span {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 50% * var(--s) + 4px);
+  transform: translateX(-50%);
+  transition: top 0.55s var(--pop);
   font: 700 11px/1.25 var(--tx);
   background: var(--paper);
   padding: 1px 4px;
@@ -933,35 +919,17 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   padding: 12px 18px;
   font: 900 15px/1 var(--ja);
   text-decoration: none;
-  background: var(--ye);
+  background: var(--paper);
+  color: var(--ink);
+}
+.n26 .btn2:hover {
+  background: var(--ink);
+  color: #fff;
 }
 /* access */
 .n26 .acc {
   display: grid;
   gap: 18px;
-}
-.n26 .amap {
-  aspect-ratio: 4/3;
-  background: var(--paper);
-  border: 3px solid var(--ink);
-  position: relative;
-  overflow: hidden;
-}
-.n26 .amap svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.n26 .amap p {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--ink);
-  color: #fff;
-  font: 900 16px/1.4 var(--ja);
-  padding: 10px 14px;
-  white-space: nowrap;
 }
 /* faq */
 .n26 details {
@@ -984,10 +952,10 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   position: absolute;
   right: 16px;
   top: 50%;
-  width: 16px;
-  height: 16px;
-  margin-top: -8px;
-  background: var(--or);
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  background: var(--ink);
   clip-path: polygon(50% 100%, 100% 0, 0 0);
   transition: transform 0.3s;
 }
@@ -1074,7 +1042,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     margin-top: 12vh;
   }
   .n26 .acc {
-    grid-template-columns: 1.2fr 1fr;
+    max-width: 640px;
   }
   .n26 .ar {
     grid-template-columns: repeat(3, 1fr);
@@ -1170,6 +1138,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     transition: none;
   }
   .n26 .it,
+  .n26 .it i,
+  .n26 .it span,
   .n26 .step,
   .n26 .fig svg.ln g,
   .n26 .burger .bs i,
