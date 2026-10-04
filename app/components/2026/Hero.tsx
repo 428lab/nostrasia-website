@@ -61,7 +61,14 @@ const HeroVideo = ({
  */
 export const Hero = () => {
   const { t, i18n } = useTranslation()
-  const { heroVideo, venue } = EVENT_2026
+  const { heroVideo, venue, fee, feeNote } = EVENT_2026
+  const feeText = fee
+    ? t(feeNote ? 'hero.feeNote' : 'hero.fee', {
+        fee: localize(fee, i18n),
+        note: feeNote ? localize(feeNote, i18n) : '',
+        interpolation: { escapeValue: false },
+      })
+    : t('hero.feeTBA')
   const [done, setDone] = useState(false)
 
   useEffect(() => {
@@ -96,7 +103,11 @@ export const Hero = () => {
           <p className="meta">
             <small>{t('hero.kind')}</small>
             <span className="d">{formatDateLong(EVENT_2026.date, i18n)}</span>
-            {venue ? localize(venue.name, i18n) : t('tbd.venue')}
+            {t('hero.place', {
+              venue: venue ? localize(venue.name, i18n) : t('tbd.venue'),
+              fee: feeText,
+              interpolation: { escapeValue: false },
+            })}
           </p>
           <div className="hero-cta">
             <JoinButton variant="hero" />

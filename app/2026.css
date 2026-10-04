@@ -1227,6 +1227,12 @@ html.js:not(.no-hydrate) .n26 .q.in .qm .pc {
   color: var(--wh);
 }
 
+/* 下部の帯が出る幅: ヒーローの最初の画面（ヘッダーと帯のあいだ）にエントリーの補足まで入れる */
+@media (max-width: 1120px) {
+  .n26 .hero {
+    min-height: calc(100svh - var(--hdh) - 48px - env(safe-area-inset-bottom));
+  }
+}
 @media (min-width: 760px) {
   .n26 .spk {
     grid-template-columns: repeat(4, 1fr);
