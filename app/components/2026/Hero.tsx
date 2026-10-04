@@ -29,11 +29,15 @@ const useFitLines = () => {
         parseFloat(cs.paddingRight)
       if (!force && w === lastWidth) return
       lastWidth = w
+      // 3 行の合計（行送り 0.84）が画面の高さの約半分に収まる上限。残りにキャッチ・日付・会場・参加費・参加ボタンを入れる。
+      // スマホ幅は下部の帯があるぶん低くし、ヘッダーと帯のあいだの約 55% にする（境界は 2026.css の 760px と揃える）
+      const share = matchMedia('(max-width: 759px)').matches ? 0.47 : 0.55
+      const maxSize = (innerHeight * share) / (lines.length * 0.84)
       lines.forEach((el) => {
         el.style.fontSize = '100px'
         const s = el.offsetWidth || 1
         el.style.fontSize =
-          Math.min(((100 * w) / s) * 0.99, innerHeight * 0.38).toFixed(1) + 'px'
+          Math.min(((100 * w) / s) * 0.99, maxSize).toFixed(1) + 'px'
       })
     }
     const onResize = () => fit(false)
@@ -103,8 +107,15 @@ const HeroVideo = ({
 export const Hero = () => {
   const { t, i18n } = useTranslation()
   const ref = useFitLines()
-  const { heroVideo, venue, date, entryRequired } = EVENT_2026
+  const { heroVideo, venue, date, fee, feeNote, entryRequired } = EVENT_2026
   const venueName = venue ? localize(venue.name, i18n) : t('tbd.venue')
+  const feeText = fee
+    ? t(feeNote ? 'hero.feeNote' : 'hero.fee', {
+        fee: localize(fee, i18n),
+        note: feeNote ? localize(feeNote, i18n) : '',
+        interpolation: { escapeValue: false },
+      })
+    : t('hero.feeTBA')
 
   return (
     <section className="hero o" aria-labelledby="hero-title" ref={ref}>
@@ -128,7 +139,7 @@ export const Hero = () => {
         <div className="hero-foot">
           <p className="meta">
             <small>NOSTRASIA</small>
-            {/* 日付が決まったら曜日つきの日付を大きく出し、その下に会場名 */}
+            {/* 日付が決まったら曜日つきの日付を大きく出し、その下に会場名と参加費 */}
             <span className="d">
               {date ? formatDateLong(date, i18n) : t('hero.year')}
             </span>
@@ -139,6 +150,7 @@ export const Hero = () => {
                   venue: venueName,
                   interpolation: { escapeValue: false },
                 })}
+            <span className="fee">{feeText}</span>
           </p>
           <div className="hero-join">
             <JoinButton variant="hero" />

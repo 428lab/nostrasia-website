@@ -55,7 +55,10 @@
   "hero": {
     "catch": "Nostr を、\n画面の外で。",
     "year": "2026 — 詳細は決まり次第",
-    "when": "{{date}} ／ {{venue}}"
+    "when": "{{date}} ／ {{venue}}",
+    "fee": "参加費 {{fee}}",
+    "feeNote": "参加費 {{fee}}（{{note}}）",
+    "feeTBA": "参加費 未定"
   },
   "about": {
     "lead": "日本発、<m>Nostr</m> の\nカンファレンス。そして、お祭り。",

@@ -55,7 +55,10 @@
   "hero": {
     "catch": "Nostr,\noff the screen.",
     "year": "2026 — Details TBA",
-    "when": "{{date}} / {{venue}}"
+    "when": "{{date}} / {{venue}}",
+    "fee": "Fee: {{fee}}",
+    "feeNote": "Fee: {{fee}} ({{note}})",
+    "feeTBA": "Fee: TBA"
   },
   "about": {
     "lead": "A <m>Nostr</m> conference\nfrom Japan, and a festival.",

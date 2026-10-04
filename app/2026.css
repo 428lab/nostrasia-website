@@ -330,14 +330,14 @@ body.menu-open .n26 .bar {
   width: max-content;
 }
 .n26 .hero .l1 {
-  font-size: clamp(4rem, 62vw, 40vh);
+  font-size: clamp(4rem, 62vw, 21.8vh);
 }
 .n26 .hero .l2 {
-  font-size: clamp(4rem, 95vw, 40vh);
+  font-size: clamp(4rem, 95vw, 21.8vh);
   color: var(--wh);
 }
 .n26 .hero .l3 {
-  font-size: clamp(4rem, 46vw, 36vh);
+  font-size: clamp(4rem, 46vw, 21.8vh);
 }
 .n26 .hero-foot {
   display: flex;
@@ -362,6 +362,9 @@ body.menu-open .n26 .bar {
   font-family: var(--en);
   font-size: 28px;
   letter-spacing: 0.02em;
+  display: block;
+}
+.n26 .meta .fee {
   display: block;
 }
 .n26 .hero-join .note {
@@ -1114,6 +1117,20 @@ html.no-hydrate .n26 .q .ch {
   color: var(--wh);
 }
 
+/* スマホ幅: ヒーローの最初の画面（ヘッダーと下部の帯のあいだ）に日付・会場・参加費・参加ボタンまで入るよう余白を詰める */
+@media (max-width: 759px) {
+  .n26 .hero {
+    min-height: calc(100svh - var(--hdh) - 48px - env(safe-area-inset-bottom));
+    padding-top: 12px;
+  }
+  .n26 .hero .catch {
+    margin-top: 10px;
+  }
+  .n26 .hero-foot {
+    gap: 10px;
+    margin-top: 12px;
+  }
+}
 @media (min-width: 760px) {
   .n26 .spk {
     grid-template-columns: repeat(4, 1fr);
