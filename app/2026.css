@@ -516,6 +516,19 @@ body.menu-open .n26 .bar {
   transform: translate(-2px, -2px);
   box-shadow: 7px 7px 0 var(--ink);
 }
+.n26 .h-join {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.n26 .h-note {
+  margin-top: 2px;
+  font-family: var(--tx);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.4;
+}
 /* 12 ピースのダチョウ（首と頭は境目を越えて橙側へ。橙側に入る部品は墨と白だけ） */
 .n26 .stage {
   position: absolute;
@@ -1460,6 +1473,10 @@ html.js:not(.no-hydrate) .n26 .gantt:not(.in) .bar2 {
 .n26 .price p {
   font: 900 clamp(22px, 6vw, 34px) / 1.4 var(--zk);
 }
+/* 参加費の注記（ドリンク飲み放題つき 等） */
+.n26 .price p.pn {
+  font-size: clamp(15px, 4vw, 20px);
+}
 .n26 .btn-off {
   display: inline-flex;
   align-items: center;
@@ -1733,6 +1750,14 @@ html.js:not(.no-hydrate) .n26 .gantt:not(.in) .bar2 {
   }
   .n26 .h-meta b {
     font-size: 17px;
+  }
+  .n26 .h-join {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 16px;
+  }
+  .n26 .h-join .h-cta {
+    flex: none;
   }
   .n26 .stage {
     top: 5%;

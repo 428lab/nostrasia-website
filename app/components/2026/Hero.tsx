@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026 } from '~/data/2026'
+import { EVENT_2026 } from '~/data/2026'
 
 import { JoinButton } from './JoinButton'
 import { OSTRICH_BASE_CLASS, Ostrich } from './Ostrich'
 import { Arch } from './Seams'
-import { localize } from './sections'
+import { formatDateLabel, localize } from './sections'
 
 /** ヒーローを左右に分ける幅（2026.css と揃える）。これ未満は斜めで上下に分ける */
 const PC_QUERY = '(min-width: 900px)'
@@ -215,7 +215,7 @@ const HeroVideo = ({
 export const Hero = () => {
   const { t, i18n } = useTranslation()
   const { heroRef, tailRef } = useHeroLayout()
-  const { heroVideo, venue } = EVENT_2026
+  const { heroVideo, venue, entryRequired } = EVENT_2026
 
   return (
     <>
@@ -249,10 +249,14 @@ export const Hero = () => {
               20<b>26</b>
             </p>
             <p className="h-meta">
-              <b>{formatDate2026(EVENT_2026.date)}</b>
+              <b>{formatDateLabel(EVENT_2026.date, i18n)}</b>
               {venue ? localize(venue.name, i18n) : t('tbd.venue')}
             </p>
-            <JoinButton variant="hero" />
+            {/* PC では補足をボタンの横に置き、右下の文字がダチョウの足に届かないようにする */}
+            <div className="h-join">
+              <JoinButton variant="hero" />
+              {entryRequired && <p className="h-note">{t('join.entryNote')}</p>}
+            </div>
           </div>
         </div>
         <div className="stage" aria-hidden="true">

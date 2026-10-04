@@ -1,12 +1,12 @@
 import { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, formatDate2026, formatTime } from '~/data/2026'
+import { EVENT_2026, formatTime } from '~/data/2026'
 import { useRevealOnce } from '~/hooks/useRevealOnce'
 
 import { BbFace, BbHead } from './Faces'
 import { JoinButton } from './JoinButton'
-import { localize } from './sections'
+import { formatDateLabel, localize } from './sections'
 
 type Kind = 'T' | 'L' | 'W' | 'S'
 /** a: 開始位置、l: 長さ（どちらも目盛り 1 つ = 1）、d: 伸びはじめる遅延（ms）、label: locale の timetable.bars.* */
@@ -50,7 +50,17 @@ const LEGEND: { label: string; color: string }[] = [
 /** 開催概要。未定の値は「調整中」「未定」の locale キーで出す */
 const Overview = () => {
   const { t, i18n } = useTranslation()
-  const { startTime, endTime, doorsOpen, venue, fee } = EVENT_2026
+  const {
+    date,
+    startTime,
+    endTime,
+    doorsOpen,
+    venue,
+    fee,
+    feeNote,
+    entryRequired,
+    registrationUrl,
+  } = EVENT_2026
 
   return (
     <>
@@ -62,7 +72,7 @@ const Overview = () => {
             {t('when.date')}
           </dt>
           <dd className="m">
-            {formatDate2026(EVENT_2026.date)}
+            {formatDateLabel(date, i18n)}
             {/* 片方だけ決まったときも出す（未定の側は --:--） */}
             {startTime || endTime ? (
               <small>
@@ -75,7 +85,8 @@ const Overview = () => {
             ) : (
               <small>
                 <i className="tq" />〜<i className="tq" />
-                {t('tbd.time')}
+                {/* 日付だけ決まっているときは「時刻は調整中」 */}
+                {date ? t('when.timeTbd') : t('tbd.time')}
               </small>
             )}
             {doorsOpen && (
@@ -93,15 +104,46 @@ const Overview = () => {
             <i className="mk t" />
             {t('when.venue')}
           </dt>
-          <dd>{venue ? localize(venue.name, i18n) : t('tbd.venue')}</dd>
+          {venue ? (
+            <dd>
+              {localize(venue.name, i18n)}
+              <small>{localize(venue.address, i18n)}</small>
+              <small>
+                <a
+                  href={venue.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('access.openMap')}
+                </a>
+              </small>
+            </dd>
+          ) : (
+            <dd>{t('tbd.venue')}</dd>
+          )}
         </div>
         <div>
           <dt>
             <i className="mk c" />
             {t('when.fee')}
           </dt>
-          <dd>{fee ? localize(fee, i18n) : t('tbd.fee')}</dd>
+          <dd>
+            {fee ? localize(fee, i18n) : t('tbd.fee')}
+            {fee && feeNote && <small>{localize(feeNote, i18n)}</small>}
+          </dd>
         </div>
+        {entryRequired && (
+          <div>
+            <dt>
+              <i className="mk" />
+              {t('when.entry')}
+            </dt>
+            <dd>
+              {t('when.entryRequired')}
+              {!registrationUrl && <small>{t('when.entryOpensTbd')}</small>}
+            </dd>
+          </div>
+        )}
       </dl>
     </>
   )
@@ -110,6 +152,7 @@ const Overview = () => {
 /** 枠だけのガント。画面に入ったときに 1 回だけ横棒を左から伸ばす */
 const Gantt = () => {
   const { t } = useTranslation()
+  const { date } = EVENT_2026
   const [ref, shown] = useRevealOnce<HTMLDivElement>()
 
   return (
@@ -168,7 +211,7 @@ const Gantt = () => {
         ))}
         <span>
           <i className="tq" />
-          {t('tbd.time')}
+          {date ? t('when.timeTbd') : t('tbd.time')}
         </span>
       </div>
       <p className="bnote">{t('timetable.note')}</p>
@@ -179,7 +222,13 @@ const Gantt = () => {
 /** 参加費と参加登録。参加登録ボタンのページ内リンク先（#price） */
 const Price = () => {
   const { t, i18n } = useTranslation()
-  const { fee, registrationUrl } = EVENT_2026
+  const { fee, feeNote, entryRequired, registrationUrl } = EVENT_2026
+  // 参加登録の案内。事前エントリーが必要なら、受付先が決まる前後で文言を分ける
+  const text = entryRequired
+    ? registrationUrl
+      ? t('price.entryTextOpen')
+      : t('price.entryText')
+    : !registrationUrl && t('price.text')
 
   return (
     <>
@@ -194,10 +243,15 @@ const Price = () => {
                 })
               : t('price.leadTbd')}
           </p>
+          {fee && feeNote && <p className="pn">{localize(feeNote, i18n)}</p>}
         </div>
-        {!registrationUrl && <p className="bt">{t('price.text')}</p>}
+        {text && <p className="bt">{text}</p>}
         <JoinButton variant="section" />
-        {!registrationUrl && <p className="bnote">{t('price.note')}</p>}
+        {!registrationUrl && (
+          <p className="bnote">
+            {entryRequired ? t('price.entryNote') : t('price.note')}
+          </p>
+        )}
       </div>
     </>
   )

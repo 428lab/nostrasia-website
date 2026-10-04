@@ -49,7 +49,12 @@
     "soon": "TBA",
     "soonLong": "Registration TBA",
     "menu": "Join (fee & registration)",
-    "sectionTbd": "Register (TBA)"
+    "sectionTbd": "Register (TBA)",
+    "entry": "Pre-register",
+    "entrySoon": "Opening date TBA",
+    "entryMenu": "Pre-register (fee & entry)",
+    "entrySectionTbd": "Pre-register (opening date TBA)",
+    "entryNote": "Pre-registration is required."
   },
   "tbd": {
     "venue": "Venue TBA",
@@ -134,7 +139,11 @@
     "venue": "Venue",
     "fee": "Fee",
     "timeRange": "{{start}}–{{end}}",
-    "doors": "Doors open {{time}}"
+    "doors": "Doors open {{time}}",
+    "timeTbd": "Time TBA",
+    "entry": "Entry",
+    "entryRequired": "Pre-registration required",
+    "entryOpensTbd": "We'll announce when registration opens."
   },
   "timetable": {
     "kick": "TIMETABLE (CONCEPT)",
@@ -152,7 +161,10 @@
     "lead": "Admission: {{fee}}.",
     "leadTbd": "Admission: TBA.",
     "text": "How to register will be announced once decided. Follow our official accounts so you don't miss it.",
-    "note": "Once registration opens, you'll be able to register from this button."
+    "note": "Once registration opens, you'll be able to register from this button.",
+    "entryText": "Pre-registration is required. We'll announce when registration opens. Follow our official accounts so you don't miss it.",
+    "entryTextOpen": "Pre-registration is required. Please pre-register with the button below.",
+    "entryNote": "Once registration opens, you'll be able to pre-register from this button."
   },
   "speakers": {
     "lead": "Speakers: <m>TBA.</m>",
@@ -177,7 +189,14 @@
     "items": {
       "first": {
         "q": "Can I join if I've never used Nostr?",
-        "a": "Past editions included hands-on sessions for first-timers. The 2026 program is TBA. If you've never used Nostr, start with “New to Nostr?” above."
+        "a": "Past editions included hands-on sessions for first-timers. The 2026 program is TBA. If you've never used Nostr, start with “New to Nostr?” above.",
+        "aEntry": "Yes, as long as you pre-register (we'll announce how once decided). If you've never used Nostr, start with “New to Nostr?” above.",
+        "aEntryOpen": "Yes, as long as you pre-register. If you've never used Nostr, start with “New to Nostr?” above."
+      },
+      "entry": {
+        "q": "Do I need to pre-register?",
+        "a": "Yes. We'll announce when registration opens.",
+        "aOpen": "Yes. Please pre-register with the button below."
       },
       "fee": {
         "q": "Is there an admission fee?",
