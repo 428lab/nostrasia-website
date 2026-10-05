@@ -1185,13 +1185,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   transition: transform 0.8s cubic-bezier(0.6, 0, 0.2, 1)
     calc(var(--d, 0) * 1ms);
 }
-/* 時刻。バーの高さ（58px の行）に 2 行収めるため、行間だけ 1 に詰める */
-.n26 .bar small {
-  display: block;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-num-ls);
-  line-height: 1;
-}
 .n26 .bar.T {
   background: var(--pu);
   color: #fff;
@@ -1211,24 +1204,6 @@ html.js:not(.no-hydrate) .n26 .bar {
 }
 html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   transform: none;
-}
-.n26 .legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-top: 14px;
-  font: var(--t-micro);
-  letter-spacing: var(--t-micro-ls);
-}
-.n26 .legend span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.n26 .legend i {
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--ink);
 }
 /* speakers */
 .n26 .sg {
@@ -1264,37 +1239,49 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
-/* floor */
-.n26 .floor {
+/* すりガラスの膜（Veil）。未定の内容をぼかして覆う。フロアマップ・タイムテーブル・登壇者で共通 */
+.n26 .veiled {
   position: relative;
   overflow: hidden;
   border: 3px solid var(--ink);
   background: var(--paper);
-  margin: 0;
 }
-/* 2026 年の配置は未定なので 2025 年の図をぼかす。縁が透けないよう少し拡大 */
-.n26 .floor img {
+.n26 .veiled-body {
+  filter: blur(6px) saturate(0.8);
+  /* ぼかしで縁が透けないよう少し拡大 */
+  transform: scale(1.04);
+  pointer-events: none;
+  user-select: none;
+}
+/* 中身の枠線は外側の .veiled が持つ。横スクロールもさせない */
+.n26 .veiled .tt-scroll {
+  border: 0;
+  overflow: hidden;
+}
+.n26 .veiled .sg {
+  padding: 14px;
+}
+.n26 .floor-img {
   display: block;
   width: 100%;
   height: auto;
-  filter: blur(6px) saturate(0.8);
-  transform: scale(1.04);
 }
-.n26 .floor-veil {
+.n26 .veil {
   position: absolute;
   inset: 0;
   display: grid;
   place-content: center;
   gap: 4px;
+  padding: 16px;
   text-align: center;
   /* --bg の半透明 */
   background: rgba(233, 236, 239, 0.45);
 }
-.n26 .floor-veil b {
+.n26 .veil b {
   font: var(--t-h3);
   letter-spacing: 0;
 }
-.n26 .floor-veil span {
+.n26 .veil span {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);

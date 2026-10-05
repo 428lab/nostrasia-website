@@ -157,27 +157,14 @@
     "label": "TIME TABLE",
     "title": "Timetable",
     "track": "TRACK {{id}}",
-    "tracks": {
-      "main": "Main",
-      "sub": "Sub",
-      "handson": "Hands-on",
-      "plaza": "Plaza"
-    },
-    "bars": {
-      "talk": "Talk",
-      "lt": "LT",
-      "workshop": "Workshop",
-      "social": "Social",
-      "socialMarket": "Social / Market",
-      "socialDj": "Social / DJ",
-      "tba": "TBA"
-    },
-    "note": "* The slot layout is only an illustration. Times, contents and the number of tracks are undecided. You can scroll the table sideways."
+    "tbd": "TBD",
+    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
+    "veilSub": "The timetable will be posted once decided"
   },
   "speakers": {
     "label": "SPEAKERS",
     "title": "Speakers",
-    "tba": "Speaker TBA",
+    "tbd": "TBD",
     "soon": "Announced once confirmed",
     "note": "Speakers will be announced as they are confirmed."
   },
@@ -202,7 +189,6 @@
     "panelText": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, nearest station and directions will be announced once decided.",
     "map": "Open map →",
     "floorTitle": "FLOOR MAP",
-    "floorAlt": "2025 floor map (blurred because the 2026 layout is undecided)",
     "floorVeil": "The 2026 layout is not decided yet",
     "floorVeilSub": "Shown: the 2025 floor map"
   },
