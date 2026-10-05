@@ -201,19 +201,10 @@
     "panelTitle": "会場は調整中です",
     "panelText": "2024 年・2025 年は東京で開催しました。2026 年の会場・最寄り駅・アクセス方法は決まり次第お知らせします。",
     "map": "地図を開く →",
-    "floorTitle": "FLOOR MAP（イメージ）",
-    "floorLabel": "フロアマップのイメージ（配置は未定）",
-    "floor": {
-      "main": "Main Stage",
-      "market": "Market",
-      "shrine": "神社",
-      "workshop": "Workshop",
-      "social": "Social",
-      "reception": "受付"
-    },
-    "floorNote": "※ 会場が決まっていないため、配置はイメージです。",
-    "mapCaption": "{{venue}}（図はイメージ）",
-    "floorNoteVenue": "※ 会場内の配置は未定のため、イメージです。"
+    "floorTitle": "FLOOR MAP",
+    "floorAlt": "2025 年のフロアマップ（2026 年の配置は未定のため、ぼかして表示）",
+    "floorVeil": "2026 年の配置は未定です",
+    "floorVeilSub": "画像は 2025 年のフロアマップです"
   },
   "faq": {
     "label": "FAQ",
