@@ -25,8 +25,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
     url.searchParams.get('lng') || (await i18next.getLocale(request))
 
   const siteUrl = url.origin
+  // og:url はクエリ（?lng= など）を除いたページの URL
+  const pageUrl = `${url.origin}${url.pathname}`
 
-  return json({ language, siteUrl })
+  return json({ language, siteUrl, pageUrl })
 }
 
 export const handle = {
@@ -48,6 +50,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang={root?.language} dir={i18n.dir()} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/*
           初回表示の登場演出用。JS が動く環境でだけ要素を隠してから表示する。
@@ -76,12 +81,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           }}
         />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nostrasia" />
         <meta
           property="og:url"
-          content={root?.siteUrl || 'https://nostrasia.com'}
+          content={root?.pageUrl || 'https://nostrasia.com'}
         />
-        <meta property="og:image" content={`${root?.siteUrl}/ogp.webp`} />
-        <meta property="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary_large_image" />
       </head>
       <body>
         {children}

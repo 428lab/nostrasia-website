@@ -16,16 +16,20 @@ import { Sponsors } from '~/icons/2025/Sponsors'
 import { TextileLogo } from '~/icons/2025/TextileLogo'
 import { Waza } from '~/icons/2025/Waza'
 
+import { ogImage, rootMeta } from '~/utils/meta'
+
 import type { MetaFunction } from '@remix-run/node'
 import { LinkArrow } from '~/icons/2025/LinkArrow'
 import { Hero } from '~/icons/2025/Hero'
 import { TimeTable } from '~/icons/2025/TimeTable'
 import { FloorMap } from '~/icons/2025/FloorMap'
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ matches }) => {
+  const { siteUrl } = rootMeta(matches)
   return [
     { title: 'Nostrasia 2025' },
     { property: 'og:title', content: 'Nostrasia 2025' },
+    ...ogImage(siteUrl, '/ogp.webp'),
   ]
 }
 

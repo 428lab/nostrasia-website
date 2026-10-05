@@ -5,12 +5,16 @@ import { Layout } from '~/components/2024/Layout'
 import { Logo } from '~/components/2024/Logo'
 import { TimeScheduleProgram } from '~/components/2024/TimeScheduleProgram'
 
+import { ogImage, rootMeta } from '~/utils/meta'
+
 import type { MetaFunction } from '@remix-run/node'
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ matches }) => {
+  const { siteUrl } = rootMeta(matches)
   return [
     { title: 'Nostrasia 2024' },
     { property: 'og:title', content: 'Nostrasia 2024' },
+    ...ogImage(siteUrl, '/ogp.webp'),
   ]
 }
 
