@@ -201,19 +201,10 @@
     "panelTitle": "The venue is still being arranged",
     "panelText": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, nearest station and directions will be announced once decided.",
     "map": "Open map →",
-    "floorTitle": "FLOOR MAP (ILLUSTRATIVE)",
-    "floorLabel": "Illustrative floor map (layout undecided)",
-    "floor": {
-      "main": "Main Stage",
-      "market": "Market",
-      "shrine": "Shrine",
-      "workshop": "Workshop",
-      "social": "Social",
-      "reception": "Reception"
-    },
-    "floorNote": "* The venue isn't decided yet, so this layout is just an illustration.",
-    "mapCaption": "{{venue}} (illustration)",
-    "floorNoteVenue": "* The floor layout isn't decided yet, so this is just an illustration."
+    "floorTitle": "FLOOR MAP",
+    "floorAlt": "2025 floor map (blurred because the 2026 layout is undecided)",
+    "floorVeil": "The 2026 layout is not decided yet",
+    "floorVeilSub": "Shown: the 2025 floor map"
   },
   "faq": {
     "label": "FAQ",
