@@ -30,16 +30,10 @@ export type Speaker = {
 
 export type Sponsor = {
   name: string
-  url: string
+  /** リンク先。無ければリンクにしない */
+  url?: string
   /** /2026/sponsors/ 以下に置いたロゴのパス。無ければ名前を文字で出す */
   logo?: string
-}
-
-export type SponsorTier = {
-  id: 'tier1' | 'tier2' | 'tier3'
-  sponsors: Sponsor[]
-  /** sponsors が空のときに出す「募集中」枠の数 */
-  openSlots: number
 }
 
 export const EVENT_2026 = {
@@ -92,12 +86,8 @@ export const EVENT_2026 = {
 export const SPEAKERS_2026: Speaker[] = []
 export const SPEAKER_PLACEHOLDER_COUNT = 6
 
-/** スポンサー。未決定のあいだは空配列 → 「募集中」枠を openSlots 個出す */
-export const SPONSOR_TIERS_2026: SponsorTier[] = [
-  { id: 'tier1', sponsors: [], openSlots: 1 },
-  { id: 'tier2', sponsors: [], openSlots: 2 },
-  { id: 'tier3', sponsors: [], openSlots: 3 },
-]
+/** スポンサー。tier は分けず、この順に並べる */
+export const SPONSORS_2026: Sponsor[] = [{ name: 'Shino3' }, { name: 'kojira' }]
 
 /** 過去回。/2024 と /2025 はこのアプリ内のアーカイブ（年ごとに locale が違うので必ず全ページ遷移で開く） */
 export const ARCHIVES = [

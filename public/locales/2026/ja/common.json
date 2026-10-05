@@ -170,17 +170,7 @@
   },
   "sponsors": {
     "label": "SPONSORS",
-    "title": "スポンサー",
-    "lead": "Nostrasia 2026 を、一緒につくりませんか。",
-    "tiers": {
-      "tier1": "TIER 1",
-      "tier2": "TIER 2",
-      "tier3": "TIER 3"
-    },
-    "open": "スポンサー募集中",
-    "openShort": "募集中",
-    "contact": "協賛のご相談 →",
-    "note": "協賛プランと金額は決まり次第お知らせします。"
+    "title": "スポンサー"
   },
   "access": {
     "label": "ACCESS",

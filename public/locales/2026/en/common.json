@@ -170,17 +170,7 @@
   },
   "sponsors": {
     "label": "SPONSORS",
-    "title": "Sponsors",
-    "lead": "Help us build Nostrasia 2026.",
-    "tiers": {
-      "tier1": "TIER 1",
-      "tier2": "TIER 2",
-      "tier3": "TIER 3"
-    },
-    "open": "Open for sponsors",
-    "openShort": "Open",
-    "contact": "Talk to us about sponsoring →",
-    "note": "Sponsorship plans and pricing will be announced once decided."
+    "title": "Sponsors"
   },
   "access": {
     "label": "ACCESS",

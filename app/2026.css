@@ -1292,51 +1292,37 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   margin: 36px 0 12px;
 }
 /* sponsors */
-.n26 .tier {
-  margin-bottom: 18px;
-}
-.n26 .tier h3 {
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
-  margin-bottom: 10px;
-}
 .n26 .slots {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .n26 .slot {
-  border: 3px dashed var(--ink);
+  border: 3px solid var(--ink);
   min-height: 84px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px;
   font: var(--t-btn2);
   letter-spacing: var(--t-btn-ls);
-  /* 社名が 2 行に折り返したとき用 */
+  /* 名前が 2 行に折り返したとき用 */
   line-height: 1.3;
-  background: rgba(248, 249, 250, 0.6);
-}
-.n26 a.slot {
-  border-style: solid;
   background: var(--paper);
+  color: var(--ink);
   text-decoration: none;
-  padding: 8px;
+}
+.n26 a.slot:hover {
+  background: var(--ink);
+  color: #fff;
 }
 .n26 .slot img {
   max-width: 80%;
   max-height: 64px;
   object-fit: contain;
-}
-.n26 .slots.s2 {
-  grid-template-columns: 1fr 1fr;
-}
-.n26 .slots.s3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-.n26 .slots.s3 .slot {
-  min-height: 60px;
-  font: var(--t-micro);
-  letter-spacing: var(--t-micro-ls);
 }
 .n26 .btn2 {
   display: inline-block;
