@@ -204,7 +204,8 @@
     "floorTitle": "FLOOR MAP",
     "floorAlt": "2025 floor map (blurred because the 2026 layout is undecided)",
     "floorVeil": "The 2026 layout is not decided yet",
-    "floorVeilSub": "Shown: the 2025 floor map"
+    "floorVeilSub": "Shown: the 2025 floor map",
+    "embedTitle": "Map of {{venue}}"
   },
   "faq": {
     "label": "FAQ",

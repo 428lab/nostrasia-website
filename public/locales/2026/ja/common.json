@@ -204,7 +204,8 @@
     "floorTitle": "FLOOR MAP",
     "floorAlt": "2025 年のフロアマップ（2026 年の配置は未定のため、ぼかして表示）",
     "floorVeil": "2026 年の配置は未定です",
-    "floorVeilSub": "画像は 2025 年のフロアマップです"
+    "floorVeilSub": "画像は 2025 年のフロアマップです",
+    "embedTitle": "{{venue}} の地図"
   },
   "faq": {
     "label": "FAQ",
