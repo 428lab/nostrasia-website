@@ -157,27 +157,13 @@
     "label": "TIME TABLE",
     "title": "タイムテーブル",
     "track": "TRACK {{id}}",
-    "tracks": {
-      "main": "メイン",
-      "sub": "サブ",
-      "handson": "ハンズオン",
-      "plaza": "広場"
-    },
-    "bars": {
-      "talk": "Talk",
-      "lt": "LT",
-      "workshop": "Workshop",
-      "social": "Social",
-      "socialMarket": "Social / Market",
-      "socialDj": "Social / DJ",
-      "tba": "TBA"
-    },
-    "note": "※ 枠の構成はイメージです。時刻・内容・トラック数は未定。表は横にスクロールできます。"
+    "tbd": "TBD",
+    "note": "※ 時刻・内容・トラックは決まり次第掲載します。表は横にスクロールできます。"
   },
   "speakers": {
     "label": "SPEAKERS",
     "title": "登壇者",
-    "tba": "Speaker TBA",
+    "tbd": "TBD",
     "soon": "決まり次第発表",
     "note": "登壇者は決まり次第お知らせします。"
   },

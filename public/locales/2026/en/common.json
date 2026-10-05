@@ -157,27 +157,13 @@
     "label": "TIME TABLE",
     "title": "Timetable",
     "track": "TRACK {{id}}",
-    "tracks": {
-      "main": "Main",
-      "sub": "Sub",
-      "handson": "Hands-on",
-      "plaza": "Plaza"
-    },
-    "bars": {
-      "talk": "Talk",
-      "lt": "LT",
-      "workshop": "Workshop",
-      "social": "Social",
-      "socialMarket": "Social / Market",
-      "socialDj": "Social / DJ",
-      "tba": "TBA"
-    },
-    "note": "* The slot layout is only an illustration. Times, contents and the number of tracks are undecided. You can scroll the table sideways."
+    "tbd": "TBD",
+    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways."
   },
   "speakers": {
     "label": "SPEAKERS",
     "title": "Speakers",
-    "tba": "Speaker TBA",
+    "tbd": "TBD",
     "soon": "Announced once confirmed",
     "note": "Speakers will be announced as they are confirmed."
   },

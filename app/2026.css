@@ -1185,13 +1185,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   transition: transform 0.8s cubic-bezier(0.6, 0, 0.2, 1)
     calc(var(--d, 0) * 1ms);
 }
-/* 時刻。バーの高さ（58px の行）に 2 行収めるため、行間だけ 1 に詰める */
-.n26 .bar small {
-  display: block;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-num-ls);
-  line-height: 1;
-}
 .n26 .bar.T {
   background: var(--pu);
   color: #fff;
@@ -1211,24 +1204,6 @@ html.js:not(.no-hydrate) .n26 .bar {
 }
 html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   transform: none;
-}
-.n26 .legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-top: 14px;
-  font: var(--t-micro);
-  letter-spacing: var(--t-micro-ls);
-}
-.n26 .legend span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.n26 .legend i {
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--ink);
 }
 /* speakers */
 .n26 .sg {

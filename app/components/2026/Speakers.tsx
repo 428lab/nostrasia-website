@@ -74,7 +74,7 @@ export const Speakers = () => {
             : Array.from({ length: SPEAKER_PLACEHOLDER_COUNT }, (_, i) => (
                 <div className="sp" key={i}>
                   <Avatar index={i} />
-                  <b>{t('speakers.tba')}</b>
+                  <b>{t('speakers.tbd')}</b>
                   <small>{t('speakers.soon')}</small>
                 </div>
               ))}
