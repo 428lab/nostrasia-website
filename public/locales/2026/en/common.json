@@ -158,7 +158,8 @@
     "title": "Timetable",
     "track": "TRACK {{id}}",
     "tbd": "TBD",
-    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways."
+    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
+    "veilSub": "The timetable will be posted once decided"
   },
   "speakers": {
     "label": "SPEAKERS",
@@ -188,7 +189,6 @@
     "panelText": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, nearest station and directions will be announced once decided.",
     "map": "Open map →",
     "floorTitle": "FLOOR MAP",
-    "floorAlt": "2025 floor map (blurred because the 2026 layout is undecided)",
     "floorVeil": "The 2026 layout is not decided yet",
     "floorVeilSub": "Shown: the 2025 floor map"
   },

@@ -4,6 +4,7 @@ import { EVENT_2026 } from '~/data/2026'
 import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
+import { Veil } from './Veil'
 
 export const Access = () => {
   const { t } = useTranslation()
@@ -38,20 +39,17 @@ export const Access = () => {
         <p className="h3s" id="floor">
           {t('access.floorTitle')}
         </p>
-        <figure className="floor">
+        <Veil title={t('access.floorVeil')} sub={t('access.floorVeilSub')}>
           <img
+            className="floor-img"
             src="/2025/map.webp"
-            alt={t('access.floorAlt')}
+            alt=""
             width="2400"
             height="1968"
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="floor-veil">
-            <b>{t('access.floorVeil')}</b>
-            <span>{t('access.floorVeilSub')}</span>
-          </figcaption>
-        </figure>
+        </Veil>
       </div>
     </section>
   )

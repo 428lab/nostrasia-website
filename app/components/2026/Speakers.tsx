@@ -6,6 +6,7 @@ import { useLocalized } from '~/hooks/useLocalized'
 import { Person } from '~/icons/2026/Person'
 
 import { SectionHead } from './SectionHead'
+import { Veil } from './Veil'
 
 /** 画像が無い登壇者の仮アバターの配色（体・頭・小物）。並び順で回す */
 // prettier-ignore
@@ -62,24 +63,32 @@ export const Speakers = () => {
     <section className="sec" id="speakers">
       <div className="wrap">
         <SectionHead label={t('speakers.label')} title={t('speakers.title')} />
-        <div className="sg">
-          {SPEAKERS_2026.length > 0
-            ? SPEAKERS_2026.map((speaker, i) => (
+        {SPEAKERS_2026.length > 0 ? (
+          <>
+            <div className="sg">
+              {SPEAKERS_2026.map((speaker, i) => (
                 <SpeakerCard
                   key={`${speaker.name}-${i}`}
                   speaker={speaker}
                   index={i}
                 />
-              ))
-            : Array.from({ length: SPEAKER_PLACEHOLDER_COUNT }, (_, i) => (
+              ))}
+            </div>
+            <p className="note">{t('speakers.note')}</p>
+          </>
+        ) : (
+          <Veil title={t('speakers.tbd')} sub={t('speakers.note')}>
+            <div className="sg">
+              {Array.from({ length: SPEAKER_PLACEHOLDER_COUNT }, (_, i) => (
                 <div className="sp" key={i}>
                   <Avatar index={i} />
                   <b>{t('speakers.tbd')}</b>
                   <small>{t('speakers.soon')}</small>
                 </div>
               ))}
-        </div>
-        <p className="note">{t('speakers.note')}</p>
+            </div>
+          </Veil>
+        )}
       </div>
     </section>
   )

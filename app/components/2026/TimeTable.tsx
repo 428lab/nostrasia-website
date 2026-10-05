@@ -4,11 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { useRevealOnce } from '~/hooks/useRevealOnce'
 
 import { SectionHead } from './SectionHead'
+import { Veil } from './Veil'
 
 type Kind = 'T' | 'L' | 'W' | 'S'
 /** 枠の位置だけを持つ。a: 開始位置、l: 長さ（どちらも目盛り 1 つ = 1）、d: 伸びはじめる遅延（ms） */
 type Bar = { kind: Kind; a: number; l: number; d: number }
 
+/** 時刻・内容が決まったら true にして、膜を外す */
+const TIMETABLE_READY = false
 /** 目盛りの数。時刻はまだ決まっていないので、すべて TBD と出す */
 const TICK_COUNT = 8
 /**
@@ -64,44 +67,88 @@ export const TimeTable = () => {
           label={t('timetable.label')}
           title={t('timetable.title')}
         />
-        <div className="tt-scroll">
-          <div ref={ref} className={shown ? 'gantt in' : 'gantt'}>
-            <div className="axis">
-              <span />
-              <div className="tk">
-                {Array.from({ length: TICK_COUNT }, (_, i) => (
-                  <span key={i}>{t('timetable.tbd')}</span>
+        {TIMETABLE_READY ? (
+          <>
+            <div className="tt-scroll">
+              <div ref={ref} className={shown ? 'gantt in' : 'gantt'}>
+                <div className="axis">
+                  <span />
+                  <div className="tk">
+                    {Array.from({ length: TICK_COUNT }, (_, i) => (
+                      <span key={i}>{t('timetable.tbd')}</span>
+                    ))}
+                  </div>
+                </div>
+                {TRACKS.map((track) => (
+                  <div className="row" key={track.id}>
+                    <b>
+                      {t('timetable.track', { id: track.id })}
+                      <small>{t('timetable.tbd')}</small>
+                    </b>
+                    <div className="lane">
+                      {track.bars.map((bar, i) => (
+                        <div
+                          key={i}
+                          className={`bar ${bar.kind}`}
+                          style={
+                            {
+                              '--a': bar.a,
+                              '--l': bar.l,
+                              '--d': bar.d,
+                            } as CSSProperties
+                          }
+                        >
+                          {t('timetable.tbd')}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
-            {TRACKS.map((track) => (
-              <div className="row" key={track.id}>
-                <b>
-                  {t('timetable.track', { id: track.id })}
-                  <small>{t('timetable.tbd')}</small>
-                </b>
-                <div className="lane">
-                  {track.bars.map((bar, i) => (
-                    <div
-                      key={i}
-                      className={`bar ${bar.kind}`}
-                      style={
-                        {
-                          '--a': bar.a,
-                          '--l': bar.l,
-                          '--d': bar.d,
-                        } as CSSProperties
-                      }
-                    >
-                      {t('timetable.tbd')}
-                    </div>
-                  ))}
+            <p className="note">{t('timetable.note')}</p>
+          </>
+        ) : (
+          <Veil title={t('timetable.tbd')} sub={t('timetable.veilSub')}>
+            <div className="tt-scroll">
+              <div ref={ref} className={shown ? 'gantt in' : 'gantt'}>
+                <div className="axis">
+                  <span />
+                  <div className="tk">
+                    {Array.from({ length: TICK_COUNT }, (_, i) => (
+                      <span key={i}>{t('timetable.tbd')}</span>
+                    ))}
+                  </div>
                 </div>
+                {TRACKS.map((track) => (
+                  <div className="row" key={track.id}>
+                    <b>
+                      {t('timetable.track', { id: track.id })}
+                      <small>{t('timetable.tbd')}</small>
+                    </b>
+                    <div className="lane">
+                      {track.bars.map((bar, i) => (
+                        <div
+                          key={i}
+                          className={`bar ${bar.kind}`}
+                          style={
+                            {
+                              '--a': bar.a,
+                              '--l': bar.l,
+                              '--d': bar.d,
+                            } as CSSProperties
+                          }
+                        >
+                          {t('timetable.tbd')}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-        <p className="note">{t('timetable.note')}</p>
+            </div>
+          </Veil>
+        )}
       </div>
     </section>
   )
