@@ -35,8 +35,17 @@
     "place": "{{venue}} ・ {{fee}}",
     "fee": "参加費 {{fee}}",
     "feeTBA": "参加費 未定",
-    "caption": "12 PIECES\n→ 1 OSTRICH",
-    "feeNote": "参加費 {{fee}}（{{note}}）"
+    "caption": "14 PIECES\n→ 1 OSTRICH",
+    "feeNote": "参加費 {{fee}}（{{note}}）",
+    "game": {
+      "label": "ジャンプゲーム",
+      "hint": "タップでジャンプ",
+      "over": "GAME OVER",
+      "score": "スコア",
+      "best": "ベスト",
+      "retry": "もう一度",
+      "close": "閉じる"
+    }
   },
   "about": {
     "label": "ABOUT",
