@@ -42,8 +42,8 @@ export const Access = () => {
           <img
             src="/2025/map.webp"
             alt={t('access.floorAlt')}
-            width="4560"
-            height="3738"
+            width="2400"
+            height="1968"
             loading="lazy"
             decoding="async"
           />
