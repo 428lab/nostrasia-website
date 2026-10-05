@@ -72,7 +72,7 @@ export const Faq = () => {
   return (
     <section className="sec" id="faq">
       <div className="wrap">
-        <SectionHead icon="faq" label={t('faq.label')} title={t('faq.title')} />
+        <SectionHead label={t('faq.label')} title={t('faq.title')} />
         {ITEMS.filter((key) => key !== 'entry' || entryRequired).map((key) => {
           const { q, a } = keys(key)
           return (

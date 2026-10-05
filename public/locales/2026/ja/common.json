@@ -198,9 +198,9 @@
       "social": "Social",
       "reception": "受付"
     },
-    "floorNote": "※ 会場が決まっていないため、配置は図形によるイメージです。",
+    "floorNote": "※ 会場が決まっていないため、配置はイメージです。",
     "mapCaption": "{{venue}}（図はイメージ）",
-    "floorNoteVenue": "※ 会場内の配置は未定のため、図形によるイメージです。"
+    "floorNoteVenue": "※ 会場内の配置は未定のため、イメージです。"
   },
   "faq": {
     "label": "FAQ",

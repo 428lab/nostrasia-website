@@ -20,11 +20,7 @@ export const Sponsors = () => {
   return (
     <section className="sec" id="sponsors">
       <div className="wrap">
-        <SectionHead
-          icon="sponsors"
-          label={t('sponsors.label')}
-          title={t('sponsors.title')}
-        />
+        <SectionHead label={t('sponsors.label')} title={t('sponsors.title')} />
         <p className="lead mb">{t('sponsors.lead')}</p>
         {SPONSOR_TIERS_2026.map((tier) => {
           const style = TIER_STYLE[tier.id]

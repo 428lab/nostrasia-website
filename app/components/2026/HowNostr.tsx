@@ -69,7 +69,7 @@ export const HowNostr = () => {
   return (
     <section className="sec" id="how">
       <div className="wrap">
-        <SectionHead icon="how" label={t('how.label')} title={t('how.title')} />
+        <SectionHead label={t('how.label')} title={t('how.title')} />
         <p className="lead mb">{t('how.lead')}</p>
         <div className="how-w">
           <div className="fig" data-step={figStep} aria-hidden="true">

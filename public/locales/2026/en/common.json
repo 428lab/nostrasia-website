@@ -198,9 +198,9 @@
       "social": "Social",
       "reception": "Reception"
     },
-    "floorNote": "* The venue isn't decided yet, so this layout is just an illustration made of shapes.",
+    "floorNote": "* The venue isn't decided yet, so this layout is just an illustration.",
     "mapCaption": "{{venue}} (illustration)",
-    "floorNoteVenue": "* The floor layout isn't decided yet, so this is just an illustration made of shapes."
+    "floorNoteVenue": "* The floor layout isn't decided yet, so this is just an illustration."
   },
   "faq": {
     "label": "FAQ",

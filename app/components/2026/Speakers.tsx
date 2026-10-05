@@ -5,44 +5,20 @@ import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
 
-/** 図形のアバター。背景・頭・体の色と、頭の形（円 / 四角）を順番に回す */
-const AVATARS = [
-  { bg: '#F6C324', head: '#8E30EB', body: '#F2542D', square: false },
-  { bg: '#0E7C7B', head: '#F2542D', body: '#F6C324', square: true },
-  { bg: '#8E30EB', head: '#F6C324', body: '#0E7C7B', square: false },
-  { bg: '#F2542D', head: '#0E7C7B', body: '#8E30EB', square: true },
-]
+/** 画像が無い登壇者の仮アバター。灰色の人型シルエット */
+const Avatar = () => (
+  <svg viewBox="0 0 84 84" aria-hidden="true">
+    <rect width="84" height="84" fill="#EEF0F2" />
+    <circle cx="42" cy="30" r="14" fill="#C9CDD2" />
+    <path d="M14 84a28 28 0 0 1 56 0z" fill="#C9CDD2" />
+  </svg>
+)
 
-const Avatar = ({ index }: { index: number }) => {
-  const { bg, head, body, square } = AVATARS[index % AVATARS.length]
-  return (
-    <svg viewBox="0 0 84 84" aria-hidden="true">
-      <rect x="2" y="2" width="80" height="80" fill={bg} opacity=".25" />
-      {square ? (
-        <rect x="28" y="12" width="28" height="28" fill={head} />
-      ) : (
-        <circle cx="42" cy="26" r="15" fill={head} />
-      )}
-      <path d="M12 82a30 30 0 0 1 60 0z" fill={body} />
-    </svg>
-  )
-}
-
-const SpeakerCard = ({
-  speaker,
-  index,
-}: {
-  speaker: Speaker
-  index: number
-}) => {
+const SpeakerCard = ({ speaker }: { speaker: Speaker }) => {
   const localized = useLocalized()
   const content = (
     <>
-      {speaker.image ? (
-        <img src={speaker.image} alt="" />
-      ) : (
-        <Avatar index={index} />
-      )}
+      {speaker.image ? <img src={speaker.image} alt="" /> : <Avatar />}
       <b>{speaker.name}</b>
       {speaker.title && <small>{localized(speaker.title)}</small>}
     </>
@@ -67,23 +43,15 @@ export const Speakers = () => {
   return (
     <section className="sec" id="speakers">
       <div className="wrap">
-        <SectionHead
-          icon="speakers"
-          label={t('speakers.label')}
-          title={t('speakers.title')}
-        />
+        <SectionHead label={t('speakers.label')} title={t('speakers.title')} />
         <div className="sg">
           {SPEAKERS_2026.length > 0
             ? SPEAKERS_2026.map((speaker, i) => (
-                <SpeakerCard
-                  key={`${speaker.name}-${i}`}
-                  speaker={speaker}
-                  index={i}
-                />
+                <SpeakerCard key={`${speaker.name}-${i}`} speaker={speaker} />
               ))
             : Array.from({ length: SPEAKER_PLACEHOLDER_COUNT }, (_, i) => (
                 <div className="sp" key={i}>
-                  <Avatar index={i} />
+                  <Avatar />
                   <b>{t('speakers.tba')}</b>
                   <small>{t('speakers.soon')}</small>
                 </div>
