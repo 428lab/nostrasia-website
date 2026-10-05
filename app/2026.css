@@ -592,6 +592,7 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   gap: 0;
 }
 .n26 .fig {
+  --ib: 54px;
   position: sticky;
   top: calc(var(--hh) + 8px);
   z-index: 3;
@@ -628,10 +629,15 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
 .n26 .fig svg.ln g {
   transition: opacity 0.4s;
 }
+.n26 .it svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .n26 .it {
   position: absolute;
-  left: calc(var(--x) * 1%);
-  top: calc(var(--y) * 1%);
+  left: calc(var(--x) * 1% + var(--d) * var(--ib) / 48);
+  top: calc(var(--y) * 1% + var(--d) * var(--ib) / 48);
   transform: translate(-50%, -50%);
   opacity: var(--o);
   transition:
@@ -640,11 +646,11 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
     opacity 0.4s;
   text-align: center;
 }
-/* 拡縮はアイコンだけ。ラベルは拡縮したアイコンの下端に付けて、大きさを変えない */
+/* 拡縮はアイコン（SVG を入れる箱）だけ。ラベルは拡縮したアイコンの下端に付けて、大きさを変えない */
 .n26 .it i {
   display: block;
-  width: 54px;
-  height: 54px;
+  width: var(--ib);
+  height: var(--ib);
   transform: scale(var(--s));
   transition: transform 0.55s var(--pop);
 }
@@ -660,41 +666,14 @@ html.js:not(.no-hydrate) .n26 .stage.done .s:hover {
   padding: 1px 4px;
   white-space: nowrap;
 }
-.n26 .it.k i {
-  background: var(--pu);
-  border-radius: 50%;
+/* 署名はノートの右下に重ねて 1 組で動かす。ラベルはロゼットの右に付け、ステップ 2 だけ出す */
+.n26 .it.i-sig span {
+  left: calc(50% + 50% * var(--s) + 2px);
+  top: 50%;
+  transform: translateY(-50%);
 }
-.n26 .it.k2 i {
-  border: 6px solid var(--pu);
-  border-radius: 50%;
-}
-.n26 .it.n i {
-  background: var(--te);
-  border-radius: 54px 54px 0 0;
-  height: 27px;
-}
-.n26 .it.g i {
-  background: var(--or);
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  width: 40px;
-  height: 36px;
-}
-.n26 .it.r i {
-  background: var(--ye);
-  border: 3px solid var(--ink);
-  width: 44px;
-  height: 44px;
-}
-.n26 .it.cl i {
-  width: 50px;
-  height: 80px;
-  border: 4px solid var(--ink);
-  border-radius: 8px;
-  background:
-    linear-gradient(var(--pu) 0 0) 50% 30%/60% 8px no-repeat,
-    linear-gradient(var(--te) 0 0) 50% 50%/60% 8px no-repeat,
-    linear-gradient(var(--ye) 0 0) 50% 70%/60% 8px no-repeat,
-    #fff;
+.n26 .fig:not([data-step='2']) .it.i-sig span {
+  opacity: 0;
 }
 .n26 .steps {
   list-style: none;
@@ -1112,6 +1091,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .fig {
     top: calc(var(--hh) + 24px);
     height: min(70vh, 520px);
+    --ib: 84px;
   }
   .n26 .steps {
     padding-top: 0;

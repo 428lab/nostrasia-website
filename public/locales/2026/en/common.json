@@ -58,17 +58,21 @@
   "how": {
     "label": "NOSTR 101",
     "title": "New to Nostr?",
-    "lead": "Keys are circles, relays are squares. Four steps show how a Nostr post reaches its readers.",
+    "lead": "Four steps show how a Nostr post reaches its readers.",
     "figStep": "STEP {{n}} / 4",
     "fig": {
+      "phone": "phone",
       "nsec": "nsec secret key",
+      "nsecHint": "nsec secret key (only you)",
       "npub": "npub public key",
+      "npubHint": "npub public key (OK to share)",
       "note": "note (post)",
-      "sig": "sig",
+      "sig": "sig signature",
       "r1": "relay A",
       "r2": "relay B",
       "r3": "relay C",
-      "cl": "client"
+      "pc": "PC",
+      "phone2": "another phone"
     },
     "steps": {
       "1": {
@@ -84,11 +88,11 @@
       "3": {
         "name": "Relays ×3",
         "title": "Send it to relays",
-        "body": "You send the signed post to several relays (the squares). A relay is just a server that stores and passes posts along. Even if one goes down, the same post stays on the others."
+        "body": "You send the signed post to several relays. A relay is just a server that stores and passes posts along. Even if one goes down, the same post stays on the others."
       },
       "4": {
-        "name": "Client",
-        "title": "Read it in a client",
+        "name": "App",
+        "title": "Read it in an app",
         "body": "An app (client) gathers posts from whichever relays you like and shows them. As long as you have your key, you keep the same account even if you switch apps. You can also send a zap ⚡ (a small amount of bitcoin) to posts you like."
       }
     }
