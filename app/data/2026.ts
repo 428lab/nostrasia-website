@@ -16,6 +16,8 @@ export type Venue = {
   address: Localized
   /** Google マップ等の URL */
   mapUrl: string
+  /** 埋め込み地図（iframe）の URL。言語は表示側で hl を足す */
+  embedUrl?: string
 }
 
 export type Speaker = {
@@ -52,6 +54,9 @@ export const EVENT_2026 = {
       en: '6F Tenam Town Building, 2-19-15 Kabukicho, Shinjuku-ku, Tokyo 160-0021',
     },
     mapUrl: 'https://maps.app.goo.gl/6Ux4pcr7VozUYfQc6',
+    // 「Crypto Lounge GOX 東京都新宿区歌舞伎町2-19-15」で検索した地図
+    embedUrl:
+      'https://maps.google.com/maps?q=Crypto%20Lounge%20GOX%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA2-19-15&output=embed',
   } as Venue | null,
   /** 参加費の表記。未定は null → 「未定」 */
   fee: { ja: '無料', en: 'Free' } as Localized | null,

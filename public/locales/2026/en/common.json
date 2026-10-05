@@ -180,7 +180,8 @@
     "map": "Open map →",
     "floorTitle": "FLOOR MAP",
     "floorVeil": "The 2026 layout is not decided yet",
-    "floorVeilSub": "Shown: the 2025 floor map"
+    "floorVeilSub": "Shown: the 2025 floor map",
+    "embedTitle": "Map of {{venue}}"
   },
   "faq": {
     "label": "FAQ",

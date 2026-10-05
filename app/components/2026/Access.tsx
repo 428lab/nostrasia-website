@@ -7,7 +7,7 @@ import { SectionHead } from './SectionHead'
 import { Veil } from './Veil'
 
 export const Access = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const localized = useLocalized()
   const venue = EVENT_2026.venue
 
@@ -34,6 +34,16 @@ export const Access = () => {
               <p className="ptl">{t('access.panelTitle')}</p>
               <p className="ptx">{t('access.panelText')}</p>
             </div>
+          )}
+          {venue?.embedUrl && (
+            <iframe
+              className="gmap"
+              title={t('access.embedTitle', { venue: localized(venue.name) })}
+              src={`${venue.embedUrl}&hl=${i18n.resolvedLanguage?.startsWith('ja') ? 'ja' : 'en'}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           )}
         </div>
         <p className="h3s" id="floor">

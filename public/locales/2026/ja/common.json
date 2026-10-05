@@ -180,7 +180,8 @@
     "map": "地図を開く →",
     "floorTitle": "FLOOR MAP",
     "floorVeil": "2026 年の配置は未定です",
-    "floorVeilSub": "画像は 2025 年のフロアマップです"
+    "floorVeilSub": "画像は 2025 年のフロアマップです",
+    "embedTitle": "{{venue}} の地図"
   },
   "faq": {
     "label": "FAQ",
