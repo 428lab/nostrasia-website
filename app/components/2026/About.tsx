@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, timeRange2026 } from '~/data/2026'
+import { EVENT_2026, PROGRAMS_2026, timeRange2026 } from '~/data/2026'
 import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
@@ -34,6 +34,26 @@ export const About = () => {
                 interpolation: { escapeValue: false },
               })}
             </p>
+            {PROGRAMS_2026.length > 0 && (
+              <div className="picks">
+                <p className="picks-l">{t('about.confirmed')}</p>
+                <ul>
+                  {PROGRAMS_2026.map((program) => (
+                    <li key={program.id}>
+                      <b>{localized(program.title)}</b>
+                      <span>{localized(program.desc)}</span>
+                      <a
+                        href={program.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {localized(program.linkLabel)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <dl className="ov">
             <div>
