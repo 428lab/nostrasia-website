@@ -53,12 +53,12 @@
     "lead1": "Nostrasia は、日本から始まった Nostr のカンファレンスであり、お祭りです。2023 年の初回から開催を重ね、2024 年、2025 年は東京で開催しました。これまで、トークや LT、ハンズオン、マーケット、Nostr 神社、ヒーローショー、DJ など、いろんな人と遊びが一か所に集まってきました。",
     "lead2": "Nostr は、特定の会社やサーバーに頼らない分散型のプロトコルです。自分の鍵で投稿に署名し、複数のリレー（投稿を預かって配るサーバー）に置く。そのしくみを、下の「はじめての Nostr」で図にしています。",
     "overviewTitle": "2026 年の開催概要",
-    "overviewNote": "日程・会場・参加費はすべて調整中です。参加登録の開始も、決まり次第公式アカウントでお知らせします。ハッシュタグは #{{hashtag}}（案）。",
+    "overviewNote": "日程・会場・参加費はすべて調整中です。参加登録の開始も、決まり次第公式アカウントでお知らせします。ハッシュタグは #{{hashtag}}。",
     "date": "DATE",
     "venue": "VENUE",
     "fee": "FEE",
-    "overviewNoteTime": "開始・終了の時刻は調整中です。決まり次第、公式アカウントでお知らせします。ハッシュタグは #{{hashtag}}（案）。",
-    "overviewNoteHashtag": "ハッシュタグは #{{hashtag}}（案）。",
+    "overviewNoteTime": "開始・終了の時刻は調整中です。決まり次第、公式アカウントでお知らせします。ハッシュタグは #{{hashtag}}。",
+    "overviewNoteHashtag": "ハッシュタグは #{{hashtag}}。",
     "entry": "ENTRY",
     "entryRequired": "事前エントリーが必要です",
     "entrySoon": "受付の開始は決まり次第お知らせします。",
@@ -159,7 +159,8 @@
     "track": "TRACK {{id}}",
     "tbd": "TBD",
     "note": "※ 時刻・内容・トラックは決まり次第掲載します。表は横にスクロールできます。",
-    "veilSub": "タイムテーブルは決まり次第掲載します"
+    "veilSub": "タイムテーブルは決まり次第掲載します",
+    "veilSubHours": "{{start}} 開始・{{end}} 終了。内容は決まり次第掲載します"
   },
   "speakers": {
     "label": "SPEAKERS",
@@ -204,7 +205,7 @@
         "a": "現在調整中です。公式アカウント（X @nostrasia / Bluesky nostrasia.com / note / Nostr）でお知らせします。",
         "qDecided": "いつ・どこで開催しますか？",
         "aDecidedTime": "{{date}}に、{{venue}} で開催します。開始・終了の時刻は決まり次第、公式アカウント（X @nostrasia / Bluesky nostrasia.com / note / Nostr）でお知らせします。住所と地図は「アクセス」をご覧ください。",
-        "aDecided": "{{date}}に、{{venue}} で開催します。住所と地図は「アクセス」をご覧ください。"
+        "aDecided": "{{date}} {{time}} に、{{venue}} で開催します。住所と地図は「アクセス」をご覧ください。"
       },
       "4": {
         "q": "スポンサーや出展について相談したい",

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026 } from '~/data/2026'
+import { EVENT_2026, timeRange2026 } from '~/data/2026'
 import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
@@ -23,6 +23,7 @@ export const Faq = () => {
   } = EVENT_2026
   const vars = {
     date: dateLabel(date),
+    time: timeRange2026() ?? '',
     venue: venue ? localized(venue.name) : '',
     fee: fee ? localized(fee) : '',
     note: feeNote ? localized(feeNote) : '',

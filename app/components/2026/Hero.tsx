@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026 } from '~/data/2026'
+import { EVENT_2026, timeRange2026 } from '~/data/2026'
 import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 import { hydratedLate } from '~/hooks/useRevealOnce'
 
@@ -42,6 +42,7 @@ export const Hero = () => {
   const { t } = useTranslation()
   const localized = useLocalized()
   const dateLabel = useDateLabel()
+  const timeRange = timeRange2026()
   const [phase, setPhase] = useState<Phase>('build')
   // reduced-motion・no-hydrate: 歩かせず、四散もさせない（ゲームは本人が始めるので遊べる）
   const [still, setStill] = useState(false)
@@ -159,6 +160,7 @@ export const Hero = () => {
         </h1>
         <p className="date">
           {dateLabel(EVENT_2026.date)}
+          {timeRange && <b className="time">{timeRange}</b>}
           <span>
             {t('hero.place', {
               venue,

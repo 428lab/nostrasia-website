@@ -42,8 +42,8 @@ export const EVENT_2026 = {
   /** 開催日 'YYYY-MM-DD'。未定は null → 「2026.??.??」 */
   date: '2026-11-29' as string | null,
   /** 開始・終了・開場時刻 'HH:MM'。未定は null → 「--:--」 */
-  startTime: null as string | null,
-  endTime: null as string | null,
+  startTime: '13:00' as string | null,
+  endTime: '20:00' as string | null,
   doorsOpen: null as string | null,
   /** 会場。未定は null → 「会場 調整中」 */
   venue: {
@@ -81,7 +81,7 @@ export const EVENT_2026 = {
    */
   contactUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSfOPMX1EwMlH5J9BsPft2yylspYeNoBScf0kAzN8ETUX-CBcg/viewform',
-  /** ハッシュタグ（案）。TODO(要確認) */
+  /** ハッシュタグ */
   hashtag: 'nostrasia2026',
   /**
    * ヒーロー背面に重ねる生成動画。未作成のあいだは null（video 要素を出さない）。
@@ -130,6 +130,12 @@ export const formatDate2026 = (date: string | null) =>
 
 /** 表示用ヘルパー: 'HH:MM'、未定は '--:--' */
 export const formatTime = (time: string | null) => time ?? '--:--'
+
+/** 開始〜終了（例 13:00–20:00）。どちらかが未定なら null */
+export const timeRange2026 = () =>
+  EVENT_2026.startTime && EVENT_2026.endTime
+    ? `${EVENT_2026.startTime}–${EVENT_2026.endTime}`
+    : null
 
 /** 表示用ヘルパー: 'YYYY-MM-DD' の曜日。タイムゾーンに左右されないよう UTC で計算する。未定は null */
 export const weekday2026 = (date: string | null, lang: 'ja' | 'en') => {

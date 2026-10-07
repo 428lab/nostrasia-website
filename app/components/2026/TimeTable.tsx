@@ -1,6 +1,8 @@
 import { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { EVENT_2026, timeRange2026 } from '~/data/2026'
+
 import { useRevealOnce } from '~/hooks/useRevealOnce'
 
 import { SectionHead } from './SectionHead'
@@ -109,7 +111,17 @@ export const TimeTable = () => {
             <p className="note">{t('timetable.note')}</p>
           </>
         ) : (
-          <Veil title={t('timetable.tbd')} sub={t('timetable.veilSub')}>
+          <Veil
+            title={t('timetable.tbd')}
+            sub={
+              timeRange2026()
+                ? t('timetable.veilSubHours', {
+                    start: EVENT_2026.startTime,
+                    end: EVENT_2026.endTime,
+                  })
+                : t('timetable.veilSub')
+            }
+          >
             <div className="tt-scroll">
               <div ref={ref} className={shown ? 'gantt in' : 'gantt'}>
                 <div className="axis">
