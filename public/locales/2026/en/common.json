@@ -53,12 +53,12 @@
     "lead1": "Nostrasia is a Nostr conference, and a festival, that started in Japan. First held in 2023, it has run every year since, with the 2024 and 2025 editions in Tokyo. Past editions brought talks, LTs, hands-on sessions, a market, the Nostr Shrine, a hero show and DJs together in one place, along with all kinds of people.",
     "lead2": "Nostr is a decentralized protocol that doesn't rely on any particular company or server. You sign your posts with your own key and put them on several relays (servers that store and pass posts along). The “New to Nostr?” section below shows how it works.",
     "overviewTitle": "Nostrasia 2026 at a glance",
-    "overviewNote": "The date, venue and fee are all still being arranged. We will announce when registration opens on our official accounts. The hashtag is #{{hashtag}} (tentative).",
+    "overviewNote": "The date, venue and fee are all still being arranged. We will announce when registration opens on our official accounts. The hashtag is #{{hashtag}}.",
     "date": "DATE",
     "venue": "VENUE",
     "fee": "FEE",
-    "overviewNoteTime": "Start and end times are TBA and will be announced on our official accounts. The hashtag is #{{hashtag}} (tentative).",
-    "overviewNoteHashtag": "The hashtag is #{{hashtag}} (tentative).",
+    "overviewNoteTime": "Start and end times are TBA and will be announced on our official accounts. The hashtag is #{{hashtag}}.",
+    "overviewNoteHashtag": "The hashtag is #{{hashtag}}.",
     "entry": "ENTRY",
     "entryRequired": "Pre-registration required",
     "entrySoon": "We will announce when registration opens.",
@@ -159,7 +159,8 @@
     "track": "TRACK {{id}}",
     "tbd": "TBD",
     "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
-    "veilSub": "The timetable will be posted once decided"
+    "veilSub": "The timetable will be posted once decided",
+    "veilSubHours": "Starts {{start}}, ends {{end}}. The program will be posted once decided"
   },
   "speakers": {
     "label": "SPEAKERS",
@@ -204,7 +205,7 @@
         "a": "They are being arranged now. We will announce them on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr).",
         "qDecided": "When and where is it?",
         "aDecidedTime": "On {{date}}, at {{venue}}. Start and end times are TBA and will be announced on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr). See “Access” for the address and map.",
-        "aDecided": "On {{date}}, at {{venue}}. See “Access” for the address and map."
+        "aDecided": "On {{date}}, {{time}}, at {{venue}}. See “Access” for the address and map."
       },
       "4": {
         "q": "I'd like to talk about sponsoring or exhibiting",

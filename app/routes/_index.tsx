@@ -16,12 +16,12 @@ import type { LinksFunction, MetaFunction } from '@remix-run/node'
 
 // 共有されたときに出る説明。app/data/2026.ts の確定情報（日付・会場・参加費・事前エントリー）と揃える
 const DESCRIPTION = {
-  ja: 'Nostr のカンファレンス Nostrasia 2026。2026 年 11 月 29 日（日）、Crypto Lounge GOX で開催。参加費無料（ドリンク飲み放題つき）、参加には事前エントリーが必要です。',
-  en: 'Nostrasia 2026, a Nostr conference in Asia. Sunday, November 29, 2026 at Crypto Lounge GOX. Free entry with all-you-can-drink included. Pre-registration required.',
+  ja: 'Nostr のカンファレンス Nostrasia 2026。2026 年 11 月 29 日（日）13:00〜20:00、Crypto Lounge GOX で開催。参加費無料（ドリンク飲み放題つき）、参加には事前エントリーが必要です。',
+  en: 'Nostrasia 2026, a Nostr conference in Asia. Sunday, November 29, 2026, 13:00–20:00 at Crypto Lounge GOX. Free entry with all-you-can-drink included. Pre-registration required.',
 }
 const OG_ALT = {
-  ja: 'NOSTRASIA 2026。2026.11.29（日）、Crypto Lounge GOX、参加費無料、事前エントリー制',
-  en: 'NOSTRASIA 2026. Sun, Nov 29, 2026, Crypto Lounge GOX. Free entry, pre-registration required',
+  ja: 'NOSTRASIA 2026。2026.11.29（日）13:00–20:00、Crypto Lounge GOX、参加費無料、事前エントリー制',
+  en: 'NOSTRASIA 2026. Sun, Nov 29, 2026, 13:00–20:00, Crypto Lounge GOX. Free entry, pre-registration required',
 }
 
 export const meta: MetaFunction = ({ matches }) => {

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026 } from '~/data/2026'
+import { EVENT_2026, timeRange2026 } from '~/data/2026'
 import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
@@ -38,7 +38,10 @@ export const About = () => {
           <dl className="ov">
             <div>
               <dt>{t('about.date')}</dt>
-              <dd className="m">{dateLabel(EVENT_2026.date)}</dd>
+              <dd className="m">
+                {dateLabel(EVENT_2026.date)}
+                {timeRange2026() && <small>{timeRange2026()}</small>}
+              </dd>
             </div>
             <div>
               <dt>{t('about.venue')}</dt>

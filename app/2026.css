@@ -343,6 +343,14 @@ html.js .n26.menu-open .gnav li {
   font: var(--t-num);
   letter-spacing: var(--t-num-ls);
 }
+/* 時刻は日付のあとに続け、入りきらなければ丸ごと次の行へ */
+.n26 .date .time {
+  display: inline-block;
+  margin-left: 0.4em;
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+}
 .n26 .date span {
   display: block;
   font: var(--t-cap);
