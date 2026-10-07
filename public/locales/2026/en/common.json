@@ -62,8 +62,9 @@
     "entry": "ENTRY",
     "entryRequired": "Pre-registration required",
     "entrySoon": "We will announce when registration opens.",
-    "entryOpen": "Sign up on events lab with the “Pre-register” button.",
-    "confirmed": "CONFIRMED PROGRAMS"
+    "entryOpen": "Sign up on the events lab event page.",
+    "confirmed": "CONFIRMED PROGRAMS",
+    "entryLink": "Sign up on events lab →"
   },
   "how": {
     "label": "NOSTR 101",

@@ -96,11 +96,21 @@ export const About = () => {
                 <dt>{t('about.entry')}</dt>
                 <dd>
                   {t('about.entryRequired')}
-                  <small>
-                    {EVENT_2026.registrationUrl
-                      ? t('about.entryOpen')
-                      : t('about.entrySoon')}
-                  </small>
+                  {EVENT_2026.registrationUrl ? (
+                    <small>
+                      {t('about.entryOpen')}
+                      <br />
+                      <a
+                        href={EVENT_2026.registrationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {t('about.entryLink')}
+                      </a>
+                    </small>
+                  ) : (
+                    <small>{t('about.entrySoon')}</small>
+                  )}
                 </dd>
               </div>
             )}
