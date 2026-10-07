@@ -62,7 +62,8 @@
     "entry": "ENTRY",
     "entryRequired": "事前エントリーが必要です",
     "entrySoon": "受付の開始は決まり次第お知らせします。",
-    "entryOpen": "「事前エントリー」ボタンから、events lab で申し込めます。"
+    "entryOpen": "「事前エントリー」ボタンから、events lab で申し込めます。",
+    "confirmed": "決まっている企画"
   },
   "how": {
     "label": "NOSTR 101",

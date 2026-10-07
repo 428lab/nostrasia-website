@@ -90,6 +90,30 @@ export const EVENT_2026 = {
   heroVideo: null as null | { webm?: string; mp4?: string; poster?: string },
 }
 
+/** 2026 年に開催が決まっている企画。開催概要の「決まっている企画」に並べる */
+export const PROGRAMS_2026: {
+  id: string
+  title: Localized
+  desc: Localized
+  /** 詳細の記事など */
+  url: string
+  linkLabel: Localized
+}[] = [
+  {
+    id: 'fleaMarket',
+    title: { ja: 'フリーマーケット', en: 'Flea market' },
+    desc: {
+      ja: 'フリーマーケットを開催します。出店者の募集要項は記事にまとめています。',
+      en: 'We are holding a flea market. The guidelines for sellers are in the article (in Japanese).',
+    },
+    url: 'https://lumilumi.app/naddr1qvzqqqr4gupzpmzzcaj5rzeah8y940ln4z855wa72af4a6aac4zjypql55egcpsqqqxnzdec8ymnzd35xucrwd3jhp2srk',
+    linkLabel: {
+      ja: '出店者募集の記事を読む →',
+      en: 'Read the call for sellers →',
+    },
+  },
+]
+
 /** 登壇者。未発表のあいだは空配列 → 「Speaker TBA」のカードを placeholderCount 枚出す */
 export const SPEAKERS_2026: Speaker[] = []
 export const SPEAKER_PLACEHOLDER_COUNT = 6

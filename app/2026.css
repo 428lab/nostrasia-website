@@ -920,6 +920,51 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
   gap: 20px;
   margin-top: 28px;
 }
+/* 開催概要の左パネル: 上にタイトルと注記、下に決まっている企画 */
+.n26 .about-g > .panel {
+  display: flex;
+  flex-direction: column;
+}
+.n26 .picks {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+}
+.n26 .picks-l {
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
+}
+.n26 .picks ul {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.n26 .picks li {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 2px solid var(--ink);
+  border-left-width: 10px;
+  border-left-color: var(--ye);
+  background: var(--bg);
+}
+.n26 .picks b {
+  font: var(--t-h3);
+  letter-spacing: 0;
+}
+.n26 .picks span {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  color: var(--mute);
+}
+.n26 .picks a {
+  justify-self: start;
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
+  color: var(--pu);
+}
 .n26 .ov {
   display: grid;
   border: 3px solid var(--ink);
@@ -1456,7 +1501,14 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 }
 @media (min-width: 820px) {
   .n26 .about-g {
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  }
+  /* 表と高さがそろっても空かないよう、企画は下に寄せる */
+  .n26 .picks {
+    margin-top: auto;
+  }
+  .n26 .about-g > .panel .note {
+    margin-bottom: 22px;
   }
   .n26 .how-w {
     grid-template-columns: 1fr 1.1fr;
