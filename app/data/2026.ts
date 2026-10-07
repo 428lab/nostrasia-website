@@ -70,8 +70,11 @@ export const EVENT_2026 = {
    * エントリーの受付先（registrationUrl）が決まるまでは「受付開始は決まり次第お知らせします」を添える。
    */
   entryRequired: true,
-  /** 参加登録フォーム。未定は null → ボタンは「準備中」でページ内の開催概要へ */
-  registrationUrl: null as string | null,
+  /**
+   * 参加登録先（events lab のイベントページ。サイト公開時にはイベントも公開される）。
+   * 未定は null → ボタンは「受付は調整中」を添えてページ内の開催概要へ
+   */
+  registrationUrl: 'https://events.kojira.io/e/2bab2e62' as string | null,
   /**
    * お問い合わせフォーム。2025 年版と同じフォーム。
    * TODO(要確認): 2026 年も同じフォームを使うか。
