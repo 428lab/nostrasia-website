@@ -106,7 +106,8 @@ export const PROGRAMS_2026: {
       ja: 'フリーマーケットを開催します。出店者の募集要項は記事にまとめています。',
       en: 'We are holding a flea market. The guidelines for sellers are in the article (in Japanese).',
     },
-    url: 'https://lumilumi.app/naddr1qvzqqqr4gupzpmzzcaj5rzeah8y940ln4z855wa72af4a6aac4zjypql55egcpsqqqxnzdec8ymnzd35xucrwd3jhp2srk',
+    // リレーヒント付き（wss://yabu.me / wss://r.kojira.io / wss://nostr.compile-error.net）
+    url: 'https://lumilumi.app/naddr1qqxnzdec8ymnzd35xucrwd3jqgswcsk8v4qck0deepdtluag3a9rh0jh2d0wh0w9g53qg8a9x2xqvqqrqsqqqa28qyxhwumn8ghj77tpvf6jumt9qyghwumn8ghj7u3wddhk56tjvyhxjmcpr4mhxue69uhkummnw3ezucm0d4cxjmr994jhyun0wghxuet5fz52nl',
     linkLabel: {
       ja: '出店者募集の記事を読む →',
       en: 'Read the call for sellers →',
