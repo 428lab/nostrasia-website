@@ -6,10 +6,13 @@ import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 import { SectionHead } from './SectionHead'
 
 export const About = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const localized = useLocalized()
   const dateLabel = useDateLabel()
   const venue = EVENT_2026.venue
+  // 旧称の括弧。ja は全角、en は半角
+  const formerName = (name: string) =>
+    i18n.resolvedLanguage?.startsWith('ja') ? `（${name}）` : `(${name})`
   // 「すべて調整中」の注記は、日程・会場・参加費のどれかが未定のあいだだけ出す。
   // 決まったあとは、時刻が未定ならその旨とハッシュタグ、決まっていればハッシュタグだけを出す
   const undecided = !EVENT_2026.date || !venue || !EVENT_2026.fee
@@ -69,6 +72,12 @@ export const About = () => {
                 {venue ? localized(venue.name) : t('venueTBA')}
                 {venue && (
                   <small>
+                    {venue.formerName && (
+                      <>
+                        {formerName(localized(venue.formerName))}
+                        <br />
+                      </>
+                    )}
                     {localized(venue.address)}
                     <br />
                     <a
@@ -98,8 +107,6 @@ export const About = () => {
                   {t('about.entryRequired')}
                   {EVENT_2026.registrationUrl ? (
                     <small>
-                      {t('about.entryOpen')}
-                      <br />
                       <a
                         href={EVENT_2026.registrationUrl}
                         target="_blank"

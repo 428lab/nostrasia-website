@@ -5,9 +5,7 @@
     "label": "Register",
     "soon": "Not open yet",
     "entryLabel": "Pre-register",
-    "entrySoon": "Not open yet",
-    "entryNote": "Pre-registration is required. We will announce when it opens.",
-    "entryNoteOpen": "Pre-registration is required. Sign up on events lab."
+    "entrySoon": "Not open yet"
   },
   "lang": {
     "label": "Language"
@@ -21,7 +19,6 @@
   },
   "nav": {
     "about": "About",
-    "program": "Program",
     "timetable": "Timetable",
     "speakers": "Speakers",
     "sponsors": "Sponsors",
@@ -50,8 +47,8 @@
   "about": {
     "label": "ABOUT",
     "title": "What is Nostrasia?",
-    "lead1": "Nostrasia is a Nostr conference, and a festival, that started in Japan. First held in 2023, it has run every year since, with the 2024 and 2025 editions in Tokyo. Past editions brought talks, LTs, hands-on sessions, a market, the Nostr Shrine, a hero show and DJs together in one place, along with all kinds of people.",
-    "lead2": "Nostr is a decentralized protocol that doesn't rely on any particular company or server. You sign your posts with your own key and put them on several relays (servers that store and pass posts along). The “New to Nostr?” section below shows how it works.",
+    "lead1": "Nostrasia is a Nostr conference, and a festival, that started in Japan. First held in 2023, the 2024 and 2025 editions took place in Tokyo.",
+    "lead2": "Nostr is a decentralized protocol that doesn't rely on any particular company or server. The “New to Nostr?” section below shows how it works.",
     "overviewTitle": "Nostrasia 2026 at a glance",
     "overviewNote": "The date, venue and fee are all still being arranged. We will announce when registration opens on our official accounts. The hashtag is #{{hashtag}}.",
     "date": "DATE",
@@ -62,7 +59,6 @@
     "entry": "ENTRY",
     "entryRequired": "Pre-registration required",
     "entrySoon": "We will announce when registration opens.",
-    "entryOpen": "Sign up on the events lab event page.",
     "confirmed": "CONFIRMED PROGRAMS",
     "entryLink": "Sign up on events lab →"
   },
@@ -108,53 +104,6 @@
       }
     }
   },
-  "program": {
-    "label": "PROGRAM",
-    "title": "From past editions",
-    "items": {
-      "talk": {
-        "label": "TALK",
-        "title": "Talks",
-        "desc": "The main stage for talking about Nostr today and tomorrow."
-      },
-      "lt": {
-        "label": "LIGHTNING TALK",
-        "title": "LT",
-        "desc": "Short talks, one after another."
-      },
-      "handson": {
-        "label": "HANDS-ON",
-        "title": "Hands-on",
-        "desc": "From making your keys to your very first post."
-      },
-      "market": {
-        "label": "MARKET",
-        "title": "Market",
-        "desc": "Nostr goods and books for sale."
-      },
-      "shrine": {
-        "label": "NOSTR SHRINE",
-        "title": "Nostr Shrine",
-        "desc": "Pay your respects with a zap and draw a fortune."
-      },
-      "heroShow": {
-        "label": "HERO SHOW",
-        "title": "Hero Show",
-        "desc": "A hero appears on stage."
-      },
-      "dj": {
-        "label": "DJ",
-        "title": "DJ",
-        "desc": "DJs play while people hang out."
-      },
-      "social": {
-        "label": "SOCIAL SPACE",
-        "title": "Social Space",
-        "desc": "A place to meet face to face and swap npubs."
-      }
-    },
-    "note": "* These are examples from past editions. The 2026 program is still being arranged."
-  },
   "timetable": {
     "label": "TIME TABLE",
     "title": "Timetable",
@@ -162,14 +111,14 @@
     "tbd": "TBD",
     "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
     "veilSub": "The timetable will be posted once decided",
-    "veilSubHours": "Starts {{start}}, ends {{end}}. The program will be posted once decided"
+    "veilSubHours": "{{start}}–{{end}}. Sessions will be posted once decided"
   },
   "speakers": {
     "label": "SPEAKERS",
     "title": "Speakers",
     "tbd": "TBD",
     "soon": "Announced once confirmed",
-    "note": "Speakers will be announced as they are confirmed."
+    "note": "Announced once confirmed"
   },
   "sponsors": {
     "label": "SPONSORS",
@@ -181,9 +130,10 @@
     "panelTitle": "The venue is still being arranged",
     "panelText": "The 2024 and 2025 editions were held in Tokyo. The 2026 venue, nearest station and directions will be announced once decided.",
     "map": "Open map →",
+    "mapGoogle": "Open in Google Maps →",
     "floorTitle": "FLOOR MAP",
-    "floorVeil": "The 2026 layout is not decided yet",
-    "floorVeilSub": "Shown: the 2025 floor map",
+    "floorVeil": "TBD",
+    "floorVeilSub": "Shown: 2025 floor map",
     "embedTitle": "Map of {{venue}}"
   },
   "faq": {
@@ -192,31 +142,31 @@
     "items": {
       "1": {
         "q": "Can I join if I've never used Nostr?",
-        "a": "How to join will be announced once decided. Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well.",
-        "aEntry": "Yes, as long as you pre-register (how to register will be announced once decided). Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well.",
-        "aEntryOpen": "Yes, as long as you pre-register. Past editions had programs for newcomers, such as hands-on sessions. The 2026 program is still being arranged. Take a look at “New to Nostr?” on this page as well."
+        "a": "Yes, newcomers are very welcome. Past editions had a hands-on session that took you from making your keys to your first post. Reading “New to Nostr?” first will make the day a lot easier to follow.",
+        "aEntry": "Yes, newcomers are very welcome. Past editions had a hands-on session that took you from making your keys to your first post. Reading “New to Nostr?” first will make the day a lot easier to follow.",
+        "aEntryOpen": "Yes, newcomers are very welcome. Past editions had a hands-on session that took you from making your keys to your first post. Reading “New to Nostr?” first will make the day a lot easier to follow."
       },
       "2": {
         "q": "Is there a fee?",
-        "a": "The fee hasn't been decided yet. We will announce it once it is.",
-        "aFee": "Fee: {{fee}}.",
-        "aFeeNote": "Fee: {{fee}} ({{note}})."
+        "a": "The fee is still being arranged.",
+        "aFee": "It's {{fee}}.",
+        "aFeeNote": "It's {{fee}}, and {{noteLower}}. Just come as you are."
       },
       "3": {
         "q": "When will the date and venue be decided?",
-        "a": "They are being arranged now. We will announce them on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr).",
+        "a": "They are being arranged. We will announce them on our official accounts.",
         "qDecided": "When and where is it?",
-        "aDecidedTime": "On {{date}}, at {{venue}}. Start and end times are TBA and will be announced on our official accounts (X @nostrasia / Bluesky nostrasia.com / note / Nostr). See “Access” for the address and map.",
-        "aDecided": "On {{date}}, {{time}}, at {{venue}}. See “Access” for the address and map."
+        "aDecidedTime": "On {{date}} at {{venue}} in Kabukicho, Shinjuku. Times will be announced once decided.",
+        "aDecided": "On {{date}}, {{time}}, at {{venue}} in Kabukicho, Shinjuku."
       },
       "4": {
-        "q": "I'd like to talk about sponsoring or exhibiting",
-        "a": "We are looking for sponsors. Plan details will be announced once decided. Please get in touch via our official accounts. The same goes for exhibiting."
+        "q": "I'd like to sponsor",
+        "a": "Thank you! Feel free to reach out to kojira or Shino3, by mentioning them on Nostr or by DM on X."
       },
       "entry": {
         "q": "Do I need to pre-register?",
         "a": "Yes. We will announce when registration opens.",
-        "aOpen": "Yes. Please sign up on events lab with the “Pre-register” button."
+        "aOpen": "Yes. Registration is open on events lab."
       }
     }
   },
@@ -230,7 +180,6 @@
     }
   },
   "footer": {
-    "contact": "Contact",
     "privacy": "Privacy Policy",
     "copyright": "© Nostrasia 2026"
   }

@@ -32,15 +32,6 @@ export const Footer = () => {
         </ul>
         <ul>
           <li>
-            <a
-              href={EVENT_2026.contactUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('footer.contact')}
-            </a>
-          </li>
-          <li>
             {/* 年ごとに locale と CSS が違うので全ページ遷移にする */}
             <a href={to('/privacy-policy')}>{t('footer.privacy')}</a>
           </li>

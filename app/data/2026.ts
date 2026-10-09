@@ -13,6 +13,8 @@ export type Localized = { ja: string; en: string }
 
 export type Venue = {
   name: Localized
+  /** 旧称。会場名に併記する */
+  formerName?: Localized
   address: Localized
   /** Google マップ等の URL */
   mapUrl: string
@@ -47,8 +49,12 @@ export const EVENT_2026 = {
   doorsOpen: null as string | null,
   /** 会場。未定は null → 「会場 調整中」 */
   venue: {
-    name: { ja: 'Crypto Lounge GOX', en: 'Crypto Lounge GOX' },
-    // 住所と地図は 2025 年版と同じ会場のもの。TODO(要確認): 2026 年も同じフロアか
+    name: { ja: 'GOX Tokyo', en: 'GOX Tokyo' },
+    formerName: {
+      ja: '旧: Crypto Lounge GOX',
+      en: 'formerly Crypto Lounge GOX',
+    },
+    // 住所と地図は 2025 年版と同じ会場のもの。2026 年も同じ住所・フロア（確認済み）
     address: {
       ja: '〒160-0021 東京都新宿区歌舞伎町2丁目19-15 てなむタウンビル 6F',
       en: '6F Tenam Town Building, 2-19-15 Kabukicho, Shinjuku-ku, Tokyo 160-0021',
@@ -62,8 +68,8 @@ export const EVENT_2026 = {
   fee: { ja: '無料', en: 'Free' } as Localized | null,
   /** 参加費に添える注記。無ければ null */
   feeNote: {
-    ja: 'ドリンク飲み放題つき',
-    en: 'All-you-can-drink included',
+    ja: 'ソフトドリンク・アルコール飲み放題つき',
+    en: 'Unlimited soft drinks and alcohol',
   } as Localized | null,
   /**
    * 参加には事前エントリーが必要か。true なら開催概要・参加ボタンのそばに「事前エントリーが必要です」を出す。
@@ -75,12 +81,6 @@ export const EVENT_2026 = {
    * 未定は null → ボタンは「受付は調整中」を添えてページ内の開催概要へ
    */
   registrationUrl: 'https://events.kojira.io/e/2bab2e62' as string | null,
-  /**
-   * お問い合わせフォーム。2025 年版と同じフォーム。
-   * TODO(要確認): 2026 年も同じフォームを使うか。
-   */
-  contactUrl:
-    'https://docs.google.com/forms/d/e/1FAIpQLSfOPMX1EwMlH5J9BsPft2yylspYeNoBScf0kAzN8ETUX-CBcg/viewform',
   /** ハッシュタグ */
   hashtag: 'nostrasia2026',
   /**
@@ -103,17 +103,31 @@ export const PROGRAMS_2026: {
     id: 'fleaMarket',
     title: { ja: 'フリーマーケット', en: 'Flea market' },
     desc: {
-      ja: 'フリーマーケットを開催します。出店者の募集要項は記事にまとめています。',
-      en: 'We are holding a flea market. The guidelines for sellers are in the article (in Japanese).',
+      ja: '出店者を募集しています。',
+      en: 'Sellers wanted (details in Japanese).',
     },
     // リレーヒント付き（wss://yabu.me / wss://r.kojira.io / wss://nostr.compile-error.net）
     url: 'https://lumilumi.app/naddr1qqxnzdec8ymnzd35xucrwd3jqgswcsk8v4qck0deepdtluag3a9rh0jh2d0wh0w9g53qg8a9x2xqvqqrqsqqqa28qyxhwumn8ghj77tpvf6jumt9qyghwumn8ghj7u3wddhk56tjvyhxjmcpr4mhxue69uhkummnw3ezucm0d4cxjmr994jhyun0wghxuet5fz52nl',
     linkLabel: {
-      ja: '出店者募集の記事を読む →',
+      ja: '募集要項を読む →',
       en: 'Read the call for sellers →',
     },
   },
 ]
+
+/** スポンサーの相談先。FAQ に出す。Nostr のメンションか X の DM で */
+export const SPONSOR_CONTACTS = [
+  {
+    name: 'kojira',
+    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
+    x: 'kojira',
+  },
+  {
+    name: 'Shino3',
+    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+    x: 'SHINOHARATTT',
+  },
+] as const
 
 /** 登壇者。未発表のあいだは空配列 → 「Speaker TBA」のカードを placeholderCount 枚出す */
 export const SPEAKERS_2026: Speaker[] = []
