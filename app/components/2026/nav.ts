@@ -1,7 +1,6 @@
 /** ヘッダー・メニュー・フッターで共通のナビ項目（id はセクションの id） */
 export const NAV_ITEMS: { id: string; label: string }[] = [
   { id: 'about', label: 'nav.about' },
-  { id: 'program', label: 'nav.program' },
   { id: 'timetable', label: 'nav.timetable' },
   { id: 'speakers', label: 'nav.speakers' },
   { id: 'sponsors', label: 'nav.sponsors' },
@@ -14,7 +13,6 @@ export const NAV_ITEMS: { id: string; label: string }[] = [
 export const SECTION_TO_NAV: Record<string, string> = {
   about: 'about',
   how: 'about',
-  program: 'program',
   timetable: 'timetable',
   speakers: 'speakers',
   sponsors: 'sponsors',

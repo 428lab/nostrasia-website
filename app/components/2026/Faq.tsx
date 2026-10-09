@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, timeRange2026 } from '~/data/2026'
+import { EVENT_2026, SPONSOR_CONTACTS, timeRange2026 } from '~/data/2026'
 import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
@@ -21,12 +21,15 @@ export const Faq = () => {
     entryRequired,
     registrationUrl,
   } = EVENT_2026
+  const note = feeNote ? localized(feeNote) : ''
   const vars = {
     date: dateLabel(date),
     time: timeRange2026() ?? '',
     venue: venue ? localized(venue.name) : '',
     fee: fee ? localized(fee) : '',
-    note: feeNote ? localized(feeNote) : '',
+    note,
+    // en の文中に入れるとき用（"All-you-can-drink" → "all-you-can-drink"）
+    noteLower: note.charAt(0).toLowerCase() + note.slice(1),
     interpolation: { escapeValue: false },
   }
 
@@ -70,19 +73,65 @@ export const Faq = () => {
     }
   }
 
+  /** 回答の下に添えるもの（リンク・連絡先） */
+  const extra = (key: string) => {
+    if (key === 'entry' && registrationUrl)
+      return (
+        <p className="faq-link">
+          <a href={registrationUrl} target="_blank" rel="noopener noreferrer">
+            {t('about.entryLink')}
+          </a>
+        </p>
+      )
+    if (key === '4')
+      return (
+        <ul className="contacts">
+          {SPONSOR_CONTACTS.map(({ name, npub, x }) => (
+            <li key={name}>
+              <b>{name}</b>
+              <a
+                href={`https://njump.me/${npub}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Nostr</span>
+                <code>{npub}</code>
+              </a>
+              <a
+                href={`https://x.com/${x}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>X</span>
+                <code>@{x}</code>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    return null
+  }
+
   return (
     <section className="sec" id="faq">
       <div className="wrap">
         <SectionHead label={t('faq.label')} title={t('faq.title')} />
-        {ITEMS.filter((key) => key !== 'entry' || entryRequired).map((key) => {
-          const { q, a } = keys(key)
-          return (
-            <details key={key}>
-              <summary>{t(q, vars)}</summary>
-              <p>{t(a, vars)}</p>
-            </details>
-          )
-        })}
+        <dl className="faqs">
+          {ITEMS.filter((key) => key !== 'entry' || entryRequired).map(
+            (key) => {
+              const { q, a } = keys(key)
+              return (
+                <div key={key}>
+                  <dt>{t(q, vars)}</dt>
+                  <dd>
+                    <p>{t(a, vars)}</p>
+                    {extra(key)}
+                  </dd>
+                </div>
+              )
+            },
+          )}
+        </dl>
       </div>
     </section>
   )

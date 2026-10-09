@@ -170,13 +170,6 @@ export const Hero = () => {
           </span>
         </p>
         <JoinButton className="cta" />
-        {EVENT_2026.entryRequired && (
-          <p className="entry-note">
-            {EVENT_2026.registrationUrl
-              ? t('join.entryNoteOpen')
-              : t('join.entryNote')}
-          </p>
-        )}
       </div>
       {/* ゲーム中だけ閉じるボタンを読ませるため、aria-hidden を外す（飾りは個別に隠す） */}
       <div

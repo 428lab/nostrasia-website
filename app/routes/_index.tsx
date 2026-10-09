@@ -5,7 +5,6 @@ import { Faq } from '~/components/2026/Faq'
 import { Hero } from '~/components/2026/Hero'
 import { HowNostr } from '~/components/2026/HowNostr'
 import { Layout } from '~/components/2026/Layout'
-import { Program } from '~/components/2026/Program'
 import { Speakers } from '~/components/2026/Speakers'
 import { Sponsors } from '~/components/2026/Sponsors'
 import { TimeTable } from '~/components/2026/TimeTable'
@@ -65,7 +64,6 @@ export default function Index() {
       <Hero />
       <About />
       <HowNostr />
-      <Program />
       <TimeTable />
       <Speakers />
       <Sponsors />

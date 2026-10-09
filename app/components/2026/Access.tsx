@@ -10,6 +10,9 @@ export const Access = () => {
   const { t, i18n } = useTranslation()
   const localized = useLocalized()
   const venue = EVENT_2026.venue
+  // 旧称の括弧。ja は全角、en は半角
+  const formerName = (name: string) =>
+    i18n.resolvedLanguage?.startsWith('ja') ? `（${name}）` : `(${name})`
 
   return (
     <section className="sec" id="access">
@@ -18,7 +21,14 @@ export const Access = () => {
         <div className="acc">
           {venue ? (
             <div className="panel">
-              <p className="ptl">{localized(venue.name)}</p>
+              <p className="ptl">
+                {localized(venue.name)}
+                {venue.formerName && (
+                  <small className="former">
+                    {formerName(localized(venue.formerName))}
+                  </small>
+                )}
+              </p>
               <p className="ptx">{localized(venue.address)}</p>
               <a
                 className="btn2"
@@ -26,7 +36,7 @@ export const Access = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t('access.map')}
+                {t('access.mapGoogle')}
               </a>
             </div>
           ) : (

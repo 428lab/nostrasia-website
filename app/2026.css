@@ -372,15 +372,6 @@ html.js .n26.menu-open .gnav li {
   border: 3px solid var(--ink);
   box-shadow: 5px 5px 0 var(--ink);
 }
-/* 参加ボタンの下: 事前エントリーが必要なことの補足 */
-.n26 .entry-note {
-  font: var(--t-cap);
-  letter-spacing: var(--t-cap-ls);
-  color: var(--mute);
-  margin-top: -2px;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
 .n26 .stage {
   position: relative;
   z-index: 1;
@@ -1004,37 +995,6 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
 .n26 .ov dd small a {
   color: var(--pu);
 }
-/* program */
-.n26 .cg {
-  display: grid;
-  /* 本文 15px が 2 列で 1 行 8 字前後に詰まるので、最小幅を 170px にする（390 幅では 1 列） */
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 14px;
-}
-.n26 .cc {
-  background: var(--paper);
-  border: 3px solid var(--ink);
-  padding: 16px 14px 18px;
-  transition: transform 0.3s var(--pop);
-}
-.n26 .cc:hover {
-  transform: translateY(-4px);
-}
-.n26 .cc h3 {
-  font: var(--t-h3);
-  letter-spacing: 0;
-}
-.n26 .cc h3 small {
-  display: block;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
-  color: var(--mute);
-}
-.n26 .cc p {
-  font: var(--t-body);
-  letter-spacing: var(--t-body-ls);
-  margin-top: 6px;
-}
 /* how */
 .n26 .how-w {
   display: grid;
@@ -1397,6 +1357,14 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   display: grid;
   gap: 18px;
 }
+/* 会場の旧称 */
+.n26 .acc .ptl .former {
+  display: block;
+  margin-top: 2px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  color: var(--mute);
+}
 .n26 .gmap {
   display: block;
   width: 100%;
@@ -1404,42 +1372,70 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   border: 3px solid var(--ink);
   background: var(--paper);
 }
-/* faq */
-.n26 details {
-  border: 3px solid var(--ink);
-  background: var(--paper);
-  margin-bottom: 10px;
+/* faq: 折りたたまず、質問と回答を並べる */
+.n26 .faqs > div {
+  border-block: 3px solid var(--ink);
 }
-.n26 summary {
-  cursor: pointer;
-  list-style: none;
-  padding: 14px 46px 14px 16px;
+.n26 .faqs > div + div {
+  border-top: 0;
+}
+.n26 .faqs dt {
+  padding: 14px 16px;
   font: var(--t-h3);
   letter-spacing: 0;
-  position: relative;
 }
-.n26 summary::-webkit-details-marker {
-  display: none;
-}
-.n26 summary:after {
-  content: '';
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  margin-top: -6px;
-  background: var(--ink);
-  clip-path: polygon(50% 100%, 100% 0, 0 0);
-  transition: transform 0.3s;
-}
-.n26 details[open] summary:after {
-  transform: rotate(180deg);
-}
-.n26 details p {
+.n26 .faqs dd {
+  margin: 0;
   padding: 0 16px 16px;
+}
+.n26 .faqs dd p {
   font: var(--t-body);
   letter-spacing: var(--t-body-ls);
+}
+/* 回答の下のリンク。開催概要のリンク（.ov dd small a）と同じ見た目 */
+.n26 .faq-link {
+  margin-top: 8px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+}
+.n26 .faq-link a {
+  color: var(--pu);
+}
+/* スポンサーの相談先。npub は 63 文字あるので折り返す */
+.n26 .contacts {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+.n26 .contacts li {
+  display: grid;
+  gap: 4px;
+}
+.n26 .contacts a {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  color: var(--ink);
+  text-decoration: none;
+}
+.n26 .contacts a:hover code {
+  text-decoration: underline;
+}
+.n26 .contacts span {
+  flex: none;
+  width: 44px;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
+}
+/* 本文中の npub（.step code）と同じ書体・大きさ */
+.n26 .contacts code {
+  min-width: 0;
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-num-ls);
+  word-break: break-all;
+  color: var(--pu);
 }
 /* archive */
 .n26 .ar {
@@ -1640,8 +1636,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .it span,
   .n26 .step,
   .n26 .fig svg.ln g,
-  .n26 .burger .bs i,
-  .n26 .cc {
+  .n26 .burger .bs i {
     transition: none;
   }
 }
