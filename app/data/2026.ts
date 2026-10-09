@@ -68,8 +68,8 @@ export const EVENT_2026 = {
   fee: { ja: '無料', en: 'Free' } as Localized | null,
   /** 参加費に添える注記。無ければ null */
   feeNote: {
-    ja: 'ドリンク飲み放題つき',
-    en: 'All-you-can-drink included',
+    ja: 'ソフトドリンク・アルコール飲み放題つき',
+    en: 'Unlimited soft drinks and alcohol',
   } as Localized | null,
   /**
    * 参加には事前エントリーが必要か。true なら開催概要・参加ボタンのそばに「事前エントリーが必要です」を出す。
