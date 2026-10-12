@@ -178,9 +178,6 @@ export const Hero = () => {
         aria-hidden={phase === 'game' ? undefined : true}
       >
         {EVENT_2026.heroVideo && <HeroVideo source={EVENT_2026.heroVideo} />}
-        <span className="hcap" aria-hidden="true">
-          {t('hero.caption')}
-        </span>
         <div className="scene" aria-hidden="true">
           <i className="mt" />
           <i className="mt" />
