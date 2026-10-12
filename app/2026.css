@@ -1241,6 +1241,22 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
+.n26 .sp .lk {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 6px;
+}
+.n26 .sp .lk a {
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
+  color: var(--pu);
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+}
+.n26 .sp .lk a:hover {
+  color: var(--or);
+}
 /* すりガラスの膜（Veil）。未定の内容をぼかして覆う。フロアマップ・タイムテーブル・登壇者で共通 */
 .n26 .veiled {
   position: relative;
