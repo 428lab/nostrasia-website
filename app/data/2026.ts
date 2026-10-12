@@ -40,6 +40,18 @@ export type Sponsor = {
   logo?: string
 }
 
+export type Staff = {
+  name: string
+  /** 役割。未確定のあいだは省略 */
+  role?: Localized
+  /** npub1... 表示は https://njump.me/<npub> */
+  npub?: string
+  /** X のハンドル（@ なし）。表示は https://x.com/<x> */
+  x?: string
+  /** /2026/staff/ 以下に置いた正方形画像のパス。無ければ仮アバター */
+  image?: string
+}
+
 export const EVENT_2026 = {
   /** 開催日 'YYYY-MM-DD'。未定は null → 「2026.??.??」 */
   date: '2026-11-29' as string | null,
@@ -135,6 +147,22 @@ export const SPEAKER_PLACEHOLDER_COUNT = 6
 
 /** スポンサー。tier は分けず、この順に並べる */
 export const SPONSORS_2026: Sponsor[] = [{ name: 'Shino3' }, { name: 'kojira' }]
+
+/** 運営スタッフ。空のあいだはセクションを出さない。
+ * TODO: UI 確認用のサンプル。本人確認（表記・npub・X・写真）が済んだら差し替える */
+export const STAFF_2026: Staff[] = [
+  {
+    name: 'kojira',
+    role: { ja: '役割（仮）', en: 'Role (TBD)' },
+    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
+    x: 'kojira',
+  },
+  {
+    name: 'Shino3',
+    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+    x: 'SHINOHARATTT',
+  },
+]
 
 /** 過去回。/2024 と /2025 はこのアプリ内のアーカイブ（年ごとに locale が違うので必ず全ページ遷移で開く） */
 export const ARCHIVES = [

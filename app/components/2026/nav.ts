@@ -16,6 +16,7 @@ export const SECTION_TO_NAV: Record<string, string> = {
   timetable: 'timetable',
   speakers: 'speakers',
   sponsors: 'sponsors',
+  staff: 'sponsors',
   access: 'access',
   faq: 'faq',
   archive: 'archive',

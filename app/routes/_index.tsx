@@ -7,6 +7,7 @@ import { HowNostr } from '~/components/2026/HowNostr'
 import { Layout } from '~/components/2026/Layout'
 import { Speakers } from '~/components/2026/Speakers'
 import { Sponsors } from '~/components/2026/Sponsors'
+import { Staff } from '~/components/2026/Staff'
 import { TimeTable } from '~/components/2026/TimeTable'
 
 import { rootMeta, ogImage } from '~/utils/meta'
@@ -67,6 +68,7 @@ export default function Index() {
       <TimeTable />
       <Speakers />
       <Sponsors />
+      <Staff />
       <Access />
       <Faq />
       <Archive />
