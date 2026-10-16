@@ -121,7 +121,16 @@
   },
   "market": {
     "label": "FLEA MARKET",
-    "title": "フリマ出店者",
+    "title": "フリーマーケット",
+    "lead": "当日は会場でフリーマーケットを開きます。出店者がつくったグッズや本、コーヒーが並びます。",
+    "count": "{{count}} 店が出店",
+    "payAll": "全店 Lightning・現金で買えます",
+    "planned": "出店予定",
+    "lightning": "Lightning",
+    "cash": "現金",
+    "say": "ひとこと",
+    "ctaTitle": "出店してみたい方へ",
+    "ctaText": "出店の条件や申し込み方法は募集要項にまとめています。",
     "callForSellers": "募集要項を読む →"
   },
   "sponsors": {

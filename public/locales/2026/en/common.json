@@ -122,6 +122,15 @@
   "market": {
     "label": "FLEA MARKET",
     "title": "Flea market",
+    "lead": "A flea market opens at the venue on the day, with goods, books and coffee made by the sellers.",
+    "count": "{{count}} stalls",
+    "payAll": "Every stall takes Lightning and cash",
+    "planned": "Planned",
+    "lightning": "Lightning",
+    "cash": "Cash",
+    "say": "Note",
+    "ctaTitle": "Want to open a stall?",
+    "ctaText": "Conditions and how to apply are in the call for sellers (Japanese).",
     "callForSellers": "Read the call for sellers →"
   },
   "sponsors": {
