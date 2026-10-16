@@ -138,7 +138,8 @@
     "nostrProfile": "Nostr profile",
     "lightbox": "Enlarged photo",
     "prev": "Previous photo",
-    "next": "Next photo"
+    "next": "Next photo",
+    "photoSoon": "Photos coming soon"
   },
   "sponsors": {
     "label": "SPONSORS",

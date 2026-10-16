@@ -17,13 +17,10 @@ const MAX_IMAGES = 2
 const Stall = ({
   seller,
   index,
-  showPayment,
   onOpen,
 }: {
   seller: Seller
   index: number
-  /** 全店同じ支払い方法なら上の札にまとめ、カードには出さない */
-  showPayment: boolean
   onOpen: (images: Images, at: number) => void
 }) => {
   const { t } = useTranslation()
@@ -36,12 +33,16 @@ const Stall = ({
       <div className="awn" aria-hidden="true" />
       <div className="stall-b">
         <div className="sign">
-          <h3>{sign}</h3>
+          <h3>
+            {sign}
+            {seller.shop && seller.name && (
+              <small className="by">{seller.name}</small>
+            )}
+          </h3>
           {seller.status === 'planned' && (
             <span className="fuda">{t('market.planned')}</span>
           )}
         </div>
-        {seller.shop && seller.name && <p className="by">{seller.name}</p>}
         <ul className="goods">
           {seller.items.map((item) => (
             <li key={item.ja}>{localized(item)}</li>
@@ -51,7 +52,12 @@ const Stall = ({
           <span className="vh">{t('market.say')}: </span>
           {localized(seller.message)}
         </p>
-        {images.length > 0 && (
+        {images.length === 0 ? (
+          // 写真が届くまでの仮の枠。枠の大きさを揃えて屋台の高さを合わせる
+          <div className="ph n1">
+            <div className="ph-tbd">{t('market.photoSoon')}</div>
+          </div>
+        ) : (
           <div className={`ph n${images.length}`}>
             {images.map((image, i) => (
               <a
@@ -75,15 +81,13 @@ const Stall = ({
           </div>
         )}
         <div className="ft">
-          {showPayment && (
-            <span className="pay">
-              {seller.payment.map((p) => (
-                <i key={p} className={p}>
-                  {t(`market.${p}`)}
-                </i>
-              ))}
-            </span>
-          )}
+          <span className="pay">
+            {seller.payment.map((p) => (
+              <i key={p} className={p}>
+                {t(`market.${p}`)}
+              </i>
+            ))}
+          </span>
           <span className="lk">
             {seller.npub && (
               <a
@@ -244,7 +248,6 @@ export const FleaMarket = () => {
               key={seller.npub ?? i}
               seller={seller}
               index={i}
-              showPayment={!payAll}
               onOpen={open}
             />
           ))}
