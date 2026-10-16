@@ -197,7 +197,7 @@ export const FLEA_MARKET_2026: Seller[] = [
     payment: ['lightning', 'cash'],
   },
   {
-    status: 'planned',
+    status: 'confirmed',
     name: 'しおん',
     npub: 'npub1pjd3a8l0wmygkclcvezacvamwamlqfv7cs0xwjmp7n7920mdkrsq9hpeqp',
     items: [
