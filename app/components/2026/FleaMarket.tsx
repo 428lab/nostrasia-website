@@ -200,8 +200,6 @@ export const FleaMarket = () => {
     images: [],
     at: 0,
   })
-  /** スマホの横スワイプで、いま何軒目を見ているか */
-  const [seen, setSeen] = useState(0)
   const open = (images: Images, at: number) => {
     setBox({ images, at })
     dialog.current?.showModal()
@@ -233,16 +231,7 @@ export const FleaMarket = () => {
           </li>
           {payAll && <li>{t('market.payAll')}</li>}
         </ul>
-        <ul
-          className="stalls"
-          onScroll={(e) => {
-            const el = e.currentTarget
-            const first = el.firstElementChild as HTMLElement | null
-            if (!first) return
-            const step = first.offsetWidth + 16
-            setSeen(Math.min(total - 1, Math.round(el.scrollLeft / step)))
-          }}
-        >
+        <ul className="stalls">
           {FLEA_MARKET_2026.map((seller, i) => (
             <Stall
               key={seller.npub ?? i}
@@ -252,9 +241,6 @@ export const FleaMarket = () => {
             />
           ))}
         </ul>
-        <p className="mk-pos" aria-hidden="true">
-          {seen + 1} / {total}
-        </p>
         {callUrl && (
           <div className="mk-cta">
             <p className="ptl">{t('market.ctaTitle')}</p>

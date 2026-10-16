@@ -1626,34 +1626,43 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 .n26 .stall .lk a:hover {
   color: var(--or);
 }
-/* 何軒目かの表示はスマホの横スワイプのときだけ */
-.n26 .mk-pos {
-  display: none;
-}
-/* 狭い画面は屋台を横に並べてスワイプで見て回る */
+/* 狭い画面は 1 列の縦積み。日よけ・余白・写真を詰めて 1 軒あたりの高さを抑える */
 @media (max-width: 640px) {
   .n26 .stalls {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 84%;
-    gap: 16px;
-    align-items: start;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    margin: 0 -20px;
-    padding: 0 20px 10px;
-    scroll-padding: 0 20px;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
-  .n26 .stall {
-    scroll-snap-align: start;
+  .n26 .awn {
+    height: 20px;
   }
-  .n26 .mk-pos {
-    display: block;
-    margin: 6px 0 0;
-    text-align: center;
-    font: var(--t-micro);
-    letter-spacing: var(--t-micro-ls);
-    color: var(--mute);
+  .n26 .awn::after {
+    height: 9px;
+  }
+  .n26 .stall-b {
+    gap: 8px;
+    padding: 20px 14px 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .n26 .stall h3 {
+    font: var(--t-name);
+  }
+  .n26 .goods li {
+    padding: 3px 7px;
+    border-left-width: 6px;
+  }
+  .n26 .say {
+    margin-top: 2px;
+    padding: 7px 10px;
+  }
+  /* 写真は 2:1 のまま幅を絞る。仮の枠は縦積みでは揃える相手がいないので出さない */
+  .n26 .ph {
+    max-width: 240px;
+  }
+  .n26 .ph:has(.ph-tbd) {
+    display: none;
+  }
+  .n26 .stall .ft {
+    padding-top: 8px;
   }
 }
 .n26 .mk-cta {
