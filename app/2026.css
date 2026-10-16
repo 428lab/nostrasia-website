@@ -1417,22 +1417,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     display: none;
   }
 }
-/* 狭い画面は屋台を横に並べてスワイプで見て回る */
-@media (max-width: 640px) {
-  .n26 .stalls {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 84%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin: 0 -20px;
-    padding: 0 28px 14px;
-    scroll-padding: 0 28px;
-  }
-  .n26 .stall {
-    scroll-snap-align: start;
-  }
-}
 @keyframes n26-sway {
   from {
     transform: rotate(-5deg);
@@ -1464,8 +1448,8 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 34px 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 28px;
 }
 .n26 .stall {
   display: flex;
@@ -1475,7 +1459,23 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 .n26 .stall:hover {
   transform: translateY(-4px) rotate(-0.6deg);
 }
-/* 縞の日よけ。下のフチは半円を並べる */
+/* 狭い画面は屋台を横に並べてスワイプで見て回る */
+@media (max-width: 640px) {
+  .n26 .stalls {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 84%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin: 0 -20px;
+    padding: 0 28px 14px;
+    scroll-padding: 0 28px;
+  }
+  .n26 .stall {
+    scroll-snap-align: start;
+  }
+}
+/* 縞の日よけ。幅に関係なく 12 本（色・白で 6 組）にして、下フチの半円を縞 1 本に 1 つ合わせる */
 .n26 .awn {
   position: relative;
   z-index: 1;
@@ -1484,22 +1484,23 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   border: 3px solid var(--ink);
   background: repeating-linear-gradient(
     90deg,
-    var(--st) 0 26px,
-    #fff 26px 52px
+    var(--st) 0 calc(100% / 12),
+    #fff calc(100% / 12) calc(100% / 6)
   );
 }
 .n26 .awn::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  left: -3px;
+  right: -3px;
   top: 100%;
-  height: 13px;
+  height: 14px;
+  margin-top: 3px;
   background:
-    radial-gradient(circle at 50% 0, var(--st) 12px, transparent 13px) 0 0 /
-      52px 13px repeat-x,
-    radial-gradient(circle at 50% 0, #fff 12px, transparent 13px) 26px 0 / 52px
-      13px repeat-x;
+    radial-gradient(ellipse 25% 100% at 25% 0, var(--st) 96%, transparent 100%)
+      0 0 / calc(100% / 6) 100%,
+    radial-gradient(ellipse 25% 100% at 75% 0, #fff 96%, transparent 100%) 0 0 /
+      calc(100% / 6) 100%;
   filter: drop-shadow(0 3px 0 var(--ink));
 }
 .n26 .stall-b {
@@ -1571,19 +1572,82 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   border-top: 0;
   border-bottom-color: var(--bg);
 }
+/* 写真は横:縦 = 2:1 の枠。2 枚なら正方形を 2 つ、1 枚なら枠いっぱい */
 .n26 .ph {
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.n26 .ph.n1 {
+  grid-template-columns: 1fr;
 }
 .n26 .ph a {
   display: block;
+  aspect-ratio: 1;
   border: 2px solid var(--ink);
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.n26 .ph.n1 a {
+  aspect-ratio: 2 / 1;
 }
 .n26 .ph img {
   display: block;
-  width: 76px;
-  height: 76px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+.n26 .lb {
+  margin: auto;
+  max-width: min(92vw, 900px);
+  max-height: 92vh;
+  padding: 0;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  overflow: visible;
+}
+.n26 .lb::backdrop {
+  background: rgba(22, 22, 22, 0.82);
+}
+.n26 .lb img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 6px);
+  object-fit: contain;
+}
+.n26 .lb-x {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.n26 .lb-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.n26 .lb-nav button {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--ink);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.n26 .lb-nav button[aria-pressed='true'] {
+  background: #fff;
 }
 .n26 .stall .ft {
   margin-top: auto;

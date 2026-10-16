@@ -131,7 +131,8 @@
     "say": "ひとこと",
     "ctaTitle": "出店してみたい方へ",
     "ctaText": "出店の条件や申し込み方法は募集要項にまとめています。",
-    "callForSellers": "募集要項を読む →"
+    "callForSellers": "募集要項を読む →",
+    "close": "閉じる"
   },
   "sponsors": {
     "label": "SPONSORS",

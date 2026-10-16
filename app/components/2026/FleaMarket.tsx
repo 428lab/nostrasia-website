@@ -1,3 +1,4 @@
+import { RefObject, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FLEA_MARKET_2026, PROGRAMS_2026, Seller } from '~/data/2026'
@@ -8,10 +9,24 @@ import { SectionHead } from './SectionHead'
 /** 見出しの上に吊るす提灯の数。狭い画面では CSS で間引く */
 const LANTERNS = 9
 
-const Stall = ({ seller, index }: { seller: Seller; index: number }) => {
+type Images = NonNullable<Seller['images']>
+
+/** 屋台に出す写真は 2 枚まで */
+const MAX_IMAGES = 2
+
+const Stall = ({
+  seller,
+  index,
+  onOpen,
+}: {
+  seller: Seller
+  index: number
+  onOpen: (images: Images, at: number) => void
+}) => {
   const { t } = useTranslation()
   const localized = useLocalized()
   const sign = seller.shop ?? seller.name
+  const images = (seller.images ?? []).slice(0, MAX_IMAGES)
 
   return (
     <li className={`stall c${index % 4}`}>
@@ -31,14 +46,18 @@ const Stall = ({ seller, index }: { seller: Seller; index: number }) => {
           <span className="vh">{t('market.say')}: </span>
           {localized(seller.message)}
         </p>
-        {seller.images && (
-          <div className="ph">
-            {seller.images.map((image) => (
+        {images.length > 0 && (
+          <div className={`ph n${images.length}`}>
+            {images.map((image, i) => (
               <a
                 key={image.src}
                 href={image.src}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault()
+                  onOpen(images, i)
+                }}
               >
                 <img
                   src={image.src}
@@ -84,8 +103,66 @@ const Stall = ({ seller, index }: { seller: Seller; index: number }) => {
   )
 }
 
+/** 写真をタップしたときの拡大表示。dialog なので Esc と背景タップで閉じる */
+const Lightbox = ({
+  dialog,
+  images,
+  at,
+  onMove,
+}: {
+  dialog: RefObject<HTMLDialogElement>
+  images: Images
+  at: number
+  onMove: (at: number) => void
+}) => {
+  const { t } = useTranslation()
+  const localized = useLocalized()
+  const image = images[at]
+
+  return (
+    // 背景タップで閉じる。キーボードは dialog 標準の Esc で閉じられる
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+    <dialog
+      ref={dialog}
+      className="lb"
+      onClick={(e) => e.target === e.currentTarget && dialog.current?.close()}
+    >
+      {image && <img src={image.src} alt={localized(image.alt)} />}
+      {images.length > 1 && (
+        <div className="lb-nav">
+          {images.map((img, i) => (
+            <button
+              key={img.src}
+              type="button"
+              aria-pressed={i === at}
+              aria-label={`${i + 1} / ${images.length}`}
+              onClick={() => onMove(i)}
+            />
+          ))}
+        </div>
+      )}
+      <button
+        type="button"
+        className="lb-x"
+        onClick={() => dialog.current?.close()}
+      >
+        {t('market.close')}
+      </button>
+    </dialog>
+  )
+}
+
 export const FleaMarket = () => {
   const { t } = useTranslation()
+  const dialog = useRef<HTMLDialogElement>(null)
+  const [box, setBox] = useState<{ images: Images; at: number }>({
+    images: [],
+    at: 0,
+  })
+  const open = (images: Images, at: number) => {
+    setBox({ images, at })
+    dialog.current?.showModal()
+  }
 
   if (FLEA_MARKET_2026.length === 0) return null
 
@@ -110,7 +187,12 @@ export const FleaMarket = () => {
         </ul>
         <ul className="stalls">
           {FLEA_MARKET_2026.map((seller, i) => (
-            <Stall key={seller.npub ?? i} seller={seller} index={i} />
+            <Stall
+              key={seller.npub ?? i}
+              seller={seller}
+              index={i}
+              onOpen={open}
+            />
           ))}
         </ul>
         {callUrl && (
@@ -128,6 +210,12 @@ export const FleaMarket = () => {
           </div>
         )}
       </div>
+      <Lightbox
+        dialog={dialog}
+        images={box.images}
+        at={box.at}
+        onMove={(at) => setBox((b) => ({ ...b, at }))}
+      />
     </section>
   )
 }

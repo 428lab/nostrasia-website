@@ -131,7 +131,8 @@
     "say": "Note",
     "ctaTitle": "Want to open a stall?",
     "ctaText": "Conditions and how to apply are in the call for sellers (Japanese).",
-    "callForSellers": "Read the call for sellers →"
+    "callForSellers": "Read the call for sellers →",
+    "close": "Close"
   },
   "sponsors": {
     "label": "SPONSORS",
