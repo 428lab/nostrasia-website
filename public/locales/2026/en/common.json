@@ -119,6 +119,28 @@
     "soon": "Announced once confirmed",
     "note": "Announced once confirmed"
   },
+  "market": {
+    "label": "FLEA MARKET",
+    "title": "Flea market",
+    "lead": "A flea market opens at the venue on the day, with goods, books and coffee made by the sellers.",
+    "payAll": "Every stall takes Lightning and cash",
+    "planned": "Planned",
+    "lightning": "Lightning",
+    "cash": "Cash",
+    "say": "Note",
+    "ctaTitle": "Want to open a stall?",
+    "ctaText": "Conditions and how to apply are in the call for sellers (Japanese).",
+    "callForSellers": "Read the call for sellers →",
+    "close": "Close",
+    "count_one": "{{count}} stall",
+    "count_other": "{{count}} stalls",
+    "countPlanned": "(+{{count}} planned)",
+    "nostrProfile": "Nostr profile",
+    "lightbox": "Enlarged photo",
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "photoSoon": "Photos coming soon"
+  },
   "sponsors": {
     "label": "SPONSORS",
     "title": "Sponsors"

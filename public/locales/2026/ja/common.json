@@ -119,6 +119,27 @@
     "soon": "決まり次第発表",
     "note": "決まり次第お知らせします"
   },
+  "market": {
+    "label": "FLEA MARKET",
+    "title": "フリーマーケット",
+    "lead": "当日は会場でフリーマーケットを開きます。出店者がつくったグッズや本、コーヒーが並びます。",
+    "payAll": "全店 Lightning・現金で買えます",
+    "planned": "出店予定",
+    "lightning": "Lightning",
+    "cash": "現金",
+    "say": "ひとこと",
+    "ctaTitle": "出店してみたい方へ",
+    "ctaText": "出店の条件や申し込み方法は募集要項にまとめています。",
+    "callForSellers": "募集要項を読む →",
+    "close": "閉じる",
+    "count": "出店 {{count}} 店",
+    "countPlanned": "（ほか予定 {{count}} 店）",
+    "nostrProfile": "Nostr プロフィール",
+    "lightbox": "写真を拡大",
+    "prev": "前の写真",
+    "next": "次の写真",
+    "photoSoon": "写真は準備中"
+  },
   "sponsors": {
     "label": "SPONSORS",
     "title": "スポンサー"

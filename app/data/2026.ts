@@ -40,6 +40,26 @@ export type Sponsor = {
   logo?: string
 }
 
+export type Seller = {
+  /** 'planned' は出店予定（確定前）。札を出す */
+  status: 'confirmed' | 'planned'
+  /** 出店名。無ければ出店者の名前を看板に出す */
+  shop?: string
+  /** 出店者の名前。無ければ出さない */
+  name?: string
+  /** npub1... 表示は https://njump.me/<npub> */
+  npub?: string
+  /** 出すもの。1 品目 1 つ */
+  items: Localized[]
+  /** ひとこと */
+  message: Localized
+  payment: ('lightning' | 'cash')[]
+  /** Nostr 以外のリンク */
+  links?: { label: string; url: string }[]
+  /** /2026/market/ 以下に置いた画像。fit: 'contain' は文字入りなど、切り抜かずに全体を見せたい画像 */
+  images?: { src: string; alt: Localized; fit?: 'contain' }[]
+}
+
 export const EVENT_2026 = {
   /** 開催日 'YYYY-MM-DD'。未定は null → 「2026.??.??」 */
   date: '2026-11-29' as string | null,
@@ -112,6 +132,88 @@ export const PROGRAMS_2026: {
       ja: '募集要項を読む →',
       en: 'Read the call for sellers →',
     },
+  },
+]
+
+/** フリーマーケットの出店者（出店募集フォームの回答から）。空のあいだはセクションを出さない */
+export const FLEA_MARKET_2026: Seller[] = [
+  {
+    status: 'confirmed',
+    shop: 'ものや',
+    npub: 'npub1sjcvg64knxkrt6ev52rywzu9uzqakgy8ehhk8yezxmpewsthst6sw3jqcw',
+    items: [
+      { ja: 'お手製ステッカー', en: 'Handmade stickers' },
+      { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
+    ],
+    message: { ja: 'いっぱい作りました', en: 'Made lots of them!' },
+    payment: ['lightning', 'cash'],
+    images: [
+      {
+        src: '/2026/market/monoya-menu.webp',
+        alt: { ja: 'ものやのおしながき', en: 'Monoya menu' },
+        fit: 'contain',
+      },
+      {
+        src: '/2026/market/monoya-keychain.webp',
+        alt: { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
+      },
+    ],
+  },
+  {
+    status: 'confirmed',
+    shop: '四谷ラボ',
+    name: 'しのさん',
+    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+    items: [{ ja: 'Nostr 関連の技術同人誌', en: 'Nostr tech zines' }],
+    message: {
+      ja: '早いものでもう 4 年、技術書典で販売してきた Nostr に関連する同人誌を販売します！',
+      en: 'Four years of Nostr tech zines we have sold at Gijutsushoten.',
+    },
+    payment: ['lightning', 'cash'],
+  },
+  {
+    status: 'confirmed',
+    name: '小牧りら',
+    npub: 'npub1tuqsl6l8xzly95vv80um7wsnt7gxy8w9wgt4khp4wyv4xwhfw44slm93e9',
+    items: [
+      { ja: 'ハンドドリップコーヒー', en: 'Hand-drip coffee' },
+      { ja: 'ドリップバッグ', en: 'Drip bags' },
+    ],
+    message: {
+      ja: 'エルサルバドルコーヒーで BTC を盛り上げよう！',
+      en: 'Cheer on BTC with El Salvador coffee!',
+    },
+    payment: ['lightning', 'cash'],
+  },
+  {
+    status: 'confirmed',
+    name: 'koyy_ya（コイイ_ヤ）',
+    npub: 'npub178takzd7kyxec2drcnjczxhvkpx2yry0dvraaj7ydf3xv0m4wqpspgnjhp',
+    items: [{ ja: 'PVC リストバンド', en: 'PVC wristbands' }],
+    message: {
+      ja: 'Nostrasia 2026 の公式ロゴを使った PVC リストバンドです。10 個限定、1 個 300 円。',
+      en: 'PVC wristbands with the official Nostrasia 2026 logo. 10 only, ¥300 each.',
+    },
+    payment: ['lightning', 'cash'],
+  },
+  {
+    status: 'confirmed',
+    name: 'しおん',
+    npub: 'npub1pjd3a8l0wmygkclcvezacvamwamlqfv7cs0xwjmp7n7920mdkrsq9hpeqp',
+    items: [
+      { ja: '写真集（Photozine）', en: 'Photozine' },
+      { ja: 'カレンダー', en: 'Calendar' },
+      { ja: 'シール', en: 'Stickers' },
+    ],
+    message: {
+      ja: '趣味で写真を撮っています。せっかくなのでモノとして残せたらと思い、今回グッズを作ってみました。',
+      en: 'I take photos as a hobby, and made goods so they can stay with you as things.',
+    },
+    payment: ['lightning', 'cash'],
+    links: [
+      { label: 'Instagram', url: 'https://instagram.com/shi_on_72' },
+      { label: 'potofu', url: 'https://potofu.me/shion72' },
+    ],
   },
 ]
 

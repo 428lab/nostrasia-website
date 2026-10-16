@@ -1341,6 +1341,412 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   background: var(--ink);
   color: #fff;
 }
+/* flea market: 提灯の列と屋台。屋台の色は c0〜c3 で回す */
+.n26 .mkt .c0 {
+  --st: var(--or);
+}
+.n26 .mkt .c1 {
+  --st: var(--te);
+}
+.n26 .mkt .c2 {
+  --st: var(--pu);
+}
+.n26 .mkt .c3 {
+  --st: var(--ye);
+}
+.n26 .mkt {
+  padding-top: 112px;
+  overflow: hidden;
+}
+/* 電線に同じ長さで等間隔に吊るす */
+.n26 .lanterns {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 3px solid var(--ink);
+  pointer-events: none;
+}
+.n26 .ln {
+  position: relative;
+  width: 30px;
+  height: 62px;
+}
+.n26 .ln::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 18px;
+  margin-left: -1px;
+  border-left: 2px solid var(--ink);
+}
+.n26 .ln::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 30px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 3px solid var(--ink);
+  border-width: 6px 3px;
+  border-radius: 50% / 42%;
+  box-shadow: 0 0 18px var(--st);
+  background: repeating-linear-gradient(
+      0deg,
+      transparent 0 7px,
+      rgba(0, 0, 0, 0.18) 7px 9px
+    ),
+    var(--st);
+}
+@media (max-width: 640px) {
+  .n26 .ln:nth-child(n + 6) {
+    display: none;
+  }
+}
+.n26 .mk-facts {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.n26 .mk-facts li {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  border: 2px solid var(--ink);
+  background: var(--ye);
+  padding: 7px 10px;
+}
+.n26 .mk-facts li + li {
+  background: var(--paper);
+}
+.n26 .stalls {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.n26 .stall {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+/* 縞の日よけ。幅に関係なく 12 本（色・白で 6 組）にして、下フチの半円を縞 1 本に 1 つ合わせる */
+.n26 .awn {
+  position: relative;
+  z-index: 1;
+  height: 30px;
+  border: 3px solid var(--ink);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--st) 0 calc(100% / 12),
+    #fff calc(100% / 12) calc(100% / 6)
+  );
+}
+.n26 .awn::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  right: -3px;
+  top: 100%;
+  height: 14px;
+  margin-top: 3px;
+  background:
+    radial-gradient(ellipse 25% 100% at 25% 0, var(--st) 96%, transparent 100%)
+      0 0 / calc(100% / 6) 100%,
+    radial-gradient(ellipse 25% 100% at 75% 0, #fff 96%, transparent 100%) 0 0 /
+      calc(100% / 6) 100%;
+  filter: drop-shadow(0 3px 0 var(--ink));
+}
+.n26 .stall-b {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-top: 0;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 30px 18px 16px;
+}
+.n26 .stall .sign {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.n26 .stall h3 {
+  font: var(--t-h3);
+  letter-spacing: 0;
+  margin: 0;
+}
+.n26 .fuda {
+  flex: none;
+  background: var(--ink);
+  color: #fff;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  padding: 5px 9px;
+}
+.n26 .stall .by {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  color: var(--mute);
+  margin-left: 10px;
+}
+.n26 .goods {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.n26 .goods li {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  border: 2px solid var(--ink);
+  border-left: 8px solid var(--st);
+  padding: 5px 8px;
+  background: #fff;
+}
+/* ひとことは吹き出し */
+.n26 .say {
+  position: relative;
+  margin: 4px 0 0;
+  background: var(--bg);
+  padding: 10px 12px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+}
+.n26 .say::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: -8px;
+  border: 8px solid transparent;
+  border-top: 0;
+  border-bottom-color: var(--bg);
+}
+/* 写真は横:縦 = 2:1 の枠。2 枚なら正方形を 2 つ、1 枚なら枠いっぱい */
+.n26 .ph {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.n26 .ph.n1 {
+  grid-template-columns: 1fr;
+}
+.n26 .ph a {
+  display: block;
+  aspect-ratio: 1;
+  border: 2px solid var(--ink);
+  background: #fff;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.n26 .ph.n1 a {
+  aspect-ratio: 2 / 1;
+}
+.n26 .ph img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 写真が届くまでの仮の枠 */
+.n26 .ph-tbd {
+  aspect-ratio: 2 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--ink);
+  background: repeating-linear-gradient(
+    -45deg,
+    #fff 0 12px,
+    var(--bg) 12px 24px
+  );
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  color: var(--mute);
+}
+/* 文字入りの画像は切り抜かない */
+.n26 .ph a.fit img {
+  object-fit: contain;
+}
+/* 脚注は下端に揃える。上の線で区切り、空きが出ても意図して見えるようにする */
+.n26 .stall .ft {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 2px solid var(--bg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+.n26 .pay {
+  display: flex;
+  gap: 4px;
+}
+.n26 .pay i {
+  font: var(--t-micro);
+  font-style: normal;
+  letter-spacing: var(--t-micro-ls);
+  padding: 3px 7px;
+  border-radius: 99px;
+  border: 2px solid var(--ink);
+}
+.n26 .pay .lightning {
+  background: var(--ye);
+}
+.n26 .pay .lightning::before {
+  content: '⚡';
+  margin-right: 2px;
+}
+.n26 .stall .lk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.n26 .stall .lk a {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  color: var(--pu);
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+}
+.n26 .stall .lk a:hover {
+  color: var(--or);
+}
+/* 狭い画面は 1 列の縦積み。日よけ・余白・写真を詰めて 1 軒あたりの高さを抑える */
+@media (max-width: 640px) {
+  .n26 .stalls {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .n26 .awn {
+    height: 20px;
+  }
+  .n26 .awn::after {
+    height: 9px;
+  }
+  .n26 .stall-b {
+    gap: 8px;
+    padding: 20px 14px 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .n26 .stall h3 {
+    font: var(--t-name);
+  }
+  .n26 .goods li {
+    padding: 3px 7px;
+    border-left-width: 6px;
+  }
+  .n26 .say {
+    margin-top: 2px;
+    padding: 7px 10px;
+  }
+  /* 写真は 2:1 のまま幅を絞る。仮の枠は縦積みでは揃える相手がいないので出さない */
+  .n26 .ph {
+    max-width: 240px;
+  }
+  .n26 .ph:has(.ph-tbd) {
+    display: none;
+  }
+  .n26 .stall .ft {
+    padding-top: 8px;
+  }
+}
+.n26 .mk-cta {
+  margin-top: 40px;
+  border: 3px dashed var(--ink);
+  padding: 20px;
+}
+.n26 .mk-cta p:not(.ptl) {
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
+  margin: 6px 0 0;
+}
+.n26 .vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+/* Lightbox */
+.n26 .lb {
+  margin: auto;
+  max-width: min(92vw, 900px);
+  max-height: 92vh;
+  padding: 0;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  overflow: visible;
+}
+.n26 .lb::backdrop {
+  background: rgba(22, 22, 22, 0.82);
+}
+.n26 .lb img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 6px);
+  object-fit: contain;
+}
+.n26 .lb-img {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.n26 .lb-x,
+.n26 .lb-nav button {
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+.n26 .lb-x {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+}
+.n26 .lb-nav {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.n26 .lb-nav button {
+  width: 44px;
+  height: 44px;
+  font-size: 22px;
+}
+.n26 .lb-nav span {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  background: var(--ink);
+  color: #fff;
+  padding: 5px 9px;
+}
 /* access */
 .n26 .acc {
   display: grid;
