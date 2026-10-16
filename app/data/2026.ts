@@ -56,8 +56,8 @@ export type Seller = {
   payment: ('lightning' | 'cash')[]
   /** Nostr 以外のリンク */
   links?: { label: string; url: string }[]
-  /** /2026/market/ 以下に置いた画像 */
-  images?: { src: string; alt: Localized }[]
+  /** /2026/market/ 以下に置いた画像。fit: 'contain' は文字入りなど、切り抜かずに全体を見せたい画像 */
+  images?: { src: string; alt: Localized; fit?: 'contain' }[]
 }
 
 export const EVENT_2026 = {
@@ -151,6 +151,7 @@ export const FLEA_MARKET_2026: Seller[] = [
       {
         src: '/2026/market/monoya-menu.webp',
         alt: { ja: 'ものやのおしながき', en: 'Monoya menu' },
+        fit: 'contain',
       },
       {
         src: '/2026/market/monoya-keychain.webp',

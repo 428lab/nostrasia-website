@@ -17,10 +17,13 @@ const MAX_IMAGES = 2
 const Stall = ({
   seller,
   index,
+  showPayment,
   onOpen,
 }: {
   seller: Seller
   index: number
+  /** 全店同じ支払い方法なら上の札にまとめ、カードには出さない */
+  showPayment: boolean
   onOpen: (images: Images, at: number) => void
 }) => {
   const { t } = useTranslation()
@@ -32,10 +35,12 @@ const Stall = ({
     <li className={`stall c${index % 4}`}>
       <div className="awn" aria-hidden="true" />
       <div className="stall-b">
-        {seller.status === 'planned' && (
-          <span className="fuda">{t('market.planned')}</span>
-        )}
-        <h3>{sign}</h3>
+        <div className="sign">
+          <h3>{sign}</h3>
+          {seller.status === 'planned' && (
+            <span className="fuda">{t('market.planned')}</span>
+          )}
+        </div>
         {seller.shop && seller.name && <p className="by">{seller.name}</p>}
         <ul className="goods">
           {seller.items.map((item) => (
@@ -54,6 +59,7 @@ const Stall = ({
                 href={image.src}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={image.fit === 'contain' ? 'fit' : undefined}
                 onClick={(e) => {
                   e.preventDefault()
                   onOpen(images, i)
@@ -69,13 +75,15 @@ const Stall = ({
           </div>
         )}
         <div className="ft">
-          <span className="pay">
-            {seller.payment.map((p) => (
-              <i key={p} className={p}>
-                {t(`market.${p}`)}
-              </i>
-            ))}
-          </span>
+          {showPayment && (
+            <span className="pay">
+              {seller.payment.map((p) => (
+                <i key={p} className={p}>
+                  {t(`market.${p}`)}
+                </i>
+              ))}
+            </span>
+          )}
           <span className="lk">
             {seller.npub && (
               <a
@@ -83,7 +91,7 @@ const Stall = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Nostr
+                {t('market.nostrProfile')}
               </a>
             )}
             {seller.links?.map((link) => (
@@ -118,29 +126,24 @@ const Lightbox = ({
   const { t } = useTranslation()
   const localized = useLocalized()
   const image = images[at]
+  const many = images.length > 1
+  const move = (d: number) => onMove((at + d + images.length) % images.length)
 
   return (
-    // 背景タップで閉じる。キーボードは dialog 標準の Esc で閉じられる
+    // 背景タップで閉じる。キーボードは dialog 標準の Esc と左右キー
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <dialog
       ref={dialog}
       className="lb"
+      aria-label={t('market.lightbox')}
       onClick={(e) => e.target === e.currentTarget && dialog.current?.close()}
+      onKeyDown={(e) => {
+        if (!many) return
+        if (e.key === 'ArrowRight') move(1)
+        if (e.key === 'ArrowLeft') move(-1)
+      }}
     >
-      {image && <img src={image.src} alt={localized(image.alt)} />}
-      {images.length > 1 && (
-        <div className="lb-nav">
-          {images.map((img, i) => (
-            <button
-              key={img.src}
-              type="button"
-              aria-pressed={i === at}
-              aria-label={`${i + 1} / ${images.length}`}
-              onClick={() => onMove(i)}
-            />
-          ))}
-        </div>
-      )}
+      {/* 開いたときのフォーカスは「閉じる」に置く（dialog は先頭の操作要素にフォーカスする） */}
       <button
         type="button"
         className="lb-x"
@@ -148,6 +151,40 @@ const Lightbox = ({
       >
         {t('market.close')}
       </button>
+      {image &&
+        (many ? (
+          <button
+            type="button"
+            className="lb-img"
+            aria-label={t('market.next')}
+            onClick={() => move(1)}
+          >
+            <img src={image.src} alt={localized(image.alt)} />
+          </button>
+        ) : (
+          <img src={image.src} alt={localized(image.alt)} />
+        ))}
+      {many && (
+        <div className="lb-nav">
+          <button
+            type="button"
+            aria-label={t('market.prev')}
+            onClick={() => move(-1)}
+          >
+            ‹
+          </button>
+          <span>
+            {at + 1} / {images.length}
+          </span>
+          <button
+            type="button"
+            aria-label={t('market.next')}
+            onClick={() => move(1)}
+          >
+            ›
+          </button>
+        </div>
+      )}
     </dialog>
   )
 }
@@ -159,6 +196,8 @@ export const FleaMarket = () => {
     images: [],
     at: 0,
   })
+  /** スマホの横スワイプで、いま何軒目を見ているか */
+  const [seen, setSeen] = useState(0)
   const open = (images: Images, at: number) => {
     setBox({ images, at })
     dialog.current?.showModal()
@@ -166,6 +205,8 @@ export const FleaMarket = () => {
 
   if (FLEA_MARKET_2026.length === 0) return null
 
+  const total = FLEA_MARKET_2026.length
+  const planned = FLEA_MARKET_2026.filter((s) => s.status === 'planned').length
   const callUrl = PROGRAMS_2026.find((p) => p.id === 'fleaMarket')?.url
   const payAll = FLEA_MARKET_2026.every(
     (s) => s.payment.includes('lightning') && s.payment.includes('cash'),
@@ -182,19 +223,35 @@ export const FleaMarket = () => {
         <SectionHead label={t('market.label')} title={t('market.title')} />
         <p className="lead">{t('market.lead')}</p>
         <ul className="mk-facts">
-          <li>{t('market.count', { count: FLEA_MARKET_2026.length })}</li>
+          <li>
+            {t('market.count', { count: total - planned })}
+            {planned > 0 && ` ${t('market.countPlanned', { count: planned })}`}
+          </li>
           {payAll && <li>{t('market.payAll')}</li>}
         </ul>
-        <ul className="stalls">
+        <ul
+          className="stalls"
+          onScroll={(e) => {
+            const el = e.currentTarget
+            const first = el.firstElementChild as HTMLElement | null
+            if (!first) return
+            const step = first.offsetWidth + 16
+            setSeen(Math.min(total - 1, Math.round(el.scrollLeft / step)))
+          }}
+        >
           {FLEA_MARKET_2026.map((seller, i) => (
             <Stall
               key={seller.npub ?? i}
               seller={seller}
               index={i}
+              showPayment={!payAll}
               onOpen={open}
             />
           ))}
         </ul>
+        <p className="mk-pos" aria-hidden="true">
+          {seen + 1} / {total}
+        </p>
         {callUrl && (
           <div className="mk-cta">
             <p className="ptl">{t('market.ctaTitle')}</p>
