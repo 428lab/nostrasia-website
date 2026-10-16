@@ -1341,6 +1341,60 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   background: var(--ink);
   color: #fff;
 }
+/* flea market */
+.n26 .mk-g {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.n26 .mk {
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-top-width: 10px;
+  padding: 14px;
+}
+.n26 .mk:nth-child(3n + 1) {
+  border-top-color: var(--or);
+}
+.n26 .mk:nth-child(3n + 2) {
+  border-top-color: var(--te);
+}
+.n26 .mk:nth-child(3n) {
+  border-top-color: var(--pu);
+}
+.n26 .mk b {
+  font: var(--t-name);
+  letter-spacing: 0;
+  display: block;
+}
+.n26 .mk p {
+  margin: 6px 0 0;
+}
+.n26 .mk small {
+  display: block;
+  margin-top: 10px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  color: var(--mute);
+}
+.n26 .mk .lk {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+.n26 .mk .lk a {
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
+  color: var(--pu);
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+}
+.n26 .mk .lk a:hover {
+  color: var(--or);
+}
 /* access */
 .n26 .acc {
   display: grid;

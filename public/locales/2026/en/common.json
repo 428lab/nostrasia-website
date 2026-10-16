@@ -119,6 +119,11 @@
     "soon": "Announced once confirmed",
     "note": "Announced once confirmed"
   },
+  "market": {
+    "label": "FLEA MARKET",
+    "title": "Flea market",
+    "callForSellers": "Read the call for sellers →"
+  },
   "sponsors": {
     "label": "SPONSORS",
     "title": "Sponsors"

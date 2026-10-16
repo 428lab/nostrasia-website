@@ -40,6 +40,19 @@ export type Sponsor = {
   logo?: string
 }
 
+export type Seller = {
+  /** 出店名 */
+  shop: string
+  /** 出すもの */
+  items: Localized
+  /** 出店者の名前 */
+  name: string
+  /** npub1... 表示は https://njump.me/<npub> */
+  npub?: string
+  /** X のハンドル（@ なし）。表示は https://x.com/<x> */
+  x?: string
+}
+
 export const EVENT_2026 = {
   /** 開催日 'YYYY-MM-DD'。未定は null → 「2026.??.??」 */
   date: '2026-11-29' as string | null,
@@ -112,6 +125,32 @@ export const PROGRAMS_2026: {
       ja: '募集要項を読む →',
       en: 'Read the call for sellers →',
     },
+  },
+]
+
+/** フリーマーケットの出店者。空のあいだはセクションを出さない。
+ * TODO: UI 確認用のサンプル。出店が確定したら差し替える */
+export const FLEA_MARKET_2026: Seller[] = [
+  {
+    shop: '出店名サンプル A',
+    items: {
+      ja: 'Nostr ステッカー・缶バッジ',
+      en: 'Nostr stickers and pin badges',
+    },
+    name: 'kojira',
+    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
+    x: 'kojira',
+  },
+  {
+    shop: '出店名サンプル B',
+    items: { ja: '手作りアクセサリー', en: 'Handmade accessories' },
+    name: 'Shino3',
+    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+  },
+  {
+    shop: '出店名サンプル C（名前が長い場合の折り返し確認）',
+    items: { ja: '同人誌・古本', en: 'Zines and used books' },
+    name: 'Sample',
   },
 ]
 

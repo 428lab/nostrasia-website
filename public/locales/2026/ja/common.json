@@ -119,6 +119,11 @@
     "soon": "決まり次第発表",
     "note": "決まり次第お知らせします"
   },
+  "market": {
+    "label": "FLEA MARKET",
+    "title": "フリマ出店者",
+    "callForSellers": "募集要項を読む →"
+  },
   "sponsors": {
     "label": "SPONSORS",
     "title": "スポンサー"

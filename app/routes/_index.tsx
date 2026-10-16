@@ -2,6 +2,7 @@ import { About } from '~/components/2026/About'
 import { Access } from '~/components/2026/Access'
 import { Archive } from '~/components/2026/Archive'
 import { Faq } from '~/components/2026/Faq'
+import { FleaMarket } from '~/components/2026/FleaMarket'
 import { Hero } from '~/components/2026/Hero'
 import { HowNostr } from '~/components/2026/HowNostr'
 import { Layout } from '~/components/2026/Layout'
@@ -66,6 +67,7 @@ export default function Index() {
       <HowNostr />
       <TimeTable />
       <Speakers />
+      <FleaMarket />
       <Sponsors />
       <Access />
       <Faq />
