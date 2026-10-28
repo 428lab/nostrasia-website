@@ -195,6 +195,15 @@ export const FLEA_MARKET_2026: Seller[] = [
       en: 'PVC wristbands with the official Nostrasia 2026 logo. 10 only, ¥300 each.',
     },
     payment: ['lightning', 'cash'],
+    images: [
+      {
+        src: '/2026/market/koyy-ya-wristband.webp',
+        alt: {
+          ja: 'Nostrasia 2026 ロゴ入りの PVC リストバンド。限定 10 個、現金 300 円',
+          en: 'PVC wristbands with the Nostrasia 2026 logo. 10 only, ¥300 in cash',
+        },
+      },
+    ],
   },
   {
     status: 'confirmed',
