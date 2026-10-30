@@ -56,8 +56,8 @@ export type Seller = {
   payment: ('lightning' | 'cash')[]
   /** Nostr 以外のリンク */
   links?: { label: string; url: string }[]
-  /** /2026/market/ 以下に置いた画像。fit: 'contain' は文字入りなど、切り抜かずに全体を見せたい画像 */
-  images?: { src: string; alt: Localized; fit?: 'contain' }[]
+  /** /2026/market/ 以下に置いた画像。比率のまま切らずに出す */
+  images?: { src: string; alt: Localized }[]
 }
 
 export const EVENT_2026 = {
@@ -149,13 +149,11 @@ export const FLEA_MARKET_2026: Seller[] = [
     payment: ['lightning', 'cash'],
     images: [
       {
-        src: '/2026/market/monoya-menu.webp',
-        alt: { ja: 'ものやのおしながき', en: 'Monoya menu' },
-        fit: 'contain',
-      },
-      {
-        src: '/2026/market/monoya-keychain.webp',
-        alt: { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
+        src: '/2026/market/monoya-menu-2.webp',
+        alt: {
+          ja: 'ものやのおしながき。お手製反射ステッカー 500 円（限定 3 枚）、お手製キーホルダー 300 円',
+          en: 'Monoya menu: handmade reflective stickers ¥500 (3 only), handmade key chains ¥300',
+        },
       },
     ],
   },

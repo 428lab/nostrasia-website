@@ -32,83 +32,84 @@ const Stall = ({
     <li className={`stall c${index % 4}`}>
       <div className="awn" aria-hidden="true" />
       <div className="stall-b">
-        <div className="sign">
-          <h3>
-            {sign}
-            {seller.shop && seller.name && (
-              <small className="by">{seller.name}</small>
+        <div className="info">
+          <div className="sign">
+            <h3>
+              {sign}
+              {seller.shop && seller.name && (
+                <small className="by">{seller.name}</small>
+              )}
+            </h3>
+            {seller.status === 'planned' && (
+              <span className="fuda">{t('market.planned')}</span>
             )}
-          </h3>
-          {seller.status === 'planned' && (
-            <span className="fuda">{t('market.planned')}</span>
-          )}
+          </div>
+          <ul className="goods">
+            {seller.items.map((item) => (
+              <li key={item.ja}>{localized(item)}</li>
+            ))}
+          </ul>
+          <p className="say">
+            <span className="vh">{t('market.say')}: </span>
+            {localized(seller.message)}
+          </p>
+          <div className="ft">
+            <span className="pay">
+              {seller.payment.map((p) => (
+                <i key={p} className={p}>
+                  {t(`market.${p}`)}
+                </i>
+              ))}
+            </span>
+            <span className="lk">
+              {seller.npub && (
+                <a
+                  href={`https://njump.me/${seller.npub}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('market.nostrProfile')}
+                </a>
+              )}
+              {seller.links?.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </span>
+          </div>
         </div>
-        <ul className="goods">
-          {seller.items.map((item) => (
-            <li key={item.ja}>{localized(item)}</li>
-          ))}
-        </ul>
-        <p className="say">
-          <span className="vh">{t('market.say')}: </span>
-          {localized(seller.message)}
-        </p>
-        {images.length === 0 ? (
-          // 写真が届くまでの仮の枠。枠の大きさを揃えて屋台の高さを合わせる
-          <div className="ph n1">
+        <div className="media">
+          {images.length === 0 ? (
+            // 写真が届くまでの仮の枠
             <div className="ph-tbd">{t('market.photoSoon')}</div>
-          </div>
-        ) : (
-          <div className={`ph n${images.length}`}>
-            {images.map((image, i) => (
-              <a
-                key={image.src}
-                href={image.src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={image.fit === 'contain' ? 'fit' : undefined}
-                onClick={(e) => {
-                  e.preventDefault()
-                  onOpen(images, i)
-                }}
-              >
-                <img
-                  src={image.src}
-                  alt={localized(image.alt)}
-                  loading="lazy"
-                />
-              </a>
-            ))}
-          </div>
-        )}
-        <div className="ft">
-          <span className="pay">
-            {seller.payment.map((p) => (
-              <i key={p} className={p}>
-                {t(`market.${p}`)}
-              </i>
-            ))}
-          </span>
-          <span className="lk">
-            {seller.npub && (
-              <a
-                href={`https://njump.me/${seller.npub}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('market.nostrProfile')}
-              </a>
-            )}
-            {seller.links?.map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            ))}
-          </span>
+          ) : (
+            <div className={`ph n${images.length}`}>
+              {images.map((image, i) => (
+                <a
+                  key={image.src}
+                  href={image.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    onOpen(images, i)
+                  }}
+                >
+                  <img
+                    src={image.src}
+                    alt={localized(image.alt)}
+                    loading="lazy"
+                  />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </li>

@@ -1430,7 +1430,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
 }
 .n26 .stall {
@@ -1438,16 +1437,17 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   flex-direction: column;
   min-width: 0;
 }
-/* 縞の日よけ。幅に関係なく 12 本（色・白で 6 組）にして、下フチの半円を縞 1 本に 1 つ合わせる */
+/* 縞の日よけ。幅に関係なく --n 本（色・白で --n/2 組）にして、下フチの半円を縞 1 本に 1 つ合わせる */
 .n26 .awn {
+  --n: 24;
   position: relative;
   z-index: 1;
   height: 30px;
   border: 3px solid var(--ink);
   background: repeating-linear-gradient(
     90deg,
-    var(--st) 0 calc(100% / 12),
-    #fff calc(100% / 12) calc(100% / 6)
+    var(--st) 0 calc(100% / var(--n)),
+    #fff calc(100% / var(--n)) calc(200% / var(--n))
   );
 }
 .n26 .awn::after {
@@ -1460,21 +1460,34 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   margin-top: 3px;
   background:
     radial-gradient(ellipse 25% 100% at 25% 0, var(--st) 96%, transparent 100%)
-      0 0 / calc(100% / 6) 100%,
+      0 0 / calc(200% / var(--n)) 100%,
     radial-gradient(ellipse 25% 100% at 75% 0, #fff 96%, transparent 100%) 0 0 /
-      calc(100% / 6) 100%;
+      calc(200% / var(--n)) 100%;
   filter: drop-shadow(0 3px 0 var(--ink));
 }
+/* 屋台の中は「左: ショップ情報 / 右: 画像」 */
 .n26 .stall-b {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 40%;
+  gap: 24px;
   background: var(--paper);
   border: 3px solid var(--ink);
   border-top: 0;
   box-shadow: 6px 6px 0 var(--ink);
   padding: 30px 18px 16px;
+}
+.n26 .stall .info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.n26 .stall .media {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
 }
 .n26 .stall .sign {
   display: flex;
@@ -1535,34 +1548,32 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   border-top: 0;
   border-bottom-color: var(--bg);
 }
-/* 写真は横:縦 = 2:1 の枠。2 枚なら正方形を 2 つ、1 枚なら枠いっぱい */
+/* 写真は比率のまま切らずに出す。高さに上限を付けて縦長の画像でも屋台が伸びすぎないようにする */
 .n26 .ph {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 6px;
+  justify-items: center;
 }
-.n26 .ph.n1 {
-  grid-template-columns: 1fr;
+.n26 .ph.n2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .n26 .ph a {
   display: block;
-  aspect-ratio: 1;
+  max-width: 100%;
   border: 2px solid var(--ink);
   background: #fff;
   cursor: zoom-in;
-  overflow: hidden;
-}
-.n26 .ph.n1 a {
-  aspect-ratio: 2 / 1;
 }
 .n26 .ph img {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 420px;
+  width: auto;
+  height: auto;
 }
 /* 写真が届くまでの仮の枠 */
 .n26 .ph-tbd {
+  width: 100%;
   aspect-ratio: 2 / 1;
   display: flex;
   align-items: center;
@@ -1577,11 +1588,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   letter-spacing: var(--t-micro-ls);
   color: var(--mute);
 }
-/* 文字入りの画像は切り抜かない */
-.n26 .ph a.fit img {
-  object-fit: contain;
-}
-/* 脚注は下端に揃える。上の線で区切り、空きが出ても意図して見えるようにする */
+/* 脚注は情報欄の下端に揃える */
 .n26 .stall .ft {
   margin-top: auto;
   padding-top: 12px;
@@ -1626,22 +1633,26 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 .n26 .stall .lk a:hover {
   color: var(--or);
 }
-/* 狭い画面は 1 列の縦積み。日よけ・余白・写真を詰めて 1 軒あたりの高さを抑える */
+/* 狭い画面は情報の下に画像。日よけ・余白を詰めて 1 軒あたりの高さを抑える */
 @media (max-width: 640px) {
   .n26 .stalls {
-    grid-template-columns: 1fr;
     gap: 18px;
   }
   .n26 .awn {
+    --n: 12;
     height: 20px;
   }
   .n26 .awn::after {
     height: 9px;
   }
   .n26 .stall-b {
-    gap: 8px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
     padding: 20px 14px 12px;
     box-shadow: 4px 4px 0 var(--ink);
+  }
+  .n26 .stall .info {
+    gap: 8px;
   }
   .n26 .stall h3 {
     font: var(--t-name);
@@ -1654,11 +1665,11 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     margin-top: 2px;
     padding: 7px 10px;
   }
-  /* 写真は 2:1 のまま幅を絞る。仮の枠は縦積みでは揃える相手がいないので出さない */
-  .n26 .ph {
-    max-width: 240px;
+  .n26 .ph img {
+    max-height: 60vh;
   }
-  .n26 .ph:has(.ph-tbd) {
+  /* 仮の枠は縦積みでは場所を取るだけなので出さない */
+  .n26 .media:has(.ph-tbd) {
     display: none;
   }
   .n26 .stall .ft {
