@@ -1539,6 +1539,20 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
 }
+.n26 .say p {
+  margin: 0;
+}
+.n26 .say p + p {
+  margin-top: 6px;
+}
+.n26 .say a {
+  color: var(--pu);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.n26 .say a:hover {
+  color: var(--or);
+}
 .n26 .say::before {
   content: '';
   position: absolute;

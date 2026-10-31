@@ -11,6 +11,19 @@ const LANTERNS = 9
 
 type Images = NonNullable<Seller['images']>
 
+/** ひとことの中の [文字](URL) をリンクにする */
+const withLinks = (text: string) =>
+  text.split(/(\[[^\]]+\]\([^)]+\))/).map((part, i) => {
+    const m = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part)
+    return m ? (
+      <a key={i} href={m[2]} target="_blank" rel="noopener noreferrer">
+        {m[1]}
+      </a>
+    ) : (
+      part
+    )
+  })
+
 /** 屋台に出す写真は 2 枚まで */
 const MAX_IMAGES = 2
 
@@ -49,10 +62,14 @@ const Stall = ({
               <li key={item.ja}>{localized(item)}</li>
             ))}
           </ul>
-          <p className="say">
+          <div className="say">
             <span className="vh">{t('market.say')}: </span>
-            {localized(seller.message)}
-          </p>
+            {localized(seller.message)
+              .split('\n\n')
+              .map((para) => (
+                <p key={para}>{withLinks(para)}</p>
+              ))}
+          </div>
           <div className="ft">
             <span className="pay">
               {seller.payment.map((p) => (

@@ -51,7 +51,7 @@ export type Seller = {
   npub?: string
   /** 出すもの。1 品目 1 つ */
   items: Localized[]
-  /** ひとこと */
+  /** ひとこと。空行（\n\n）で段落を分け、[文字](URL) でリンクにできる */
   message: Localized
   payment: ('lightning' | 'cash')[]
   /** Nostr 以外のリンク */
@@ -144,8 +144,14 @@ export const FLEA_MARKET_2026: Seller[] = [
     items: [
       { ja: 'お手製ステッカー', en: 'Handmade stickers' },
       { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
+      { ja: 'キーホルダー（ロクヨウ）', en: 'Key chains (Lokuyow)' },
+      { ja: 'ステッカー（ロクヨウ）', en: 'Stickers (Lokuyow)' },
+      { ja: 'ステッカー（けだまメイズ）', en: 'Stickers (Kedama Maze)' },
     ],
-    message: { ja: 'いっぱい作りました', en: 'Made lots of them!' },
+    message: {
+      ja: 'ステッカーとキーホルダーとお品書きを頑張って作りました。\n\n当日は、ものグッズに加えて、[ロクヨウ](https://lokuyow.github.io/)グッズと、[けだまメイズ](https://open.spotify.com/show/0yTcypvuUHOiR1kJa7ihvW)のステッカーも販売します。\n\nよろしくお願いします！',
+      en: 'We worked hard on the stickers, the key chains and our menu.\n\nOn the day we will also sell [Lokuyow](https://lokuyow.github.io/) goods and [Kedama Maze](https://open.spotify.com/show/0yTcypvuUHOiR1kJa7ihvW) stickers, along with our Mono goods.\n\nSee you there!',
+    },
     payment: ['lightning', 'cash'],
     images: [
       {
