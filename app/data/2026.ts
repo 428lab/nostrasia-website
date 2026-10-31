@@ -51,13 +51,13 @@ export type Seller = {
   npub?: string
   /** 出すもの。1 品目 1 つ */
   items: Localized[]
-  /** ひとこと */
+  /** ひとこと。空行（\n\n）で段落を分け、[文字](URL) でリンクにできる */
   message: Localized
   payment: ('lightning' | 'cash')[]
   /** Nostr 以外のリンク */
   links?: { label: string; url: string }[]
-  /** /2026/market/ 以下に置いた画像。fit: 'contain' は文字入りなど、切り抜かずに全体を見せたい画像 */
-  images?: { src: string; alt: Localized; fit?: 'contain' }[]
+  /** /2026/market/ 以下に置いた画像。比率のまま切らずに出す */
+  images?: { src: string; alt: Localized }[]
 }
 
 export const EVENT_2026 = {
@@ -144,18 +144,22 @@ export const FLEA_MARKET_2026: Seller[] = [
     items: [
       { ja: 'お手製ステッカー', en: 'Handmade stickers' },
       { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
+      { ja: 'キーホルダー（ロクヨウ）', en: 'Key chains (Lokuyow)' },
+      { ja: 'ステッカー（ロクヨウ）', en: 'Stickers (Lokuyow)' },
+      { ja: 'ステッカー（けだまメイズ）', en: 'Stickers (Kedama Maze)' },
     ],
-    message: { ja: 'いっぱい作りました', en: 'Made lots of them!' },
+    message: {
+      ja: 'ステッカーとキーホルダーとお品書きを頑張って作りました。\n\n当日は、ものグッズに加えて、[ロクヨウ](https://lokuyow.github.io/)グッズと、[けだまメイズ](https://open.spotify.com/show/0yTcypvuUHOiR1kJa7ihvW)のステッカーも販売します。\n\nよろしくお願いします！',
+      en: 'We worked hard on the stickers, the key chains and our menu.\n\nOn the day we will also sell [Lokuyow](https://lokuyow.github.io/) goods and [Kedama Maze](https://open.spotify.com/show/0yTcypvuUHOiR1kJa7ihvW) stickers, along with our Mono goods.\n\nSee you there!',
+    },
     payment: ['lightning', 'cash'],
     images: [
       {
-        src: '/2026/market/monoya-menu.webp',
-        alt: { ja: 'ものやのおしながき', en: 'Monoya menu' },
-        fit: 'contain',
-      },
-      {
-        src: '/2026/market/monoya-keychain.webp',
-        alt: { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
+        src: '/2026/market/monoya-menu-2.webp',
+        alt: {
+          ja: 'ものやのおしながき。お手製反射ステッカー 500 円（限定 3 枚）、お手製キーホルダー 300 円',
+          en: 'Monoya menu: handmade reflective stickers ¥500 (3 only), handmade key chains ¥300',
+        },
       },
     ],
   },
