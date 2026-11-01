@@ -174,6 +174,15 @@ export const FLEA_MARKET_2026: Seller[] = [
       en: 'Four years of Nostr tech zines we have sold at Gijutsushoten.',
     },
     payment: ['lightning', 'cash'],
+    images: [
+      {
+        src: '/2026/market/yotsuya-lab-books.webp',
+        alt: {
+          ja: '技術書典 14〜20 で出した Nostr・分散型 SNS の同人誌 7 冊の表紙。紙＋電子と電子のみが会場限定特価、Sats 払いと現金に対応',
+          en: 'Covers of our 7 Nostr and decentralized social zines from Gijutsushoten 14–20. Paper + e-book and e-book only at special event prices; sats and cash accepted',
+        },
+      },
+    ],
   },
   {
     status: 'confirmed',
