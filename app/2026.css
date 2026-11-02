@@ -77,6 +77,10 @@ body:has(.n26.menu-open) {
   color: var(--ink);
   font: var(--t-body);
   letter-spacing: var(--t-body-ls);
+  /* 和文を語の途中で折らない。auto-phrase は Chrome / Edge のみで、ほかは従来どおり 1 文字単位 */
+  word-break: auto-phrase;
+  line-break: strict;
+  text-wrap: pretty;
 }
 html[lang='ja'] .n26 {
   --tx: var(--ja);
