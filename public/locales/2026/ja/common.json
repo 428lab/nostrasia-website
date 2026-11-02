@@ -150,7 +150,7 @@
     "map": "地図を開く →",
     "mapGoogle": "Google マップで開く →",
     "floorTitle": "FLOOR MAP",
-    "floorVeil": "未定",
+    "floorVeil": "TBD",
     "floorVeilSub": "画像は 2025 年のもの",
     "embedTitle": "{{venue}} の地図"
   },
@@ -188,7 +188,7 @@
     "label": "ARCHIVE",
     "title": "過去の Nostrasia",
     "years": {
-      "2023": "初回 / nostr.world",
+      "2023": "nostr.world/nostrasia",
       "2024": "nostrasia.com/2024",
       "2025": "nostrasia.com/2025"
     }
