@@ -941,9 +941,6 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
 }
 .n26 .picks a {
   justify-self: start;
-  font: var(--t-btn2);
-  letter-spacing: var(--t-btn-ls);
-  color: var(--pu);
 }
 .n26 .ov {
   display: grid;
@@ -981,7 +978,12 @@ html.js:not(.no-hydrate) .n26 .stage.walk .scene .cactus:not(.mid) {
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
-.n26 .ov dd small a {
+/* → 付きの文字リンクはここで 1 つの見た目にそろえる */
+.n26 .picks a,
+.n26 .ov dd small a,
+.n26 .faq-link a {
+  font: var(--t-body);
+  letter-spacing: var(--t-body-ls);
   color: var(--pu);
 }
 /* how */
@@ -1850,14 +1852,11 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   font: var(--t-body);
   letter-spacing: var(--t-body-ls);
 }
-/* 回答の下のリンク。開催概要のリンク（.ov dd small a）と同じ見た目 */
+/* 回答の下のリンク。リンクの見た目は .picks a などとまとめて指定している */
 .n26 .faq-link {
   margin-top: 8px;
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
-}
-.n26 .faq-link a {
-  color: var(--pu);
 }
 /* スポンサーの相談先。npub は 63 文字あるので折り返す */
 .n26 .contacts {
