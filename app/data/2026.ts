@@ -34,10 +34,14 @@ export type Speaker = {
 
 export type Sponsor = {
   name: string
-  /** リンク先。無ければリンクにしない */
+  /** リンク先。無ければ npub のプロフィール、それも無ければリンクにしない */
   url?: string
   /** /2026/sponsors/ 以下に置いたロゴのパス。無ければ名前を文字で出す */
   logo?: string
+  /** /2026/sponsors/ 以下に置いた正方形のアイコン。logo が無いとき丸くして名前の上に出す */
+  icon?: string
+  /** npub1... url が無いとき https://njump.me/<npub> にリンクする */
+  npub?: string
 }
 
 export type Seller = {
@@ -257,7 +261,18 @@ export const SPEAKERS_2026: Speaker[] = []
 export const SPEAKER_PLACEHOLDER_COUNT = 6
 
 /** スポンサー。tier は分けず、この順に並べる */
-export const SPONSORS_2026: Sponsor[] = [{ name: 'Shino3' }, { name: 'kojira' }]
+export const SPONSORS_2026: Sponsor[] = [
+  {
+    name: 'Shino3',
+    icon: '/2026/sponsors/shino3.webp',
+    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+  },
+  {
+    name: 'kojira',
+    icon: '/2026/sponsors/kojira.webp',
+    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
+  },
+]
 
 /** 過去回。/2024 と /2025 はこのアプリ内のアーカイブ（年ごとに locale が違うので必ず全ページ遷移で開く） */
 export const ARCHIVES = [

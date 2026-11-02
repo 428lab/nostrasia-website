@@ -1312,6 +1312,9 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* アイコンがあるときは名前の上に積む */
+  flex-direction: column;
+  gap: 8px;
   padding: 8px;
   font: var(--t-btn2);
   letter-spacing: var(--t-btn-ls);
@@ -1329,6 +1332,17 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   max-width: 80%;
   max-height: 64px;
   object-fit: contain;
+}
+.n26 .slot img.slot-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  object-fit: cover;
+}
+/* ホバーで枠の背景が黒になるので、アイコンの縁を白に替えて埋もれないようにする */
+.n26 a.slot:hover img.slot-icon {
+  border-color: #fff;
 }
 .n26 .btn2 {
   display: inline-block;
