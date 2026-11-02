@@ -142,17 +142,11 @@ export const FLEA_MARKET_2026: Seller[] = [
     shop: 'ものや',
     npub: 'npub1sjcvg64knxkrt6ev52rywzu9uzqakgy8ehhk8yezxmpewsthst6sw3jqcw',
     items: [
-      { ja: 'お手製ステッカー', en: 'Handmade stickers' },
-      { ja: 'お手製キーホルダー', en: 'Handmade key chains' },
-      { ja: 'キーホルダー（ロクヨウ）', en: 'Key chains (Lokuyow)' },
-      { ja: 'ステッカー（ロクヨウ）', en: 'Stickers (Lokuyow)' },
-      { ja: 'ステッカー（けだまメイズ）', en: 'Stickers (Kedama Maze)' },
-      {
-        ja: 'アクリルキーホルダー（Nostrasia 2026）',
-        en: 'Acrylic key chains (Nostrasia 2026)',
-      },
-      { ja: 'マグネット（ロクヨウ）', en: 'Magnets (Lokuyow)' },
-      { ja: 'シール（ロクヨウ）', en: 'Seals (Lokuyow)' },
+      { ja: 'ステッカー', en: 'Stickers' },
+      { ja: 'キーホルダー', en: 'Key chains' },
+      { ja: 'アクキー', en: 'Acrylic key chains' },
+      { ja: 'マグネット', en: 'Magnets' },
+      { ja: 'シール', en: 'Seals' },
     ],
     message: {
       ja: 'ステッカーとキーホルダーとお品書きを頑張って作りました。\n\n当日は、ものグッズに加えて、[ロクヨウ](https://lokuyow.github.io/)グッズと、[けだまメイズ](https://open.spotify.com/show/0yTcypvuUHOiR1kJa7ihvW)のステッカーも販売します。\n\nよろしくお願いします！',
