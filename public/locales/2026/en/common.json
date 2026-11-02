@@ -112,8 +112,6 @@
       "lounge1": "Lounge 1",
       "lounge3": "Lounge 3"
     },
-    "open": "Tap to see it all",
-    "close": "Close",
     "dayTitle": "{{wd}}, {{date}} (JST)",
     "now": "NOW",
     "nowAt": "Now {{time}} JST",

@@ -1,4 +1,4 @@
-import { CSSProperties, Fragment, useRef } from 'react'
+import { Fragment } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import {
@@ -75,11 +75,10 @@ const Status = ({ phase }: { phase: Phase | null }) => {
   return <span className={`tt-status s-${phase.kind}`}>{text}</span>
 }
 
-/** ページ内は小さな一覧だけ出し、タップで全体（ダイアログ）を開く */
+/** 全枠をページ内に出す。日付と「いま」の見出しは、表を読んでいるあいだ上に残す */
 export const TimeTable = () => {
   const { t, i18n } = useTranslation()
   const localized = useLocalized()
-  const dialog = useRef<HTMLDialogElement>(null)
   const now = useJstNow()
   const phase = phaseOf(now)
   const { registrationUrl } = EVENT_2026
@@ -91,21 +90,6 @@ export const TimeTable = () => {
   const nowBefore =
     nowMin === null ? -1 : SLOTS.findIndex((slot) => toMin(slot.start) > nowMin)
 
-  const open = () => {
-    const d = dialog.current
-    if (!d) return
-    d.showModal()
-    // 当日は「いま」の位置を真ん中まで送る。開いた直後は「閉じる」へのフォーカスで先頭に戻るので 1 フレーム待つ
-    requestAnimationFrame(() => {
-      const mark =
-        d.querySelector('.tt-now') ?? d.querySelector('.tt-card.live')
-      if (!mark) return
-      const top =
-        mark.getBoundingClientRect().top - d.getBoundingClientRect().top
-      d.scrollTop += top - d.clientHeight / 2
-    })
-  }
-
   return (
     <section className="sec" id="timetable">
       <div className="wrap">
@@ -113,69 +97,19 @@ export const TimeTable = () => {
           label={t('timetable.label')}
           title={t('timetable.title')}
         />
-        <button type="button" className="tt-peek" onClick={open}>
-          <span className="tt-peek-top">
+        <div className="tt">
+          <div className="tt-head">
+            <p className="tt-head-t">
+              {t('timetable.dayTitle', {
+                date: formatDate2026(EVENT_2026.date),
+                wd: weekday2026(
+                  EVENT_2026.date,
+                  i18n.resolvedLanguage?.startsWith('ja') ? 'ja' : 'en',
+                ),
+              })}
+            </p>
             <Status phase={phase} />
-            <span className="tt-open">{t('timetable.open')}</span>
-          </span>
-          {/* PC の 2 列は上から下へ読む順に詰める */}
-          <span
-            className="tt-mini"
-            style={
-              {
-                '--rows': Math.ceil(SLOTS.length / 2),
-              } as CSSProperties
-            }
-          >
-            {SLOTS.map((slot) => (
-              <span key={slot.start} className="tt-mini-i">
-                <time>{slot.start}</time>
-                {slot.items.map((s) => (
-                  <span
-                    key={s.place}
-                    className={`tt-mini-t p-${s.place} ${stateOf(s, phase)}`}
-                  >
-                    {localized(s.title)}
-                  </span>
-                ))}
-              </span>
-            ))}
-          </span>
-        </button>
-      </div>
-
-      {/* 背景タップで閉じる。キーボードは dialog 標準の Esc */}
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
-      <dialog
-        ref={dialog}
-        className="tt-dlg"
-        aria-label={t('timetable.title')}
-        onClick={(e) => e.target === e.currentTarget && dialog.current?.close()}
-      >
-        <div className="tt-dlg-in">
-          {/* 見出しは一覧を送っても上に残す */}
-          <header className="tt-head">
-            <div>
-              <p className="tt-head-l">{t('timetable.label')}</p>
-              <p className="tt-head-t">
-                {t('timetable.dayTitle', {
-                  date: formatDate2026(EVENT_2026.date),
-                  wd: weekday2026(
-                    EVENT_2026.date,
-                    i18n.resolvedLanguage?.startsWith('ja') ? 'ja' : 'en',
-                  ),
-                })}
-              </p>
-              <Status phase={phase} />
-            </div>
-            <button
-              type="button"
-              className="tt-x"
-              onClick={() => dialog.current?.close()}
-            >
-              {t('timetable.close')}
-            </button>
-          </header>
+          </div>
           <ol className="tt-list">
             {SLOTS.map((slot, i) => {
               // 終わりが揃っていれば左に出し、ばらばらなら各カードに出す
@@ -234,27 +168,27 @@ export const TimeTable = () => {
               )
             })}
           </ol>
-          <p className="note">
-            {/* registrationUrl が無ければ「events lab」をリンクにしない */}
-            <Trans
-              i18nKey="timetable.note"
-              components={{
-                a: registrationUrl ? (
-                  // 中身（events lab）は Trans が訳文から入れる
-                  // eslint-disable-next-line jsx-a11y/anchor-has-content
-                  <a
-                    href={registrationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                ) : (
-                  <span />
-                ),
-              }}
-            />
-          </p>
         </div>
-      </dialog>
+        <p className="note">
+          {/* registrationUrl が無ければ「events lab」をリンクにしない */}
+          <Trans
+            i18nKey="timetable.note"
+            components={{
+              a: registrationUrl ? (
+                // 中身（events lab）は Trans が訳文から入れる
+                // eslint-disable-next-line jsx-a11y/anchor-has-content
+                <a
+                  href={registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ) : (
+                <span />
+              ),
+            }}
+          />
+        </p>
+      </div>
     </section>
   )
 }
