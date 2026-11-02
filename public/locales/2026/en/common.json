@@ -180,10 +180,6 @@
         "aDecidedTime": "On {{date}} at {{venue}} in Kabukicho, Shinjuku. Times will be announced once decided.",
         "aDecided": "On {{date}}, {{time}}, at {{venue}} in Kabukicho, Shinjuku."
       },
-      "4": {
-        "q": "I'd like to sponsor",
-        "a": "Thank you! Feel free to reach out to kojira or Shino3, by mentioning them on Nostr or by DM on X."
-      },
       "entry": {
         "q": "Do I need to pre-register?",
         "a": "Yes. We will announce when registration opens.",

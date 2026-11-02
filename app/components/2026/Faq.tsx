@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 
-import { EVENT_2026, SPONSOR_CONTACTS, timeRange2026 } from '~/data/2026'
+import { EVENT_2026, timeRange2026 } from '~/data/2026'
 import { useDateLabel, useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
 
 /** locale の faq.items.* のキー。entry は事前エントリーが必要なときだけ出す */
-const ITEMS = ['1', '2', 'entry', '3', '4']
+const ITEMS = ['1', '2', 'entry', '3']
 
 export const Faq = () => {
   const { t } = useTranslation()
@@ -73,7 +73,7 @@ export const Faq = () => {
     }
   }
 
-  /** 回答の下に添えるもの（リンク・連絡先） */
+  /** 回答の下に添えるもの（リンク） */
   const extra = (key: string) => {
     if (key === 'entry' && registrationUrl)
       return (
@@ -82,32 +82,6 @@ export const Faq = () => {
             {t('about.entryLink')}
           </a>
         </p>
-      )
-    if (key === '4')
-      return (
-        <ul className="contacts">
-          {SPONSOR_CONTACTS.map(({ name, npub, x }) => (
-            <li key={name}>
-              <b>{name}</b>
-              <a
-                href={`https://njump.me/${npub}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>Nostr</span>
-                <code>{npub}</code>
-              </a>
-              <a
-                href={`https://x.com/${x}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>X</span>
-                <code>@{x}</code>
-              </a>
-            </li>
-          ))}
-        </ul>
       )
     return null
   }

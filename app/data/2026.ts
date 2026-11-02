@@ -253,20 +253,6 @@ export const FLEA_MARKET_2026: Seller[] = [
   },
 ]
 
-/** スポンサーの相談先。FAQ に出す。Nostr のメンションか X の DM で */
-export const SPONSOR_CONTACTS = [
-  {
-    name: 'kojira',
-    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
-    x: 'kojira',
-  },
-  {
-    name: 'Shino3',
-    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
-    x: 'SHINOHARATTT',
-  },
-] as const
-
 /** 登壇者。未発表のあいだは空配列 → 「Speaker TBA」のカードを placeholderCount 枚出す */
 export const SPEAKERS_2026: Speaker[] = []
 export const SPEAKER_PLACEHOLDER_COUNT = 6
