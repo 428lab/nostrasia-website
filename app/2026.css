@@ -1122,25 +1122,195 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   padding: 1px 4px;
 }
 /* timetable */
+/* 場所ごとの色。チップ・帯・小さな一覧で共通 */
+.n26 .p-all {
+  --pc: var(--ink);
+}
+.n26 .p-main {
+  --pc: var(--pu);
+}
+.n26 .p-lounge1 {
+  --pc: var(--te);
+}
+.n26 .p-lounge3 {
+  --pc: var(--or);
+}
+/* ページ内は小さな一覧。全体がボタンで、タップでダイアログを開く */
+.n26 .tt-peek {
+  display: block;
+  width: 100%;
+  padding: 16px 18px 18px;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 6px 6px 0 var(--ink);
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.n26 .tt-peek:hover {
+  background: #fff;
+}
+.n26 .tt-peek-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 14px;
+}
+.n26 .tt-open {
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
+  color: var(--pu);
+  margin-left: auto;
+}
+.n26 .tt-open::after {
+  content: ' →';
+}
+.n26 .tt-mini {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), auto);
+  grid-auto-flow: column;
+  gap: 6px 28px;
+}
+.n26 .tt-mini-i {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  min-width: 0;
+  padding-left: 8px;
+  border-left: 4px solid var(--pc);
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.n26 .tt-mini-i time {
+  font: var(--t-micro);
+  font-family: var(--en);
+  letter-spacing: var(--t-num-ls);
+  flex: none;
+}
+.n26 .tt-mini-i.live {
+  font-weight: 700;
+  background: #fff;
+}
+.n26 .tt-mini-i.past,
+.n26 .tt-row.past {
+  opacity: 0.45;
+}
+/* 開催までの日数・いまの時刻 */
+.n26 .tt-status {
+  display: inline-block;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  background: var(--ink);
+  color: var(--ye);
+  padding: 5px 9px;
+}
+.n26 .tt-status.s-live {
+  background: var(--or);
+  color: #fff;
+}
+/* 全体はダイアログ。見出しを sticky にして、一覧だけを送る */
+.n26 .tt-dlg {
+  margin: auto;
+  width: min(760px, calc(100vw - 32px));
+  max-width: none;
+  max-height: 90vh;
+  padding: 0;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.n26 .tt-dlg::backdrop {
+  background: rgba(22, 22, 22, 0.82);
+}
+.n26 .tt-dlg-in {
+  padding-bottom: 20px;
+}
+.n26 .tt-dlg .note {
+  margin: 16px 18px 0;
+}
+.n26 .tt-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: #fff;
+}
+.n26 .tt-head-l {
+  font: var(--t-eyebrow);
+  letter-spacing: var(--t-eyebrow-ls);
+  color: var(--ye);
+  margin: 0;
+}
+.n26 .tt-head-t {
+  font: var(--t-h3);
+  margin: 2px 0 8px;
+}
+.n26 .tt-head .tt-status {
+  background: var(--ye);
+  color: var(--ink);
+}
+.n26 .tt-head .tt-status.s-live {
+  background: var(--or);
+  color: #fff;
+}
+.n26 .tt-x {
+  flex: none;
+  min-height: 44px;
+  padding: 0 14px;
+  font: var(--t-btn2);
+  letter-spacing: var(--t-btn-ls);
+  border: 3px solid #fff;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+/* 1 行 = 左に開始（大）と終了（小）、右に内容 */
 .n26 .tt-list {
   list-style: none;
+  margin: 0 18px;
   padding: 0;
-  margin: 0;
-  border-block: 3px solid var(--ink);
 }
-.n26 .tt-list li {
+.n26 .tt-row {
   display: grid;
-  /* 「13:00–13:05」が 1 行に収まる幅 */
-  grid-template-columns: 180px 1fr;
-  padding: 14px 0;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 0;
 }
-.n26 .tt-list li + li {
-  border-top: 3px solid var(--ink);
+.n26 .tt-row + .tt-row {
+  border-top: 2px solid var(--ink);
 }
-.n26 .tt-time {
-  font: var(--t-num);
+.n26 .tt-start {
+  display: block;
+  font: var(--t-num-xl);
   letter-spacing: var(--t-num-ls);
-  white-space: nowrap;
+}
+.n26 .tt-end {
+  display: block;
+  margin-top: 4px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-num-ls);
+  color: var(--mute);
+}
+.n26 .tt-what {
+  padding: 2px 0 2px 12px;
+  border-left: 6px solid var(--pc);
+}
+.n26 .tt-row.live .tt-what {
+  background: #fff;
 }
 .n26 .tt-title {
   display: block;
@@ -1159,26 +1329,40 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   font: var(--t-micro);
   letter-spacing: var(--t-micro-ls);
   border: 2px solid var(--ink);
-  border-left-width: 6px;
+  border-left: 6px solid var(--pc);
   padding: 3px 7px;
   background: var(--paper);
-}
-.n26 .tt-place.p-all {
-  border-left-color: var(--ink);
-}
-.n26 .tt-place.p-main {
-  border-left-color: var(--pu);
-}
-.n26 .tt-place.p-lounge1 {
-  border-left-color: var(--te);
-}
-.n26 .tt-place.p-lounge3 {
-  border-left-color: var(--or);
 }
 .n26 .tt-by {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
+}
+.n26 .tt-live {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  background: var(--or);
+  color: #fff;
+  padding: 4px 7px;
+}
+/* 当日の「いま」の線 */
+.n26 .tt-now {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  color: var(--or);
+}
+.n26 .tt-now::after {
+  content: '';
+  flex: 1;
+  height: 3px;
+  background: var(--or);
+}
+.n26 .tt-now time {
+  font-family: var(--en);
 }
 /* speakers */
 .n26 .sg {
@@ -1695,10 +1879,27 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   .n26 .stall .ft {
     padding-top: 8px;
   }
-  /* タイムテーブルは時刻を題名の上に置く */
-  .n26 .tt-list li {
+  /* タイムテーブル: 小さな一覧は 1 列で、下をぼかして高さを抑える。ダイアログは全画面 */
+  .n26 .tt-mini {
     grid-template-columns: minmax(0, 1fr);
-    gap: 4px;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    max-height: 168px;
+    overflow: hidden;
+    mask-image: linear-gradient(#000 70%, transparent);
+  }
+  .n26 .tt-dlg {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    border: 0;
+  }
+  .n26 .tt-row {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .n26 .tt-start {
+    font: var(--t-num);
   }
 }
 .n26 .mk-cta {
