@@ -1336,6 +1336,10 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   border: 2px solid var(--ink);
   object-fit: cover;
 }
+/* ホバーで枠の背景が黒になるので、アイコンの縁を白に替えて埋もれないようにする */
+.n26 a.slot:hover img.slot-icon {
+  border-color: #fff;
+}
 .n26 .btn2 {
   display: inline-block;
   margin-top: 10px;
