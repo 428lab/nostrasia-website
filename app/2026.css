@@ -1130,7 +1130,8 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
 }
 .n26 .tt-list li {
   display: grid;
-  grid-template-columns: 132px 1fr;
+  /* 「13:00–13:05」が 1 行に収まる幅 */
+  grid-template-columns: 180px 1fr;
   padding: 14px 0;
 }
 .n26 .tt-list li + li {
@@ -1139,6 +1140,7 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
 .n26 .tt-time {
   font: var(--t-num);
   letter-spacing: var(--t-num-ls);
+  white-space: nowrap;
 }
 .n26 .tt-title {
   display: block;
