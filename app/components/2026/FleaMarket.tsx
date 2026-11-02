@@ -1,7 +1,7 @@
 import { CSSProperties, RefObject, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { FLEA_MARKET_2026, PROGRAMS_2026, Seller } from '~/data/2026'
+import { FLEA_MARKET_2026, Seller } from '~/data/2026'
 import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
@@ -248,7 +248,6 @@ export const FleaMarket = () => {
 
   const total = FLEA_MARKET_2026.length
   const planned = FLEA_MARKET_2026.filter((s) => s.status === 'planned').length
-  const callUrl = PROGRAMS_2026.find((p) => p.id === 'fleaMarket')?.url
   const payAll = FLEA_MARKET_2026.every(
     (s) => s.payment.includes('lightning') && s.payment.includes('cash'),
   )
@@ -280,20 +279,6 @@ export const FleaMarket = () => {
             />
           ))}
         </ul>
-        {callUrl && (
-          <div className="mk-cta">
-            <p className="ptl">{t('market.ctaTitle')}</p>
-            <p>{t('market.ctaText')}</p>
-            <a
-              className="btn2"
-              href={callUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('market.callForSellers')}
-            </a>
-          </div>
-        )}
       </div>
       <Lightbox
         dialog={dialog}

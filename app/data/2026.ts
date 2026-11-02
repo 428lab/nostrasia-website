@@ -115,7 +115,7 @@ export const PROGRAMS_2026: {
   id: string
   title: Localized
   desc: Localized
-  /** 詳細の記事など */
+  /** 詳細の記事など。# で始まればページ内へ */
   url: string
   linkLabel: Localized
 }[] = [
@@ -123,14 +123,13 @@ export const PROGRAMS_2026: {
     id: 'fleaMarket',
     title: { ja: 'フリーマーケット', en: 'Flea market' },
     desc: {
-      ja: '出店者を募集しています。',
-      en: 'Sellers wanted (details in Japanese).',
+      ja: '出店者がつくったグッズや本、コーヒーが並びます。',
+      en: 'Goods, zines and coffee made by the sellers.',
     },
-    // リレーヒント付き（wss://yabu.me / wss://r.kojira.io / wss://nostr.compile-error.net）
-    url: 'https://lumilumi.app/naddr1qqxnzdec8ymnzd35xucrwd3jqgswcsk8v4qck0deepdtluag3a9rh0jh2d0wh0w9g53qg8a9x2xqvqqrqsqqqa28qyxhwumn8ghj77tpvf6jumt9qyghwumn8ghj7u3wddhk56tjvyhxjmcpr4mhxue69uhkummnw3ezucm0d4cxjmr994jhyun0wghxuet5fz52nl',
+    url: '#market',
     linkLabel: {
-      ja: '募集要項を読む →',
-      en: 'Read the call for sellers →',
+      ja: '出店を見る →',
+      en: 'See the stalls →',
     },
   },
 ]
