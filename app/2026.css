@@ -1716,23 +1716,9 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .ph img {
     max-height: 60vh;
   }
-  /* 2 枚以上も縦に積み、それぞれ比率のまま出す */
+  /* 2 枚以上は情報の下に全幅で置き、並べ方は PC と同じ（縦に積むと長くなりすぎる） */
   .n26 .stall-b:has(.ph.n2, .ph.n3) {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .n26 .ph.n2,
-  .n26 .ph.n3 {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-  }
-  .n26 .ph.n3 a:first-child {
-    grid-row: auto;
-  }
-  .n26 .ph.n3 a:first-child img {
-    position: static;
-    height: auto;
-    max-height: 60vh;
-    object-fit: initial;
   }
   /* 仮の枠は縦積みでは場所を取るだけなので出さない */
   .n26 .media:has(.ph-tbd) {
