@@ -1728,16 +1728,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
     padding-top: 8px;
   }
 }
-.n26 .mk-cta {
-  margin-top: 40px;
-  border: 3px dashed var(--ink);
-  padding: 20px;
-}
-.n26 .mk-cta p:not(.ptl) {
-  font: var(--t-body);
-  letter-spacing: var(--t-body-ls);
-  margin: 6px 0 0;
-}
 .n26 .vh {
   position: absolute;
   width: 1px;

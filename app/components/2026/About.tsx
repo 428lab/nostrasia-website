@@ -47,8 +47,10 @@ export const About = () => {
                       <span>{localized(program.desc)}</span>
                       <a
                         href={program.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        {...(!program.url.startsWith('#') && {
+                          target: '_blank',
+                          rel: 'noopener noreferrer',
+                        })}
                       >
                         {localized(program.linkLabel)}
                       </a>
