@@ -1929,12 +1929,9 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .about-g {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   }
-  /* 表と高さがそろっても空かないよう、企画は下に寄せる */
-  .n26 .picks {
-    margin-top: auto;
-  }
-  .n26 .about-g > .panel .note {
-    margin-bottom: 22px;
+  /* 左は中身の高さにする。右の表に合わせて伸ばすと「決まっている企画」が下に離れる */
+  .n26 .about-g > .panel {
+    align-self: start;
   }
   .n26 .how-w {
     grid-template-columns: 1fr 1.1fr;
