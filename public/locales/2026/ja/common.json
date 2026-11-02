@@ -21,6 +21,7 @@
     "about": "About",
     "timetable": "Timetable",
     "speakers": "Speakers",
+    "market": "Market",
     "sponsors": "Sponsors",
     "access": "Access",
     "faq": "FAQ",
@@ -106,11 +107,20 @@
   "timetable": {
     "label": "TIME TABLE",
     "title": "タイムテーブル",
-    "track": "TRACK {{id}}",
-    "tbd": "TBD",
-    "note": "※ 時刻・内容・トラックは決まり次第掲載します。表は横にスクロールできます。",
-    "veilSub": "タイムテーブルは決まり次第掲載します",
-    "veilSubHours": "{{start}}–{{end}}。内容は決まり次第掲載します"
+    "place": {
+      "all": "全体",
+      "main": "メイン",
+      "lounge1": "Lounge 1",
+      "lounge3": "Lounge 3"
+    },
+    "dayTitle": "{{date}}（{{wd}}）日本時間",
+    "now": "NOW",
+    "nowAt": "いま {{time}}（日本時間）",
+    "live": "開催中",
+    "daysLeft": "開催まで あと {{count}} 日",
+    "startsIn": "開始まで あと {{time}}",
+    "ended": "終了しました",
+    "note": "※ 内容は変わることがあります。最新は <a>events lab</a> をご覧ください。"
   },
   "speakers": {
     "label": "SPEAKERS",
@@ -128,9 +138,6 @@
     "lightning": "Lightning",
     "cash": "現金",
     "say": "ひとこと",
-    "ctaTitle": "出店してみたい方へ",
-    "ctaText": "出店の条件や申し込み方法は募集要項にまとめています。",
-    "callForSellers": "募集要項を読む →",
     "close": "閉じる",
     "count": "出店 {{count}} 店",
     "countPlanned": "（ほか予定 {{count}} 店）",
@@ -152,7 +159,7 @@
     "map": "地図を開く →",
     "mapGoogle": "Google マップで開く →",
     "floorTitle": "FLOOR MAP",
-    "floorVeil": "未定",
+    "floorVeil": "TBD",
     "floorVeilSub": "画像は 2025 年のもの",
     "embedTitle": "{{venue}} の地図"
   },
@@ -179,10 +186,6 @@
         "aDecidedTime": "{{date}}、新宿・歌舞伎町の {{venue}} で開催します。時刻は決まり次第お知らせします。",
         "aDecided": "{{date}} {{time}}、新宿・歌舞伎町の {{venue}} で開催します。"
       },
-      "4": {
-        "q": "スポンサーになりたい",
-        "a": "ありがとうございます。kojira か Shino3 まで、Nostr のメンションか X の DM で気軽にご連絡ください。"
-      },
       "entry": {
         "q": "事前エントリーは必要ですか？",
         "a": "はい。受付の開始は決まり次第お知らせします。",
@@ -194,7 +197,7 @@
     "label": "ARCHIVE",
     "title": "過去の Nostrasia",
     "years": {
-      "2023": "初回 / nostr.world",
+      "2023": "nostr.world/nostrasia",
       "2024": "nostrasia.com/2024",
       "2025": "nostrasia.com/2025"
     }

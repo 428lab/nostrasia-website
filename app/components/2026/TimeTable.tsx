@@ -1,66 +1,94 @@
-import { CSSProperties } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Fragment } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
-import { EVENT_2026, timeRange2026 } from '~/data/2026'
-
-import { useRevealOnce } from '~/hooks/useRevealOnce'
+import {
+  EVENT_2026,
+  formatDate2026,
+  Session,
+  TIMETABLE_2026,
+  weekday2026,
+} from '~/data/2026'
+import { JstNow, toMin, useJstNow } from '~/hooks/useJstNow'
+import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
-import { Veil } from './Veil'
 
-type Kind = 'T' | 'L' | 'W' | 'S'
-/** 枠の位置だけを持つ。a: 開始位置、l: 長さ（どちらも目盛り 1 つ = 1）、d: 伸びはじめる遅延（ms） */
-type Bar = { kind: Kind; a: number; l: number; d: number }
+const DAY_MS = 24 * 60 * 60 * 1000
 
-/** 時刻・内容が決まったら true にして、膜を外す */
-const TIMETABLE_READY = false
-/** 目盛りの数。時刻はまだ決まっていないので、すべて TBD と出す */
-const TICK_COUNT = 8
-/**
- * 枠だけのタイムテーブル。時刻・内容・トラックはすべて未定（TBD）。
- * 決まったら時刻・トラック名・枠の内容を app/data/2026.ts に持たせて載せ替える。
- * 色（kind）は見た目のためだけで、まだ意味を持たせない。
- */
-// prettier-ignore
-const TRACKS: { id: string; bars: Bar[] }[] = [
-  {
-    id: 'A',
-    bars: [
-      { kind: 'T', a: 0, l: 2, d: 0 },
-      { kind: 'T', a: 2, l: 2, d: 120 },
-      { kind: 'S', a: 4.5, l: 1, d: 240 },
-      { kind: 'T', a: 5.5, l: 2.5, d: 360 },
-    ],
-  },
-  {
-    id: 'B',
-    bars: [
-      { kind: 'L', a: 0.5, l: 1.5, d: 60 },
-      { kind: 'L', a: 2, l: 1.5, d: 180 },
-      { kind: 'T', a: 4, l: 2, d: 300 },
-      { kind: 'L', a: 6, l: 2, d: 420 },
-    ],
-  },
-  {
-    id: 'C',
-    bars: [
-      { kind: 'W', a: 0, l: 3, d: 120 },
-      { kind: 'W', a: 3.5, l: 3, d: 280 },
-    ],
-  },
-  {
-    id: 'D',
-    bars: [
-      { kind: 'S', a: 0, l: 4, d: 180 },
-      { kind: 'S', a: 4, l: 4, d: 340 },
-    ],
-  },
-]
+type Phase =
+  | { kind: 'before'; days: number }
+  | { kind: 'soon'; min: number }
+  | { kind: 'live'; min: number }
+  | { kind: 'ended' }
 
-export const TimeTable = () => {
+/** 開催日と現在時刻（日本時間）から、いまが当日のどこかを決める */
+const phaseOf = (now: JstNow | null): Phase | null => {
+  const date = EVENT_2026.date
+  if (!now || !date || TIMETABLE_2026.length === 0) return null
+  const start = toMin(TIMETABLE_2026[0].start)
+  const end = Math.max(...TIMETABLE_2026.map((s) => toMin(s.end)))
+  if (now.date < date) {
+    return {
+      kind: 'before',
+      days: Math.round((Date.parse(date) - Date.parse(now.date)) / DAY_MS),
+    }
+  }
+  if (now.date > date || now.min >= end) return { kind: 'ended' }
+  if (now.min < start) return { kind: 'soon', min: start - now.min }
+  return { kind: 'live', min: now.min }
+}
+
+const hhmm = (min: number) =>
+  `${Math.floor(min / 60)}:${String(min % 60).padStart(2, '0')}`
+
+/** 当日の進行中は、その枠が終わったか・いまやっているか */
+const stateOf = (s: Session, phase: Phase | null) => {
+  if (phase?.kind === 'ended') return 'past'
+  if (phase?.kind !== 'live') return ''
+  if (phase.min >= toMin(s.end)) return 'past'
+  if (phase.min >= toMin(s.start)) return 'live'
+  return ''
+}
+
+/** 同じ時刻に始まる枠を 1 行にまとめる（並行して動くものを横に並べて見せる） */
+const SLOTS = TIMETABLE_2026.reduce<{ start: string; items: Session[] }[]>(
+  (acc, s) => {
+    const last = acc[acc.length - 1]
+    if (last?.start === s.start) last.items.push(s)
+    else acc.push({ start: s.start, items: [s] })
+    return acc
+  },
+  [],
+)
+
+const Status = ({ phase }: { phase: Phase | null }) => {
   const { t } = useTranslation()
-  // 画面に入ったときに 1 回だけバーを左から伸ばす
-  const [ref, shown] = useRevealOnce<HTMLDivElement>()
+  if (!phase) return null
+  const text =
+    phase.kind === 'before'
+      ? t('timetable.daysLeft', { count: phase.days })
+      : phase.kind === 'soon'
+        ? t('timetable.startsIn', { time: hhmm(phase.min) })
+        : phase.kind === 'live'
+          ? t('timetable.nowAt', { time: hhmm(phase.min) })
+          : t('timetable.ended')
+  return <span className={`tt-status s-${phase.kind}`}>{text}</span>
+}
+
+/** 全枠をページ内に出す。日付と「いま」の見出しは、表を読んでいるあいだ上に残す */
+export const TimeTable = () => {
+  const { t, i18n } = useTranslation()
+  const localized = useLocalized()
+  const now = useJstNow()
+  const phase = phaseOf(now)
+  const { registrationUrl } = EVENT_2026
+
+  if (TIMETABLE_2026.length === 0) return null
+
+  const nowMin = phase?.kind === 'live' ? phase.min : null
+  // 「いま」の線は、まだ始まっていない最初の枠の手前に引く
+  const nowBefore =
+    nowMin === null ? -1 : SLOTS.findIndex((slot) => toMin(slot.start) > nowMin)
 
   return (
     <section className="sec" id="timetable">
@@ -69,98 +97,97 @@ export const TimeTable = () => {
           label={t('timetable.label')}
           title={t('timetable.title')}
         />
-        {TIMETABLE_READY ? (
-          <>
-            <div className="tt-scroll">
-              <div ref={ref} className={shown ? 'gantt in' : 'gantt'}>
-                <div className="axis">
-                  <span />
-                  <div className="tk">
-                    {Array.from({ length: TICK_COUNT }, (_, i) => (
-                      <span key={i}>{t('timetable.tbd')}</span>
-                    ))}
-                  </div>
-                </div>
-                {TRACKS.map((track) => (
-                  <div className="row" key={track.id}>
-                    <b>
-                      {t('timetable.track', { id: track.id })}
-                      <small>{t('timetable.tbd')}</small>
-                    </b>
-                    <div className="lane">
-                      {track.bars.map((bar, i) => (
+        <div className="tt">
+          <div className="tt-head">
+            <p className="tt-head-t">
+              {t('timetable.dayTitle', {
+                date: formatDate2026(EVENT_2026.date),
+                wd: weekday2026(
+                  EVENT_2026.date,
+                  i18n.resolvedLanguage?.startsWith('ja') ? 'ja' : 'en',
+                ),
+              })}
+            </p>
+            <Status phase={phase} />
+          </div>
+          <ol className="tt-list">
+            {SLOTS.map((slot, i) => {
+              // 終わりが揃っていれば左に出し、ばらばらなら各カードに出す
+              const ends = new Set(slot.items.map((s) => s.end))
+              const sameEnd = ends.size === 1
+              const states = slot.items.map((s) => stateOf(s, phase))
+              return (
+                <Fragment key={slot.start}>
+                  {i === nowBefore && nowMin !== null && (
+                    <li className="tt-now" aria-hidden="true">
+                      <span>{t('timetable.now')}</span>
+                      <time>{hhmm(nowMin)}</time>
+                    </li>
+                  )}
+                  <li
+                    className={
+                      states.every((st) => st === 'past')
+                        ? 'tt-row past'
+                        : 'tt-row'
+                    }
+                  >
+                    <div className="tt-when">
+                      <time className="tt-start">{slot.start}</time>
+                      {sameEnd && (
+                        <time className="tt-end">– {slot.items[0].end}</time>
+                      )}
+                    </div>
+                    <div className="tt-cards">
+                      {slot.items.map((s, j) => (
                         <div
-                          key={i}
-                          className={`bar ${bar.kind}`}
-                          style={
-                            {
-                              '--a': bar.a,
-                              '--l': bar.l,
-                              '--d': bar.d,
-                            } as CSSProperties
-                          }
+                          key={s.place}
+                          className={`tt-card p-${s.place} ${states[j]}`}
                         >
-                          {t('timetable.tbd')}
+                          {!sameEnd && (
+                            <time className="tt-end">– {s.end}</time>
+                          )}
+                          <b className="tt-title">{localized(s.title)}</b>
+                          <div className="tt-meta">
+                            <span className={`tt-place p-${s.place}`}>
+                              {t(`timetable.place.${s.place}`)}
+                            </span>
+                            {s.speaker && (
+                              <span className="tt-by">{s.speaker}</span>
+                            )}
+                            {states[j] === 'live' && (
+                              <span className="tt-live">
+                                {t('timetable.live')}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <p className="note">{t('timetable.note')}</p>
-          </>
-        ) : (
-          <Veil
-            title={t('timetable.tbd')}
-            sub={
-              timeRange2026()
-                ? t('timetable.veilSubHours', {
-                    start: EVENT_2026.startTime,
-                    end: EVENT_2026.endTime,
-                  })
-                : t('timetable.veilSub')
-            }
-          >
-            <div className="tt-scroll">
-              <div ref={ref} className={shown ? 'gantt in' : 'gantt'}>
-                <div className="axis">
-                  <span />
-                  <div className="tk">
-                    {Array.from({ length: TICK_COUNT }, (_, i) => (
-                      <span key={i}>{t('timetable.tbd')}</span>
-                    ))}
-                  </div>
-                </div>
-                {TRACKS.map((track) => (
-                  <div className="row" key={track.id}>
-                    <b>
-                      {t('timetable.track', { id: track.id })}
-                      <small>{t('timetable.tbd')}</small>
-                    </b>
-                    <div className="lane">
-                      {track.bars.map((bar, i) => (
-                        <div
-                          key={i}
-                          className={`bar ${bar.kind}`}
-                          style={
-                            {
-                              '--a': bar.a,
-                              '--l': bar.l,
-                              '--d': bar.d,
-                            } as CSSProperties
-                          }
-                        >
-                          {t('timetable.tbd')}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Veil>
-        )}
+                  </li>
+                </Fragment>
+              )
+            })}
+          </ol>
+        </div>
+        <p className="note">
+          {/* registrationUrl が無ければ「events lab」をリンクにしない */}
+          <Trans
+            i18nKey="timetable.note"
+            components={{
+              a: registrationUrl ? (
+                // 中身（events lab）は Trans が訳文から入れる
+                // eslint-disable-next-line jsx-a11y/anchor-has-content
+                <a
+                  href={registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ) : (
+                <span />
+              ),
+            }}
+          />
+        </p>
       </div>
     </section>
   )

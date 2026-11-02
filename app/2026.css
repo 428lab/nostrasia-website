@@ -77,6 +77,10 @@ body:has(.n26.menu-open) {
   color: var(--ink);
   font: var(--t-body);
   letter-spacing: var(--t-body-ls);
+  /* 和文を語の途中で折らない。auto-phrase は Chrome / Edge のみで、ほかは従来どおり 1 文字単位 */
+  word-break: auto-phrase;
+  line-break: strict;
+  text-wrap: pretty;
 }
 html[lang='ja'] .n26 {
   --tx: var(--ja);
@@ -1124,90 +1128,157 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   padding: 1px 4px;
 }
 /* timetable */
-.n26 .tt-scroll {
-  overflow-x: auto;
+/* 場所ごとの色。チップ・帯・小さな一覧で共通 */
+.n26 .p-all {
+  --pc: var(--ink);
+}
+.n26 .p-main {
+  --pc: var(--pu);
+}
+.n26 .p-lounge1 {
+  --pc: var(--te);
+}
+.n26 .p-lounge3 {
+  --pc: var(--or);
+}
+/* 開催までの日数・いまの時刻 */
+.n26 .tt-status {
+  display: inline-block;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  background: var(--ye);
+  color: var(--ink);
+  padding: 5px 9px;
+}
+.n26 .tt-status.s-live {
+  background: var(--or);
+  color: #fff;
+}
+.n26 .tt-row.past,
+.n26 .tt-card.past {
+  opacity: 0.45;
+}
+/* 表は枠で囲み、日付と「いま」の見出しを、表を読んでいるあいだサイトのヘッダーの下に残す */
+.n26 .tt {
   border: 3px solid var(--ink);
   background: var(--paper);
-  -webkit-overflow-scrolling: touch;
+  box-shadow: 6px 6px 0 var(--ink);
 }
-.n26 .gantt {
-  min-width: 640px;
-  padding: 14px 14px 18px;
-}
-.n26 .axis,
-.n26 .row {
-  display: grid;
-  grid-template-columns: 96px 1fr;
+.n26 .tt-head {
+  position: sticky;
+  top: calc(var(--hh) + 3px);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: #fff;
 }
-.n26 .axis .tk {
+.n26 .tt-head-t {
+  font: var(--t-h3);
+  margin: 0;
+}
+/* 1 行 = 左に開始（大）と終了（小）、右に内容 */
+.n26 .tt-list {
+  list-style: none;
+  margin: 0 16px;
+  padding: 0;
+}
+.n26 .tt-row {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 14px;
+  padding: 12px 0;
+}
+.n26 .tt-row + .tt-row {
+  border-top: 2px solid var(--ink);
+}
+.n26 .tt-start {
+  display: block;
+  font: var(--t-num-xl);
+  letter-spacing: var(--t-num-ls);
+}
+.n26 .tt-end {
+  display: block;
+  margin-top: 4px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-num-ls);
   color: var(--mute);
 }
-.n26 .axis .tk span {
-  border-left: 1px dashed rgba(22, 22, 22, 0.3);
-  padding: 0 0 8px 4px;
+/* 同じ時刻に始まる枠は横に並べる（狭ければ折り返す） */
+.n26 .tt-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
 }
-.n26 .row {
-  border-top: 2px solid var(--ink);
-  min-height: 58px;
+.n26 .tt-card {
+  padding: 2px 0 2px 12px;
+  border-left: 6px solid var(--pc);
 }
-.n26 .row b {
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
+.n26 .tt-card.live {
+  background: #fff;
 }
-.n26 .row b small {
+.n26 .tt-card .tt-end {
+  margin: 0 0 2px;
+}
+/* 枠の中が終わっていても、まとめた行が終わっていなければ行は薄くしない */
+.n26 .tt-row.past .tt-card.past {
+  opacity: 1;
+}
+.n26 .tt-title {
   display: block;
+  font: var(--t-h3);
+  letter-spacing: 0;
+}
+.n26 .tt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 6px;
+}
+/* 場所のチップ。左の色帯で場所を見分ける */
+.n26 .tt-place {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  border: 2px solid var(--ink);
+  border-left: 6px solid var(--pc);
+  padding: 3px 7px;
+  background: var(--paper);
+}
+.n26 .tt-by {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
-.n26 .lane {
-  position: relative;
-  height: 58px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0 calc(12.5% - 1px),
-    rgba(22, 22, 22, 0.14) calc(12.5% - 1px) 12.5%
-  );
-}
-.n26 .bar {
-  position: absolute;
-  top: 9px;
-  bottom: 9px;
-  left: calc(var(--a) * 12.5%);
-  width: calc(var(--l) * 12.5% - 4px);
-  border: 2px solid var(--ink);
-  padding: 4px 7px;
+.n26 .tt-live {
   font: var(--t-micro);
   letter-spacing: var(--t-micro-ls);
-  overflow: hidden;
-  transform-origin: left center;
-  transition: transform 0.8s cubic-bezier(0.6, 0, 0.2, 1)
-    calc(var(--d, 0) * 1ms);
-}
-.n26 .bar.T {
-  background: var(--pu);
+  background: var(--or);
   color: #fff;
+  padding: 4px 7px;
 }
-.n26 .bar.L {
+/* 当日の「いま」の線 */
+.n26 .tt-now {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  color: var(--or);
+}
+.n26 .tt-now::after {
+  content: '';
+  flex: 1;
+  height: 3px;
   background: var(--or);
 }
-.n26 .bar.W {
-  background: var(--te);
-  color: #fff;
-}
-.n26 .bar.S {
-  background: var(--ye);
-}
-html.js:not(.no-hydrate) .n26 .bar {
-  transform: scaleX(0);
-}
-html.js:not(.no-hydrate) .n26 .gantt.in .bar {
-  transform: none;
+.n26 .tt-now time {
+  font-family: var(--en);
 }
 /* speakers */
 .n26 .sg {
@@ -1243,7 +1314,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
-/* すりガラスの膜（Veil）。未定の内容をぼかして覆う。フロアマップ・タイムテーブル・登壇者で共通 */
+/* すりガラスの膜（Veil）。未定の内容をぼかして覆う。フロアマップ・登壇者で共通 */
 .n26 .veiled {
   position: relative;
   overflow: hidden;
@@ -1256,11 +1327,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   transform: scale(1.04);
   pointer-events: none;
   user-select: none;
-}
-/* 中身の枠線は外側の .veiled が持つ。横スクロールもさせない */
-.n26 .veiled .tt-scroll {
-  border: 0;
-  overflow: hidden;
 }
 .n26 .veiled .sg {
   padding: 14px;
@@ -1310,6 +1376,9 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* アイコンがあるときは名前の上に積む */
+  flex-direction: column;
+  gap: 8px;
   padding: 8px;
   font: var(--t-btn2);
   letter-spacing: var(--t-btn-ls);
@@ -1327,6 +1396,17 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   max-width: 80%;
   max-height: 64px;
   object-fit: contain;
+}
+.n26 .slot img.slot-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  object-fit: cover;
+}
+/* ホバーで枠の背景が黒になるので、アイコンの縁を白に替えて埋もれないようにする */
+.n26 a.slot:hover img.slot-icon {
+  border-color: #fff;
 }
 .n26 .btn2 {
   display: inline-block;
@@ -1729,16 +1809,30 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .stall .ft {
     padding-top: 8px;
   }
-}
-.n26 .mk-cta {
-  margin-top: 40px;
-  border: 3px dashed var(--ink);
-  padding: 20px;
-}
-.n26 .mk-cta p:not(.ptl) {
-  font: var(--t-body);
-  letter-spacing: var(--t-body-ls);
-  margin: 6px 0 0;
+  /* タイムテーブル */
+  .n26 .tt-list {
+    margin: 0 12px;
+  }
+  .n26 .tt-row {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 10px;
+  }
+  /* 並行する枠はスマホでも横に並べる。題名を一段小さくして 2 つ収める */
+  .n26 .tt-cards {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .n26 .tt-card {
+    padding-left: 8px;
+    border-left-width: 4px;
+  }
+  .n26 .tt-card .tt-title {
+    font: var(--t-name);
+  }
+  .n26 .tt-start {
+    font: var(--t-num);
+    letter-spacing: 0;
+  }
 }
 .n26 .vh {
   position: absolute;
@@ -1858,42 +1952,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
 }
-/* スポンサーの相談先。npub は 63 文字あるので折り返す */
-.n26 .contacts {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  display: grid;
-  gap: 10px;
-}
-.n26 .contacts li {
-  display: grid;
-  gap: 4px;
-}
-.n26 .contacts a {
-  display: flex;
-  gap: 8px;
-  align-items: baseline;
-  color: var(--ink);
-  text-decoration: none;
-}
-.n26 .contacts a:hover code {
-  text-decoration: underline;
-}
-.n26 .contacts span {
-  flex: none;
-  width: 56px;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
-}
-/* 本文中の npub（.step code）と同じ書体・大きさ */
-.n26 .contacts code {
-  min-width: 0;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-num-ls);
-  word-break: break-all;
-  color: var(--pu);
-}
 /* archive */
 .n26 .ar {
   display: grid;
@@ -1956,12 +2014,9 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .about-g {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   }
-  /* 表と高さがそろっても空かないよう、企画は下に寄せる */
-  .n26 .picks {
-    margin-top: auto;
-  }
-  .n26 .about-g > .panel .note {
-    margin-bottom: 22px;
+  /* 左は中身の高さにする。右の表に合わせて伸ばすと「決まっている企画」が下に離れる */
+  .n26 .about-g > .panel {
+    align-self: start;
   }
   .n26 .how-w {
     grid-template-columns: 1fr 1.1fr;
@@ -2083,10 +2138,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   html.js:not(.no-hydrate) .n26 .stage.walk .bird,
   html.js .n26.menu-open .gnav li {
     animation: none;
-  }
-  html.js:not(.no-hydrate) .n26 .bar {
-    transform: none;
-    transition: none;
   }
   .n26 .it,
   .n26 .it i,

@@ -34,10 +34,14 @@ export type Speaker = {
 
 export type Sponsor = {
   name: string
-  /** リンク先。無ければリンクにしない */
+  /** リンク先。無ければ npub のプロフィール、それも無ければリンクにしない */
   url?: string
   /** /2026/sponsors/ 以下に置いたロゴのパス。無ければ名前を文字で出す */
   logo?: string
+  /** /2026/sponsors/ 以下に置いた正方形のアイコン。logo が無いとき丸くして名前の上に出す */
+  icon?: string
+  /** npub1... url が無いとき https://njump.me/<npub> にリンクする */
+  npub?: string
 }
 
 export type Seller = {
@@ -58,6 +62,16 @@ export type Seller = {
   links?: { label: string; url: string }[]
   /** /2026/market/ 以下に置いた画像。比率のまま切らずに出す */
   images?: { src: string; alt: Localized }[]
+}
+
+export type Session = {
+  start: string // 'HH:MM'
+  end: string // 'HH:MM'
+  title: Localized
+  /** all = 会場全体 */
+  place: 'all' | 'main' | 'lounge1' | 'lounge3'
+  /** 担当（events lab の Speaker） */
+  speaker?: string
 }
 
 export const EVENT_2026 = {
@@ -115,7 +129,7 @@ export const PROGRAMS_2026: {
   id: string
   title: Localized
   desc: Localized
-  /** 詳細の記事など */
+  /** 詳細の記事など。# で始まればページ内へ */
   url: string
   linkLabel: Localized
 }[] = [
@@ -123,15 +137,87 @@ export const PROGRAMS_2026: {
     id: 'fleaMarket',
     title: { ja: 'フリーマーケット', en: 'Flea market' },
     desc: {
-      ja: '出店者を募集しています。',
-      en: 'Sellers wanted (details in Japanese).',
+      ja: '出店者がつくったグッズや本、コーヒーが並びます。',
+      en: 'Goods, zines and coffee made by the sellers.',
     },
-    // リレーヒント付き（wss://yabu.me / wss://r.kojira.io / wss://nostr.compile-error.net）
-    url: 'https://lumilumi.app/naddr1qqxnzdec8ymnzd35xucrwd3jqgswcsk8v4qck0deepdtluag3a9rh0jh2d0wh0w9g53qg8a9x2xqvqqrqsqqqa28qyxhwumn8ghj77tpvf6jumt9qyghwumn8ghj7u3wddhk56tjvyhxjmcpr4mhxue69uhkummnw3ezucm0d4cxjmr994jhyun0wghxuet5fz52nl',
+    url: '#market',
     linkLabel: {
-      ja: '募集要項を読む →',
-      en: 'Read the call for sellers →',
+      ja: '出店を見る →',
+      en: 'See the stalls →',
     },
+  },
+]
+
+/** events lab（EVENT_2026.registrationUrl）のタイムテーブルを写したもの。時刻は JST */
+export const TIMETABLE_2026: Session[] = [
+  {
+    start: '13:00',
+    end: '13:05',
+    title: { ja: '開始あいさつ', en: 'Opening remarks' },
+    place: 'all',
+    speaker: 'kojira',
+  },
+  {
+    start: '13:05',
+    end: '13:20',
+    title: { ja: '登壇枠 1', en: 'Talk slot 1' },
+    place: 'all',
+  },
+  {
+    start: '13:20',
+    end: '13:35',
+    title: { ja: '登壇枠 2', en: 'Talk slot 2' },
+    place: 'all',
+  },
+  {
+    start: '13:20',
+    end: '18:00',
+    title: { ja: 'フリーマーケット', en: 'Flea market' },
+    place: 'lounge3',
+    speaker: 'ロクヨウ',
+  },
+  {
+    start: '13:35',
+    end: '13:50',
+    title: { ja: '登壇枠 3', en: 'Talk slot 3' },
+    place: 'all',
+  },
+  {
+    start: '13:50',
+    end: '14:00',
+    title: { ja: '登壇枠 4', en: 'Talk slot 4' },
+    place: 'all',
+  },
+  {
+    start: '14:00',
+    end: '18:00',
+    title: { ja: 'ボードゲーム', en: 'Board games' },
+    place: 'lounge1',
+  },
+  {
+    start: '14:00',
+    end: '18:00',
+    title: { ja: '交流スペース', en: 'Hangout space' },
+    place: 'main',
+  },
+  {
+    start: '18:00',
+    end: '19:00',
+    title: { ja: 'ひみつ', en: 'Secret' },
+    place: 'all',
+  },
+  {
+    start: '19:00',
+    end: '20:00',
+    title: { ja: '交流タイム', en: 'Hangout time' },
+    place: 'main',
+  },
+  {
+    start: '20:00',
+    end: '20:05',
+    title: { ja: '締めのあいさつ', en: 'Closing remarks' },
+    place: 'all',
+    speaker: 'kojira',
   },
 ]
 
@@ -253,26 +339,23 @@ export const FLEA_MARKET_2026: Seller[] = [
   },
 ]
 
-/** スポンサーの相談先。FAQ に出す。Nostr のメンションか X の DM で */
-export const SPONSOR_CONTACTS = [
-  {
-    name: 'kojira',
-    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
-    x: 'kojira',
-  },
-  {
-    name: 'Shino3',
-    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
-    x: 'SHINOHARATTT',
-  },
-] as const
-
 /** 登壇者。未発表のあいだは空配列 → 「Speaker TBA」のカードを placeholderCount 枚出す */
 export const SPEAKERS_2026: Speaker[] = []
 export const SPEAKER_PLACEHOLDER_COUNT = 6
 
 /** スポンサー。tier は分けず、この順に並べる */
-export const SPONSORS_2026: Sponsor[] = [{ name: 'Shino3' }, { name: 'kojira' }]
+export const SPONSORS_2026: Sponsor[] = [
+  {
+    name: 'Shino3',
+    icon: '/2026/sponsors/shino3.webp',
+    npub: 'npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+  },
+  {
+    name: 'kojira',
+    icon: '/2026/sponsors/kojira.webp',
+    npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
+  },
+]
 
 /** 過去回。/2024 と /2025 はこのアプリ内のアーカイブ（年ごとに locale が違うので必ず全ページ遷移で開く） */
 export const ARCHIVES = [

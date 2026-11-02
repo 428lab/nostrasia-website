@@ -21,6 +21,7 @@
     "about": "About",
     "timetable": "Timetable",
     "speakers": "Speakers",
+    "market": "Market",
     "sponsors": "Sponsors",
     "access": "Access",
     "faq": "FAQ",
@@ -106,11 +107,21 @@
   "timetable": {
     "label": "TIME TABLE",
     "title": "Timetable",
-    "track": "TRACK {{id}}",
-    "tbd": "TBD",
-    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
-    "veilSub": "The timetable will be posted once decided",
-    "veilSubHours": "{{start}}–{{end}}. Sessions will be posted once decided"
+    "place": {
+      "all": "All",
+      "main": "Main",
+      "lounge1": "Lounge 1",
+      "lounge3": "Lounge 3"
+    },
+    "dayTitle": "{{wd}}, {{date}} (JST)",
+    "now": "NOW",
+    "nowAt": "Now {{time}} JST",
+    "live": "On now",
+    "daysLeft_one": "{{count}} day to go",
+    "daysLeft_other": "{{count}} days to go",
+    "startsIn": "Starts in {{time}}",
+    "ended": "This event has ended",
+    "note": "* Subject to change. See <a>events lab</a> for the latest."
   },
   "speakers": {
     "label": "SPEAKERS",
@@ -128,9 +139,6 @@
     "lightning": "Lightning",
     "cash": "Cash",
     "say": "Note",
-    "ctaTitle": "Want to open a stall?",
-    "ctaText": "Conditions and how to apply are in the call for sellers (Japanese).",
-    "callForSellers": "Read the call for sellers →",
     "close": "Close",
     "count_one": "{{count}} stall",
     "count_other": "{{count}} stalls",
@@ -180,10 +188,6 @@
         "aDecidedTime": "On {{date}} at {{venue}} in Kabukicho, Shinjuku. Times will be announced once decided.",
         "aDecided": "On {{date}}, {{time}}, at {{venue}} in Kabukicho, Shinjuku."
       },
-      "4": {
-        "q": "I'd like to sponsor",
-        "a": "Thank you! Feel free to reach out to kojira or Shino3, by mentioning them on Nostr or by DM on X."
-      },
       "entry": {
         "q": "Do I need to pre-register?",
         "a": "Yes. We will announce when registration opens.",
@@ -195,7 +199,7 @@
     "label": "ARCHIVE",
     "title": "Past Nostrasia",
     "years": {
-      "2023": "First edition / nostr.world",
+      "2023": "nostr.world/nostrasia",
       "2024": "nostrasia.com/2024",
       "2025": "nostrasia.com/2025"
     }
