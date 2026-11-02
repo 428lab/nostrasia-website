@@ -1853,42 +1853,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
 .n26 .faq-link a {
   color: var(--pu);
 }
-/* スポンサーの相談先。npub は 63 文字あるので折り返す */
-.n26 .contacts {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  display: grid;
-  gap: 10px;
-}
-.n26 .contacts li {
-  display: grid;
-  gap: 4px;
-}
-.n26 .contacts a {
-  display: flex;
-  gap: 8px;
-  align-items: baseline;
-  color: var(--ink);
-  text-decoration: none;
-}
-.n26 .contacts a:hover code {
-  text-decoration: underline;
-}
-.n26 .contacts span {
-  flex: none;
-  width: 56px;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
-}
-/* 本文中の npub（.step code）と同じ書体・大きさ */
-.n26 .contacts code {
-  min-width: 0;
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-num-ls);
-  word-break: break-all;
-  color: var(--pu);
-}
 /* archive */
 .n26 .ar {
   display: grid;
