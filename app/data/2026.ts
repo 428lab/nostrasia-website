@@ -147,6 +147,12 @@ export const FLEA_MARKET_2026: Seller[] = [
       { ja: 'キーホルダー（ロクヨウ）', en: 'Key chains (Lokuyow)' },
       { ja: 'ステッカー（ロクヨウ）', en: 'Stickers (Lokuyow)' },
       { ja: 'ステッカー（けだまメイズ）', en: 'Stickers (Kedama Maze)' },
+      {
+        ja: 'アクリルキーホルダー（Nostrasia 2026）',
+        en: 'Acrylic key chains (Nostrasia 2026)',
+      },
+      { ja: 'マグネット（ロクヨウ）', en: 'Magnets (Lokuyow)' },
+      { ja: 'シール（ロクヨウ）', en: 'Seals (Lokuyow)' },
     ],
     message: {
       ja: 'ステッカーとキーホルダーとお品書きを頑張って作りました。\n\n当日は、ものグッズに加えて、[ロクヨウ](https://lokuyow.github.io/)グッズと、[けだまメイズ](https://open.spotify.com/show/0yTcypvuUHOiR1kJa7ihvW)のステッカーも販売します。\n\nよろしくお願いします！',
@@ -159,6 +165,20 @@ export const FLEA_MARKET_2026: Seller[] = [
         alt: {
           ja: 'ものやのおしながき。お手製反射ステッカー 500 円（限定 3 枚）、お手製キーホルダー 300 円',
           en: 'Monoya menu: handmade reflective stickers ¥500 (3 only), handmade key chains ¥300',
+        },
+      },
+      {
+        src: '/2026/market/monoya-kedama-sticker.webp',
+        alt: {
+          ja: 'けだまメイズステッカー。1 枚 100 円',
+          en: 'Kedama Maze stickers, ¥100 each',
+        },
+      },
+      {
+        src: '/2026/market/monoya-lokuyow-goods.webp',
+        alt: {
+          ja: 'ロクヨウのグッズ。Nostrasia 2026 アクリルキーホルダー 300 円、キーホルダー・マグネット各 100 円、ステッカー 100 円、シール 50 円。sats 払いは時価',
+          en: 'Lokuyow goods: Nostrasia 2026 acrylic key chain ¥300, key chains and magnets ¥100 each, stickers ¥100, seals ¥50. Sats prices at the current rate',
         },
       },
     ],

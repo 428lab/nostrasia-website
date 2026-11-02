@@ -1585,6 +1585,40 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   width: auto;
   height: auto;
 }
+/* 2 枚以上は高さを揃えて並べる。画像の枠を広げるため右の列を 50% にする */
+.n26 .stall-b:has(.ph.n2, .ph.n3) {
+  grid-template-columns: minmax(0, 1fr) 50%;
+}
+.n26 .ph.n2,
+.n26 .ph.n3 {
+  width: 100%;
+  justify-items: stretch;
+}
+.n26 .ph.n2 img,
+.n26 .ph.n3 a:not(:first-child) img {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+/* 3 枚は「左 1 枚 / 右に正方形 2 枚を縦に」。左の列幅は左の画像の比率から決める（--lead） */
+.n26 .ph.n3 {
+  grid-template-columns: var(--lead, 1.41fr) 1fr;
+}
+.n26 .ph.n3 a:first-child {
+  grid-row: span 2;
+  position: relative;
+  overflow: hidden;
+}
+/* 左の画像は行の高さを押し広げないよう浮かせ、右 2 枚の高さに合わせる */
+.n26 .ph.n3 a:first-child img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
 /* 写真が届くまでの仮の枠 */
 .n26 .ph-tbd {
   width: 100%;
@@ -1681,6 +1715,24 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   }
   .n26 .ph img {
     max-height: 60vh;
+  }
+  /* 2 枚以上も縦に積み、それぞれ比率のまま出す */
+  .n26 .stall-b:has(.ph.n2, .ph.n3) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .n26 .ph.n2,
+  .n26 .ph.n3 {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+  .n26 .ph.n3 a:first-child {
+    grid-row: auto;
+  }
+  .n26 .ph.n3 a:first-child img {
+    position: static;
+    height: auto;
+    max-height: 60vh;
+    object-fit: initial;
   }
   /* 仮の枠は縦積みでは場所を取るだけなので出さない */
   .n26 .media:has(.ph-tbd) {

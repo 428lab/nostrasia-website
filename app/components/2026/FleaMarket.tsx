@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState } from 'react'
+import { CSSProperties, RefObject, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FLEA_MARKET_2026, PROGRAMS_2026, Seller } from '~/data/2026'
@@ -24,8 +24,11 @@ const withLinks = (text: string) =>
     )
   })
 
-/** 屋台に出す写真は 2 枚まで */
-const MAX_IMAGES = 2
+/** 屋台に出す写真は 3 枚まで（3 枚なら左に 1 枚、右に 2 枚を縦に） */
+const MAX_IMAGES = 3
+
+/** 3 枚並びで左の 1 枚の縦横比が分かるまでの仮の値（A4 縦） */
+const LEAD_RATIO = 1 / Math.SQRT2
 
 const Stall = ({
   seller,
@@ -40,6 +43,12 @@ const Stall = ({
   const localized = useLocalized()
   const sign = seller.shop ?? seller.name
   const images = (seller.images ?? []).slice(0, MAX_IMAGES)
+  // 3 枚並びは「左の 1 枚の高さ = 右の正方形 2 枚の高さ」になるよう、左の比率から列幅を決める
+  const [lead, setLead] = useState(LEAD_RATIO)
+  const measure = (img: HTMLImageElement | null) => {
+    if (img?.complete && img.naturalHeight)
+      setLead(img.naturalWidth / img.naturalHeight)
+  }
 
   return (
     <li className={`stall c${index % 4}`}>
@@ -106,7 +115,14 @@ const Stall = ({
             // 写真が届くまでの仮の枠
             <div className="ph-tbd">{t('market.photoSoon')}</div>
           ) : (
-            <div className={`ph n${images.length}`}>
+            <div
+              className={`ph n${images.length}`}
+              style={
+                images.length === 3
+                  ? ({ '--lead': `${lead * 2}fr` } as CSSProperties)
+                  : undefined
+              }
+            >
               {images.map((image, i) => (
                 <a
                   key={image.src}
@@ -122,6 +138,11 @@ const Stall = ({
                     src={image.src}
                     alt={localized(image.alt)}
                     loading="lazy"
+                    // 水和前に読み込み終わっていると onLoad が来ないので ref でも測る
+                    ref={i === 0 ? measure : undefined}
+                    onLoad={
+                      i === 0 ? (e) => measure(e.currentTarget) : undefined
+                    }
                   />
                 </a>
               ))}
