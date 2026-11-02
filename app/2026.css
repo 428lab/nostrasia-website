@@ -1180,8 +1180,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   gap: 10px;
   align-items: baseline;
   min-width: 0;
-  padding-left: 8px;
-  border-left: 4px solid var(--pc);
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
   white-space: nowrap;
@@ -1194,12 +1192,18 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   letter-spacing: var(--t-num-ls);
   flex: none;
 }
-.n26 .tt-mini-i.live {
+/* 並行する枠は場所の色帯付きで横に並べる */
+.n26 .tt-mini-t {
+  padding-left: 6px;
+  border-left: 4px solid var(--pc);
+}
+.n26 .tt-mini-t.live {
   font-weight: 700;
   background: #fff;
 }
-.n26 .tt-mini-i.past,
-.n26 .tt-row.past {
+.n26 .tt-mini-t.past,
+.n26 .tt-row.past,
+.n26 .tt-card.past {
   opacity: 0.45;
 }
 /* 開催までの日数・いまの時刻 */
@@ -1305,12 +1309,25 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   letter-spacing: var(--t-num-ls);
   color: var(--mute);
 }
-.n26 .tt-what {
+/* 同じ時刻に始まる枠は横に並べる（狭ければ折り返す） */
+.n26 .tt-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.n26 .tt-card {
   padding: 2px 0 2px 12px;
   border-left: 6px solid var(--pc);
 }
-.n26 .tt-row.live .tt-what {
+.n26 .tt-card.live {
   background: #fff;
+}
+.n26 .tt-card .tt-end {
+  margin: 0 0 2px;
+}
+/* 枠の中が終わっていても、まとめた行が終わっていなければ行は薄くしない */
+.n26 .tt-row.past .tt-card.past {
+  opacity: 1;
 }
 .n26 .tt-title {
   display: block;
@@ -1895,8 +1912,20 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
     border: 0;
   }
   .n26 .tt-row {
-    grid-template-columns: 76px minmax(0, 1fr);
+    grid-template-columns: 64px minmax(0, 1fr);
     gap: 10px;
+  }
+  /* 並行する枠はスマホでも横に並べる。題名を一段小さくして 2 つ収める */
+  .n26 .tt-cards {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .n26 .tt-card {
+    padding-left: 8px;
+    border-left-width: 4px;
+  }
+  .n26 .tt-card .tt-title {
+    font: var(--t-name);
   }
   .n26 .tt-start {
     font: var(--t-num);

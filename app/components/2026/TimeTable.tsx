@@ -50,6 +50,17 @@ const stateOf = (s: Session, phase: Phase | null) => {
   return ''
 }
 
+/** 同じ時刻に始まる枠を 1 行にまとめる（並行して動くものを横に並べて見せる） */
+const SLOTS = TIMETABLE_2026.reduce<{ start: string; items: Session[] }[]>(
+  (acc, s) => {
+    const last = acc[acc.length - 1]
+    if (last?.start === s.start) last.items.push(s)
+    else acc.push({ start: s.start, items: [s] })
+    return acc
+  },
+  [],
+)
+
 const Status = ({ phase }: { phase: Phase | null }) => {
   const { t } = useTranslation()
   if (!phase) return null
@@ -78,9 +89,7 @@ export const TimeTable = () => {
   const nowMin = phase?.kind === 'live' ? phase.min : null
   // 「いま」の線は、まだ始まっていない最初の枠の手前に引く
   const nowBefore =
-    nowMin === null
-      ? -1
-      : TIMETABLE_2026.findIndex((s) => toMin(s.start) > nowMin)
+    nowMin === null ? -1 : SLOTS.findIndex((slot) => toMin(slot.start) > nowMin)
 
   const open = () => {
     const d = dialog.current
@@ -88,7 +97,8 @@ export const TimeTable = () => {
     d.showModal()
     // 当日は「いま」の位置を真ん中まで送る。開いた直後は「閉じる」へのフォーカスで先頭に戻るので 1 フレーム待つ
     requestAnimationFrame(() => {
-      const mark = d.querySelector('.tt-now') ?? d.querySelector('.tt-row.live')
+      const mark =
+        d.querySelector('.tt-now') ?? d.querySelector('.tt-card.live')
       if (!mark) return
       const top =
         mark.getBoundingClientRect().top - d.getBoundingClientRect().top
@@ -113,17 +123,21 @@ export const TimeTable = () => {
             className="tt-mini"
             style={
               {
-                '--rows': Math.ceil(TIMETABLE_2026.length / 2),
+                '--rows': Math.ceil(SLOTS.length / 2),
               } as CSSProperties
             }
           >
-            {TIMETABLE_2026.map((s) => (
-              <span
-                key={`${s.start}-${s.place}`}
-                className={`tt-mini-i p-${s.place} ${stateOf(s, phase)}`}
-              >
-                <time>{s.start}</time>
-                {localized(s.title)}
+            {SLOTS.map((slot) => (
+              <span key={slot.start} className="tt-mini-i">
+                <time>{slot.start}</time>
+                {slot.items.map((s) => (
+                  <span
+                    key={s.place}
+                    className={`tt-mini-t p-${s.place} ${stateOf(s, phase)}`}
+                  >
+                    {localized(s.title)}
+                  </span>
+                ))}
               </span>
             ))}
           </span>
@@ -163,34 +177,62 @@ export const TimeTable = () => {
             </button>
           </header>
           <ol className="tt-list">
-            {TIMETABLE_2026.map((s, i) => (
-              <Fragment key={`${s.start}-${s.place}`}>
-                {i === nowBefore && nowMin !== null && (
-                  <li className="tt-now" aria-hidden="true">
-                    <span>{t('timetable.now')}</span>
-                    <time>{hhmm(nowMin)}</time>
-                  </li>
-                )}
-                <li className={`tt-row p-${s.place} ${stateOf(s, phase)}`}>
-                  <div className="tt-when">
-                    <time className="tt-start">{s.start}</time>
-                    <time className="tt-end">– {s.end}</time>
-                  </div>
-                  <div className="tt-what">
-                    <b className="tt-title">{localized(s.title)}</b>
-                    <div className="tt-meta">
-                      <span className={`tt-place p-${s.place}`}>
-                        {t(`timetable.place.${s.place}`)}
-                      </span>
-                      {s.speaker && <span className="tt-by">{s.speaker}</span>}
-                      {stateOf(s, phase) === 'live' && (
-                        <span className="tt-live">{t('timetable.live')}</span>
+            {SLOTS.map((slot, i) => {
+              // 終わりが揃っていれば左に出し、ばらばらなら各カードに出す
+              const ends = new Set(slot.items.map((s) => s.end))
+              const sameEnd = ends.size === 1
+              const states = slot.items.map((s) => stateOf(s, phase))
+              return (
+                <Fragment key={slot.start}>
+                  {i === nowBefore && nowMin !== null && (
+                    <li className="tt-now" aria-hidden="true">
+                      <span>{t('timetable.now')}</span>
+                      <time>{hhmm(nowMin)}</time>
+                    </li>
+                  )}
+                  <li
+                    className={
+                      states.every((st) => st === 'past')
+                        ? 'tt-row past'
+                        : 'tt-row'
+                    }
+                  >
+                    <div className="tt-when">
+                      <time className="tt-start">{slot.start}</time>
+                      {sameEnd && (
+                        <time className="tt-end">– {slot.items[0].end}</time>
                       )}
                     </div>
-                  </div>
-                </li>
-              </Fragment>
-            ))}
+                    <div className="tt-cards">
+                      {slot.items.map((s, j) => (
+                        <div
+                          key={s.place}
+                          className={`tt-card p-${s.place} ${states[j]}`}
+                        >
+                          {!sameEnd && (
+                            <time className="tt-end">– {s.end}</time>
+                          )}
+                          <b className="tt-title">{localized(s.title)}</b>
+                          <div className="tt-meta">
+                            <span className={`tt-place p-${s.place}`}>
+                              {t(`timetable.place.${s.place}`)}
+                            </span>
+                            {s.speaker && (
+                              <span className="tt-by">{s.speaker}</span>
+                            )}
+                            {states[j] === 'live' && (
+                              <span className="tt-live">
+                                {t('timetable.live')}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </li>
+                </Fragment>
+              )
+            })}
           </ol>
           <p className="note">
             {/* registrationUrl が無ければ「events lab」をリンクにしない */}
