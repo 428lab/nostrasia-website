@@ -106,11 +106,13 @@
   "timetable": {
     "label": "TIME TABLE",
     "title": "Timetable",
-    "track": "TRACK {{id}}",
-    "tbd": "TBD",
-    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
-    "veilSub": "The timetable will be posted once decided",
-    "veilSubHours": "{{start}}–{{end}}. Sessions will be posted once decided"
+    "place": {
+      "all": "All",
+      "main": "Main",
+      "lounge1": "Lounge 1",
+      "lounge3": "Lounge 3"
+    },
+    "note": "* Subject to change. See <a>events lab</a> for the latest."
   },
   "speakers": {
     "label": "SPEAKERS",

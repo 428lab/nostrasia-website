@@ -1122,90 +1122,61 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   padding: 1px 4px;
 }
 /* timetable */
-.n26 .tt-scroll {
-  overflow-x: auto;
-  border: 3px solid var(--ink);
-  background: var(--paper);
-  -webkit-overflow-scrolling: touch;
+.n26 .tt-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-block: 3px solid var(--ink);
 }
-.n26 .gantt {
-  min-width: 640px;
-  padding: 14px 14px 18px;
-}
-.n26 .axis,
-.n26 .row {
+.n26 .tt-list li {
   display: grid;
-  grid-template-columns: 96px 1fr;
-  align-items: center;
+  grid-template-columns: 132px 1fr;
+  padding: 14px 0;
 }
-.n26 .axis .tk {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
-  color: var(--mute);
+.n26 .tt-list li + li {
+  border-top: 3px solid var(--ink);
 }
-.n26 .axis .tk span {
-  border-left: 1px dashed rgba(22, 22, 22, 0.3);
-  padding: 0 0 8px 4px;
+.n26 .tt-time {
+  font: var(--t-num);
+  letter-spacing: var(--t-num-ls);
 }
-.n26 .row {
-  border-top: 2px solid var(--ink);
-  min-height: 58px;
-}
-.n26 .row b {
-  font: var(--t-eyebrow);
-  letter-spacing: var(--t-eyebrow-ls);
-}
-.n26 .row b small {
+.n26 .tt-title {
   display: block;
+  font: var(--t-h3);
+  letter-spacing: 0;
+}
+.n26 .tt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 6px;
+}
+/* 場所のチップ。左の色帯で場所を見分ける */
+.n26 .tt-place {
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+  border: 2px solid var(--ink);
+  border-left-width: 6px;
+  padding: 3px 7px;
+  background: var(--paper);
+}
+.n26 .tt-place.p-all {
+  border-left-color: var(--ink);
+}
+.n26 .tt-place.p-main {
+  border-left-color: var(--pu);
+}
+.n26 .tt-place.p-lounge1 {
+  border-left-color: var(--te);
+}
+.n26 .tt-place.p-lounge3 {
+  border-left-color: var(--or);
+}
+.n26 .tt-by {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
-}
-.n26 .lane {
-  position: relative;
-  height: 58px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0 calc(12.5% - 1px),
-    rgba(22, 22, 22, 0.14) calc(12.5% - 1px) 12.5%
-  );
-}
-.n26 .bar {
-  position: absolute;
-  top: 9px;
-  bottom: 9px;
-  left: calc(var(--a) * 12.5%);
-  width: calc(var(--l) * 12.5% - 4px);
-  border: 2px solid var(--ink);
-  padding: 4px 7px;
-  font: var(--t-micro);
-  letter-spacing: var(--t-micro-ls);
-  overflow: hidden;
-  transform-origin: left center;
-  transition: transform 0.8s cubic-bezier(0.6, 0, 0.2, 1)
-    calc(var(--d, 0) * 1ms);
-}
-.n26 .bar.T {
-  background: var(--pu);
-  color: #fff;
-}
-.n26 .bar.L {
-  background: var(--or);
-}
-.n26 .bar.W {
-  background: var(--te);
-  color: #fff;
-}
-.n26 .bar.S {
-  background: var(--ye);
-}
-html.js:not(.no-hydrate) .n26 .bar {
-  transform: scaleX(0);
-}
-html.js:not(.no-hydrate) .n26 .gantt.in .bar {
-  transform: none;
 }
 /* speakers */
 .n26 .sg {
@@ -1241,7 +1212,7 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   letter-spacing: var(--t-cap-ls);
   color: var(--mute);
 }
-/* すりガラスの膜（Veil）。未定の内容をぼかして覆う。フロアマップ・タイムテーブル・登壇者で共通 */
+/* すりガラスの膜（Veil）。未定の内容をぼかして覆う。フロアマップ・登壇者で共通 */
 .n26 .veiled {
   position: relative;
   overflow: hidden;
@@ -1254,11 +1225,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   transform: scale(1.04);
   pointer-events: none;
   user-select: none;
-}
-/* 中身の枠線は外側の .veiled が持つ。横スクロールもさせない */
-.n26 .veiled .tt-scroll {
-  border: 0;
-  overflow: hidden;
 }
 .n26 .veiled .sg {
   padding: 14px;
@@ -1727,6 +1693,11 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   .n26 .stall .ft {
     padding-top: 8px;
   }
+  /* タイムテーブルは時刻を題名の上に置く */
+  .n26 .tt-list li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
 }
 .n26 .mk-cta {
   margin-top: 40px;
@@ -2084,10 +2055,6 @@ html.js:not(.no-hydrate) .n26 .gantt.in .bar {
   html.js:not(.no-hydrate) .n26 .stage.walk .bird,
   html.js .n26.menu-open .gnav li {
     animation: none;
-  }
-  html.js:not(.no-hydrate) .n26 .bar {
-    transform: none;
-    transition: none;
   }
   .n26 .it,
   .n26 .it i,
