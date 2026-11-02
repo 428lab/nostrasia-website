@@ -64,6 +64,16 @@ export type Seller = {
   images?: { src: string; alt: Localized }[]
 }
 
+export type Session = {
+  start: string // 'HH:MM'
+  end: string // 'HH:MM'
+  title: Localized
+  /** all = 会場全体 */
+  place: 'all' | 'main' | 'lounge1' | 'lounge3'
+  /** 担当（events lab の Speaker） */
+  speaker?: string
+}
+
 export const EVENT_2026 = {
   /** 開催日 'YYYY-MM-DD'。未定は null → 「2026.??.??」 */
   date: '2026-11-29' as string | null,
@@ -135,6 +145,79 @@ export const PROGRAMS_2026: {
       ja: '出店を見る →',
       en: 'See the stalls →',
     },
+  },
+]
+
+/** events lab（EVENT_2026.registrationUrl）のタイムテーブルを写したもの。時刻は JST */
+export const TIMETABLE_2026: Session[] = [
+  {
+    start: '13:00',
+    end: '13:05',
+    title: { ja: '開始あいさつ', en: 'Opening remarks' },
+    place: 'all',
+    speaker: 'kojira',
+  },
+  {
+    start: '13:05',
+    end: '13:20',
+    title: { ja: '登壇枠 1', en: 'Talk slot 1' },
+    place: 'all',
+  },
+  {
+    start: '13:20',
+    end: '13:35',
+    title: { ja: '登壇枠 2', en: 'Talk slot 2' },
+    place: 'all',
+  },
+  {
+    start: '13:20',
+    end: '18:00',
+    title: { ja: 'フリーマーケット', en: 'Flea market' },
+    place: 'lounge3',
+    speaker: 'ロクヨウ',
+  },
+  {
+    start: '13:35',
+    end: '13:50',
+    title: { ja: '登壇枠 3', en: 'Talk slot 3' },
+    place: 'all',
+  },
+  {
+    start: '13:50',
+    end: '14:00',
+    title: { ja: '登壇枠 4', en: 'Talk slot 4' },
+    place: 'all',
+  },
+  {
+    start: '14:00',
+    end: '18:00',
+    title: { ja: 'ボードゲーム', en: 'Board games' },
+    place: 'lounge1',
+  },
+  {
+    start: '14:00',
+    end: '18:00',
+    title: { ja: '交流スペース', en: 'Hangout space' },
+    place: 'main',
+  },
+  {
+    start: '18:00',
+    end: '19:00',
+    title: { ja: 'ひみつ', en: 'Secret' },
+    place: 'all',
+  },
+  {
+    start: '19:00',
+    end: '20:00',
+    title: { ja: '交流タイム', en: 'Hangout time' },
+    place: 'main',
+  },
+  {
+    start: '20:00',
+    end: '20:05',
+    title: { ja: '締めのあいさつ', en: 'Closing remarks' },
+    place: 'all',
+    speaker: 'kojira',
   },
 ]
 

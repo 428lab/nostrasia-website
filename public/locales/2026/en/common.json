@@ -107,11 +107,21 @@
   "timetable": {
     "label": "TIME TABLE",
     "title": "Timetable",
-    "track": "TRACK {{id}}",
-    "tbd": "TBD",
-    "note": "* Times, sessions and tracks will be posted once decided. Scroll the table sideways.",
-    "veilSub": "The timetable will be posted once decided",
-    "veilSubHours": "{{start}}–{{end}}. Sessions will be posted once decided"
+    "place": {
+      "all": "All",
+      "main": "Main",
+      "lounge1": "Lounge 1",
+      "lounge3": "Lounge 3"
+    },
+    "dayTitle": "{{wd}}, {{date}} (JST)",
+    "now": "NOW",
+    "nowAt": "Now {{time}} JST",
+    "live": "On now",
+    "daysLeft_one": "{{count}} day to go",
+    "daysLeft_other": "{{count}} days to go",
+    "startsIn": "Starts in {{time}}",
+    "ended": "This event has ended",
+    "note": "* Subject to change. See <a>events lab</a> for the latest."
   },
   "speakers": {
     "label": "SPEAKERS",

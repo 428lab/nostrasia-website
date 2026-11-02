@@ -107,11 +107,20 @@
   "timetable": {
     "label": "TIME TABLE",
     "title": "タイムテーブル",
-    "track": "TRACK {{id}}",
-    "tbd": "TBD",
-    "note": "※ 時刻・内容・トラックは決まり次第掲載します。表は横にスクロールできます。",
-    "veilSub": "タイムテーブルは決まり次第掲載します",
-    "veilSubHours": "{{start}}–{{end}}。内容は決まり次第掲載します"
+    "place": {
+      "all": "全体",
+      "main": "メイン",
+      "lounge1": "Lounge 1",
+      "lounge3": "Lounge 3"
+    },
+    "dayTitle": "{{date}}（{{wd}}）日本時間",
+    "now": "NOW",
+    "nowAt": "いま {{time}}（日本時間）",
+    "live": "開催中",
+    "daysLeft": "開催まで あと {{count}} 日",
+    "startsIn": "開始まで あと {{time}}",
+    "ended": "終了しました",
+    "note": "※ 内容は変わることがあります。最新は <a>events lab</a> をご覧ください。"
   },
   "speakers": {
     "label": "SPEAKERS",
