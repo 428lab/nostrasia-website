@@ -1128,7 +1128,7 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   padding: 1px 4px;
 }
 /* timetable */
-/* 場所ごとの色。チップ・帯・小さな一覧で共通 */
+/* 場所ごとの色。チップ・カードの帯で共通 */
 .n26 .p-all {
   --pc: var(--ink);
 }
@@ -1141,92 +1141,118 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
 .n26 .p-lounge3 {
   --pc: var(--or);
 }
-/* 開催までの日数・いまの時刻 */
+/* 表の上の日付と、開催までの日数・いまの時刻 */
+.n26 .tt-day {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 18px;
+}
+.n26 .tt-day-t {
+  font: var(--t-h3);
+  margin: 0;
+}
 .n26 .tt-status {
   display: inline-block;
   font: var(--t-micro);
   letter-spacing: var(--t-micro-ls);
-  background: var(--ye);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--ye);
   padding: 5px 9px;
 }
 .n26 .tt-status.s-live {
   background: var(--or);
   color: #fff;
 }
-.n26 .tt-row.past,
-.n26 .tt-card.past {
-  opacity: 0.45;
-}
-/* 表は枠で囲み、日付と「いま」の見出しを、表を読んでいるあいだサイトのヘッダーの下に残す */
-.n26 .tt {
-  border: 3px solid var(--ink);
-  background: var(--paper);
-  box-shadow: 6px 6px 0 var(--ink);
-}
-.n26 .tt-head {
-  position: sticky;
-  top: calc(var(--hh) + 3px);
-  z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px 12px;
-  padding: 10px 16px;
-  background: var(--ink);
-  color: #fff;
-}
-.n26 .tt-head-t {
-  font: var(--t-h3);
-  margin: 0;
-}
-/* 1 行 = 左に開始（大）と終了（小）、右に内容 */
-.n26 .tt-list {
+/*
+ * 縦の時間軸。1 行 = 時刻 / 丸印 / カード。
+ * 縦線は一覧の ::before で 1 本引き、丸印をその上に重ねる（--tw は時刻の列幅、--dw は丸印の列幅）
+ */
+.n26 .tt-line {
+  --tw: 96px;
+  --dw: 28px;
+  position: relative;
   list-style: none;
-  margin: 0 16px;
+  margin: 0;
   padding: 0;
 }
-.n26 .tt-row {
-  display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
-  gap: 14px;
-  padding: 12px 0;
+.n26 .tt-line::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: calc(var(--tw) + var(--dw) / 2 - 1.5px);
+  width: 3px;
+  background: var(--ink);
 }
-.n26 .tt-row + .tt-row {
-  border-top: 2px solid var(--ink);
+.n26 .tt-row,
+.n26 .tt-now {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tw) var(--dw) minmax(0, 1fr);
+  align-items: start;
+}
+.n26 .tt-row {
+  padding: 6px 0 10px;
+}
+.n26 .tt-when {
+  text-align: right;
+  padding-right: 10px;
 }
 .n26 .tt-start {
   display: block;
-  font: var(--t-num-xl);
+  font: var(--t-num);
   letter-spacing: var(--t-num-ls);
+  line-height: 28px;
 }
 .n26 .tt-end {
   display: block;
-  margin-top: 4px;
   font: var(--t-cap);
   letter-spacing: var(--t-num-ls);
   color: var(--mute);
 }
+/* 時刻ごとの丸印。始まった枠は塗り、進行中はオレンジ */
+.n26 .tt-dot {
+  justify-self: center;
+  margin-top: 6px;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  z-index: 1;
+}
+.n26 .tt-row.past .tt-dot {
+  background: var(--ink);
+}
+.n26 .tt-row.live .tt-dot {
+  background: var(--or);
+  box-shadow: 0 0 0 4px rgba(242, 84, 45, 0.25);
+}
+.n26 .tt-row.past .tt-when,
+.n26 .tt-card.past {
+  opacity: 0.45;
+}
 /* 同じ時刻に始まる枠は横に並べる（狭ければ折り返す） */
 .n26 .tt-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 10px;
+  padding-left: 8px;
 }
 .n26 .tt-card {
-  padding: 2px 0 2px 12px;
+  padding: 6px 12px 8px;
+  border: 2px solid var(--ink);
   border-left: 6px solid var(--pc);
+  background: var(--paper);
 }
 .n26 .tt-card.live {
   background: #fff;
+  box-shadow: 4px 4px 0 var(--or);
 }
 .n26 .tt-card .tt-end {
-  margin: 0 0 2px;
-}
-/* 枠の中が終わっていても、まとめた行が終わっていなければ行は薄くしない */
-.n26 .tt-row.past .tt-card.past {
-  opacity: 1;
+  margin-bottom: 2px;
 }
 .n26 .tt-title {
   display: block;
@@ -1261,24 +1287,37 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   color: #fff;
   padding: 4px 7px;
 }
-/* 当日の「いま」の線 */
+/* 当日の「いま」。縦線の上にひし形の印を置き、右へ横線を引く */
 .n26 .tt-now {
+  align-items: center;
+  padding: 2px 0 12px;
+  color: var(--or);
+  font: var(--t-micro);
+  letter-spacing: var(--t-micro-ls);
+}
+.n26 .tt-now-l {
+  text-align: right;
+  padding-right: 10px;
+}
+.n26 .tt-now .tt-dot {
+  margin-top: 0;
+  border-color: var(--or);
+  background: var(--or);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.n26 .tt-now time {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 0;
-  font: var(--t-micro);
-  letter-spacing: var(--t-micro-ls);
-  color: var(--or);
+  padding-left: 8px;
+  font-family: var(--en);
 }
-.n26 .tt-now::after {
+.n26 .tt-now time::after {
   content: '';
   flex: 1;
   height: 3px;
   background: var(--or);
-}
-.n26 .tt-now time {
-  font-family: var(--en);
 }
 /* speakers */
 .n26 .sg {
@@ -1809,29 +1848,33 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   .n26 .stall .ft {
     padding-top: 8px;
   }
-  /* タイムテーブル */
-  .n26 .tt-list {
-    margin: 0 12px;
+  /* タイムテーブル: 時刻の列を詰め、並行する枠も 2 つ横に並べる */
+  .n26 .tt-line {
+    --tw: 64px;
+    --dw: 22px;
   }
-  .n26 .tt-row {
-    grid-template-columns: 70px minmax(0, 1fr);
-    gap: 10px;
+  .n26 .tt-when {
+    padding-right: 6px;
   }
-  /* 並行する枠はスマホでも横に並べる。題名を一段小さくして 2 つ収める */
+  .n26 .tt-start {
+    letter-spacing: 0;
+    font-size: 15px;
+  }
+  .n26 .tt-dot {
+    width: 14px;
+    height: 14px;
+  }
   .n26 .tt-cards {
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
     gap: 8px;
+    padding-left: 4px;
   }
   .n26 .tt-card {
-    padding-left: 8px;
+    padding: 6px 8px 8px;
     border-left-width: 4px;
   }
   .n26 .tt-card .tt-title {
     font: var(--t-name);
-  }
-  .n26 .tt-start {
-    font: var(--t-num);
-    letter-spacing: 0;
   }
 }
 .n26 .vh {
