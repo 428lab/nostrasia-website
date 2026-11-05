@@ -297,6 +297,15 @@ export const FLEA_MARKET_2026: Seller[] = [
       en: 'Cheer on BTC with El Salvador coffee!',
     },
     payment: ['lightning', 'cash'],
+    images: [
+      {
+        src: '/2026/market/riray-coffee.webp',
+        alt: {
+          ja: 'RIRAY COFFEE のロゴ。稲妻マーク入りのドリッパーと「NOSTRASIA 2026 POP UP」の文字',
+          en: 'RIRAY COFFEE logo: a dripper with a lightning bolt and the words "NOSTRASIA 2026 POP UP"',
+        },
+      },
+    ],
   },
   {
     status: 'confirmed',
