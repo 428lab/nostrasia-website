@@ -286,6 +286,7 @@ export const FLEA_MARKET_2026: Seller[] = [
   },
   {
     status: 'confirmed',
+    shop: 'RIRAY COFFEE',
     name: '小牧りら',
     npub: 'npub1tuqsl6l8xzly95vv80um7wsnt7gxy8w9wgt4khp4wyv4xwhfw44slm93e9',
     items: [
