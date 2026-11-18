@@ -1443,6 +1443,31 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   border: 2px solid var(--ink);
   object-fit: cover;
 }
+/* 協賛してもらったもの。名前の下に小さく */
+.n26 .slot-for {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+}
+/* ロゴは黒文字が多いので、ホバーでも背景を黒にせず枠の影で反応を見せる */
+.n26 .slots > li {
+  display: flex;
+}
+.n26 .slots > li > .slot {
+  flex: 1;
+}
+/* ロゴのある枠は 2 列ぶん使って、ロゴを読める大きさで出す */
+.n26 .slots > li.has-logo {
+  grid-column: span 2;
+}
+.n26 .has-logo .slot img {
+  width: min(240px, 80%);
+  max-height: none;
+}
+.n26 .has-logo a.slot:hover {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
 /* ホバーで枠の背景が黒になるので、アイコンの縁を白に替えて埋もれないようにする */
 .n26 a.slot:hover img.slot-icon {
   border-color: #fff;

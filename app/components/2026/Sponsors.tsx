@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { SPONSORS_2026, Sponsor } from '~/data/2026'
+import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
 
@@ -9,15 +10,27 @@ const sponsorHref = (sponsor: Sponsor) =>
   sponsor.url ?? (sponsor.npub ? `https://njump.me/${sponsor.npub}` : undefined)
 
 const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
-  if (sponsor.logo) return <img src={sponsor.logo} alt={sponsor.name} />
-  if (sponsor.icon)
-    return (
-      <>
-        <img className="slot-icon" src={sponsor.icon} alt="" />
-        {sponsor.name}
-      </>
-    )
-  return sponsor.name
+  const localized = useLocalized()
+  const name = sponsor.logo ? (
+    <img src={sponsor.logo} alt={sponsor.name} />
+  ) : sponsor.icon ? (
+    <>
+      <img className="slot-icon" src={sponsor.icon} alt="" />
+      {sponsor.name}
+    </>
+  ) : (
+    sponsor.name
+  )
+  return (
+    <>
+      {name}
+      {sponsor.support && (
+        <small className="slot-for">
+          {sponsor.support.map((s) => localized(s)).join(' / ')}
+        </small>
+      )}
+    </>
+  )
 }
 
 export const Sponsors = () => {
@@ -31,7 +44,10 @@ export const Sponsors = () => {
           {SPONSORS_2026.map((sponsor) => {
             const href = sponsorHref(sponsor)
             return (
-              <li key={sponsor.name}>
+              <li
+                key={sponsor.name}
+                className={sponsor.logo ? 'has-logo' : undefined}
+              >
                 {href ? (
                   <a
                     className="slot"
