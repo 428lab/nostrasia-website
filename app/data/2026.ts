@@ -42,6 +42,8 @@ export type Sponsor = {
   icon?: string
   /** npub1... url が無いとき https://njump.me/<npub> にリンクする */
   npub?: string
+  /** 協賛してもらったもの（会場、フード・ドリンクなど）。名前の下に小さく出す */
+  support?: Localized[]
 }
 
 export type Seller = {
@@ -355,6 +357,15 @@ export const SPEAKER_PLACEHOLDER_COUNT = 6
 
 /** スポンサー。tier は分けず、この順に並べる */
 export const SPONSORS_2026: Sponsor[] = [
+  {
+    name: '全力機械株式会社',
+    url: 'https://www.zenryokukikai.com/',
+    logo: '/2026/sponsors/zenryoku-kikai.webp',
+    support: [
+      { ja: '会場', en: 'Venue' },
+      { ja: 'フード・ドリンク', en: 'Food & Drinks' },
+    ],
+  },
   {
     name: 'Shino3',
     icon: '/2026/sponsors/shino3.webp',

@@ -1427,10 +1427,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   color: var(--ink);
   text-decoration: none;
 }
-.n26 a.slot:hover {
-  background: var(--ink);
-  color: #fff;
-}
 .n26 .slot img {
   max-width: 80%;
   max-height: 64px;
@@ -1443,9 +1439,33 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   border: 2px solid var(--ink);
   object-fit: cover;
 }
-/* ホバーで枠の背景が黒になるので、アイコンの縁を白に替えて埋もれないようにする */
-.n26 a.slot:hover img.slot-icon {
-  border-color: #fff;
+/* 協賛してもらったもの。名前の下に小さく */
+.n26 .slot-for {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+}
+.n26 .slots > li {
+  display: flex;
+}
+.n26 .slots > li > .slot {
+  flex: 1;
+}
+/* ロゴのある枠は 2 列ぶん使って、ロゴを読める大きさで出す */
+.n26 .slots > li.has-logo {
+  grid-column: span 2;
+}
+.n26 .has-logo .slot img {
+  width: min(240px, 80%);
+  max-height: none;
+}
+/* 枠はリンクにせず、リンク先の URL を文字で出してそこだけ押せるようにする */
+.n26 .slot-url {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  color: var(--pu);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
 }
 .n26 .btn2 {
   display: inline-block;
