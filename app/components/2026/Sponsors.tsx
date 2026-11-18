@@ -9,6 +9,15 @@ import { SectionHead } from './SectionHead'
 const sponsorHref = (sponsor: Sponsor) =>
   sponsor.url ?? (sponsor.npub ? `https://njump.me/${sponsor.npub}` : undefined)
 
+/** 枠の中に出すリンク先の文字。URL はドメインとパス、npub は前後だけ残して縮める（リンク先は njump.me） */
+const hrefLabel = (sponsor: Sponsor) => {
+  if (sponsor.url)
+    return sponsor.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
+  if (sponsor.npub)
+    return `${sponsor.npub.slice(0, 10)}…${sponsor.npub.slice(-4)}`
+  return undefined
+}
+
 const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
   const localized = useLocalized()
   const name = sponsor.logo ? (
@@ -21,6 +30,7 @@ const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
   ) : (
     sponsor.name
   )
+  const label = hrefLabel(sponsor)
   return (
     <>
       {name}
@@ -29,6 +39,7 @@ const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
           {sponsor.support.map((s) => localized(s)).join(' / ')}
         </small>
       )}
+      {label && <span className="slot-url">{label} ↗</span>}
     </>
   )
 }

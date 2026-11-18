@@ -1448,7 +1448,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
 }
-/* ロゴは黒文字が多いので、ホバーでも背景を黒にせず枠の影で反応を見せる */
 .n26 .slots > li {
   display: flex;
 }
@@ -1463,10 +1462,21 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   width: min(240px, 80%);
   max-height: none;
 }
-.n26 .has-logo a.slot:hover {
-  background: var(--paper);
-  color: var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+/* ホバーで枠が黒くなると黒文字のロゴが消えるので、ロゴを白抜きにする */
+.n26 .has-logo a.slot:hover img {
+  filter: brightness(0) invert(1);
+}
+/* リンク先の URL を文字で出し、押せる枠だと分かるようにする */
+.n26 .slot-url {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  color: var(--pu);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.n26 a.slot:hover .slot-url {
+  color: #fff;
 }
 /* ホバーで枠の背景が黒になるので、アイコンの縁を白に替えて埋もれないようにする */
 .n26 a.slot:hover img.slot-icon {
