@@ -18,6 +18,7 @@ const hrefLabel = (sponsor: Sponsor) => {
   return undefined
 }
 
+/** 枠そのものはリンクにせず、リンク先の文字だけを押せるようにする */
 const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
   const localized = useLocalized()
   const name = sponsor.logo ? (
@@ -30,6 +31,7 @@ const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
   ) : (
     sponsor.name
   )
+  const href = sponsorHref(sponsor)
   const label = hrefLabel(sponsor)
   return (
     <>
@@ -39,7 +41,16 @@ const SponsorName = ({ sponsor }: { sponsor: Sponsor }) => {
           {sponsor.support.map((s) => localized(s)).join(' / ')}
         </small>
       )}
-      {label && <span className="slot-url">{label} ↗</span>}
+      {href && label && (
+        <a
+          className="slot-url"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {label} ↗
+        </a>
+      )}
     </>
   )
 }
@@ -52,30 +63,16 @@ export const Sponsors = () => {
       <div className="wrap">
         <SectionHead label={t('sponsors.label')} title={t('sponsors.title')} />
         <ul className="slots">
-          {SPONSORS_2026.map((sponsor) => {
-            const href = sponsorHref(sponsor)
-            return (
-              <li
-                key={sponsor.name}
-                className={sponsor.logo ? 'has-logo' : undefined}
-              >
-                {href ? (
-                  <a
-                    className="slot"
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <SponsorName sponsor={sponsor} />
-                  </a>
-                ) : (
-                  <div className="slot">
-                    <SponsorName sponsor={sponsor} />
-                  </div>
-                )}
-              </li>
-            )
-          })}
+          {SPONSORS_2026.map((sponsor) => (
+            <li
+              key={sponsor.name}
+              className={sponsor.logo ? 'has-logo' : undefined}
+            >
+              <div className="slot">
+                <SponsorName sponsor={sponsor} />
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
