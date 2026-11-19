@@ -376,6 +376,11 @@ export const SPONSORS_2026: Sponsor[] = [
     icon: '/2026/sponsors/kojira.webp',
     npub: 'npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
   },
+  {
+    name: 'murachue',
+    icon: '/2026/sponsors/murachue.webp',
+    npub: 'npub1amhc78pnl6lva0y0uz4ten6zv6zl2cy9a6x7zr47jgq24zhr774sym0hf9',
+  },
 ]
 
 /** 過去回。/2024 と /2025 はこのアプリ内のアーカイブ（年ごとに locale が違うので必ず全ページ遷移で開く） */
