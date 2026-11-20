@@ -382,12 +382,14 @@ export const SPEAKERS_2026: Speaker[] = [
     image: '/2026/speakers/shino3.webp',
   },
   {
-    // アイコンとプロフィールのリンクは後日
     name: 'kohei',
     talk: {
       ja: 'MY FAVORITE NOSTR CLIENTS 2026',
       en: 'MY FAVORITE NOSTR CLIENTS 2026',
     },
+    profileUrl:
+      'https://njump.me/npub16lrdq99ng2q4hg5ufre5f8j0qpealp8544vq4ctn2wqyrf4tk6uqn8mfeq',
+    image: '/2026/speakers/kohei.webp',
   },
 ]
 export const SPEAKER_PLACEHOLDER_COUNT = 6
