@@ -128,7 +128,8 @@
     "title": "Speakers",
     "tbd": "TBD",
     "soon": "Announced once confirmed",
-    "note": "Announced once confirmed"
+    "note": "Announced once confirmed",
+    "lt": "Lightning talks (5 min)"
   },
   "market": {
     "label": "FLEA MARKET",

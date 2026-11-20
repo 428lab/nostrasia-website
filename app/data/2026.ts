@@ -28,6 +28,8 @@ export type Speaker = {
   title?: Localized
   /** 登壇タイトル。名前の下に出す */
   talk?: Localized
+  /** 'lt' は LT 枠（5 分）。登壇枠とは分けて並べる */
+  kind?: 'talk' | 'lt'
   /** njump.me 等のプロフィール URL */
   profileUrl?: string
   /** /2026/speakers/ 以下に置いた画像のパス */
@@ -390,6 +392,21 @@ export const SPEAKERS_2026: Speaker[] = [
     profileUrl:
       'https://njump.me/npub16lrdq99ng2q4hg5ufre5f8j0qpealp8544vq4ctn2wqyrf4tk6uqn8mfeq',
     image: '/2026/speakers/kohei.webp',
+  },
+  // LT 枠。タイトルが決まったら talk を足す
+  {
+    kind: 'lt',
+    name: 'あいもの',
+    profileUrl:
+      'https://njump.me/npub1m0n0eyetgrflxghneeckkv95ukrn0fdpzyysscy4vha3gm64739qxn23sk',
+    image: '/2026/speakers/aimono.webp',
+  },
+  {
+    kind: 'lt',
+    name: 'Shino3',
+    profileUrl:
+      'https://njump.me/npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+    image: '/2026/speakers/shino3.webp',
   },
 ]
 export const SPEAKER_PLACEHOLDER_COUNT = 6
