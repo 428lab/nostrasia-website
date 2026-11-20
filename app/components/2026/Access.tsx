@@ -4,7 +4,6 @@ import { EVENT_2026 } from '~/data/2026'
 import { useLocalized } from '~/hooks/useLocalized'
 
 import { SectionHead } from './SectionHead'
-import { Veil } from './Veil'
 
 export const Access = () => {
   const { t, i18n } = useTranslation()
@@ -59,17 +58,23 @@ export const Access = () => {
         <p className="h3s" id="floor">
           {t('access.floorTitle')}
         </p>
-        <Veil title={t('access.floorVeil')} sub={t('access.floorVeilSub')}>
+        {/* 場内配置は 2025 年から変更なし。タップで原寸を開く */}
+        <a
+          className="floor"
+          href="/2025/map.webp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="floor-img"
             src="/2025/map.webp"
-            alt=""
+            alt={t('access.floorAlt')}
             width="2400"
             height="1968"
             loading="lazy"
             decoding="async"
           />
-        </Veil>
+        </a>
       </div>
     </section>
   )
