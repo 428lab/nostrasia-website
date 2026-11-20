@@ -19,6 +19,10 @@ const AVATARS: readonly ComponentProps<typeof Person>[] = [
   { body: 'var(--pu)', head: 'var(--or)', acc: 'badge', accColor: 'var(--te)' },
 ]
 
+/** 登壇枠と LT 枠は分けて並べる */
+const TALKS = SPEAKERS_2026.filter((s) => s.kind !== 'lt')
+const LTS = SPEAKERS_2026.filter((s) => s.kind === 'lt')
+
 const Avatar = ({ index }: { index: number }) => (
   <Person {...AVATARS[index % AVATARS.length]} />
 )
@@ -39,6 +43,9 @@ const SpeakerCard = ({
         <Avatar index={index} />
       )}
       <b>{speaker.name}</b>
+      {speaker.talk && (
+        <span className="sp-talk">{localized(speaker.talk)}</span>
+      )}
       {speaker.title && <small>{localized(speaker.title)}</small>}
     </>
   )
@@ -66,7 +73,7 @@ export const Speakers = () => {
         {SPEAKERS_2026.length > 0 ? (
           <>
             <div className="sg">
-              {SPEAKERS_2026.map((speaker, i) => (
+              {TALKS.map((speaker, i) => (
                 <SpeakerCard
                   key={`${speaker.name}-${i}`}
                   speaker={speaker}
@@ -74,6 +81,20 @@ export const Speakers = () => {
                 />
               ))}
             </div>
+            {LTS.length > 0 && (
+              <>
+                <p className="h3s">{t('speakers.lt')}</p>
+                <div className="sg">
+                  {LTS.map((speaker, i) => (
+                    <SpeakerCard
+                      key={`${speaker.name}-${i}`}
+                      speaker={speaker}
+                      index={TALKS.length + i}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
             <p className="note">{t('speakers.note')}</p>
           </>
         ) : (

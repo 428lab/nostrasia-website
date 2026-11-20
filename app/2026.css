@@ -1348,6 +1348,12 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   letter-spacing: 0;
   display: block;
 }
+.n26 .sp-talk {
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+  display: block;
+  margin-top: 4px;
+}
 .n26 .sp small {
   font: var(--t-cap);
   letter-spacing: var(--t-cap-ls);
