@@ -1166,39 +1166,33 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   color: #fff;
 }
 /*
- * 縦の時間軸。1 行 = 時刻 / 丸印 / カード。
- * 縦線は一覧の ::before で 1 本引き、丸印をその上に重ねる（--tw は時刻の列幅、--dw は丸印の列幅）
+ * 縦の時間軸。1 つのグリッドで、列は 時刻 / 丸印 / 枠の列（--cols 本）、行は開始時刻ごと。
+ * 長い枠は終わりの時刻の行まで縦に伸ばす（行と列は TimeTable.tsx が style で指定する）。
+ * 縦線は ::before で 1 本引き、丸印をその上に重ねる（--tw は時刻の列幅、--dw は丸印の列幅）
  */
 .n26 .tt-line {
   --tw: 96px;
   --dw: 28px;
+  --gap: 10px;
   position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  display: grid;
+  grid-template-columns: var(--tw) var(--dw) repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 14px;
+  align-items: start;
 }
 .n26 .tt-line::before {
   content: '';
   position: absolute;
   top: 14px;
   bottom: 14px;
-  left: calc(var(--tw) + var(--dw) / 2 - 1.5px);
+  left: calc(var(--tw) + var(--gap) + var(--dw) / 2 - 1.5px);
   width: 3px;
   background: var(--ink);
 }
-.n26 .tt-row,
-.n26 .tt-now {
-  position: relative;
-  display: grid;
-  grid-template-columns: var(--tw) var(--dw) minmax(0, 1fr);
-  align-items: start;
-}
-.n26 .tt-row {
-  padding: 6px 0 10px;
-}
 .n26 .tt-when {
+  grid-column: 1;
   text-align: right;
-  padding-right: 10px;
 }
 .n26 .tt-start {
   display: block;
@@ -1214,6 +1208,7 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
 }
 /* 時刻ごとの丸印。始まった枠は塗り、進行中はオレンジ */
 .n26 .tt-dot {
+  grid-column: 2;
   justify-self: center;
   margin-top: 6px;
   width: 16px;
@@ -1223,25 +1218,22 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   background: var(--paper);
   z-index: 1;
 }
-.n26 .tt-row.past .tt-dot {
+.n26 .tt-dot.past {
   background: var(--ink);
 }
-.n26 .tt-row.live .tt-dot {
+.n26 .tt-dot.live {
   background: var(--or);
   box-shadow: 0 0 0 4px rgba(242, 84, 45, 0.25);
 }
-.n26 .tt-row.past .tt-when,
+.n26 .tt-when.past,
 .n26 .tt-card.past {
   opacity: 0.45;
 }
-/* 同じ時刻に始まる枠は横に並べる（狭ければ折り返す） */
-.n26 .tt-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 10px;
-  padding-left: 8px;
-}
 .n26 .tt-card {
+  align-self: stretch;
+  min-width: 0;
+  position: relative;
+  z-index: 2;
   padding: 6px 12px 8px;
   border: 2px solid var(--ink);
   border-left: 6px solid var(--pc);
@@ -1287,17 +1279,19 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   color: #fff;
   padding: 4px 7px;
 }
-/* 当日の「いま」。縦線の上にひし形の印を置き、右へ横線を引く */
+/* 当日の「いま」。縦線の上にひし形の印を置き、右へ横線を引く。伸ばした枠のカードはその上に重なる */
 .n26 .tt-now {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: var(--tw) var(--dw) minmax(0, 1fr);
+  column-gap: var(--gap);
   align-items: center;
-  padding: 2px 0 12px;
   color: var(--or);
   font: var(--t-micro);
   letter-spacing: var(--t-micro-ls);
 }
 .n26 .tt-now-l {
   text-align: right;
-  padding-right: 10px;
 }
 .n26 .tt-now .tt-dot {
   margin-top: 0;
@@ -1310,7 +1304,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-left: 8px;
   font-family: var(--en);
 }
 .n26 .tt-now time::after {
@@ -1874,13 +1867,11 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   .n26 .stall .ft {
     padding-top: 8px;
   }
-  /* タイムテーブル: 時刻の列を詰め、並行する枠も 2 つ横に並べる */
+  /* タイムテーブル: 時刻の列と間隔を詰める */
   .n26 .tt-line {
-    --tw: 64px;
-    --dw: 22px;
-  }
-  .n26 .tt-when {
-    padding-right: 6px;
+    --tw: 56px;
+    --dw: 18px;
+    --gap: 6px;
   }
   .n26 .tt-start {
     letter-spacing: 0;
@@ -1890,17 +1881,19 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
     width: 14px;
     height: 14px;
   }
-  .n26 .tt-cards {
-    grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
-    gap: 8px;
-    padding-left: 4px;
-  }
   .n26 .tt-card {
     padding: 6px 8px 8px;
     border-left-width: 4px;
   }
   .n26 .tt-card .tt-title {
     font: var(--t-name);
+    font-size: 14px;
+  }
+  /* 3 列並ぶ行ではカードが狭いので、場所のチップは折り返さず小さく */
+  .n26 .tt-place {
+    white-space: nowrap;
+    padding: 2px 5px;
+    border-left-width: 4px;
   }
 }
 .n26 .vh {
