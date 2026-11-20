@@ -162,8 +162,7 @@
     "map": "Open map →",
     "mapGoogle": "Open in Google Maps →",
     "floorTitle": "FLOOR MAP",
-    "floorVeil": "TBD",
-    "floorVeilSub": "Shown: 2025 floor map",
+    "floorAlt": "GOX Tokyo floor map. 6F: Main, Lounge, Reception and Kitchen. 7F: VIP Room, Shrine and smoking area",
     "embedTitle": "Map of {{venue}}"
   },
   "faq": {
