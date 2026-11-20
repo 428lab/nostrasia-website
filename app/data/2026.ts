@@ -26,6 +26,8 @@ export type Speaker = {
   name: string
   /** 肩書き・所属など */
   title?: Localized
+  /** 登壇タイトル。名前の下に出す */
+  talk?: Localized
   /** njump.me 等のプロフィール URL */
   profileUrl?: string
   /** /2026/speakers/ 以下に置いた画像のパス */
@@ -162,14 +164,19 @@ export const TIMETABLE_2026: Session[] = [
   {
     start: '13:05',
     end: '13:20',
-    title: { ja: '登壇枠 1', en: 'Talk slot 1' },
+    title: { ja: 'Nostrの可能性', en: 'The Potential of Nostr' },
     place: 'all',
+    speaker: 'kojira',
   },
   {
     start: '13:20',
     end: '13:35',
-    title: { ja: '登壇枠 2', en: 'Talk slot 2' },
+    title: {
+      ja: 'AI時代のNostrアプリの作り方',
+      en: 'Building Nostr Apps in the AI Era',
+    },
     place: 'all',
+    speaker: 'Shino3',
   },
   {
     start: '13:20',
@@ -181,8 +188,12 @@ export const TIMETABLE_2026: Session[] = [
   {
     start: '13:35',
     end: '13:50',
-    title: { ja: '登壇枠 3', en: 'Talk slot 3' },
+    title: {
+      ja: 'MY FAVORITE NOSTR CLIENTS 2026',
+      en: 'MY FAVORITE NOSTR CLIENTS 2026',
+    },
     place: 'all',
+    speaker: 'kohei',
   },
   {
     start: '13:50',
@@ -205,7 +216,7 @@ export const TIMETABLE_2026: Session[] = [
   {
     start: '18:00',
     end: '19:00',
-    title: { ja: 'ひみつ', en: 'Secret' },
+    title: { ja: 'マジックショー', en: 'Magic show' },
     place: 'all',
   },
   {
@@ -352,7 +363,33 @@ export const FLEA_MARKET_2026: Seller[] = [
 ]
 
 /** 登壇者。未発表のあいだは空配列 → 「Speaker TBA」のカードを placeholderCount 枚出す */
-export const SPEAKERS_2026: Speaker[] = []
+export const SPEAKERS_2026: Speaker[] = [
+  {
+    name: 'kojira',
+    talk: { ja: 'Nostrの可能性', en: 'The Potential of Nostr' },
+    profileUrl:
+      'https://njump.me/npub1k0jrarx8um0lyw3nmysn50539ky4k8p7gfgzgrsvn8d7lccx3d0s38dczd',
+    image: '/2026/speakers/kojira.webp',
+  },
+  {
+    name: 'Shino3',
+    talk: {
+      ja: 'AI時代のNostrアプリの作り方',
+      en: 'Building Nostr Apps in the AI Era',
+    },
+    profileUrl:
+      'https://njump.me/npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
+    image: '/2026/speakers/shino3.webp',
+  },
+  {
+    // アイコンとプロフィールのリンクは後日
+    name: 'kohei',
+    talk: {
+      ja: 'MY FAVORITE NOSTR CLIENTS 2026',
+      en: 'MY FAVORITE NOSTR CLIENTS 2026',
+    },
+  },
+]
 export const SPEAKER_PLACEHOLDER_COUNT = 6
 
 /** スポンサー。tier は分けず、この順に並べる */

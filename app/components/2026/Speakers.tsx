@@ -39,6 +39,9 @@ const SpeakerCard = ({
         <Avatar index={index} />
       )}
       <b>{speaker.name}</b>
+      {speaker.talk && (
+        <span className="sp-talk">{localized(speaker.talk)}</span>
+      )}
       {speaker.title && <small>{localized(speaker.title)}</small>}
     </>
   )
