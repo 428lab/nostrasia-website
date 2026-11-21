@@ -160,7 +160,7 @@
     "map": "地図を開く →",
     "mapGoogle": "Google マップで開く →",
     "floorTitle": "FLOOR MAP",
-    "floorAlt": "GOX Tokyo のフロアマップ。6F にメイン・ラウンジ・受付・キッチン、7F に VIP ルーム・シュライン・喫煙所",
+    "floorAlt": "GOX Tokyo のフロアマップ。6F にメイン・Lounge 1・Lounge 2・受付・キッチン、7F に VIP ルーム・トイレ・喫煙所",
     "embedTitle": "{{venue}} の地図"
   },
   "faq": {

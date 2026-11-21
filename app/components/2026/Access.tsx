@@ -58,19 +58,19 @@ export const Access = () => {
         <p className="h3s" id="floor">
           {t('access.floorTitle')}
         </p>
-        {/* 場内配置は 2025 年から変更なし。タップで原寸を開く */}
+        {/* タップで原寸を開く */}
         <a
           className="floor"
-          href="/2025/map.webp"
+          href="/2026/floor-map.webp"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             className="floor-img"
-            src="/2025/map.webp"
+            src="/2026/floor-map.webp"
             alt={t('access.floorAlt')}
-            width="2400"
-            height="1968"
+            width="3040"
+            height="2492"
             loading="lazy"
             decoding="async"
           />
