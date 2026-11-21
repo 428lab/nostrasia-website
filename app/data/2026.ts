@@ -408,6 +408,13 @@ export const SPEAKERS_2026: Speaker[] = [
       'https://njump.me/npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
     image: '/2026/speakers/shino3.webp',
   },
+  {
+    kind: 'lt',
+    name: 'lkjsxc',
+    profileUrl:
+      'https://njump.me/npub1qs9t6gqqltrd36vkdycxfmdcn4vwzvklu4fa990rdhlc985jevuqpgmk4m',
+    image: '/2026/speakers/lkjsxc.webp',
+  },
 ]
 export const SPEAKER_PLACEHOLDER_COUNT = 6
 
