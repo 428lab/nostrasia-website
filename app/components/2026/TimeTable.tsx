@@ -140,6 +140,10 @@ const layout = () => {
 
 const LAYOUT = layout()
 
+/** 登壇枠の番号（メインセッション N / LT N の N）。同じ種類の枠の中で何番目か */
+const kindNumber = (s: Session) =>
+  TIMETABLE_2026.filter((t) => t.kind === s.kind).indexOf(s) + 1
+
 const Status = ({ phase }: { phase: Phase | null }) => {
   const { t } = useTranslation()
   if (!phase) return null
@@ -253,7 +257,21 @@ export const TimeTable = () => {
                       }}
                     >
                       {!sameEnd && <time className="tt-end">– {s.end}</time>}
-                      <b className="tt-title">{localized(s.title)}</b>
+                      <b className="tt-title">
+                        {s.kind
+                          ? t(`timetable.kind.${s.kind}`, { n: kindNumber(s) })
+                          : localized(s.title)}
+                      </b>
+                      {s.kind && (
+                        <span className="tt-talk">
+                          {s.speaker && (
+                            <b className="tt-talk-by">{s.speaker}</b>
+                          )}
+                          <span className="tt-talk-t">
+                            {localized(s.title)}
+                          </span>
+                        </span>
+                      )}
                       {s.note && (
                         <span className="tt-note">{localized(s.note)}</span>
                       )}
@@ -261,7 +279,7 @@ export const TimeTable = () => {
                         <span className={`tt-place p-${s.place}`}>
                           {t(`timetable.place.${s.place}`)}
                         </span>
-                        {s.speaker && (
+                        {!s.kind && s.speaker && (
                           <span className="tt-by">{s.speaker}</span>
                         )}
                         {states[j] === 'live' && (

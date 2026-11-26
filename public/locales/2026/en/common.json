@@ -113,6 +113,10 @@
       "lounge1": "Lounge 1",
       "lounge3": "Lounge 3"
     },
+    "kind": {
+      "main": "Main session {{n}}",
+      "lt": "Lightning talk {{n}}"
+    },
     "dayTitle": "{{wd}}, {{date}} (JST)",
     "now": "NOW",
     "nowAt": "Now {{time}} JST",
