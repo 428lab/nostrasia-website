@@ -173,8 +173,13 @@ export const TimeTable = () => {
   const nowBefore =
     nowMin === null ? -1 : SLOTS.findIndex((slot) => toMin(slot.start) > nowMin)
   // グリッドの行番号。「いま」の線を引くときは、その手前に 1 行足す
-  const row = (i: number) =>
-    i + 1 + (nowBefore !== -1 && i >= nowBefore ? 1 : 0)
+  const shift = (i: number) => (nowBefore !== -1 && i >= nowBefore ? 1 : 0)
+  const row = (i: number) => i + 1 + shift(i)
+  // スマホは時刻の列を出さず、各時刻の境目の行（tt-sep）をカードの上に差し込む。
+  // 時刻 i の境目は sep(i) 行、そこから始まる短い枠は sep(i) + 1 行から
+  const sep = (i: number) => 2 * i + 1 + shift(i)
+  // 「いま」の線の直前で終わる枠は、線の行にかからないよう 1 行手前で止める
+  const cut = (to: number) => (to === nowBefore ? 1 : 0)
 
   return (
     <section className="sec" id="timetable">
@@ -210,7 +215,12 @@ export const TimeTable = () => {
           {nowBefore !== -1 && nowMin !== null && (
             <div
               className="tt-now"
-              style={{ gridRow: row(nowBefore) - 1 }}
+              style={
+                {
+                  '--r': row(nowBefore) - 1,
+                  '--r-sp': sep(nowBefore) - 1,
+                } as CSSProperties
+              }
               aria-hidden="true"
             >
               <span className="tt-now-l">{t('timetable.now')}</span>
@@ -238,6 +248,13 @@ export const TimeTable = () => {
                   style={{ gridRow: row(i) }}
                   aria-hidden="true"
                 />
+                <div
+                  className={`tt-sep ${rowState}`}
+                  style={{ '--r-sp': sep(i) } as CSSProperties}
+                  aria-hidden="true"
+                >
+                  <time>{slot.start}</time>
+                </div>
                 {slot.items.map((s, j) => {
                   const p = LAYOUT.place.get(s)!
                   const { to } = rowsOf(s)
@@ -246,10 +263,16 @@ export const TimeTable = () => {
                     <div
                       key={s.title.ja}
                       className={`tt-card p-${s.place} ${states[j]}${narrow ? ' narrow' : ''}`}
-                      style={{
-                        gridRow: `${row(i)} / ${row(to)}`,
-                        gridColumn: `${p.col + 3} / span ${p.span}`,
-                      }}
+                      style={
+                        {
+                          '--r': `${row(i)} / ${row(to) - cut(to)}`,
+                          // 縦に伸ばす長い枠は境目の線から、それ以外は線の下から
+                          '--r-sp': `${sep(i) + (narrow ? 0 : 1)} / ${sep(to) - cut(to)}`,
+                          '--c': p.col + 3,
+                          '--c-sp': p.col + 1,
+                          '--span': p.span,
+                        } as CSSProperties
+                      }
                     >
                       <b className="tt-title">
                         {s.kind
