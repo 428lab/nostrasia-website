@@ -108,8 +108,8 @@
     "label": "TIME TABLE",
     "title": "タイムテーブル",
     "place": {
-      "all": "全体",
-      "main": "メイン",
+      "all": "Main",
+      "main": "Main",
       "lounge1": "Lounge 1",
       "lounge3": "Lounge 3"
     },
