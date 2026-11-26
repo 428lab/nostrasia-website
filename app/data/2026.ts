@@ -73,9 +73,14 @@ export type Seller = {
 export type Session = {
   start: string // 'HH:MM'
   end: string // 'HH:MM'
+  /** 折ってよい所は `\u200b`、離したくない空白は `\u00a0` */
   title: Localized
+  /** 登壇枠の種類。あると枠名（メインセッション N / LT N）を見出しにし、title はトークタイトルとして下に出す */
+  kind?: 'main' | 'lt'
   /** all = 会場全体 */
   place: 'all' | 'main' | 'lounge1' | 'lounge3'
+  /** place のほかに同時に使う場所（場所チップを並べて出す） */
+  alsoAt?: Exclude<Session['place'], 'all'>[]
   /** 担当（events lab の Speaker） */
   speaker?: string
   /** ひとこと（events lab の説明）。タイトルの下に小さく出す */
@@ -177,6 +182,7 @@ export const TIMETABLE_2026: Session[] = [
     title: { ja: 'Nostrの可能性', en: 'The Potential of Nostr' },
     place: 'all',
     speaker: 'kojira',
+    kind: 'main',
   },
   {
     start: '13:15',
@@ -187,6 +193,7 @@ export const TIMETABLE_2026: Session[] = [
     },
     place: 'all',
     speaker: 'Shino3',
+    kind: 'main',
   },
   {
     start: '13:25',
@@ -204,6 +211,7 @@ export const TIMETABLE_2026: Session[] = [
     },
     place: 'all',
     speaker: 'kohei',
+    kind: 'main',
   },
   {
     start: '13:30',
@@ -221,24 +229,23 @@ export const TIMETABLE_2026: Session[] = [
     },
     place: 'all',
     speaker: 'Tegami',
+    kind: 'main',
   },
   {
     start: '14:00',
     end: '18:00',
-    title: { ja: 'ボードゲーム', en: 'Board games' },
-    place: 'lounge1',
-  },
-  {
-    start: '14:00',
-    end: '18:00',
-    title: { ja: '交流スペース', en: 'Hangout space' },
+    title: {
+      ja: '交流スペース・\u200bボードゲーム',
+      en: 'Hangout & board games',
+    },
     place: 'main',
+    alsoAt: ['lounge1'],
   },
   {
     start: '15:00',
     end: '15:10',
     title: {
-      ja: 'じゃんけんzapタイム 1',
+      ja: 'じゃんけん\u200bzap\u200bタイム 1',
       en: 'Rock-paper-scissors zap time 1',
     },
     place: 'all',
@@ -257,6 +264,7 @@ export const TIMETABLE_2026: Session[] = [
     },
     place: 'main',
     speaker: 'lkjsxc',
+    kind: 'lt',
   },
   {
     start: '16:05',
@@ -264,12 +272,13 @@ export const TIMETABLE_2026: Session[] = [
     title: { ja: 'Nostrを小さくしよう', en: "Let's Make Nostr Smaller" },
     place: 'main',
     speaker: 'あいもの',
+    kind: 'lt',
   },
   {
     start: '17:00',
     end: '17:10',
     title: {
-      ja: 'じゃんけんzapタイム 2',
+      ja: 'じゃんけん\u200bzap\u200bタイム 2',
       en: 'Rock-paper-scissors zap time 2',
     },
     place: 'all',

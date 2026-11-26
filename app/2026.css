@@ -1200,12 +1200,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   letter-spacing: var(--t-num-ls);
   line-height: 28px;
 }
-.n26 .tt-end {
-  display: block;
-  font: var(--t-cap);
-  letter-spacing: var(--t-num-ls);
-  color: var(--mute);
-}
 /* 時刻ごとの丸印。始まった枠は塗り、進行中はオレンジ */
 .n26 .tt-dot {
   grid-column: 2;
@@ -1230,6 +1224,8 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   opacity: 0.45;
 }
 .n26 .tt-card {
+  grid-row: var(--r);
+  grid-column: var(--c) / span var(--span);
   align-self: stretch;
   min-width: 0;
   position: relative;
@@ -1239,17 +1235,37 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   border-left: 6px solid var(--pc);
   background: var(--paper);
 }
-.n26 .tt-card.live {
-  background: #fff;
-  box-shadow: 4px 4px 0 var(--or);
+/* 進行中の枠は、カードではなく時刻にだけ印をつける */
+.n26 .tt-when.live .tt-start,
+.n26 .tt-sep.live time {
+  background: var(--or);
+  color: #fff;
+  padding: 0 6px;
 }
-.n26 .tt-card .tt-end {
-  margin-bottom: 2px;
+.n26 .tt-when.live .tt-start {
+  display: inline-block;
 }
 .n26 .tt-title {
   display: block;
   font: var(--t-h3);
   letter-spacing: 0;
+  /* 題は語の途中で折らない。切れ目はデータの \u200b */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.n26 .tt-talk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin-top: 2px;
+  font: var(--t-cap);
+  letter-spacing: var(--t-cap-ls);
+}
+.n26 .tt-talk-by {
+  font-weight: 700;
+}
+.n26 .tt-talk-t {
+  min-width: 0;
 }
 .n26 .tt-note {
   display: block;
@@ -1288,6 +1304,7 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
 }
 /* 当日の「いま」。縦線の上にひし形の印を置き、右へ横線を引く。伸ばした枠のカードはその上に重なる */
 .n26 .tt-now {
+  grid-row: var(--r);
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: var(--tw) var(--dw) minmax(0, 1fr);
@@ -1318,6 +1335,10 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   flex: 1;
   height: 3px;
   background: var(--or);
+}
+/* スマホだけで使う、時刻の境目の線 */
+.n26 .tt-sep {
+  display: none;
 }
 /* speakers */
 .n26 .sg {
@@ -1881,24 +1902,68 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
     padding-top: 8px;
   }
   /* タイムテーブル: 時刻の列と間隔を詰める */
+  /*
+   * タイムテーブル: 左の時刻の列と縦線をやめ、時刻ごとに境目の線（tt-sep）を
+   * カードの上に差し込む。続いている長い枠は線をまたいで伸びる
+   */
   .n26 .tt-line {
-    --tw: 56px;
-    --dw: 18px;
     --gap: 6px;
-    --nw: 44px;
-    grid-template-columns: var(--tw) var(--dw) var(--lanes-sp);
+    --nw: 40px;
+    grid-template-columns: var(--lanes-sp);
+    row-gap: 4px;
   }
-  /* 長い枠だけの細い列は縦書きの帯にする（終了時刻・担当・開催中は省き、題と場所だけ） */
+  .n26 .tt-line::before,
+  .n26 .tt-when,
+  .n26 .tt-line > .tt-dot {
+    display: none;
+  }
+  .n26 .tt-card {
+    grid-row: var(--r-sp);
+    grid-column: var(--c-sp) / span var(--span);
+  }
+  .n26 .tt-sep {
+    grid-row: var(--r-sp);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 10px;
+    font: var(--t-num);
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 20px;
+  }
+  .n26 .tt-sep::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--ink);
+  }
+  .n26 .tt-sep.past {
+    opacity: 0.45;
+  }
+  .n26 .tt-now {
+    grid-row: var(--r-sp);
+    display: flex;
+    gap: 8px;
+    padding-top: 10px;
+  }
+  .n26 .tt-now time {
+    flex: 1;
+  }
+  /* 長い枠だけの細い列は縦書きの帯にする（担当・開催中は省き、題と場所だけ） */
   .n26 .tt-card.narrow {
+    /* 帯の上端を境目の線（padding 10px + 行の高さ 20px の中央）に揃える */
+    margin-top: 20px;
     writing-mode: vertical-rl;
     padding: 8px 4px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .n26 .tt-card.narrow .tt-end,
   .n26 .tt-card.narrow .tt-by,
-  .n26 .tt-card.narrow .tt-live {
+  .n26 .tt-card.narrow .tt-live,
+  .n26 .tt-card.narrow .tt-talk {
     display: none;
   }
   .n26 .tt-card.narrow .tt-meta {
@@ -1924,6 +1989,10 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   .n26 .tt-card .tt-title {
     font: var(--t-name);
     font-size: 14px;
+  }
+  .n26 .tt-talk {
+    font-size: 12px;
+    line-height: 1.5;
   }
   /* 3 列並ぶ行ではカードが狭いので、場所のチップは折り返さず小さく */
   .n26 .tt-place {

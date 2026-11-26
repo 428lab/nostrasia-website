@@ -140,6 +140,10 @@ const layout = () => {
 
 const LAYOUT = layout()
 
+/** 登壇枠の番号（メインセッション N / LT N の N）。同じ種類の枠の中で何番目か */
+const kindNumber = (s: Session) =>
+  TIMETABLE_2026.filter((t) => t.kind === s.kind).indexOf(s) + 1
+
 const Status = ({ phase }: { phase: Phase | null }) => {
   const { t } = useTranslation()
   if (!phase) return null
@@ -169,8 +173,16 @@ export const TimeTable = () => {
   const nowBefore =
     nowMin === null ? -1 : SLOTS.findIndex((slot) => toMin(slot.start) > nowMin)
   // グリッドの行番号。「いま」の線を引くときは、その手前に 1 行足す
-  const row = (i: number) =>
-    i + 1 + (nowBefore !== -1 && i >= nowBefore ? 1 : 0)
+  const shift = (i: number) => (nowBefore !== -1 && i >= nowBefore ? 1 : 0)
+  const row = (i: number) => i + 1 + shift(i)
+  // スマホは時刻の列を出さず、各時刻の境目の行（tt-sep）をカードの上に差し込む。
+  // 時刻 i の境目は sep(i) 行、そこから始まる短い枠は sep(i) + 1 行から
+  const sep = (i: number) => 2 * i + 1 + shift(i)
+  // 「いま」の線の直前で終わる枠は、線の行にかからないよう 1 行手前で止める
+  const cut = (to: number) => (to === nowBefore ? 1 : 0)
+  // いま進行している時刻（「いま」の線の直前の行）
+  const current =
+    nowMin === null ? -1 : nowBefore === -1 ? SLOTS.length - 1 : nowBefore - 1
 
   return (
     <section className="sec" id="timetable">
@@ -206,7 +218,12 @@ export const TimeTable = () => {
           {nowBefore !== -1 && nowMin !== null && (
             <div
               className="tt-now"
-              style={{ gridRow: row(nowBefore) - 1 }}
+              style={
+                {
+                  '--r': row(nowBefore) - 1,
+                  '--r-sp': sep(nowBefore) - 1,
+                } as CSSProperties
+              }
               aria-hidden="true"
             >
               <span className="tt-now-l">{t('timetable.now')}</span>
@@ -215,14 +232,14 @@ export const TimeTable = () => {
             </div>
           )}
           {SLOTS.map((slot, i) => {
-            // 終わりが揃っていれば左に出し、ばらばらなら各カードに出す
-            const sameEnd = new Set(slot.items.map((s) => s.end)).size === 1
             const states = slot.items.map((s) => stateOf(s, phase))
-            const rowState = states.every((st) => st === 'past')
-              ? 'past'
-              : states.includes('live')
+            // 印（live）は「いま」の直前の時刻だけ。続いているフリマなどの開始時刻にはつけない
+            const rowState =
+              i === current
                 ? 'live'
-                : ''
+                : states.every((st) => st === 'past')
+                  ? 'past'
+                  : ''
             return (
               <Fragment key={slot.start}>
                 <div
@@ -230,15 +247,26 @@ export const TimeTable = () => {
                   style={{ gridRow: row(i) }}
                 >
                   <time className="tt-start">{slot.start}</time>
-                  {sameEnd && (
-                    <time className="tt-end">– {slot.items[0].end}</time>
-                  )}
                 </div>
                 <span
-                  className={`tt-dot ${rowState}`}
+                  className={`tt-dot ${
+                    // 丸印は始まった時刻をすべて塗る（続いている枠の開始時刻も）
+                    i === current
+                      ? 'live'
+                      : i < current || rowState === 'past'
+                        ? 'past'
+                        : ''
+                  }`}
                   style={{ gridRow: row(i) }}
                   aria-hidden="true"
                 />
+                <div
+                  className={`tt-sep ${rowState}`}
+                  style={{ '--r-sp': sep(i) } as CSSProperties}
+                  aria-hidden="true"
+                >
+                  <time>{slot.start}</time>
+                </div>
                 {slot.items.map((s, j) => {
                   const p = LAYOUT.place.get(s)!
                   const { to } = rowsOf(s)
@@ -247,21 +275,42 @@ export const TimeTable = () => {
                     <div
                       key={s.title.ja}
                       className={`tt-card p-${s.place} ${states[j]}${narrow ? ' narrow' : ''}`}
-                      style={{
-                        gridRow: `${row(i)} / ${row(to)}`,
-                        gridColumn: `${p.col + 3} / span ${p.span}`,
-                      }}
+                      style={
+                        {
+                          '--r': `${row(i)} / ${row(to) - cut(to)}`,
+                          // 縦に伸ばす長い枠は境目の線から、それ以外は線の下から
+                          '--r-sp': `${sep(i) + (narrow ? 0 : 1)} / ${sep(to) - cut(to)}`,
+                          '--c': p.col + 3,
+                          '--c-sp': p.col + 1,
+                          '--span': p.span,
+                        } as CSSProperties
+                      }
                     >
-                      {!sameEnd && <time className="tt-end">– {s.end}</time>}
-                      <b className="tt-title">{localized(s.title)}</b>
+                      <b className="tt-title">
+                        {s.kind
+                          ? t(`timetable.kind.${s.kind}`, { n: kindNumber(s) })
+                          : localized(s.title)}
+                      </b>
+                      {s.kind && (
+                        <span className="tt-talk">
+                          {s.speaker && (
+                            <b className="tt-talk-by">{s.speaker}</b>
+                          )}
+                          <span className="tt-talk-t">
+                            {localized(s.title)}
+                          </span>
+                        </span>
+                      )}
                       {s.note && (
                         <span className="tt-note">{localized(s.note)}</span>
                       )}
                       <div className="tt-meta">
-                        <span className={`tt-place p-${s.place}`}>
-                          {t(`timetable.place.${s.place}`)}
-                        </span>
-                        {s.speaker && (
+                        {[s.place, ...(s.alsoAt ?? [])].map((pl) => (
+                          <span key={pl} className={`tt-place p-${pl}`}>
+                            {t(`timetable.place.${pl}`)}
+                          </span>
+                        ))}
+                        {!s.kind && s.speaker && (
                           <span className="tt-by">{s.speaker}</span>
                         )}
                         {states[j] === 'live' && (
