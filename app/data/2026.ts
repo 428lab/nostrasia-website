@@ -78,6 +78,8 @@ export type Session = {
   place: 'all' | 'main' | 'lounge1' | 'lounge3'
   /** 担当（events lab の Speaker） */
   speaker?: string
+  /** ひとこと（events lab の説明）。タイトルの下に小さく出す */
+  note?: Localized
 }
 
 export const EVENT_2026 = {
@@ -157,6 +159,12 @@ export const PROGRAMS_2026: {
 /** events lab（EVENT_2026.registrationUrl）のタイムテーブルを写したもの。時刻は JST */
 export const TIMETABLE_2026: Session[] = [
   {
+    start: '12:30',
+    end: '13:00',
+    title: { ja: '開場', en: 'Doors open' },
+    place: 'all',
+  },
+  {
     start: '13:00',
     end: '13:05',
     title: { ja: '開始あいさつ', en: 'Opening remarks' },
@@ -165,14 +173,14 @@ export const TIMETABLE_2026: Session[] = [
   },
   {
     start: '13:05',
-    end: '13:20',
+    end: '13:15',
     title: { ja: 'Nostrの可能性', en: 'The Potential of Nostr' },
     place: 'all',
     speaker: 'kojira',
   },
   {
-    start: '13:20',
-    end: '13:35',
+    start: '13:15',
+    end: '13:25',
     title: {
       ja: 'AI時代のNostrアプリの作り方',
       en: 'Building Nostr Apps in the AI Era',
@@ -181,15 +189,15 @@ export const TIMETABLE_2026: Session[] = [
     speaker: 'Shino3',
   },
   {
-    start: '13:20',
-    end: '18:00',
-    title: { ja: 'フリーマーケット', en: 'Flea market' },
-    place: 'lounge3',
+    start: '13:25',
+    end: '13:30',
+    title: { ja: 'フリーマーケットの紹介', en: 'Flea market intro' },
+    place: 'all',
     speaker: 'ロクヨウ',
   },
   {
-    start: '13:35',
-    end: '13:50',
+    start: '13:30',
+    end: '13:45',
     title: {
       ja: 'MY FAVORITE NOSTR CLIENTS 2026',
       en: 'MY FAVORITE NOSTR CLIENTS 2026',
@@ -198,10 +206,21 @@ export const TIMETABLE_2026: Session[] = [
     speaker: 'kohei',
   },
   {
-    start: '13:50',
-    end: '14:00',
-    title: { ja: '登壇枠 4', en: 'Talk slot 4' },
+    start: '13:30',
+    end: '18:00',
+    title: { ja: 'フリーマーケット', en: 'Flea market' },
+    place: 'lounge3',
+    speaker: 'ロクヨウ',
+  },
+  {
+    start: '13:45',
+    end: '13:55',
+    title: {
+      ja: 'Nostrで動くオープンソースのメッセージアプリ',
+      en: 'An Open-Source Messaging App on Nostr',
+    },
     place: 'all',
+    speaker: 'Tegami',
   },
   {
     start: '14:00',
@@ -216,6 +235,46 @@ export const TIMETABLE_2026: Session[] = [
     place: 'main',
   },
   {
+    start: '15:00',
+    end: '15:10',
+    title: {
+      ja: 'じゃんけんzapタイム 1',
+      en: 'Rock-paper-scissors zap time 1',
+    },
+    place: 'all',
+    speaker: 'たゃ',
+    note: {
+      ja: 'じゃんけんで勝ち残った人に zap！',
+      en: 'The last one standing gets zapped!',
+    },
+  },
+  {
+    start: '16:00',
+    end: '16:05',
+    title: {
+      ja: '高機能Nostrクライアントと最適化とAIの話',
+      en: 'Feature-Rich Nostr Clients, Optimization and AI',
+    },
+    place: 'main',
+    speaker: 'lkjsxc',
+  },
+  {
+    start: '16:05',
+    end: '16:10',
+    title: { ja: 'Nostrを小さくしよう', en: "Let's Make Nostr Smaller" },
+    place: 'main',
+    speaker: 'あいもの',
+  },
+  {
+    start: '17:00',
+    end: '17:10',
+    title: {
+      ja: 'じゃんけんzapタイム 2',
+      en: 'Rock-paper-scissors zap time 2',
+    },
+    place: 'all',
+  },
+  {
     start: '18:00',
     end: '19:00',
     title: { ja: 'マジックショー', en: 'Magic show' },
@@ -228,8 +287,21 @@ export const TIMETABLE_2026: Session[] = [
     place: 'main',
   },
   {
-    start: '20:00',
-    end: '20:05',
+    start: '19:30',
+    end: '19:40',
+    title: {
+      ja: '出会いランキング グッズプレゼント',
+      en: 'Meetup ranking giveaway',
+    },
+    place: 'all',
+    note: {
+      ja: 'events lab の出会い機能で出会った人数が多い人に、グッズを進呈します。',
+      en: 'Goods for the people who met the most others with the events lab meetup feature.',
+    },
+  },
+  {
+    start: '19:55',
+    end: '20:00',
     title: { ja: '締めのあいさつ', en: 'Closing remarks' },
     place: 'all',
     speaker: 'kojira',
@@ -393,27 +465,35 @@ export const SPEAKERS_2026: Speaker[] = [
       'https://njump.me/npub16lrdq99ng2q4hg5ufre5f8j0qpealp8544vq4ctn2wqyrf4tk6uqn8mfeq',
     image: '/2026/speakers/kohei.webp',
   },
-  // LT 枠。タイトルが決まったら talk を足す
   {
-    kind: 'lt',
-    name: 'あいもの',
+    name: 'Tegami',
+    talk: {
+      ja: 'Nostrで動くオープンソースのメッセージアプリ',
+      en: 'An Open-Source Messaging App on Nostr',
+    },
     profileUrl:
-      'https://njump.me/npub1m0n0eyetgrflxghneeckkv95ukrn0fdpzyysscy4vha3gm64739qxn23sk',
-    image: '/2026/speakers/aimono.webp',
+      'https://njump.me/npub1zptpqkxhr98glpt4rqv9945f3hd3q82wghaqth4gwqtmzmtjutsse5a98k',
+    image: '/2026/speakers/tegami.webp',
   },
-  {
-    kind: 'lt',
-    name: 'Shino3',
-    profileUrl:
-      'https://njump.me/npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5',
-    image: '/2026/speakers/shino3.webp',
-  },
+  // LT 枠（5 分）。タイムテーブルの順
   {
     kind: 'lt',
     name: 'lkjsxc',
+    talk: {
+      ja: '高機能Nostrクライアントと最適化とAIの話',
+      en: 'Feature-Rich Nostr Clients, Optimization and AI',
+    },
     profileUrl:
       'https://njump.me/npub1qs9t6gqqltrd36vkdycxfmdcn4vwzvklu4fa990rdhlc985jevuqpgmk4m',
     image: '/2026/speakers/lkjsxc.webp',
+  },
+  {
+    kind: 'lt',
+    name: 'あいもの',
+    talk: { ja: 'Nostrを小さくしよう', en: "Let's Make Nostr Smaller" },
+    profileUrl:
+      'https://njump.me/npub1m0n0eyetgrflxghneeckkv95ukrn0fdpzyysscy4vha3gm64739qxn23sk',
+    image: '/2026/speakers/aimono.webp',
   },
 ]
 export const SPEAKER_PLACEHOLDER_COUNT = 6

@@ -68,36 +68,47 @@ const rowsOf = (s: Session) => {
   return { from, to: to === -1 ? SLOTS.length : to }
 }
 
+const minutes = (s: Session) => toMin(s.end) - toMin(s.start)
+
+/** 場所が決まっていて 1 時間以上続く枠（フリーマーケット・ボードゲームなど）。右の列に縦に伸ばす */
+const isLong = (s: Session) => s.place !== 'all' && minutes(s) >= 60
+
 /**
  * 各枠を置く列 [col, col + span) を決める。
- * 長い枠から順に右の列へ詰め、そのあと空いている列へ横に広げる
- * （フリーマーケットのような常設の枠は右端に縦に伸び、並行の枠がない行は全幅になる）
+ * 長い枠は右の列（いちばん長いものが右端）、それ以外は左の列に詰め、
+ * そのあと短い枠を空いている列へ横に広げる（並行の枠がない行は全幅になる）。
+ * narrow は長い枠だけの列（スマホでは細い縦書きの帯にする）
  */
 const layout = () => {
-  const lanes: Session[][] = []
   const overlaps = (a: Session, b: Session) => {
     const x = rowsOf(a)
     const y = rowsOf(b)
     return x.from < y.to && y.from < x.to
   }
-  const byLength = [...TIMETABLE_2026].sort(
-    (a, b) =>
-      rowsOf(b).to - rowsOf(b).from - (rowsOf(a).to - rowsOf(a).from) ||
-      toMin(b.end) - toMin(b.start) - (toMin(a.end) - toMin(a.start)),
-  )
-  const laneOf = new Map<Session, number>()
-  for (const s of byLength) {
-    let lane = lanes.findIndex((l) => l.every((t) => !overlaps(s, t)))
-    if (lane === -1) lane = lanes.push([]) - 1
-    lanes[lane].push(s)
-    laneOf.set(s, lane)
+  const assign = (sessions: Session[]) => {
+    const lanes: Session[][] = []
+    const laneOf = new Map<Session, number>()
+    for (const s of sessions) {
+      let lane = lanes.findIndex((l) => l.every((t) => !overlaps(s, t)))
+      if (lane === -1) lane = lanes.push([]) - 1
+      lanes[lane].push(s)
+      laneOf.set(s, lane)
+    }
+    return { count: lanes.length, laneOf }
   }
-  const cols = Math.max(lanes.length, 1)
+  const short = assign(TIMETABLE_2026.filter((s) => !isLong(s)))
+  const long = assign(
+    TIMETABLE_2026.filter(isLong).sort((a, b) => minutes(b) - minutes(a)),
+  )
+  const cols = Math.max(short.count + long.count, 1)
+  const narrow = Array.from({ length: cols }, (_, c) => c >= short.count)
   // used[row][col] は、そのマスがもう埋まっているか
   const used = SLOTS.map(() => Array<boolean>(cols).fill(false))
   const place = new Map<Session, { col: number; span: number }>()
   for (const s of TIMETABLE_2026) {
-    const col = cols - 1 - (laneOf.get(s) ?? 0)
+    const col = isLong(s)
+      ? cols - 1 - (long.laneOf.get(s) ?? 0)
+      : (short.laneOf.get(s) ?? 0)
     place.set(s, { col, span: 1 })
     const { from, to } = rowsOf(s)
     for (let r = from; r < to; r++) used[r][col] = true
@@ -107,7 +118,8 @@ const layout = () => {
     for (let r = from; r < to; r++) if (used[r][col]) return false
     return true
   }
-  for (const s of TIMETABLE_2026) {
+  // 長い枠は自分の列だけに置き、横には広げない（スマホの縦書きの帯が太らないように）
+  for (const s of TIMETABLE_2026.filter((t) => !isLong(t))) {
     const p = place.get(s)!
     const { from, to } = rowsOf(s)
     const take = (col: number) => {
@@ -123,7 +135,7 @@ const layout = () => {
       p.span++
     }
   }
-  return { cols, place }
+  return { cols, narrow, place }
 }
 
 const LAYOUT = layout()
@@ -181,7 +193,15 @@ export const TimeTable = () => {
         </div>
         <div
           className="tt-line"
-          style={{ '--cols': LAYOUT.cols } as CSSProperties}
+          style={
+            {
+              // PC は列をすべて同じ幅、スマホは長い枠だけの列を細い帯にする
+              '--lanes': `repeat(${LAYOUT.cols}, minmax(0, 1fr))`,
+              '--lanes-sp': LAYOUT.narrow
+                .map((n) => (n ? 'var(--nw)' : 'minmax(0, 1fr)'))
+                .join(' '),
+            } as CSSProperties
+          }
         >
           {nowBefore !== -1 && nowMin !== null && (
             <div
@@ -222,10 +242,11 @@ export const TimeTable = () => {
                 {slot.items.map((s, j) => {
                   const p = LAYOUT.place.get(s)!
                   const { to } = rowsOf(s)
+                  const narrow = LAYOUT.narrow[p.col]
                   return (
                     <div
-                      key={s.place}
-                      className={`tt-card p-${s.place} ${states[j]}`}
+                      key={s.title.ja}
+                      className={`tt-card p-${s.place} ${states[j]}${narrow ? ' narrow' : ''}`}
                       style={{
                         gridRow: `${row(i)} / ${row(to)}`,
                         gridColumn: `${p.col + 3} / span ${p.span}`,
@@ -233,6 +254,9 @@ export const TimeTable = () => {
                     >
                       {!sameEnd && <time className="tt-end">– {s.end}</time>}
                       <b className="tt-title">{localized(s.title)}</b>
+                      {s.note && (
+                        <span className="tt-note">{localized(s.note)}</span>
+                      )}
                       <div className="tt-meta">
                         <span className={`tt-place p-${s.place}`}>
                           {t(`timetable.place.${s.place}`)}
