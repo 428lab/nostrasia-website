@@ -113,6 +113,10 @@
       "lounge1": "Lounge 1",
       "lounge3": "Lounge 3"
     },
+    "kind": {
+      "main": "メインセッション {{n}}",
+      "lt": "LT {{n}}"
+    },
     "dayTitle": "{{date}}（{{wd}}）日本時間",
     "now": "NOW",
     "nowAt": "いま {{time}}（日本時間）",
