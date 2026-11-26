@@ -79,6 +79,8 @@ export type Session = {
   kind?: 'main' | 'lt'
   /** all = 会場全体 */
   place: 'all' | 'main' | 'lounge1' | 'lounge3'
+  /** place のほかに同時に使う場所（場所チップを並べて出す） */
+  alsoAt?: Exclude<Session['place'], 'all'>[]
   /** 担当（events lab の Speaker） */
   speaker?: string
   /** ひとこと（events lab の説明）。タイトルの下に小さく出す */
@@ -232,14 +234,12 @@ export const TIMETABLE_2026: Session[] = [
   {
     start: '14:00',
     end: '18:00',
-    title: { ja: 'ボードゲーム', en: 'Board games' },
-    place: 'lounge1',
-  },
-  {
-    start: '14:00',
-    end: '18:00',
-    title: { ja: '交流スペース', en: 'Hangout space' },
+    title: {
+      ja: '交流スペース・\u200bボードゲーム',
+      en: 'Hangout & board games',
+    },
     place: 'main',
+    alsoAt: ['lounge1'],
   },
   {
     start: '15:00',

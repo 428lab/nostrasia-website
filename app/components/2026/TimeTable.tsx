@@ -219,8 +219,6 @@ export const TimeTable = () => {
             </div>
           )}
           {SLOTS.map((slot, i) => {
-            // 終わりが揃っていれば左に出し、ばらばらなら各カードに出す
-            const sameEnd = new Set(slot.items.map((s) => s.end)).size === 1
             const states = slot.items.map((s) => stateOf(s, phase))
             const rowState = states.every((st) => st === 'past')
               ? 'past'
@@ -234,9 +232,6 @@ export const TimeTable = () => {
                   style={{ gridRow: row(i) }}
                 >
                   <time className="tt-start">{slot.start}</time>
-                  {sameEnd && (
-                    <time className="tt-end">– {slot.items[0].end}</time>
-                  )}
                 </div>
                 <span
                   className={`tt-dot ${rowState}`}
@@ -256,7 +251,6 @@ export const TimeTable = () => {
                         gridColumn: `${p.col + 3} / span ${p.span}`,
                       }}
                     >
-                      {!sameEnd && <time className="tt-end">– {s.end}</time>}
                       <b className="tt-title">
                         {s.kind
                           ? t(`timetable.kind.${s.kind}`, { n: kindNumber(s) })
@@ -276,9 +270,11 @@ export const TimeTable = () => {
                         <span className="tt-note">{localized(s.note)}</span>
                       )}
                       <div className="tt-meta">
-                        <span className={`tt-place p-${s.place}`}>
-                          {t(`timetable.place.${s.place}`)}
-                        </span>
+                        {[s.place, ...(s.alsoAt ?? [])].map((pl) => (
+                          <span key={pl} className={`tt-place p-${pl}`}>
+                            {t(`timetable.place.${pl}`)}
+                          </span>
+                        ))}
                         {!s.kind && s.speaker && (
                           <span className="tt-by">{s.speaker}</span>
                         )}
