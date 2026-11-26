@@ -305,11 +305,13 @@ export const TimeTable = () => {
                         <span className="tt-note">{localized(s.note)}</span>
                       )}
                       <div className="tt-meta">
-                        {[s.place, ...(s.alsoAt ?? [])].map((pl) => (
-                          <span key={pl} className={`tt-place p-${pl}`}>
-                            {t(`timetable.place.${pl}`)}
-                          </span>
-                        ))}
+                        {(s.noPlace ? [] : [s.place, ...(s.alsoAt ?? [])]).map(
+                          (pl) => (
+                            <span key={pl} className={`tt-place p-${pl}`}>
+                              {t(`timetable.place.${pl}`)}
+                            </span>
+                          ),
+                        )}
                         {!s.kind && s.speaker && (
                           <span className="tt-by">{s.speaker}</span>
                         )}

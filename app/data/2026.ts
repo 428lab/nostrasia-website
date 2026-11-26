@@ -79,6 +79,8 @@ export type Session = {
   kind?: 'main' | 'lt'
   /** all = 会場全体 */
   place: 'all' | 'main' | 'lounge1' | 'lounge3'
+  /** 場所チップを出さない（開場など、場所を示す必要がない枠） */
+  noPlace?: boolean
   /** place のほかに同時に使う場所（場所チップを並べて出す） */
   alsoAt?: Exclude<Session['place'], 'all'>[]
   /** 担当（events lab の Speaker） */
@@ -168,6 +170,7 @@ export const TIMETABLE_2026: Session[] = [
     end: '13:00',
     title: { ja: '開場', en: 'Doors open' },
     place: 'all',
+    noPlace: true,
   },
   {
     start: '13:00',
