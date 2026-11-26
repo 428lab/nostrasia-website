@@ -1235,9 +1235,15 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   border-left: 6px solid var(--pc);
   background: var(--paper);
 }
-.n26 .tt-card.live {
-  background: #fff;
-  box-shadow: 4px 4px 0 var(--or);
+/* 進行中の枠は、カードではなく時刻にだけ印をつける */
+.n26 .tt-when.live .tt-start,
+.n26 .tt-sep.live time {
+  background: var(--or);
+  color: #fff;
+  padding: 0 6px;
+}
+.n26 .tt-when.live .tt-start {
+  display: inline-block;
 }
 .n26 .tt-title {
   display: block;
@@ -1935,9 +1941,6 @@ html.js:not(.no-hydrate) .n26 .step:last-child {
   }
   .n26 .tt-sep.past {
     opacity: 0.45;
-  }
-  .n26 .tt-sep.live {
-    color: var(--or);
   }
   .n26 .tt-now {
     grid-row: var(--r-sp);
