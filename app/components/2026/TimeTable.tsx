@@ -180,6 +180,9 @@ export const TimeTable = () => {
   const sep = (i: number) => 2 * i + 1 + shift(i)
   // 「いま」の線の直前で終わる枠は、線の行にかからないよう 1 行手前で止める
   const cut = (to: number) => (to === nowBefore ? 1 : 0)
+  // いま進行している時刻（「いま」の線の直前の行）
+  const current =
+    nowMin === null ? -1 : nowBefore === -1 ? SLOTS.length - 1 : nowBefore - 1
 
   return (
     <section className="sec" id="timetable">
@@ -230,11 +233,13 @@ export const TimeTable = () => {
           )}
           {SLOTS.map((slot, i) => {
             const states = slot.items.map((s) => stateOf(s, phase))
-            const rowState = states.every((st) => st === 'past')
-              ? 'past'
-              : states.includes('live')
+            // 印（live）は「いま」の直前の時刻だけ。続いているフリマなどの開始時刻にはつけない
+            const rowState =
+              i === current
                 ? 'live'
-                : ''
+                : states.every((st) => st === 'past')
+                  ? 'past'
+                  : ''
             return (
               <Fragment key={slot.start}>
                 <div
@@ -244,7 +249,14 @@ export const TimeTable = () => {
                   <time className="tt-start">{slot.start}</time>
                 </div>
                 <span
-                  className={`tt-dot ${rowState}`}
+                  className={`tt-dot ${
+                    // 丸印は始まった時刻をすべて塗る（続いている枠の開始時刻も）
+                    i === current
+                      ? 'live'
+                      : i < current || rowState === 'past'
+                        ? 'past'
+                        : ''
+                  }`}
                   style={{ gridRow: row(i) }}
                   aria-hidden="true"
                 />
